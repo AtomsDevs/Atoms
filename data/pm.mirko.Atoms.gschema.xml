@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="atoms">
+	<schema id="pm.mirko.Atoms" path="/pm/mirko/Atoms/">
+	</schema>
+</schemalist>

@@ -1,0 +1,100 @@
+---
+app-id: pm.mirko.Atoms
+runtime: org.gnome.Platform
+runtime-version: '42'
+sdk: org.gnome.Sdk
+command: atoms
+
+finish-args:
+- "--share=network"
+- "--share=ipc"
+- "--socket=fallback-x11"
+- "--device=dri"
+- "--socket=wayland"
+- "--allow=devel"
+
+add-extensions:
+  org.gnome.Platform.Compat.i386:
+    directory: lib/i386-linux-gnu
+    version: "42"
+
+  org.gnome.Platform.Compat.i386.Debug:
+    directory: lib/debug/lib/i386-linux-gnu
+    version: "42"
+    no-autodownload: true
+
+  org.freedesktop.Platform.GL32:
+    directory: lib/i386-linux-gnu/GL
+    version: '1.4'
+    versions: 21.08;1.4
+    subdirectories: true
+    no-autodownload: true
+    autodelete: false
+    add-ld-path: lib
+    merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d
+    download-if: active-gl-driver
+    enable-if: active-gl-driver
+
+x-compat-i386-opts: &compat_i386_opts
+  prepend-pkg-config-path: /app/lib32/pkgconfig:/usr/lib/i386-linux-gnu/pkgconfig
+  ldflags: -L/app/lib32
+  append-path: /usr/lib/sdk/toolchain-i386/bin
+  env:
+    CC: i686-unknown-linux-gnu-gcc
+    CXX: i686-unknown-linux-gnu-g++
+  libdir: /app/lib32
+
+sdk-extensions:
+  - org.gnome.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+
+cleanup:
+- "/include"
+- "/lib/pkgconfig"
+- "/man"
+- "/share/doc"
+- "/share/gtk-doc"
+- "/share/man"
+- "/share/pkgconfig"
+- "*.la"
+- "*.a"
+
+modules:
+- name: talloc
+  buildsystem: simple
+  build-commands:
+    - ./configure --prefix=/app
+    - make
+    - make install
+  sources:
+    - type: archive
+      url: https://www.samba.org/ftp/talloc/talloc-2.3.4.tar.gz
+      sha256: 179f9ebe265e67e4ab2c26cad2b7de4b6a77c6c212f966903382869f06be6505
+
+- name: proot
+  buildsystem: simple
+  build-commands:
+    - ls
+    - make -C src loader.elf loader-m32.elf build.h
+    - make -C src proot care
+    - install -m755 -d /app/bin
+    - install -m755 -d /app/lib
+    - install -m755 src/proot /app/bin
+  sources:
+    - type: archive
+      url: https://github.com/troydhanson/uthash/archive/refs/tags/v2.3.0.tar.gz
+      sha256: e10382ab75518bad8319eb922ad04f907cb20cccb451a3aa980c9d005e661acc
+    - type: archive
+      url: https://github.com/proot-me/proot/archive/refs/tags/v5.3.1.tar.gz
+      sha256: 966afe32bf9a9d0e80836a8874d4dd829c51750060d9e0f30d330b1ed7eec8c2
+      
+- name: atoms
+  builddir: true
+  buildsystem: meson
+  build-commands:
+    - mkdir -p /app/lib/i386-linux-gnu
+    - mkdir -p /app/lib/debug/lib/i386-linux-gnu
+    - mkdir -p /app/lib/i386-linux-gnu/GL
+  sources:
+    - type: dir
+      path: .
