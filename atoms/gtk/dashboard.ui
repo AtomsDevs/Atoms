@@ -1,131 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="AtomsDashboard" parent="AdwBin">
-    <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwViewSwitcherTitle">
-                <property name="stack">stack_atom</property>
-              </object>
-            </property>
-            <child type="start">
-              <object class="GtkButton" id="btn_back">
-                <property name="icon-name">go-previous-symbolic</property>
-              </object>
-            </child>
-            <child type="end">
-              <object class="GtkButton" id="btn_detach">
-                <property name="visible">false</property>
-                <property name="icon-name">pip-in-symbolic</property>
-                <property name="tooltip-text">Detach Console</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwViewStack" id="stack_atom">
-            <property name="vexpand">True</property>
+   <requires lib="gtk" version="4.0" />
+   <requires lib="libadwaita" version="1.0" />
+   <template class="AtomsDashboard" parent="AdwBin">
+      <child>
+         <object class="GtkBox">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="AdwViewStackPage">
-                <property name="name">dashboard</property>
-                <property name="title">Dashboard</property>
-								<property name="icon-name">view-grid-symbolic</property>
-                <property name="child">
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="margin-top">30</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel" id="label_name">
-                        <property name="halign">center</property>
-                        <property name="label" translatable="yes">My First Atom</property>
-                        <style>
-                          <class name="title-2"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label_distribution">
-                        <property name="halign">center</property>
-                        <property name="label" translatable="yes">Alpine Linux</property>
-                        <style>
-                          <class name="heading"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="AdwPreferencesPage">
-                        <child>
-                          <object class="AdwPreferencesGroup">
-                            <property name="title">Utilities</property>
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title">Preferences</property>
-                                <child type="suffix">
-                                    <object class="GtkButton" id="btn_preferences">
-                                        <property name="tooltip-text" translatable="yes">Show Atom Preferences</property>
-                                        <property name="valign">center</property>
-                                        <property name="icon-name">go-next-symbolic</property>
-                                        <style>
-                                            <class name="flat"/>
-                                        </style>
-                                    </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title">Browse Files</property>
-                                <child type="suffix">
-                                    <object class="GtkButton" id="btn_browse">
-                                        <property name="tooltip-text" translatable="yes">Show Atom Preferences</property>
-                                        <property name="valign">center</property>
-                                        <property name="icon-name">external-link-symbolic</property>
-                                        <style>
-                                            <class name="flat"/>
-                                        </style>
-                                    </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </property>
-              </object>
+               <object class="AdwHeaderBar">
+                  <property name="title-widget">
+                     <object class="AdwViewSwitcherTitle">
+                        <property name="stack">stack_atom</property>
+                     </object>
+                  </property>
+                  <child type="start">
+                     <object class="GtkButton" id="btn_back">
+                        <property name="icon-name">go-previous-symbolic</property>
+                     </object>
+                  </child>
+                  <child type="end">
+                     <object class="GtkButton" id="btn_detach">
+                        <property name="visible">false</property>
+                        <property name="icon-name">pip-in-symbolic</property>
+                        <property name="tooltip-text">Detach Console</property>
+                     </object>
+                  </child>
+               </object>
             </child>
             <child>
-              <object class="AdwViewStackPage">
-                <property name="name">console</property>
-                <property name="title">Console</property>
-								<property name="icon-name">utilities-terminal-symbolic</property>
-                <property name="child">
-									<object class="AdwViewStack" id="stack_console">
-                    <property name="vexpand">True</property>
-                    <child>
-                      <object class="AdwViewStackPage">
-                        <property name="name">vte</property>
+               <object class="AdwViewStack" id="stack_atom">
+                  <property name="vexpand">True</property>
+                  <child>
+                     <object class="AdwViewStackPage">
+                        <property name="name">dashboard</property>
+                        <property name="title">Dashboard</property>
+                        <property name="icon-name">view-grid-symbolic</property>
                         <property name="child">
-                          <object class="GtkLabel" id="label_console">
-                            <property name="label">This is the console</property>
-                          </object>
+                           <object class="GtkBox">
+                              <property name="orientation">vertical</property>
+                              <property name="margin-top">30</property>
+                              <property name="spacing">6</property>
+                              <child>
+                                 <object class="GtkLabel" id="label_name">
+                                    <property name="halign">center</property>
+                                    <property name="label" translatable="yes">My First Atom</property>
+                                    <style>
+                                       <class name="title-2" />
+                                    </style>
+                                 </object>
+                              </child>
+                              <child>
+                                 <object class="GtkLabel" id="label_distribution">
+                                    <property name="halign">center</property>
+                                    <property name="label" translatable="yes">Alpine Linux</property>
+                                    <style>
+                                       <class name="heading" />
+                                    </style>
+                                 </object>
+                              </child>
+                              <child>
+                                 <object class="AdwPreferencesPage">
+                                    <child>
+                                       <object class="AdwPreferencesGroup">
+                                          <property name="title">Utilities</property>
+                                          <child>
+                                             <object class="AdwActionRow">
+                                                <property name="title">Preferences</property>
+                                                <child type="suffix">
+                                                   <object class="GtkButton" id="btn_preferences">
+                                                      <property name="tooltip-text" translatable="yes">Show Atom Preferences</property>
+                                                      <property name="valign">center</property>
+                                                      <property name="icon-name">go-next-symbolic</property>
+                                                      <style>
+                                                         <class name="flat" />
+                                                      </style>
+                                                   </object>
+                                                </child>
+                                             </object>
+                                          </child>
+                                          <child>
+                                             <object class="AdwActionRow">
+                                                <property name="title">Browse Files</property>
+                                                <property name="activatable-widget">btn_browse</property>
+                                                <child type="suffix">
+                                                   <object class="GtkButton" id="btn_browse">
+                                                      <property name="tooltip-text" translatable="yes">Show Atom Preferences</property>
+                                                      <property name="valign">center</property>
+                                                      <property name="icon-name">external-link-symbolic</property>
+                                                      <style>
+                                                         <class name="flat" />
+                                                      </style>
+                                                   </object>
+                                                </child>
+                                             </object>
+                                          </child>
+                                       </object>
+                                    </child>
+                                 </object>
+                              </child>
+                           </object>
                         </property>
-                      </object>
-                    </child>
-									</object>
-								</property>
-							</object>
-						</child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </template>
+                     </object>
+                  </child>
+                  <child>
+                     <object class="AdwViewStackPage">
+                        <property name="name">console</property>
+                        <property name="title">Console</property>
+                        <property name="icon-name">utilities-terminal-symbolic</property>
+                        <property name="child">
+                           <object class="AdwViewStack" id="stack_console">
+                              <property name="vexpand">True</property>
+                              <child>
+                                 <object class="AdwViewStackPage">
+                                    <property name="name">vte</property>
+                                    <property name="child">
+                                       <object class="GtkBox" id="box_console">
+                                          <child>
+                                             <object class="GtkLabel" id="label_console">
+                                                <property name="label">This is the console</property>
+                                             </object>
+                                          </child>
+                                       </object>
+                                    </property>
+                                 </object>
+                              </child>
+                           </object>
+                        </property>
+                     </object>
+                  </child>
+               </object>
+            </child>
+         </object>
+      </child>
+   </template>
 </interface>

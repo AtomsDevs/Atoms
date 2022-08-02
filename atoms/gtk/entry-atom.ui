@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="AtomEntry" parent="AdwActionRow">
-    <child type="prefix">
-      <object class="GtkImage" id="img_distribution">
-		<property name="valign">center</property>
-		<property name="pixel-size">24</property>
-      </object>
-    </child>
-    <child type="suffix">
-      <object class="GtkButton" id="btn_open">
-		<property name="valign">center</property>
-		<style>
-			<class name="flat" />
-		</style>
-		<child>
-			<object class="GtkImage">
-				<property name="icon-name">media-playback-start-symbolic</property>
-			</object>
-		</child>
-      </object>
-    </child>
-  </template>
+   <requires lib="gtk" version="4.0" />
+   <requires lib="libadwaita" version="1.0" />
+   <template class="AtomEntry" parent="AdwActionRow">
+      <property name="activatable-widget">btn_open</property>
+      <child type="prefix">
+         <object class="GtkImage" id="img_distribution">
+            <property name="valign">center</property>
+            <property name="pixel-size">24</property>
+         </object>
+      </child>
+      <child type="suffix">
+         <object class="GtkButton" id="btn_open">
+            <property name="valign">center</property>
+            <style>
+               <class name="flat" />
+            </style>
+            <child>
+               <object class="GtkImage">
+                  <property name="icon-name">media-playback-start-symbolic</property>
+               </object>
+            </child>
+         </object>
+      </child>
+   </template>
 </interface>

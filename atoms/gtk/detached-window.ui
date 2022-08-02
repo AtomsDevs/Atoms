@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+   <requires lib="gtk" version="4.0" />
+   <requires lib="libadwaita" version="1.0" />
+   <template class="AtomsDetachedWindow" parent="AdwWindow">
+      <property name="default-width">300</property>
+      <property name="default-height">230</property>
+      <style>
+         <class name="devel" />
+      </style>
+      <child>
+         <object class="GtkBox">
+            <property name="hexpand">True</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">12</property>
+            <property name="vexpand">True</property>
+            <child>
+               <object class="AdwHeaderBar">
+               </object>
+            </child>
+            <child>
+               <object class="GtkBox" id="box_content">
+                  <property name="vexpand">True</property>
+                  <property name="hexpand">True</property>
+               </object>
+            </child>
+         </object>
+      </child>
+   </template>
+</interface>

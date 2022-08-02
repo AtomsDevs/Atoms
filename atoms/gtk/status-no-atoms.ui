@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="AtomsStatusEmpty" parent="AdwBin">
-    <child>
-      <object class="AdwStatusPage">
-        <property name="icon-name">pm.mirko.Atoms-symbolic</property>
-        <property name="title">Atoms</property>
-        <property name="description">Start by creating your first atom.</property>
-        <child>
-          <object class="GtkButton">
-            <property name="label">Create new atom</property>
-            <property name="halign">center</property>
-            <style>
-              <class name="suggested-action" />
-              <class name="pill" />
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-  </template>
+   <requires lib="gtk" version="4.0" />
+   <requires lib="libadwaita" version="1.0" />
+   <template class="AtomsStatusEmpty" parent="AdwBin">
+      <child>
+         <object class="AdwStatusPage">
+            <property name="icon-name">pm.mirko.Atoms-symbolic</property>
+            <property name="title">Atoms</property>
+            <property name="description">Start by creating your first atom.</property>
+            <child>
+               <object class="GtkButton">
+                  <property name="label">Create new atom</property>
+                  <property name="halign">center</property>
+                  <style>
+                     <class name="suggested-action" />
+                     <class name="pill" />
+                  </style>
+               </object>
+            </child>
+         </object>
+      </child>
+   </template>
 </interface>

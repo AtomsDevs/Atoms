@@ -1,69 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk" version="4.0"/>
-  <requires lib="libadwaita" version="1.0"/>
-  <template class="AtomsWindow" parent="AdwApplicationWindow">
-    <property name="title">Atoms</property>
-    <property name="default-width">880</property>
-    <property name="default-height">640</property>
-    <style>
-      <class name="devel" />
-    </style>
-    <child>
-      <object class="AdwToastOverlay" id="toasts">
-        <child>
-          <object class="AdwLeaflet" id="main_leaflet">
-            <property name="can-unfold">False</property>
-            <property name="can-navigate-back">False</property>
+   <requires lib="gtk" version="4.0" />
+   <requires lib="libadwaita" version="1.0" />
+   <template class="AtomsWindow" parent="AdwApplicationWindow">
+      <property name="title">Atoms</property>
+      <property name="default-width">880</property>
+      <property name="default-height">640</property>
+      <style>
+         <class name="devel" />
+      </style>
+      <child>
+         <object class="AdwToastOverlay" id="toasts">
             <child>
-              <object class="GtkBox">
-                <property name="hexpand">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <property name="vexpand">True</property>
-                <child>
-                  <object class="AdwHeaderBar">
-                    <child type="start">
-                      <object class="GtkButton" id="btn_add">
-                          <property name="tooltip-text" translatable="yes">New Atom</property>
-                          <property name="icon-name">list-add-symbolic</property>
-                      </object>
-                    </child>
-                    <child type="end">
-                      <object class="GtkMenuButton">
-                        <property name="icon-name">open-menu-symbolic</property>
-                        <property name="menu-model">primary_menu</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwViewStack" id="stack_main">
-                    <property name="vexpand">True</property>
-                  </object>
-                </child>
-              </object>
+               <object class="AdwLeaflet" id="main_leaflet">
+                  <property name="can-unfold">False</property>
+                  <property name="can-navigate-back">False</property>
+                  <child>
+                     <object class="GtkBox">
+                        <property name="hexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">12</property>
+                        <property name="vexpand">True</property>
+                        <child>
+                           <object class="AdwHeaderBar">
+                              <child type="start">
+                                 <object class="GtkButton" id="btn_add">
+                                    <property name="tooltip-text" translatable="yes">New Atom</property>
+                                    <property name="icon-name">list-add-symbolic</property>
+                                 </object>
+                              </child>
+                              <child type="end">
+                                 <object class="GtkMenuButton">
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="menu-model">primary_menu</property>
+                                 </object>
+                              </child>
+                           </object>
+                        </child>
+                        <child>
+                           <object class="AdwViewStack" id="stack_main">
+                              <property name="vexpand">True</property>
+                           </object>
+                        </child>
+                     </object>
+                  </child>
+               </object>
             </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </template>
-
-  <menu id="primary_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">app.preferences</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_About Atoms</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
+         </object>
+      </child>
+   </template>
+   <menu id="primary_menu">
+      <section>
+         <item>
+            <attribute name="label" translatable="yes">_Preferences</attribute>
+            <attribute name="action">app.preferences</attribute>
+         </item>
+         <item>
+            <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+            <attribute name="action">win.show-help-overlay</attribute>
+         </item>
+         <item>
+            <attribute name="label" translatable="yes">_About Atoms</attribute>
+            <attribute name="action">app.about</attribute>
+         </item>
+      </section>
+   </menu>
 </interface>
