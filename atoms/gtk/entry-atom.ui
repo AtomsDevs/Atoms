@@ -18,7 +18,7 @@
             </style>
             <child>
                <object class="GtkImage">
-                  <property name="icon-name">media-playback-start-symbolic</property>
+                  <property name="icon-name">go-next-symbolic</property>
                </object>
             </child>
          </object>
