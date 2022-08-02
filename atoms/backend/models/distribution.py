@@ -26,8 +26,3 @@ class AtomDistribution:
     
     def get_remote(self, architecture: str, release: str):
         return self.remote_structure.format(release, architecture)
-
-
-class Debian(AtomDistribution):
-    def __init__(self):
-        super().__init__("debian", "Debian", "debian-symbolic")
