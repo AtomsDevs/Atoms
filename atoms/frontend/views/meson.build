@@ -6,9 +6,7 @@ subdir('lists')
 
 bottles_sources = [
   '__init__.py',
-  'window.py',
   'dashboard.py',
-  'detached_window.py',
 ]
 
 install_data(bottles_sources, install_dir: viewsdir)

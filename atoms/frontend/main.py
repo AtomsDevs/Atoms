@@ -22,7 +22,7 @@ gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
 from gi.repository import Gtk, Gio, Adw
-from atoms.frontend.views.window import AtomsWindow, AboutDialog
+from atoms.frontend.windows.main_window import AtomsWindow, AboutDialog
 
 
 class AtomsApplication(Adw.Application):

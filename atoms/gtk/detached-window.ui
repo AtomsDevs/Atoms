@@ -3,8 +3,8 @@
    <requires lib="gtk" version="4.0" />
    <requires lib="libadwaita" version="1.0" />
    <template class="AtomsDetachedWindow" parent="AdwWindow">
-      <property name="default-width">300</property>
-      <property name="default-height">230</property>
+      <property name="default-width">700</property>
+      <property name="default-height">500</property>
       <style>
          <class name="devel" />
       </style>

@@ -24,7 +24,7 @@
                         <child>
                            <object class="AdwHeaderBar">
                               <child type="start">
-                                 <object class="GtkButton" id="btn_add">
+                                 <object class="GtkButton" id="btn_new">
                                     <property name="tooltip-text" translatable="yes">New Atom</property>
                                     <property name="icon-name">list-add-symbolic</property>
                                  </object>

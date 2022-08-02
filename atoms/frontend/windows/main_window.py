@@ -19,6 +19,9 @@ from gi.repository import Gtk, Adw
 
 from atoms.frontend.views.status.no_atoms import AtomsStatusEmpty
 from atoms.frontend.views.lists.atoms import AtomsList
+from atoms.frontend.windows.new_atom_window import AtomsNewAtomWindow
+
+from atoms.backend.atoms import AtomsBackend
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/window.ui')
@@ -27,14 +30,24 @@ class AtomsWindow(Adw.ApplicationWindow):
 
     main_leaflet = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
+    btn_new = Gtk.Template.Child()
+    manager = AtomsBackend()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.__build_ui()
     
     def __build_ui(self):
-        # self.stack_main.add_named(AtomsStatusEmpty(), 'noatoms')
-        self.stack_main.add_named(AtomsList(self), 'listatoms')
+        if self.manager.has_atoms:
+            self.stack_main.add_named(AtomsList(self), 'listatoms')
+        else:
+            self.stack_main.add_named(AtomsStatusEmpty(), 'noatoms')
+
+        self.btn_new.connect('clicked', self.__on_btn_new_clicked)
+
+    def __on_btn_new_clicked(self, widget):
+        new_atom_window = AtomsNewAtomWindow(self)
+        new_atom_window.present()
 
 class AboutDialog(Gtk.AboutDialog):
 

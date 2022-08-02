@@ -41,9 +41,14 @@
                               <property name="margin-top">30</property>
                               <property name="spacing">6</property>
                               <child>
+                                 <object class="GtkImage" id="img_distribution">
+                                    <property name="pixel-size">64</property>
+                                 </object>
+                              </child>
+                              <child>
                                  <object class="GtkLabel" id="label_name">
                                     <property name="halign">center</property>
-                                    <property name="label" translatable="yes">My First Atom</property>
+                                    <property name="label" translatable="yes">Atom Name</property>
                                     <style>
                                        <class name="title-2" />
                                     </style>
@@ -52,7 +57,7 @@
                               <child>
                                  <object class="GtkLabel" id="label_distribution">
                                     <property name="halign">center</property>
-                                    <property name="label" translatable="yes">Alpine Linux</property>
+                                    <property name="label" translatable="yes">Distribution Name</property>
                                     <style>
                                        <class name="heading" />
                                     </style>

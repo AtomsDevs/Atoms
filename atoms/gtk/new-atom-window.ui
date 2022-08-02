@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <template class="AtomsNewAtomWindow" parent="AdwWindow">
+    <property name="modal">True</property>
+    <property name="title">New Atom</property>
+    <property name="deletable">false</property>
+    <property name="width-request">450</property>
+    <property name="height-request">370</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="AdwHeaderBar">
+            <child type="start">
+              <object class="GtkButton" id="btn_cancel">
+                <property name="label">Cancel</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton" id="btn_create">
+                <property name="label">Create</property>
+                <property name="sensitive">false</property>
+                <style>
+                  <class name="suggested-action" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwViewStack" id="stack_main">
+            <property name="vexpand">True</property>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="name">dashboard</property>
+                <property name="child">
+                  <object class="AdwPreferencesPage">
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">Atom Information</property>
+                        <child>
+                          <object class="AdwActionRow">
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <property name="title">Atom Distribution</property>
+                        <child>
+                          <object class="AdwComboRow">
+                            <property name="title">Distribution</property>
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <items>
+                                  <item translatable="yes">Alpine Linux</item>
+                                  <item translatable="yes">Ubuntu</item>
+                                </items>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwComboRow">
+                            <property name="title">Release</property>
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <items>
+                                  <item translatable="yes">Latest</item>
+                                  <item translatable="yes">example</item>
+                                </items>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

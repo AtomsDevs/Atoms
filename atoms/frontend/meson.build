@@ -3,6 +3,7 @@ frontenddir = join_paths(pkgdatadir, 'atoms/frontend')
 
 subdir('views')
 subdir('widgets')
+subdir('windows')
 
 bottles_sources = [
   '__init__.py',
