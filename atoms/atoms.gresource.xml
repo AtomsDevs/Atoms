@@ -15,6 +15,7 @@
     <file alias="alpine-linux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/alpine-linux-symbolic.svg</file>
     <file alias="ubuntu-symbolic.svg">../data/icons/hicolor/symbolic/distributions/ubuntu-symbolic.svg</file>
     <file alias="fedora-symbolic.svg">../data/icons/hicolor/symbolic/distributions/fedora-symbolic.svg</file>
+    <file alias="debian-symbolic.svg">../data/icons/hicolor/symbolic/distributions/debian-symbolic.svg</file>
     <file alias="external-link-symbolic.svg">../data/icons/hicolor/symbolic/actions/external-link-symbolic.svg</file>
     <file alias="pip-in-symbolic.svg">../data/icons/hicolor/symbolic/actions/pip-in-symbolic.svg</file>
     <file alias="pip-out-symbolic.svg">../data/icons/hicolor/symbolic/actions/pip-out-symbolic.svg</file>

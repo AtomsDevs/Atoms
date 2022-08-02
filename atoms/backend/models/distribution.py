@@ -25,3 +25,8 @@ class Ubuntu(AtomDistribution):
 class Fedora(AtomDistribution):
     def __init__(self):
         super().__init__("fedora", "Fedora", "fedora-symbolic")
+
+
+class Debian(AtomDistribution):
+    def __init__(self):
+        super().__init__("debian", "Debian", "debian-symbolic")
