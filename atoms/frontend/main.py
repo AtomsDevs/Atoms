@@ -32,7 +32,7 @@ class AtomsApplication(Adw.Application):
     def __init__(self):
         super().__init__(application_id='pm.mirko.Atoms',
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
-        self.create_action('quit', self.quit, ['<primary>q'])
+        self.create_action('quit', self.close, ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
 
@@ -72,6 +72,10 @@ class AtomsApplication(Adw.Application):
         self.add_action(action)
         if shortcuts:
             self.set_accels_for_action(f"app.{name}", shortcuts)
+    
+    def close(self, *args):
+        """Close the application."""
+        self.quit()
 
 
 def main(version):
