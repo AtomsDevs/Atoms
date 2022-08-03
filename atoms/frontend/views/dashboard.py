@@ -68,3 +68,8 @@ class AtomDashboard(Adw.Bin):
     def __on_visible_child_changed(self, *args):
         visible_child_name = self.stack_atom.get_visible_child_name()
         self.btn_detach.set_visible(visible_child_name == 'console')
+
+        if visible_child_name == "console":
+            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+        else:
+            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
