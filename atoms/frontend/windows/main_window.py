@@ -48,15 +48,3 @@ class AtomsWindow(Adw.ApplicationWindow):
     def __on_btn_new_clicked(self, widget):
         new_atom_window = AtomsNewAtomWindow(self)
         new_atom_window.present()
-
-class AboutDialog(Gtk.AboutDialog):
-
-    def __init__(self, parent):
-        Gtk.AboutDialog.__init__(self)
-        self.props.program_name = 'Atoms'
-        self.props.version = "0.1.0"
-        self.props.authors = ['mirkobrombin']
-        self.props.copyright = '2022 mirkobrombin'
-        self.props.logo_icon_name = 'pm.mirko.Atoms'
-        self.props.modal = True
-        self.set_transient_for(parent)

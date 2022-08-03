@@ -23,7 +23,7 @@ gi.require_version('Adw', '1')
 gi.require_version('Vte', '3.91')
 
 from gi.repository import Gtk, Gio, Adw
-from atoms.frontend.windows.main_window import AtomsWindow, AboutDialog
+from atoms.frontend.windows.main_window import AtomsWindow
 
 
 class AtomsApplication(Adw.Application):
@@ -49,8 +49,10 @@ class AtomsApplication(Adw.Application):
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""
-        about = AboutDialog(self.props.active_window)
-        about.present()
+        builder = Gtk.Builder.new_from_resource("/pm/mirko/Atoms/gtk/about-window.ui")
+        about_window = builder.get_object("about_window")
+        about_window.set_transient_for(self.props.active_window)
+        about_window.present()
 
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
