@@ -18,3 +18,10 @@ class AtomsDistributionsUtils:
         #     return Debian()
             
         raise AtomsUnknownDistribution(distribution_id)
+    
+    @staticmethod
+    def get_distributions() -> dict:
+        return [
+            AlpineLinux(),
+            Ubuntu()
+        ]
