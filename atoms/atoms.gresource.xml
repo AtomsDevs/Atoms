@@ -10,6 +10,7 @@
     <file>gtk/dashboard.ui</file>
     <file>gtk/detached-window.ui</file>
     <file>gtk/new-atom-window.ui</file>
+    <file>gtk/about-window.ui</file>
   </gresource>
   <gresource prefix="/pm/mirko/Atoms/icons/scalable/actions">
     <file alias="alpine-linux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/alpine-linux-symbolic.svg</file>
