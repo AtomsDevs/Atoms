@@ -9,7 +9,7 @@ class AtomsConsole(Vte.Terminal):
         super(AtomsConsole, self).__init__(*args, **kwds)  
         self.atom = atom
         self.__build_ui()
-        self.run_command(["/bin/bash"])
+        self.run_command(*atom.enter_command)
 
     def __build_ui(self):
         gesture_controller = Gtk.GestureClick(button=Gdk.BUTTON_SECONDARY)
@@ -26,8 +26,10 @@ class AtomsConsole(Vte.Terminal):
     def run_command(self, command: list, environment: list=None, working_directory: str=None):
         if environment is None:
             environment = []
+
         if working_directory is None:
             working_directory = ""
+
         self.spawn_async(
             Vte.PtyFlags.DEFAULT,
             working_directory,
