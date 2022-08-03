@@ -4,6 +4,7 @@ import orjson
 from atoms.backend.exceptions.atom import AtomsWrongAtomData
 from atoms.backend.utils.paths import AtomPathsUtils
 from atoms.backend.utils.distribution import AtomsDistributionsUtils
+from atoms.backend.wrappers.proot import ProotWrapper
 
 
 class Atom:
@@ -20,6 +21,7 @@ class Atom:
         self.creation_date = creation_date
         self.update_date = update_date
         self.relative_path = relative_path
+        self.__proot_wrapper = ProotWrapper()
 
     @classmethod
     def from_dict(cls, config: "AtomsConfig", data: dict):
@@ -69,13 +71,35 @@ class Atom:
         with open(path, "wb") as f:
             f.write(orjson.dumps(self.to_dict(), f, option=orjson.OPT_NON_STR_KEYS))
     
+    def generate_command(self, command: list, environment: list=None) -> tuple:
+        if environment is None:
+            environment = []
+
+        _command = self.__proot_wrapper.get_proot_command_for_chroot(self.fs_path, command)
+        return _command, environment, self.root_path
+    
     @property
     def path(self):
         return AtomPathsUtils.get_atom_path(self._config, self.relative_path)
+    
+    @property
+    def fs_path(self):
+        return os.path.join(
+            AtomPathsUtils.get_atom_path(self._config, self.relative_path),
+            "chroot"
+        )
+    
+    @property
+    def root_path(self):
+        return os.path.join(self.fs_path, "root")
 
     @property
     def distribution(self):
         return AtomsDistributionsUtils.get_distribution(self.distribution_id)
+    
+    @property
+    def enter_command(self):
+        return self.generate_command([])
             
     def __str__(self):
         return f"Atom: {self.name}"
