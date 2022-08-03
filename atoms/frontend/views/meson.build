@@ -7,6 +7,7 @@ subdir('lists')
 bottles_sources = [
   '__init__.py',
   'dashboard.py',
+  'console.py',
 ]
 
 install_data(bottles_sources, install_dir: viewsdir)

@@ -2,6 +2,7 @@ from gi.repository import Gtk, Adw
 
 from atoms.frontend.views.status.detached_console import AtomsStatusDetachedConsole
 from atoms.frontend.windows.detached_window import AtomsDetachedWindow
+from atoms.frontend.views.console import AtomsConsole
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/dashboard.ui')
@@ -14,7 +15,6 @@ class AtomsDashboard(Adw.Bin):
     stack_console = Gtk.Template.Child()
     box_console = Gtk.Template.Child()
     img_distribution = Gtk.Template.Child()
-    label_console = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_distribution = Gtk.Template.Child()
 
@@ -25,12 +25,14 @@ class AtomsDashboard(Adw.Bin):
         self.__detach_status = False
         self.__detached_window = None
         self.__build_ui()
-
+    
     def __build_ui(self):
+        self.console = AtomsConsole(self.atom)
         self.label_name.set_text(self.atom.name)
         self.label_distribution.set_text(self.atom.distribution.name)
         self.img_distribution.set_from_icon_name(self.atom.distribution.logo)
         self.stack_console.add_named(AtomsStatusDetachedConsole(), 'status')
+        self.box_console.append(self.console)
 
         self.btn_back.connect('clicked', self.__on_back_clicked)
         self.btn_detach.connect('clicked', self.__on_detach_clicked)
@@ -48,15 +50,15 @@ class AtomsDashboard(Adw.Bin):
             self.btn_detach.set_tooltip_text('Detach Console')
             self.btn_detach.set_icon_name('pip-in-symbolic')
             self.stack_console.set_visible_child_name('vte')
-            self.box_console.append(self.label_console)
+            self.box_console.append(self.console)
             
         def attach():
             self.btn_detach.set_tooltip_text('Attach Console')
             self.btn_detach.set_icon_name('pip-out-symbolic')
             self.stack_console.set_visible_child_name('status')
-            self.box_console.remove(self.label_console)
+            self.box_console.remove(self.console)
             if not self.__detached_window:
-                self.__detached_window = AtomsDetachedWindow(self.label_console)
+                self.__detached_window = AtomsDetachedWindow(self.console, "#000000")
                 self.__detached_window.present()
                 self.__detached_window.connect("close-request", detach)
             

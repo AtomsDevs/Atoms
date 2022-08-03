@@ -2,6 +2,7 @@
 <interface>
    <requires lib="gtk" version="4.0" />
    <requires lib="libadwaita" version="1.0" />
+   <requires lib="vte" version="3.91" />  
    <template class="AtomsDashboard" parent="AdwBin">
       <child>
          <object class="GtkBox">
@@ -119,13 +120,7 @@
                                  <object class="AdwViewStackPage">
                                     <property name="name">vte</property>
                                     <property name="child">
-                                       <object class="GtkBox" id="box_console">
-                                          <child>
-                                             <object class="GtkLabel" id="label_console">
-                                                <property name="label">This is the console</property>
-                                             </object>
-                                          </child>
-                                       </object>
+                                       <object class="GtkBox" id="box_console"></object>
                                     </property>
                                  </object>
                               </child>

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, GObject, Adw
+from gi.repository import Gtk, Gdk, GObject, Adw
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/detached-window.ui')
@@ -27,12 +27,22 @@ class AtomsDetachedWindow(Adw.Window):
 
     box_content = Gtk.Template.Child()
 
-    def __init__(self, widget, **kwargs):
+    def __init__(self, widget, bg_color: str = None, **kwargs):
         super().__init__(**kwargs)
         self.__widget = widget
+        self.__bg_color = bg_color
         self.__build_ui()
     
     def __build_ui(self):
+        if self.__bg_color is not None:
+            style = ".tinted_window{background-color: %s;}" % self.__bg_color
+            css_provider = Gtk.CssProvider()
+            css_provider.load_from_data(str.encode(style))
+            Gtk.StyleContext.add_provider_for_display(
+                Gdk.Display.get_default(), css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            )
+            self.add_css_class('tinted_window')
         self.box_content.append(self.__widget)
     
     def release_widget(self):
