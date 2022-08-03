@@ -7,7 +7,7 @@
     <property name="title">New Atom</property>
     <property name="deletable">false</property>
     <property name="width-request">450</property>
-    <property name="height-request">370</property>
+    <property name="default-height">370</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
