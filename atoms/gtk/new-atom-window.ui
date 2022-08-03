@@ -34,14 +34,15 @@
             <property name="vexpand">True</property>
             <child>
               <object class="AdwViewStackPage">
-                <property name="name">dashboard</property>
+                <property name="name">details</property>
                 <property name="child">
                   <object class="AdwPreferencesPage">
                     <child>
                       <object class="AdwPreferencesGroup">
                         <property name="title">Atom Information</property>
                         <child>
-                          <object class="AdwActionRow">
+                          <object class="AdwEntryRow">
+                            <property name="title">Name</property>
                           </object>
                         </child>
                       </object>
