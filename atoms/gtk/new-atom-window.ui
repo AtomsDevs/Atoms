@@ -50,28 +50,18 @@
                       <object class="AdwPreferencesGroup">
                         <property name="title">Atom Distribution</property>
                         <child>
-                          <object class="AdwComboRow">
+                          <object class="AdwComboRow" id="combo_distribution">
                             <property name="title">Distribution</property>
                             <property name="model">
-                              <object class="GtkStringList">
-                                <items>
-                                  <item translatable="yes">Alpine Linux</item>
-                                  <item translatable="yes">Ubuntu</item>
-                                </items>
-                              </object>
+                              <object class="GtkStringList" id="str_list_distributions"></object>
                             </property>
                           </object>
                         </child>
                         <child>
-                          <object class="AdwComboRow">
+                          <object class="AdwComboRow" id="combo_releases">
                             <property name="title">Release</property>
                             <property name="model">
-                              <object class="GtkStringList">
-                                <items>
-                                  <item translatable="yes">Latest</item>
-                                  <item translatable="yes">example</item>
-                                </items>
-                              </object>
+                              <object class="GtkStringList" id="str_list_releases"></object>
                             </property>
                           </object>
                         </child>
