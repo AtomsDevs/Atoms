@@ -96,6 +96,30 @@ modules:
     - type: file
       url: https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       sha256: 7ef66e7c47e9531dfa3b3ffb791b548c84903570b0914b01acc5eeb56ff5bc33
+
+- name: libadwaita
+  buildsystem: meson
+  config-opts:
+  - -Dexamples=false
+  - -Dtests=false
+  sources:
+  - type: git
+    url: https://gitlab.gnome.org/GNOME/libadwaita.git
+    tag: 1.2.alpha
+    commit: 9150f4016a04064a00733b78391c8e6aad49bee8
+  modules:
+  - name: libsass
+    buildsystem: meson
+    sources:
+    - type: git
+      url: https://github.com/lazka/libsass.git
+      branch: meson
+  - name: sassc
+    buildsystem: meson
+    sources:
+    - type: git
+      url: https://github.com/lazka/sassc.git
+      branch: meson
       
 - name: atoms
   builddir: true
