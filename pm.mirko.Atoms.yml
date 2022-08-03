@@ -121,6 +121,18 @@ modules:
       url: https://github.com/lazka/sassc.git
       branch: meson
       
+  - name: vte
+    buildsystem: meson
+    config-opts:
+      - -Ddocs=false
+      - -Dvapi=false
+      - -Dgtk4=true
+      - -Dgtk3=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/vte.git
+        commit: 3ed53bfaa7344ce5b7727a60a2d33315b15201e5
+      
 - name: atoms
   builddir: true
   buildsystem: meson
