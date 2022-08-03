@@ -3,7 +3,7 @@
    <requires lib="gtk" version="4.0" />
    <requires lib="libadwaita" version="1.0" />
    <requires lib="vte" version="3.91" />  
-   <template class="AtomsDashboard" parent="AdwBin">
+   <template class="AtomDashboard" parent="AdwBin">
       <child>
          <object class="GtkBox">
             <property name="orientation">vertical</property>

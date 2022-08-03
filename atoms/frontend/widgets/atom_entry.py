@@ -1,6 +1,6 @@
 from gi.repository import Gtk, Gio, Adw
 
-from atoms.frontend.views.dashboard import AtomsDashboard
+from atoms.frontend.views.dashboard import AtomDashboard
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/entry-atom.ui')
@@ -14,7 +14,7 @@ class AtomEntry(Adw.ActionRow):
         super().__init__()
         self.window = window
         self.atom = atom
-        self.dashboard = AtomsDashboard(window, atom)
+        self.dashboard = AtomDashboard(window, atom)
         self.__build_ui()
 
     def __build_ui(self):

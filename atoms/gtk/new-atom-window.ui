@@ -12,7 +12,7 @@
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
-          <object class="AdwHeaderBar">
+          <object class="AdwHeaderBar" id="header_bar">
             <child type="start">
               <object class="GtkButton" id="btn_cancel">
                 <property name="label">Cancel</property>
@@ -21,7 +21,7 @@
             <child type="end">
               <object class="GtkButton" id="btn_create">
                 <property name="label">Create</property>
-                <property name="sensitive">false</property>
+                <property name="sensitive">true</property>
                 <style>
                   <class name="suggested-action" />
                 </style>
@@ -65,6 +65,38 @@
                             </property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="name">creation</property>
+                <property name="title">Creation</property>
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="AdwStatusPage">
+                        <property name="valign">center</property>
+                        <property name="title">Creating a Atom…</property>
+                        <property name="description">Take a break, it may take a while.</property>
+                        <child>
+                          <object class="AdwPreferencesGroup" id="group_steps"></object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btn_cancel_creation">
+                        <property name="label">Cancel</property>
+                        <property name="visible">False</property>
+                        <property name="halign">center</property>
+                        <style>
+                          <class name="pill" />
+                          <class name="destructive-action" />
+                        </style>
                       </object>
                     </child>
                   </object>

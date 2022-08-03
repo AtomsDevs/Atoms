@@ -6,8 +6,8 @@ from atoms.frontend.views.console import AtomsConsole
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/dashboard.ui')
-class AtomsDashboard(Adw.Bin):
-    __gtype_name__ = 'AtomsDashboard'
+class AtomDashboard(Adw.Bin):
+    __gtype_name__ = 'AtomDashboard'
 
     btn_back = Gtk.Template.Child()
     btn_detach = Gtk.Template.Child()

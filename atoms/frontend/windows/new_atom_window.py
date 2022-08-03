@@ -18,6 +18,7 @@
 from gi.repository import Gtk, GObject, Adw
 
 from atoms.backend.utils.distribution import AtomsDistributionsUtils
+from atoms.frontend.widgets.creation_step_entry import CreationStepEntry
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/new-atom-window.ui')
@@ -25,12 +26,16 @@ class AtomsNewAtomWindow(Adw.Window):
     __gtype_name__ = 'AtomsNewAtomWindow'
     __distributions_registry = []
 
+    btn_cancel_creation = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     combo_distribution = Gtk.Template.Child()
     str_list_distributions = Gtk.Template.Child()
     combo_releases = Gtk.Template.Child()
     str_list_releases = Gtk.Template.Child()
+    group_steps = Gtk.Template.Child()
+    stack_main = Gtk.Template.Child()
+    header_bar = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -41,12 +46,26 @@ class AtomsNewAtomWindow(Adw.Window):
         for distribution in AtomsDistributionsUtils.get_distributions():
             self.__distributions_registry.append(distribution)
             self.str_list_distributions.append(distribution.name)
-
+        
         self.combo_distribution.set_selected(0)
         self.__on_combo_distribution_changed()
 
+        self.group_steps.add(CreationStepEntry("Creating new Atom Configuration…"))
+        self.group_steps.add(CreationStepEntry("Downloading Choosen Image…"))
+        self.group_steps.add(CreationStepEntry("Unpacking Choosen Image…"))
+        self.group_steps.add(CreationStepEntry("Finalizing…"))
+
         self.btn_cancel.connect('clicked', self.__on_btn_cancel_clicked)
+        self.btn_create.connect('clicked', self.__on_btn_create_clicked)
         self.combo_distribution.connect('notify::selected', self.__on_combo_distribution_changed)
+    
+    def __on_btn_create_clicked(self, widget):
+        self.set_size_request(450, 505)
+        self.stack_main.set_visible_child_name("creation")
+        self.btn_cancel_creation.set_visible(True)
+        self.btn_cancel.set_visible(False)
+        self.btn_create.set_visible(False)
+        self.header_bar.add_css_class("flat")
     
     def __on_combo_distribution_changed(self, *args):
         self.str_list_releases.splice(0, len(self.str_list_releases))
