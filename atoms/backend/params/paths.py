@@ -23,5 +23,6 @@ class AtomsPaths:
     app_data = os.path.join(xdg_data_home, "atoms")
 
     atoms = os.path.join(app_data, "atoms")
+    images = os.path.join(app_data, "images")
     config_file = os.path.join(app_data, "config.json")
     

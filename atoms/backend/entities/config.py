@@ -26,6 +26,7 @@ class AtomsConfig:
 
     def __init__(self):
         self.atoms_path = AtomsPaths.atoms
+        self.atoms_images = AtomsPaths.images
         self.__load()
 
     def __load(self):
@@ -35,13 +36,23 @@ class AtomsConfig:
         with open(AtomsPaths.config_file, "r") as f:
             config = orjson.loads(f.read())
 
-        if config.get("atoms.path") not in [AtomsPaths.atoms, None]:
-            if not os.path.exists(config.get("atoms.path")):
-                try:
-                    os.makedirs(config.get("atoms.path"))
-                except PermissionError:
-                    raise AtomsCantMakeAtomsPath(config.get("atoms.path"))
-            self.atoms_path = config.get("atoms.path")
+        if config.get("atoms.path"):
+            self.atoms_path = config["atoms.path"]
+
+        if config.get("images.path"):
+            self.atoms_images = config["images.path"]
+
+        if not os.path.exists(self.atoms_path):
+            try:
+                os.makedirs(self.atoms_path)
+            except PermissionError:
+                raise AtomsCantMakeAtomsPath(self.atoms_path)
+                
+        if not os.path.exists(self.atoms_images):
+            try:
+                os.makedirs(self.atoms_images)
+            except PermissionError:
+                raise AtomsCantMakeAtomsPath(self.atoms_images)
 
     def __save(self):
         os.makedirs(AtomsPaths.app_data, exist_ok=True)
@@ -52,4 +63,6 @@ class AtomsConfig:
         conf = {}
         if self.atoms_path != AtomsPaths.atoms:
             conf["atoms.path"] = self.atoms_path
+        if self.atoms_images != AtomsPaths.images:
+            conf["images.path"] = self.atoms_images
         return conf
