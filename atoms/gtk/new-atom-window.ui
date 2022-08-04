@@ -41,7 +41,7 @@
                       <object class="AdwPreferencesGroup">
                         <property name="title">Atom Information</property>
                         <child>
-                          <object class="AdwEntryRow">
+                          <object class="AdwEntryRow" id="entry_name">
                             <property name="title">Name</property>
                           </object>
                         </child>

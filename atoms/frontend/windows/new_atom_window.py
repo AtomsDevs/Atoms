@@ -17,7 +17,10 @@
 from gi.repository import Gtk, GObject, Adw
 
 from atoms.backend.utils.distribution import AtomsDistributionsUtils
+from atoms.backend.entities.atom import Atom
+
 from atoms.frontend.widgets.creation_step_entry import CreationStepEntry
+from atoms.frontend.utils.threading import RunAsync
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/new-atom-window.ui')
@@ -29,6 +32,7 @@ class AtomsNewAtomWindow(Adw.Window):
     btn_cancel = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
     btn_finish = Gtk.Template.Child()
+    entry_name = Gtk.Template.Child()
     combo_distribution = Gtk.Template.Child()
     str_list_distributions = Gtk.Template.Child()
     combo_releases = Gtk.Template.Child()
@@ -40,6 +44,7 @@ class AtomsNewAtomWindow(Adw.Window):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.set_transient_for(window)
+        self.window = window
         self.__build_ui()
     
     def __build_ui(self):
@@ -50,10 +55,15 @@ class AtomsNewAtomWindow(Adw.Window):
         self.combo_distribution.set_selected(0)
         self.__on_combo_distribution_changed()
 
-        self.group_steps.add(CreationStepEntry("Creating new Atom Configuration…"))
-        self.group_steps.add(CreationStepEntry("Downloading Choosen Image…"))
-        self.group_steps.add(CreationStepEntry("Unpacking Choosen Image…"))
-        self.group_steps.add(CreationStepEntry("Finalizing…"))
+        self.step_download = CreationStepEntry("Downloading Choosen Image…")
+        self.step_configuration = CreationStepEntry("Creating new Atom Configuration…")
+        self.step_unpack = CreationStepEntry("Unpacking Choosen Image…")
+        self.step_finalizing = CreationStepEntry("Finalizing…")
+
+        self.group_steps.add(self.step_download)
+        self.group_steps.add(self.step_configuration)
+        self.group_steps.add(self.step_unpack)
+        self.group_steps.add(self.step_finalizing)
 
         self.btn_cancel.connect('clicked', self.__on_btn_cancel_clicked)
         self.btn_create.connect('clicked', self.__on_btn_create_clicked)
@@ -62,17 +72,36 @@ class AtomsNewAtomWindow(Adw.Window):
         self.combo_distribution.connect('notify::selected', self.__on_combo_distribution_changed)
     
     def __on_btn_create_clicked(self, widget):
+        def create_atom():
+            distro = self.__distributions_registry[self.combo_distribution.get_selected()]
+            return Atom.new(
+                self.window.manager.config,
+                self.entry_name.get_text(),
+                distro,
+                distro.architectures["x86_64"],
+                distro.releases[self.combo_releases.get_selected()],
+                self.step_download.update_download,
+                self.step_configuration.update_status,
+                self.step_unpack.update_status,
+                self.step_finalizing.update_status
+            )
+
         self.set_size_request(450, 505)
         self.stack_main.set_visible_child_name("creation")
         self.btn_cancel_creation.set_visible(True)
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
         self.header_bar.add_css_class("flat")
+
+        RunAsync(create_atom, self.__finish_creation)
     
     def __on_btn_finish_clicked(self, widget):
         self.close()
     
     def __on_btn_cancel_creation_clicked(self, widget):
+        self.close()
+    
+    def __finish_creation(self, atom: 'Atom'):
         self.stack_main.set_visible_child_name("created")
     
     def __on_combo_distribution_changed(self, *args):
