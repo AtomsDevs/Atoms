@@ -33,3 +33,25 @@ class CreationStepEntry(Adw.ActionRow):
 
     def __build_ui(self):
         self.set_title(self.__title)
+    
+    def update_fn(count, block_size, total_size):
+        self.label_percentage.set_visible(True)
+
+        if not completed:
+            percent = int(count * block_size * 100 / total_size)
+            self.label_percentage.set_text(f'{str(percent)}%')
+        else:
+            percent = 100
+
+        if percent == 100:
+            self.label_percentage.set_visible(False)
+            self.img_completed.set_visible(True)
+    
+    def update_status(self, status: int):
+        if status == 0:
+            self.spinner.set_visible(True)
+            self.spinner.start()
+        else:
+            self.spinner.set_visible(False)
+            self.spinner.stop()
+            self.img_completed.set_visible(True)
