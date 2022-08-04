@@ -39,7 +39,7 @@ class AtomDashboard(Adw.Bin):
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
 
     def __on_back_clicked(self, widget):
-        self.window.main_leaflet.navigate(Adw.NavigationDirection.BACK)
+        self.window.show_atoms_list()
 
     def __on_detach_clicked(self, widget):
         def detach(*args):

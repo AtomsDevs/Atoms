@@ -31,6 +31,7 @@ class AtomsWindow(Adw.ApplicationWindow):
     main_leaflet = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
     btn_new = Gtk.Template.Child()
+    box_main = Gtk.Template.Child()
     manager = AtomsBackend()
 
     def __init__(self, **kwargs):
@@ -39,11 +40,14 @@ class AtomsWindow(Adw.ApplicationWindow):
     
     def __build_ui(self):
         if self.manager.has_atoms:
-            self.stack_main.add_named(AtomsList(self), 'listatoms')
+            self.stack_main.add_named(AtomsList(self), 'list-atoms')
         else:
-            self.stack_main.add_named(AtomsStatusEmpty(), 'noatoms')
+            self.stack_main.add_named(AtomsStatusEmpty(), 'no-atoms')
 
         self.btn_new.connect('clicked', self.__on_btn_new_clicked)
+    
+    def show_atoms_list(self):
+        self.main_leaflet.set_visible_child(self.box_main)
 
     def __on_btn_new_clicked(self, widget):
         new_atom_window = AtomsNewAtomWindow(self)

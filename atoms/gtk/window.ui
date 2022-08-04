@@ -16,7 +16,7 @@
                   <property name="can-unfold">False</property>
                   <property name="can-navigate-back">False</property>
                   <child>
-                     <object class="GtkBox">
+                     <object class="GtkBox" id="box_main">
                         <property name="hexpand">True</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">12</property>
