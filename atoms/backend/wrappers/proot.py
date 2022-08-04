@@ -15,13 +15,18 @@ class ProotWrapper:
             raise AtomsNoBinaryFound("proot")
         return res
     
-    def get_proot_command_for_chroot(self, chroot_path: str, command: list = None):
+    def get_proot_command_for_chroot(self, chroot_path: str, command: list = None, working_directory: str = None):
         if command is None:
             command = []
+
+        if working_directory is None:
+            working_directory = "/"
 
         return [
             self.__binary_path,
             "-0",
+            "-w",
+            working_directory,
             "-r",
             chroot_path
         ] + command
