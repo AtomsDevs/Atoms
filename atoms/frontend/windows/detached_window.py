@@ -1,4 +1,4 @@
-# window.py
+# detache_window.py
 #
 # Copyright 2022 mirkobrombin
 #

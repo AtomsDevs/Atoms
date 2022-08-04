@@ -1,4 +1,4 @@
-# window.py
+# new_atom_window.py
 #
 # Copyright 2022 mirkobrombin
 #
