@@ -5,6 +5,7 @@ bottles_sources = [
   '__init__.py',
   'config.py',
   'atom.py',
+  'image.py',
 ]
 
 install_data(bottles_sources, install_dir: entitiesdir)

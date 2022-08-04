@@ -17,7 +17,7 @@
 import os
 
 
-class AtomPathsUtils:
+class AtomsPathsUtils:
 
     @staticmethod
     def get_atom_path(config: "AtomsConfig", relative_path: str) -> str:
