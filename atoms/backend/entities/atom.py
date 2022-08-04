@@ -17,6 +17,7 @@
 import os
 import uuid
 import orjson
+import datetime
 from gi.repository import GLib
 
 from atoms.backend.exceptions.atom import AtomsWrongAtomData
@@ -67,9 +68,9 @@ class Atom:
             config,
             data['name'],
             data['distributionId'],
+            data['relativePath'],
             data['creationDate'],
-            data['updateDate'],
-            data['relativePath']
+            data['updateDate']
         )
     
     @classmethod
@@ -110,7 +111,7 @@ class Atom:
         GLib.idle_add(finalizing_fn, 0)
         atom.save()
         GLib.idle_add(finalizing_fn, 1)
-        
+
         return atom
 
     def to_dict(self):

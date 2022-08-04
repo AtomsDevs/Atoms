@@ -4,7 +4,7 @@ from atoms.backend.models.distribution import AtomDistribution
 class AlpineLinux(AtomDistribution):
     def __init__(self):
         super().__init__(
-            distribution_id="alpine", 
+            distribution_id="alpinelinux", 
             name="Alpine Linux",
             logo="alpine-linux-symbolic",
             releases=["3.16.0", "3.16.1"],

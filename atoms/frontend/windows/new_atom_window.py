@@ -101,7 +101,7 @@ class AtomsNewAtomWindow(Adw.Window):
     def __on_btn_cancel_creation_clicked(self, widget):
         self.close()
     
-    def __finish_creation(self, atom: 'Atom'):
+    def __finish_creation(self, atom: 'Atom', error=False):
         self.stack_main.set_visible_child_name("created")
     
     def __on_combo_distribution_changed(self, *args):

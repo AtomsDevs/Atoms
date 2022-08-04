@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import tarfile
 
 
@@ -26,7 +27,6 @@ class AtomImage:
         name: str,
         path: str
     ):
-        self._config = config
         self.name = name
         self.path = path
 

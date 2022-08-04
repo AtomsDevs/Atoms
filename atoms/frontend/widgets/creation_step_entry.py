@@ -34,14 +34,11 @@ class CreationStepEntry(Adw.ActionRow):
     def __build_ui(self):
         self.set_title(self.__title)
     
-    def update_fn(count, block_size, total_size):
+    def update_download(self, count, block_size, total_size):
         self.label_percentage.set_visible(True)
 
-        if not completed:
-            percent = int(count * block_size * 100 / total_size)
-            self.label_percentage.set_text(f'{str(percent)}%')
-        else:
-            percent = 100
+        percent = int(count * block_size * 100 / total_size)
+        self.label_percentage.set_text(f'{str(percent)}%')
 
         if percent == 100:
             self.label_percentage.set_visible(False)
