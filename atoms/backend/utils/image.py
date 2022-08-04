@@ -1,0 +1,46 @@
+# image.py
+#
+# Copyright 2022 mirkobrombin
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundationat version 3 of the License.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+import os
+import time
+import requests
+from gi.repository import GLib
+
+from atoms.backend.utils.file import FileUtils
+from atoms.backend.utils.download import DownloadUtils
+from atoms.backend.entities.image import AtomImage
+from atoms.backend.exceptions.image import AtomsFailToDownloadImage
+
+
+class AtomsImageUtils:
+
+    @staticmethod
+    def get_image(
+        config: "AtomsConfig", 
+        distribution: "AtomDistribution", 
+        architecture: str, 
+        release: str,
+        update_fn: callable
+    ) -> AtomImage:
+        remote = distribution.get_remote(architecture, release)
+        image_name = distribution.get_image_name(architecture, release)
+        image_path = os.path.join(config.images_path, image_name)
+
+        if not os.path.exists(image_path):
+            if not DownloadUtils(remote, image_path, update_fn).download():
+                raise AtomsFailToDownloadImage(remote)
+
+        return AtomImage(image_name, image_path)
