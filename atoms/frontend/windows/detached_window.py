@@ -27,11 +27,12 @@ class AtomsDetachedWindow(Adw.Window):
 
     box_content = Gtk.Template.Child()
 
-    def __init__(self, widget, bg_color: str = None, dark: bool = True, **kwargs):
+    def __init__(self, widget, bg_color: str = None, dark: bool = True, title: str = None, **kwargs):
         super().__init__(**kwargs)
         self.__widget = widget
         self.__bg_color = bg_color
         self.__dark = dark
+        self.__title = title
         self.__build_ui()
     
     def __build_ui(self):
@@ -47,6 +48,10 @@ class AtomsDetachedWindow(Adw.Window):
         
         if self.__dark:
             Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+        
+        if self.__title:
+            self.set_title(self.__title)
+
         self.box_content.append(self.__widget)
     
     def release_widget(self):

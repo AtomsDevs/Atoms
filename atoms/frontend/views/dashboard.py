@@ -18,7 +18,7 @@ class AtomDashboard(Adw.Bin):
     label_name = Gtk.Template.Child()
     label_distribution = Gtk.Template.Child()
 
-    def __init__(self, window, atom, **kwargs):
+    def __init__(self, window, atom: 'Atom', **kwargs):
         super().__init__(**kwargs)
         self.window = window
         self.atom = atom
@@ -58,7 +58,7 @@ class AtomDashboard(Adw.Bin):
             self.stack_console.set_visible_child_name('status')
             self.box_console.remove(self.console)
             if not self.__detached_window:
-                self.__detached_window = AtomsDetachedWindow(self.console, "#000000")
+                self.__detached_window = AtomsDetachedWindow(self.console, "#000000", title=self.atom.name)
                 self.__detached_window.present()
                 self.__detached_window.connect("close-request", detach)
             
