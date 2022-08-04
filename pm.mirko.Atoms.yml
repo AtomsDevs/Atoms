@@ -132,6 +132,51 @@ modules:
       - type: git
         url: https://gitlab.gnome.org/GNOME/vte.git
         commit: 3ed53bfaa7344ce5b7727a60a2d33315b15201e5
+
+  - name: python-requests
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/psf/requests/archive/refs/tags/v2.28.0.tar.gz
+        sha256: 6b757ca284d8dc192794010c960b0cf405fcc7aed9ed2e04a8269dc41b1231ad
+
+  - name: python-urllib3
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.9.tar.gz
+        sha256: 5860049db8811e7a26e5f228359522814dc8159e6ec4f352b1b596e0dee80503
+
+  - name: python-chardet
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/chardet/chardet/archive/4.0.0.tar.gz
+        sha256: 67bbe3eb02691d38831ddf2719c40fe09381bc17f15321946f6cd71dc274e530
+
+  - name: python-certifi
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/certifi/python-certifi/archive/refs/tags/2021.10.08.tar.gz
+        sha256: 51c2cf76f7f2582d9c4eb5440bb311ef523ba0b319d0a973450ecebfb6802a3a
+
+  - name: python-idna
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: archive
+        url: https://github.com/kjd/idna/archive/refs/tags/v3.3.tar.gz
+        sha256: 34b145ffe35b7872e9a3e0abc3a3a8330db90a0fd58db978725fd05c5c7d9f88
       
 - name: atoms
   builddir: true
