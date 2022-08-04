@@ -52,6 +52,20 @@ class AtomsApplication(Adw.Application):
         builder = Gtk.Builder.new_from_resource("/pm/mirko/Atoms/gtk/about-window.ui")
         about_window = builder.get_object("about_window")
         about_window.set_transient_for(self.props.active_window)
+        about_window.add_credit_section(
+            "Contributors",
+            [
+                "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io/",
+                "axtlos https://axtloss.github.io/"
+            ]
+        )
+        about_window.add_credit_section(
+            "Third-Party Libraries and Special Thanks",
+            [
+                "PRoot https://github.com/proot-me/PRoot",
+                "orjson https://github.com/ijl/orjson"
+            ]
+        )
         about_window.present()
 
     def on_preferences_action(self, widget, _):
