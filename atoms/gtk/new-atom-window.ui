@@ -75,7 +75,6 @@
             <child>
               <object class="AdwViewStackPage">
                 <property name="name">creation</property>
-                <property name="title">Creation</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">vertical</property>
@@ -97,6 +96,28 @@
                         <style>
                           <class name="pill" />
                           <class name="destructive-action" />
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="name">created</property>
+                <property name="child">
+                  <object class="AdwStatusPage">
+                    <property name="valign">center</property>
+                    <property name="title">Atom Created</property>
+                    <property name="icon-name">selection-mode-symbolic</property>
+                    <child>
+                      <object class="GtkButton" id="btn_finish">
+                        <property name="label">Close</property>
+                        <property name="halign">center</property>
+                        <style>
+                          <class name="pill" />
+                          <class name="suggested-action" />
                         </style>
                       </object>
                     </child>

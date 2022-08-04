@@ -28,6 +28,7 @@ class AtomsNewAtomWindow(Adw.Window):
     btn_cancel_creation = Gtk.Template.Child()
     btn_cancel = Gtk.Template.Child()
     btn_create = Gtk.Template.Child()
+    btn_finish = Gtk.Template.Child()
     combo_distribution = Gtk.Template.Child()
     str_list_distributions = Gtk.Template.Child()
     combo_releases = Gtk.Template.Child()
@@ -56,6 +57,8 @@ class AtomsNewAtomWindow(Adw.Window):
 
         self.btn_cancel.connect('clicked', self.__on_btn_cancel_clicked)
         self.btn_create.connect('clicked', self.__on_btn_create_clicked)
+        self.btn_cancel_creation.connect('clicked', self.__on_btn_cancel_creation_clicked)
+        self.btn_finish.connect('clicked', self.__on_btn_finish_clicked)
         self.combo_distribution.connect('notify::selected', self.__on_combo_distribution_changed)
     
     def __on_btn_create_clicked(self, widget):
@@ -65,6 +68,12 @@ class AtomsNewAtomWindow(Adw.Window):
         self.btn_cancel.set_visible(False)
         self.btn_create.set_visible(False)
         self.header_bar.add_css_class("flat")
+    
+    def __on_btn_finish_clicked(self, widget):
+        self.close()
+    
+    def __on_btn_cancel_creation_clicked(self, widget):
+        self.stack_main.set_visible_child_name("created")
     
     def __on_combo_distribution_changed(self, *args):
         self.str_list_releases.splice(0, len(self.str_list_releases))
