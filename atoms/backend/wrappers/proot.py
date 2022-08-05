@@ -44,6 +44,7 @@ class ProotWrapper:
             env_bin,
             "-i",
             "HOME=/root",
+            "HOSTNAME=atom",
             self.__binary_path,
             "-0",
             "-w",
