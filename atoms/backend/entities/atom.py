@@ -152,6 +152,10 @@ class Atom:
     def destroy(self):
         shutil.rmtree(self.path)
     
+    def rename(self, new_name: str):
+        self.name = new_name
+        self.save()
+        
     @property
     def path(self) -> str:
         return AtomsPathsUtils.get_atom_path(self._config, self.relative_path)
