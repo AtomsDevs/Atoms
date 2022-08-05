@@ -16,6 +16,7 @@
 
 
 import os
+import re
 import requests
 import shlex
 
@@ -62,20 +63,15 @@ class AtomDistribution:
         return os.path.basename(remote)
     
     def read_remote_hash(self, architecture: str, release: str):
-        _, check_type = self.remote_hash_type
         response = requests.get(self.get_remote_hash(architecture, release))
 
         if response.status_code != 200:
             raise Exception(f"Failed to read remote hash {remote_hash}")
             
-        if check_type == "touple":
-            content = response.text.split("\n")
-            for line in content:
-                _hash, _file = line.split(" ")
-                if _file == self.get_image_name(architecture, release):
-                    return _hash
-
-        if check_type == "default":
-            return str(response.text).strip()
+        content = response.text.split("\n")
+        for line in content:
+            _hash, _file = re.split(r"\s+", line, maxsplit=1)
+            if _file == self.get_image_name(architecture, release):
+                return _hash.strip()
 
         raise ValueError(f"Unknown check_type method: {check_type}")

@@ -9,6 +9,7 @@ bottles_sources = [
   'distribution.py',
   'common.py',
   'image.py',
+  'download.py',
 ]
 
 install_data(bottles_sources, install_dir: exceptionsdir)

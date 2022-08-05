@@ -21,6 +21,8 @@ import requests
 from gi.repository import GLib
 
 from atoms.backend.utils.file import FileUtils
+from atoms.backend.utils.hash import HashUtils
+from atoms.backend.exceptions.download import AtomsHashMissmatchError
 
 
 logger = logging.getLogger("atoms.download")
@@ -33,11 +35,20 @@ class DownloadUtils:
     bars using the func parameter.
     """
 
-    def __init__(self, url: str, file: str, func: callable = None):
+    def __init__(
+        self, 
+        url: str, 
+        file: str, 
+        func: callable = None, 
+        hash_value: str = None, 
+        hash_type: str = None
+    ):
         self.start_time = None
         self.url = url
         self.file = file
         self.func = func
+        self.hash_value = hash_value
+        self.hash_type = hash_type
 
     def download(self):
         """Start the download."""
@@ -74,6 +85,11 @@ class DownloadUtils:
             logger.error("Download failed! Check your internet connection.")
             return False
 
+        if None not in [self.hash_value, self.hash_type]:
+            _hash = HashUtils.get_hash(self.file, self.hash_type)
+            if _hash != self.hash_value:
+                logger.error(f"Download failed! The downloaded file is corrupted.\n\tExpected {self.hash_value} got {_hash}.")
+                raise AtomsHashMissmatchError()
         return True
 
     def __progress(self, count, block_size, total_size):

@@ -8,6 +8,7 @@ bottles_sources = [
   'image.py',
   'file.py',
   'download.py',
+  'hash.py'
 ]
 
 install_data(bottles_sources, install_dir: utilsdir)

@@ -38,9 +38,11 @@ class AtomsImageUtils:
         remote = distribution.get_remote(architecture, release)
         image_name = distribution.get_image_name(architecture, release)
         image_path = os.path.join(config.atoms_images, image_name)
+        remote_hash = distribution.read_remote_hash(architecture, release)
+        hash_type = distribution.remote_hash_type
 
         if not os.path.exists(image_path):
-            if not DownloadUtils(remote, image_path, update_fn).download():
+            if not DownloadUtils(remote, image_path, update_fn, remote_hash, hash_type).download():
                 raise AtomsFailToDownloadImage(remote)
 
         return AtomImage(image_name, image_path)

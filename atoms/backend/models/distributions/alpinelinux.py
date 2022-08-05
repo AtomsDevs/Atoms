@@ -10,7 +10,7 @@ class AlpineLinux(AtomDistribution):
             releases=["3.16.0", "3.16.1"],
             remote_structure="https://dl-cdn.alpinelinux.org/alpine/v{0}/releases/{1}/alpine-minirootfs-{2}-{1}.tar.gz",
             remote_hash_structure="https://dl-cdn.alpinelinux.org/alpine/v{0}/releases/{1}/alpine-minirootfs-{2}-{1}.tar.gz.sha256",
-            remote_hash_type=("sha256", "default"),
+            remote_hash_type="sha256",
             architectures={"x86_64": "x86_64"}
         )
     
