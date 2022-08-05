@@ -107,12 +107,14 @@ class Atom:
         relative_path = str(uuid.uuid4()) + ".atom"
         atom_path = AtomsPathsUtils.get_atom_path(config, relative_path)
         chroot_path = os.path.join(atom_path, "chroot")
+        root_path = os.path.join(atom_path, "root")
         atom = cls(config, name, distribution.distribution_id, relative_path, date)
         os.makedirs(chroot_path)
         GLib.idle_add(config_fn, 1)
 
         GLib.idle_add(unpack_fn, 0)
         image.unpack(chroot_path)
+        os.makedirs(root_path)
         GLib.idle_add(unpack_fn, 1)
 
         GLib.idle_add(finalizing_fn, 0)

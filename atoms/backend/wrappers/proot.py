@@ -37,8 +37,13 @@ class ProotWrapper:
 
         if working_directory is None:
             working_directory = "/"
+        
+        env_bin = shutil.which("env")
 
         return [
+            env_bin,
+            "-i",
+            "HOME=/root",
             self.__binary_path,
             "-0",
             "-w",

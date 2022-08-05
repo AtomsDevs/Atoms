@@ -61,6 +61,7 @@ class AtomDashboard(Adw.Bin):
 
     def __on_back_clicked(self, widget):
         self.window.show_atoms_list()
+        Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
 
     def __on_detach_clicked(self, widget):
         def detach(*args):
