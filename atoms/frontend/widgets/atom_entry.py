@@ -41,6 +41,7 @@ class AtomEntry(Adw.ActionRow):
 
     def __on_activated(self, widget):
         self.window.main_leaflet.set_visible_child(self.dashboard)
+        self.dashboard.restore_color_scheme()
     
     def destroy(self):
         self.get_parent().remove(self)

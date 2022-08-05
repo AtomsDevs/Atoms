@@ -43,6 +43,7 @@ class AtomDashboard(Adw.Bin):
         self.atom = atom
         self.__detach_status = False
         self.__detached_window = None
+        self.__current_color_scheme = Adw.ColorScheme.DEFAULT
         self.__build_ui()
     
     def __build_ui(self):
@@ -92,11 +93,11 @@ class AtomDashboard(Adw.Bin):
         self.btn_detach.set_visible(visible_child_name == 'console')
 
         if visible_child_name == "console":
-            color_scheme = Adw.ColorScheme.FORCE_DARK
+            self.__current_color_scheme = Adw.ColorScheme.FORCE_DARK
         else:
-            color_scheme = Adw.ColorScheme.DEFAULT
+            self.__current_color_scheme = Adw.ColorScheme.DEFAULT
 
-        Adw.StyleManager.get_default().set_color_scheme(color_scheme)
+        Adw.StyleManager.get_default().set_color_scheme(self.__current_color_scheme)
 
     def __on_browse_clicked(self, widget):
         Gtk.show_uri(self.window, f"file://{self.atom.fs_path}", Gdk.CURRENT_TIME)
@@ -120,3 +121,6 @@ class AtomDashboard(Adw.Bin):
         dialog.add_response("ok", _("Confirm"))
         dialog.connect("response", handle_response)
         dialog.present()
+    
+    def restore_color_scheme(self, *args):
+        Adw.StyleManager.get_default().set_color_scheme(self.__current_color_scheme)
