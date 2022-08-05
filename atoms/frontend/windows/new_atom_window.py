@@ -34,12 +34,13 @@ class AtomsNewAtomWindow(Adw.Window):
     btn_finish = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     combo_distribution = Gtk.Template.Child()
-    str_list_distributions = Gtk.Template.Child()
     combo_releases = Gtk.Template.Child()
+    str_list_distributions = Gtk.Template.Child()
     str_list_releases = Gtk.Template.Child()
     group_steps = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
     header_bar = Gtk.Template.Child()
+    status_error = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -71,6 +72,11 @@ class AtomsNewAtomWindow(Adw.Window):
         self.btn_finish.connect('clicked', self.__on_btn_finish_clicked)
         self.combo_distribution.connect('notify::selected', self.__on_combo_distribution_changed)
     
+    def __show_error(self, error):
+        self.status_error.set_description(error)
+        self.stack_main.set_visible_child_name("error")
+        self.set_deletable(True)
+    
     def __on_btn_create_clicked(self, widget):
         def create_atom():
             distro = self.__distributions_registry[self.combo_distribution.get_selected()]
@@ -83,7 +89,8 @@ class AtomsNewAtomWindow(Adw.Window):
                 self.step_download.update_download,
                 self.step_configuration.update_status,
                 self.step_unpack.update_status,
-                self.step_finalizing.update_status
+                self.step_finalizing.update_status,
+                self.__show_error,
             )
 
         self.set_size_request(450, 505)

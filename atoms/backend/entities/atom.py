@@ -91,10 +91,16 @@ class Atom:
         download_fn: callable,
         config_fn: callable,
         unpack_fn: callable,
-        finalizing_fn: callable
+        finalizing_fn: callable,
+        error_fn: callable
     ):
         date = datetime.datetime.now().isoformat()
-        image = AtomsImageUtils.get_image(config, distribution, architecture, release, download_fn)
+        try:
+            image = AtomsImageUtils.get_image(config, distribution, architecture, release, download_fn)
+        except AtomsHashMissmatchError:
+            GLib.idle_add(error_fn, "Hash missmatch")
+        except AtomsFailToDownloadImage:
+            GLib.idle_add(error_fn, "Fail to download image, it might be a temporary problem")
 
         GLib.idle_add(config_fn, 0)
         relative_path = str(uuid.uuid4()) + ".atom"

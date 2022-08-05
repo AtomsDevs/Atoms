@@ -125,6 +125,18 @@
                 </property>
               </object>
             </child>
+            <child>
+              <object class="AdwViewStackPage">
+                <property name="name">error</property>
+                <property name="child">
+                  <object class="AdwStatusPage" id="status_error">
+                    <property name="valign">center</property>
+                    <property name="title">An Error Occurred</property>
+                    <property name="icon-name">dialog-warning-symbolic</property>
+                  </object>
+                </property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
