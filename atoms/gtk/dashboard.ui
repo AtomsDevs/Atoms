@@ -70,17 +70,12 @@
                                        <object class="AdwPreferencesGroup">
                                           <property name="title">Utilities</property>
                                           <child>
-                                             <object class="AdwActionRow">
+                                             <object class="AdwActionRow" id="row_browse">
                                                 <property name="title">Browse Files</property>
-                                                <property name="activatable-widget">btn_browse</property>
+                                                <property name="activatable">True</property>
                                                 <child type="suffix">
-                                                   <object class="GtkButton" id="btn_browse">
-                                                      <property name="tooltip-text">Browse Atom Files</property>
-                                                      <property name="valign">center</property>
+                                                   <object class="GtkImage">
                                                       <property name="icon-name">external-link-symbolic</property>
-                                                      <style>
-                                                         <class name="flat" />
-                                                      </style>
                                                    </object>
                                                 </child>
                                              </object>
