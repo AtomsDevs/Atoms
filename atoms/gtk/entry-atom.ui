@@ -3,7 +3,7 @@
    <requires lib="gtk" version="4.0" />
    <requires lib="libadwaita" version="1.0" />
    <template class="AtomEntry" parent="AdwActionRow">
-      <property name="activatable-widget">btn_open</property>
+      <property name="activatable">True</property>
       <child type="prefix">
          <object class="GtkImage" id="img_distribution">
             <property name="valign">center</property>
@@ -11,16 +11,11 @@
          </object>
       </child>
       <child type="suffix">
-         <object class="GtkButton" id="btn_open">
-            <property name="valign">center</property>
+         <object class="GtkImage">
+            <property name="icon-name">go-next-symbolic</property>
             <style>
-               <class name="flat" />
+               <class name="dim-label"/>
             </style>
-            <child>
-               <object class="GtkImage">
-                  <property name="icon-name">go-next-symbolic</property>
-               </object>
-            </child>
          </object>
       </child>
    </template>

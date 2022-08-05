@@ -106,18 +106,13 @@
                                              <object class="AdwExpanderRow">
                                                 <property name="title">Destructive Actions</property>
                                                 <child>
-                                                   <object class="AdwActionRow">
+                                                   <object class="AdwActionRow" id="row_destroy">
                                                       <property name="title">Destroy Atom</property>
                                                       <property name="subtitle">Delete the configuration and all files</property>
-                                                      <property name="activatable-widget">btn_destroy</property>
+                                                      <property name="activatable">True</property>
                                                       <child type="suffix">
-                                                         <object class="GtkButton" id="btn_destroy">
-                                                            <property name="tooltip-text">Destroy Atom</property>
-                                                            <property name="valign">center</property>
-                                                            <property name="icon-name">go-next-symbolic</property>
-                                                            <style>
-                                                               <class name="flat" />
-                                                            </style>
+                                                         <object class="GtkImage">
+                                                            <property name="icon-name">user-trash-symbolic</property>
                                                          </object>
                                                       </child>
                                                    </object>

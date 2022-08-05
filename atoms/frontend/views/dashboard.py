@@ -29,13 +29,13 @@ class AtomDashboard(Adw.Bin):
     btn_back = Gtk.Template.Child()
     btn_detach = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
-    btn_destroy = Gtk.Template.Child()
     stack_atom = Gtk.Template.Child()
     stack_console = Gtk.Template.Child()
     box_console = Gtk.Template.Child()
     img_distribution = Gtk.Template.Child()
     label_name = Gtk.Template.Child()
     label_distribution = Gtk.Template.Child()
+    row_destroy = Gtk.Template.Child()
 
     def __init__(self, window, atom: 'Atom', **kwargs):
         super().__init__(**kwargs)
@@ -53,10 +53,10 @@ class AtomDashboard(Adw.Bin):
         self.stack_console.add_named(AtomsStatusDetachedConsole(), 'status')
         self.box_console.append(self.console)
 
+        self.row_destroy.connect('activated', self.__on_destroy_activated)
         self.btn_back.connect('clicked', self.__on_back_clicked)
         self.btn_detach.connect('clicked', self.__on_detach_clicked)
         self.btn_browse.connect('clicked', self.__on_browse_clicked)
-        self.btn_destroy.connect('clicked', self.__on_destroy_clicked)
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
 
     def __on_back_clicked(self, widget):
@@ -101,7 +101,7 @@ class AtomDashboard(Adw.Bin):
     def __on_browse_clicked(self, widget):
         Gtk.show_uri(self.window, f"file://{self.atom.fs_path}", Gdk.CURRENT_TIME)
 
-    def __on_destroy_clicked(self, widget):
+    def __on_destroy_activated(self, widget):
         def on_destroy_done(*args):
             self.window.remove_atom(self.atom)
             self.window.show_atoms_list()
