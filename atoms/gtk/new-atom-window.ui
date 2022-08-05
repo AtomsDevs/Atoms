@@ -21,7 +21,7 @@
             <child type="end">
               <object class="GtkButton" id="btn_create">
                 <property name="label">Create</property>
-                <property name="sensitive">true</property>
+                <property name="sensitive">false</property>
                 <style>
                   <class name="suggested-action" />
                 </style>

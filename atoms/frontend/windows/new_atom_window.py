@@ -21,6 +21,7 @@ from atoms.backend.entities.atom import Atom
 
 from atoms.frontend.widgets.creation_step_entry import CreationStepEntry
 from atoms.frontend.utils.threading import RunAsync
+from atoms.frontend.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/new-atom-window.ui')
@@ -66,6 +67,7 @@ class AtomsNewAtomWindow(Adw.Window):
         self.group_steps.add(self.step_unpack)
         self.group_steps.add(self.step_finalizing)
 
+        self.entry_name.connect('changed', self.__check_entry_name)
         self.btn_cancel.connect('clicked', self.__on_btn_cancel_clicked)
         self.btn_create.connect('clicked', self.__on_btn_create_clicked)
         self.btn_cancel_creation.connect('clicked', self.__on_btn_cancel_creation_clicked)
@@ -101,6 +103,10 @@ class AtomsNewAtomWindow(Adw.Window):
         self.header_bar.add_css_class("flat")
 
         RunAsync(create_atom, self.__finish_creation)
+
+    def __check_entry_name(self, *_args):
+        result = GtkUtils.validate_entry(self.entry_name)
+        self.btn_create.set_sensitive(result)
     
     def __on_btn_finish_clicked(self, widget):
         self.close()
