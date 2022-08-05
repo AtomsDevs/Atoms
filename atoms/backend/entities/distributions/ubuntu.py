@@ -7,9 +7,9 @@ class Ubuntu(AtomDistribution):
             distribution_id="ubuntu", 
             name="Ubuntu", 
             logo="ubuntu-symbolic",
-            releases=["21.04", "22.04"],
+            releases=["22.04", "20.04"],
             remote_structure="http://cdimage.ubuntu.com/ubuntu-base/releases/{0}/release/ubuntu-base-{0}-base-{1}.tar.gz",
-            remote_hash_structure="http://cdimage.ubuntu.com/ubuntu-base/releases/{0}/SHA256SUMS",
+            remote_hash_structure="http://cdimage.ubuntu.com/ubuntu-base/releases/{0}/release/SHA256SUMS",
             remote_hash_type="sha256",
             architectures={"x86_64": "amd64"}
         )
