@@ -59,7 +59,7 @@ class AtomsConfig:
         with open(AtomsPaths.config_file, "wb") as f:
             f.write(orjson.dumps(self.to_dict(), f, option=orjson.OPT_NON_STR_KEYS))
     
-    def to_dict(self):
+    def to_dict(self) -> dict:
         conf = {}
         if self.atoms_path != AtomsPaths.atoms:
             conf["atoms.path"] = self.atoms_path

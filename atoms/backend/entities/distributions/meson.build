@@ -1,5 +1,5 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-distributionsdir = join_paths(pkgdatadir, 'atoms/backend/models/distributions')
+distributionsdir = join_paths(pkgdatadir, 'atoms/backend/entities/distributions')
 
 bottles_sources = [
   '__init__.py',

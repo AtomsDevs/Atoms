@@ -78,7 +78,7 @@ class AtomsNewAtomWindow(Adw.Window):
         self.set_deletable(True)
     
     def __on_btn_create_clicked(self, widget):
-        def create_atom():
+        def create_atom() -> 'Atom':
             distro = self.__distributions_registry[self.combo_distribution.get_selected()]
             return Atom.new(
                 self.window.manager.config,

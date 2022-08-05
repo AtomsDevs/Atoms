@@ -50,7 +50,7 @@ class DownloadUtils:
         self.hash_value = hash_value
         self.hash_type = hash_type
 
-    def download(self):
+    def download(self) -> bool:
         """Start the download."""
         try:
             with open(self.file, "wb") as file:

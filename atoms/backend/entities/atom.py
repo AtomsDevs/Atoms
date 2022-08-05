@@ -56,7 +56,7 @@ class Atom:
         self.__proot_wrapper = ProotWrapper()
 
     @classmethod
-    def from_dict(cls, config: "AtomsConfig", data: dict):
+    def from_dict(cls, config: "AtomsConfig", data: dict) -> "Atom":
         if None in [
             data.get("name"),
             data.get("distributionId"),
@@ -75,7 +75,7 @@ class Atom:
         )
     
     @classmethod
-    def load(cls, config: "AtomsConfig", relative_path: str):
+    def load(cls, config: "AtomsConfig", relative_path: str) -> "Atom":
         path = os.path.join(AtomsPathsUtils.get_atom_path(config, relative_path), "atom.json")
         with open(path, "r") as f:
             data = orjson.loads(f.read())
@@ -94,7 +94,7 @@ class Atom:
         unpack_fn: callable,
         finalizing_fn: callable,
         error_fn: callable
-    ):
+    ) -> 'Atom':
         date = datetime.datetime.now().isoformat()
         try:
             image = AtomsImageUtils.get_image(config, distribution, architecture, release, download_fn)
@@ -123,7 +123,7 @@ class Atom:
 
         return atom
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             "name": self.name,
             "distributionId": self.distribution_id,
@@ -148,26 +148,26 @@ class Atom:
         shutil.rmtree(self.path)
     
     @property
-    def path(self):
+    def path(self) -> str:
         return AtomsPathsUtils.get_atom_path(self._config, self.relative_path)
     
     @property
-    def fs_path(self):
+    def fs_path(self) -> str:
         return os.path.join(
             AtomsPathsUtils.get_atom_path(self._config, self.relative_path),
             "chroot"
         )
     
     @property
-    def root_path(self):
+    def root_path(self) -> str:
         return os.path.join(self.fs_path, "root")
 
     @property
-    def distribution(self):
+    def distribution(self) -> 'AtomDistribution':
         return AtomsDistributionsUtils.get_distribution(self.distribution_id)
     
     @property
-    def enter_command(self):
+    def enter_command(self) -> list:
         return self.generate_command([])
             
     def __str__(self):

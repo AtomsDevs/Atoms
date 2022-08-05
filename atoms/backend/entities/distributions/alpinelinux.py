@@ -1,4 +1,4 @@
-from atoms.backend.models.distribution import AtomDistribution
+from atoms.backend.entities.distribution import AtomDistribution
 
 
 class AlpineLinux(AtomDistribution):
@@ -14,14 +14,14 @@ class AlpineLinux(AtomDistribution):
             architectures={"x86_64": "x86_64"}
         )
     
-    def get_remote(self, architecture: str, release: str):
+    def get_remote(self, architecture: str, release: str) -> str:
         return self.remote_structure.format(
             '.'.join(release.split('.')[:2]), # only take major and minor version
             architecture, 
             release
         )
     
-    def get_remote_hash(self, architecture: str, release: str):
+    def get_remote_hash(self, architecture: str, release: str) -> str:
         return self.remote_hash_structure.format(
             '.'.join(release.split('.')[:2]), # only take major and minor version
             architecture, 

@@ -15,8 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from atoms.backend.exceptions.distribution import AtomsUnknownDistribution
-from atoms.backend.models.distribution import AtomDistribution
-from atoms.backend.models.distributions import *
+from atoms.backend.entities.distribution import AtomDistribution
+from atoms.backend.entities.distributions import *
 
 
 class AtomsDistributionsUtils:

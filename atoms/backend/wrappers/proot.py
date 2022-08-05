@@ -25,13 +25,18 @@ class ProotWrapper:
     def __init__(self):
         self.__binary_path = self.__find_binary_path()
     
-    def __find_binary_path(self):
+    def __find_binary_path(self) -> str:
         res = shutil.which("proot")
         if res is None:
             raise AtomsNoBinaryFound("proot")
         return res
     
-    def get_proot_command_for_chroot(self, chroot_path: str, command: list = None, working_directory: str = None):
+    def get_proot_command_for_chroot(
+        self, 
+        chroot_path: str, 
+        command: list = None, 
+        working_directory: str = None
+    ) -> list:
         if command is None:
             command = []
 

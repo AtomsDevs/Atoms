@@ -1,4 +1,4 @@
-from atoms.backend.models.distribution import AtomDistribution
+from atoms.backend.entities.distribution import AtomDistribution
 
 
 class Ubuntu(AtomDistribution):
@@ -14,5 +14,5 @@ class Ubuntu(AtomDistribution):
             architectures={"x86_64": "amd64"}
         )
     
-    def get_remote_hash(self, architecture: str, release: str):
+    def get_remote_hash(self, architecture: str, release: str) -> str:
         return self.remote_hash_structure.format(release)

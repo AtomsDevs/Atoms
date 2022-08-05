@@ -46,5 +46,5 @@ class AtomsList(Gtk.ScrolledWindow):
         del self.__registry[atom.relative_path]
 
     @property
-    def has_atoms(self):
+    def has_atoms(self) -> bool:
         return len(self.__registry) > 0

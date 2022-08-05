@@ -52,17 +52,17 @@ class AtomDistribution:
     def __str__(self):
         return f"Distribution {self.name}"
     
-    def get_remote(self, architecture: str, release: str):
+    def get_remote(self, architecture: str, release: str) -> str:
         return self.remote_structure.format(release, architecture)
 
-    def get_remote_hash(self, architecture: str, release: str):
+    def get_remote_hash(self, architecture: str, release: str) -> str:
         return self.remote_hash_structure.format(release, architecture)
     
-    def get_image_name(self, architecture: str, release: str):
+    def get_image_name(self, architecture: str, release: str) -> str:
         remote = self.get_remote(architecture, release)
         return os.path.basename(remote)
     
-    def read_remote_hash(self, architecture: str, release: str):
+    def read_remote_hash(self, architecture: str, release: str) -> str:
         response = requests.get(self.get_remote_hash(architecture, release))
 
         if response.status_code != 200:
