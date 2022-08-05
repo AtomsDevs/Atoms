@@ -59,3 +59,8 @@ class AtomsWindow(Adw.ApplicationWindow):
     def insert_atom(self, atom: 'Atom'):
         self.atoms_list.insert_atom(atom)
         self.stack_main.set_visible_child_name('list-atoms')
+    
+    def remove_atom(self, atom: 'Atom'):
+        self.atoms_list.remove_atom(atom)
+        if not self.atoms_list.has_atoms:
+            self.stack_main.set_visible_child_name('no-atoms')

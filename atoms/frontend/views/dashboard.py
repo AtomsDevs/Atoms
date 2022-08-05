@@ -19,6 +19,7 @@ from gi.repository import Gtk, Gdk, Gio, Adw
 from atoms.frontend.views.status.detached_console import AtomsStatusDetachedConsole
 from atoms.frontend.windows.detached_window import AtomsDetachedWindow
 from atoms.frontend.views.console import AtomsConsole
+from atoms.frontend.utils.threading import RunAsync
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/dashboard.ui')
@@ -28,6 +29,7 @@ class AtomDashboard(Adw.Bin):
     btn_back = Gtk.Template.Child()
     btn_detach = Gtk.Template.Child()
     btn_browse = Gtk.Template.Child()
+    btn_destroy = Gtk.Template.Child()
     stack_atom = Gtk.Template.Child()
     stack_console = Gtk.Template.Child()
     box_console = Gtk.Template.Child()
@@ -54,6 +56,7 @@ class AtomDashboard(Adw.Bin):
         self.btn_back.connect('clicked', self.__on_back_clicked)
         self.btn_detach.connect('clicked', self.__on_detach_clicked)
         self.btn_browse.connect('clicked', self.__on_browse_clicked)
+        self.btn_destroy.connect('clicked', self.__on_destroy_clicked)
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
 
     def __on_back_clicked(self, widget):
@@ -96,3 +99,23 @@ class AtomDashboard(Adw.Bin):
 
     def __on_browse_clicked(self, widget):
         Gtk.show_uri(self.window, f"file://{self.atom.fs_path}", Gdk.CURRENT_TIME)
+
+    def __on_destroy_clicked(self, widget):
+        def on_destroy_done(*args):
+            self.window.remove_atom(self.atom)
+            self.window.show_atoms_list()
+
+        def handle_response(_widget, response_id):
+            if response_id == "ok":
+                RunAsync(self.atom.destroy, on_destroy_done)
+            _widget.destroy()
+
+        dialog = Adw.MessageDialog.new(
+            self.window,
+            _("Confirm"),
+            _("Are you sure you want to delete this Atom and all files?")
+        )
+        dialog.add_response("cancel", _("Cancel"))
+        dialog.add_response("ok", _("Confirm"))
+        dialog.connect("response", handle_response)
+        dialog.present()

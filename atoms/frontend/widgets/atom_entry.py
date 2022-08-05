@@ -42,3 +42,6 @@ class AtomEntry(Adw.ActionRow):
 
     def __on_open_clicked(self, widget):
         self.window.main_leaflet.set_visible_child(self.dashboard)
+    
+    def destroy(self):
+        self.get_parent().remove(self)

@@ -22,6 +22,7 @@ from atoms.frontend.widgets.atom_entry import AtomEntry
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/list-atoms.ui')
 class AtomsList(Gtk.ScrolledWindow):
     __gtype_name__ = 'AtomsList'
+    __registry = {}
     
     list_atoms = Gtk.Template.Child()
 
@@ -32,7 +33,18 @@ class AtomsList(Gtk.ScrolledWindow):
 
     def __build_ui(self):
         for atom in self.window.manager.atoms.values():
-            self.list_atoms.append(AtomEntry(self.window, atom))
+            self.insert_atom(atom)
     
     def insert_atom(self, atom: 'Atom'):
-        self.list_atoms.append(AtomEntry(self.window, atom))
+        _entry = AtomEntry(self.window, atom)
+        self.__registry[atom.relative_path] = _entry
+        self.list_atoms.append(_entry)
+
+    def remove_atom(self, atom: 'Atom'):
+        _entry = self.__registry[atom.relative_path]
+        self.list_atoms.remove(_entry)
+        del self.__registry[atom.relative_path]
+
+    @property
+    def has_atoms(self):
+        return len(self.__registry) > 0

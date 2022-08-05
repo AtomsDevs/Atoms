@@ -49,7 +49,7 @@
                               <child>
                                  <object class="GtkLabel" id="label_name">
                                     <property name="halign">center</property>
-                                    <property name="label" translatable="yes">Atom Name</property>
+                                    <property name="label">Atom Name</property>
                                     <style>
                                        <class name="title-2" />
                                     </style>
@@ -58,7 +58,7 @@
                               <child>
                                  <object class="GtkLabel" id="label_distribution">
                                     <property name="halign">center</property>
-                                    <property name="label" translatable="yes">Distribution Name</property>
+                                    <property name="label">Distribution Name</property>
                                     <style>
                                        <class name="heading" />
                                     </style>
@@ -71,12 +71,13 @@
                                           <property name="title">Utilities</property>
                                           <child>
                                              <object class="AdwActionRow">
-                                                <property name="title">Preferences</property>
+                                                <property name="title">Browse Files</property>
+                                                <property name="activatable-widget">btn_browse</property>
                                                 <child type="suffix">
-                                                   <object class="GtkButton" id="btn_preferences">
-                                                      <property name="tooltip-text" translatable="yes">Show Atom Preferences</property>
+                                                   <object class="GtkButton" id="btn_browse">
+                                                      <property name="tooltip-text">Browse Atom Files</property>
                                                       <property name="valign">center</property>
-                                                      <property name="icon-name">go-next-symbolic</property>
+                                                      <property name="icon-name">external-link-symbolic</property>
                                                       <style>
                                                          <class name="flat" />
                                                       </style>
@@ -84,18 +85,41 @@
                                                 </child>
                                              </object>
                                           </child>
+                                       </object>
+                                    </child>
+                                    
+                                    <child>
+                                       <object class="AdwPreferencesGroup">
+                                          <property name="title">Settings</property>
                                           <child>
-                                             <object class="AdwActionRow">
-                                                <property name="title">Browse Files</property>
-                                                <property name="activatable-widget">btn_browse</property>
-                                                <child type="suffix">
-                                                   <object class="GtkButton" id="btn_browse">
-                                                      <property name="tooltip-text" translatable="yes">Show Atom Preferences</property>
-                                                      <property name="valign">center</property>
-                                                      <property name="icon-name">external-link-symbolic</property>
-                                                      <style>
-                                                         <class name="flat" />
-                                                      </style>
+                                             <object class="AdwExpanderRow">
+                                                <property name="title">Configuration</property>
+                                                <child>
+                                                   <object class="AdwEntryRow">
+                                                      <property name="title">Name</property>
+                                                      <property name="show_apply_button">True</property>
+                                                   </object>
+                                                </child>
+                                             </object>
+                                          </child>
+                                          <child>
+                                             <object class="AdwExpanderRow">
+                                                <property name="title">Destructive Actions</property>
+                                                <child>
+                                                   <object class="AdwActionRow">
+                                                      <property name="title">Destroy Atom</property>
+                                                      <property name="subtitle">Delete the configuration and all files</property>
+                                                      <property name="activatable-widget">btn_destroy</property>
+                                                      <child type="suffix">
+                                                         <object class="GtkButton" id="btn_destroy">
+                                                            <property name="tooltip-text">Destroy Atom</property>
+                                                            <property name="valign">center</property>
+                                                            <property name="icon-name">go-next-symbolic</property>
+                                                            <style>
+                                                               <class name="flat" />
+                                                            </style>
+                                                         </object>
+                                                      </child>
                                                    </object>
                                                 </child>
                                              </object>

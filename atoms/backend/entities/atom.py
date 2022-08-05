@@ -16,6 +16,7 @@
 
 import os
 import uuid
+import shutil
 import orjson
 import datetime
 from gi.repository import GLib
@@ -140,6 +141,9 @@ class Atom:
 
         _command = self.__proot_wrapper.get_proot_command_for_chroot(self.fs_path, command)
         return _command, environment, self.root_path
+    
+    def destroy(self):
+        shutil.rmtree(self.path)
     
     @property
     def path(self):
