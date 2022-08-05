@@ -75,7 +75,7 @@ class AtomDistribution:
         content = response.text.split("\n")
         for line in content:
             _hash, _file = re.split(r"\s+", line, maxsplit=1)
-            if _file == self.get_image_name(architecture, release):
+            if self.get_image_name(architecture, release) in _file:
                 return _hash.strip()
 
         raise ValueError(f"Unknown check_type method: {check_type}")
