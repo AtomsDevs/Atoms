@@ -9,7 +9,7 @@
             <property name="title">Atoms</property>
             <property name="description">Start by creating your first atom.</property>
             <child>
-               <object class="GtkButton">
+               <object class="GtkButton" id="btn_new">
                   <property name="label">Create new atom</property>
                   <property name="halign">center</property>
                   <style>

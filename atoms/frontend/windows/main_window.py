@@ -38,16 +38,22 @@ class AtomsWindow(Adw.ApplicationWindow):
         self.__build_ui()
     
     def __build_ui(self):
-        if self.manager.has_atoms:
-            self.stack_main.add_named(AtomsList(self), 'list-atoms')
-        else:
-            self.stack_main.add_named(AtomsStatusEmpty(), 'no-atoms')
+        self.atoms_list = AtomsList(self)
 
-        self.btn_new.connect('clicked', self.__on_btn_new_clicked)
+        if self.manager.has_atoms:
+            self.stack_main.add_named(atoms_list, 'list-atoms')
+        else:
+            self.stack_main.add_named(AtomsStatusEmpty(self), 'no-atoms')
+
+        self.btn_new.connect('clicked', self.on_btn_new_clicked)
     
     def show_atoms_list(self):
         self.main_leaflet.set_visible_child(self.box_main)
 
-    def __on_btn_new_clicked(self, widget):
+    def on_btn_new_clicked(self, widget):
         new_atom_window = AtomsNewAtomWindow(self)
         new_atom_window.present()
+    
+    def insert_atom(self, atom: 'Atom'):
+        self.atoms_list.insert_atom(atom)
+        self.stack_main.set_visible_child_name('list-atoms')

@@ -102,6 +102,7 @@ class AtomsNewAtomWindow(Adw.Window):
         self.close()
     
     def __finish_creation(self, atom: 'Atom', error=False):
+        self.window.atoms_list.insert_atom(atom)
         self.stack_main.set_visible_child_name("created")
     
     def __on_combo_distribution_changed(self, *args):
