@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Gdk, Gio, Adw
 
 from atoms.frontend.views.status.detached_console import AtomsStatusDetachedConsole
 from atoms.frontend.windows.detached_window import AtomsDetachedWindow
@@ -27,6 +27,7 @@ class AtomDashboard(Adw.Bin):
 
     btn_back = Gtk.Template.Child()
     btn_detach = Gtk.Template.Child()
+    btn_browse = Gtk.Template.Child()
     stack_atom = Gtk.Template.Child()
     stack_console = Gtk.Template.Child()
     box_console = Gtk.Template.Child()
@@ -52,6 +53,7 @@ class AtomDashboard(Adw.Bin):
 
         self.btn_back.connect('clicked', self.__on_back_clicked)
         self.btn_detach.connect('clicked', self.__on_detach_clicked)
+        self.btn_browse.connect('clicked', self.__on_browse_clicked)
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
 
     def __on_back_clicked(self, widget):
@@ -86,6 +88,11 @@ class AtomDashboard(Adw.Bin):
         self.btn_detach.set_visible(visible_child_name == 'console')
 
         if visible_child_name == "console":
-            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+            color_scheme = Adw.ColorScheme.FORCE_DARK
         else:
-            Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
+            color_scheme = Adw.ColorScheme.DEFAULT
+
+        Adw.StyleManager.get_default().set_color_scheme(color_scheme)
+
+    def __on_browse_clicked(self, widget):
+        Gtk.show_uri(self.window, f"file://{self.atom.fs_path}", Gdk.CURRENT_TIME)
