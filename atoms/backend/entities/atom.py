@@ -22,6 +22,9 @@ import datetime
 from gi.repository import GLib
 
 from atoms.backend.exceptions.atom import AtomsWrongAtomData
+from atoms.backend.exceptions.download import AtomsHashMissmatchError
+from atoms.backend.exceptions.image import AtomsFailToDownloadImage
+from atoms.backend.exceptions.distribution import AtomsUnreachableRemote
 from atoms.backend.utils.paths import AtomsPathsUtils
 from atoms.backend.utils.image import AtomsImageUtils
 from atoms.backend.utils.distribution import AtomsDistributionsUtils
@@ -102,6 +105,8 @@ class Atom:
             GLib.idle_add(error_fn, "Hash missmatch")
         except AtomsFailToDownloadImage:
             GLib.idle_add(error_fn, "Fail to download image, it might be a temporary problem")
+        except AtomsUnreachableRemote:
+            GLib.idle_add(error_fn, "Unreachable remote, it might be a temporary problem")
 
         GLib.idle_add(config_fn, 0)
         relative_path = str(uuid.uuid4()) + ".atom"

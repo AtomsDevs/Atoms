@@ -24,3 +24,12 @@ class AtomsUnknownDistribution(AtomsException):
 
     def __init__(self, distribution_id: str):
         super().__init__("Unknown distribution id: {}".format(distribution_id))
+
+
+class AtomsUnreachableRemote(AtomsException):
+    """
+    Exception raised when a remote is unreachable.
+    """
+
+    def __init__(self, remote: str):
+        super().__init__("Unreachable remote: {}".format(remote))

@@ -20,6 +20,8 @@ import re
 import requests
 import shlex
 
+from atoms.backend.exceptions.distribution import AtomsUnreachableRemote
+
 
 class AtomDistribution:
     distribution_id: str
@@ -63,10 +65,12 @@ class AtomDistribution:
         return os.path.basename(remote)
     
     def read_remote_hash(self, architecture: str, release: str) -> str:
-        response = requests.get(self.get_remote_hash(architecture, release))
+        remote_hash = self.get_remote_hash(architecture, release)
+        response = requests.get(remote_hash)
+        print(remote_hash)
 
         if response.status_code != 200:
-            raise Exception(f"Failed to read remote hash {remote_hash}")
+            raise AtomsUnreachableRemote(remote_hash)
             
         content = response.text.split("\n")
         for line in content:
