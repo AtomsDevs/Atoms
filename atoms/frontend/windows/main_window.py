@@ -39,11 +39,13 @@ class AtomsWindow(Adw.ApplicationWindow):
     
     def __build_ui(self):
         self.atoms_list = AtomsList(self)
+        self.stack_main.add_named(self.atoms_list, 'list-atoms')
+        self.stack_main.add_named(AtomsStatusEmpty(self), 'no-atoms')
 
         if self.manager.has_atoms:
-            self.stack_main.add_named(atoms_list, 'list-atoms')
+            self.stack_main.set_visible_child_name('list-atoms')
         else:
-            self.stack_main.add_named(AtomsStatusEmpty(self), 'no-atoms')
+            self.stack_main.set_visible_child_name('no-atoms')
 
         self.btn_new.connect('clicked', self.on_btn_new_clicked)
     
