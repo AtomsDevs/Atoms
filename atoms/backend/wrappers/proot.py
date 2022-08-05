@@ -50,6 +50,7 @@ class ProotWrapper:
             "-i",
             "HOME=/root",
             "HOSTNAME=atom",
+            "TERM=xterm",
             self.__binary_path,
             "-0",
             "-w",
