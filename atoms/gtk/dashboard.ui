@@ -90,7 +90,7 @@
                                              <object class="AdwExpanderRow">
                                                 <property name="title">Configuration</property>
                                                 <child>
-                                                   <object class="AdwEntryRow">
+                                                   <object class="AdwEntryRow" id="entry_name">
                                                       <property name="title">Name</property>
                                                       <property name="show_apply_button">True</property>
                                                    </object>

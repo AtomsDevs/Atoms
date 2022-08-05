@@ -31,6 +31,7 @@ class AtomsWindow(Adw.ApplicationWindow):
     stack_main = Gtk.Template.Child()
     btn_new = Gtk.Template.Child()
     box_main = Gtk.Template.Child()
+    toasts = Gtk.Template.Child()
     manager = AtomsBackend()
 
     def __init__(self, **kwargs):
@@ -64,3 +65,8 @@ class AtomsWindow(Adw.ApplicationWindow):
         self.atoms_list.remove_atom(atom)
         if not self.atoms_list.has_atoms:
             self.stack_main.set_visible_child_name('no-atoms')
+
+    def show_toast(self, message: str, timeout: int=3):
+        toast = Adw.Toast.new(message)
+        toast.props.timeout = timeout
+        self.toasts.add_toast(toast)
