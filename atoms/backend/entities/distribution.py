@@ -67,7 +67,6 @@ class AtomDistribution:
     def read_remote_hash(self, architecture: str, release: str) -> str:
         remote_hash = self.get_remote_hash(architecture, release)
         response = requests.get(remote_hash)
-        print(remote_hash)
 
         if response.status_code != 200:
             raise AtomsUnreachableRemote(remote_hash)
