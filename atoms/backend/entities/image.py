@@ -23,22 +23,28 @@ from atoms.backend.utils.file import FileUtils
 class AtomImage:
     name: str
     path: str
+    root: str
     size: int
 
     def __init__(
         self,
         name: str,
         path: str,
+        root: str,
     ):
         self.name = name
         self.path = path
+        self.root = root
 
     def unpack(self, destination: str):
         if not os.path.exists(destination):
             os.makedirs(destination)
 
         with tarfile.open(self.path) as tar:
-            tar.extractall(destination)
+            if self.root != "":
+                tar.extractall(destination, [self.root])
+            else:
+                tar.extractall(destination)
 
     def destroy(self):
         os.remove(self.path)

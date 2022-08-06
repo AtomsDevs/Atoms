@@ -45,7 +45,7 @@ class AtomsImageUtils:
             if not DownloadUtils(remote, image_path, update_fn, remote_hash, hash_type).download():
                 raise AtomsFailToDownloadImage(remote)
 
-        return AtomImage(image_name, image_path)
+        return AtomImage(image_name, image_path, distribution.root)
     
     @staticmethod
     def get_image_list(config: "AtomsConfig"):
