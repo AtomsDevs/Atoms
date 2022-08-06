@@ -40,7 +40,8 @@ class AtomDistribution:
         remote_structure: str, 
         remote_hash_structure: str,
         remote_hash_type: str,
-        architectures: dict
+        architectures: dict,
+        root: str
     ):
         self.distribution_id = distribution_id
         self.name = name
@@ -50,6 +51,7 @@ class AtomDistribution:
         self.remote_hash_structure = remote_hash_structure
         self.remote_hash_type = remote_hash_type
         self.architectures = architectures
+        self.root = root
 
     def __str__(self):
         return f"Distribution {self.name}"
