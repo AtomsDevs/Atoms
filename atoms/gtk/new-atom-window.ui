@@ -81,7 +81,7 @@
                     <child>
                       <object class="AdwStatusPage">
                         <property name="valign">center</property>
-                        <property name="title">Creating a Atom…</property>
+                        <property name="title">Creating an Atom…</property>
                         <property name="description">Take a break, it may take a while.</property>
                         <child>
                           <object class="AdwPreferencesGroup" id="group_steps"></object>
