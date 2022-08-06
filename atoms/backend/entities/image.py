@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import shutil
 import tarfile
 
 from atoms.backend.utils.file import FileUtils
@@ -45,10 +46,18 @@ class AtomImage:
             os.makedirs(destination)
 
         with tarfile.open(self.path) as tar:
-            if self.root != "":
-                tar.extractall(destination, [self.root])
-            else:
-                tar.extractall(destination)
+            tar.extractall(destination)
+
+        if self.root == "":
+            return
+
+        root = os.path.join(destination, self.root)
+
+        for file in os.listdir(root):
+            _file = os.path.join(root, file)
+            shutil.move(_file, destination)
+
+        os.rmdir(root)
 
     def destroy(self):
         os.remove(self.path)
