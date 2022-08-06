@@ -79,7 +79,7 @@ class AtomDashboard(Adw.Bin):
             self.btn_detach.set_icon_name('pip-in-symbolic')
             self.stack_console.set_visible_child_name('vte')
             self.box_console.append(self.console)
-            self.window.show_toast("Atom console detached.")
+            self.window.show_toast("Atom console re-attached.")
             
         def attach():
             self.btn_detach.set_tooltip_text('Attach Console')
@@ -90,7 +90,7 @@ class AtomDashboard(Adw.Bin):
                 self.__detached_window = AtomsDetachedWindow(self.console, "#000000", title=self.atom.name)
                 self.__detached_window.present()
                 self.__detached_window.connect("close-request", detach)
-            self.window.show_toast("Atom console re-attached.")
+            self.window.show_toast("Atom console detached.")
             
         self.__detach_status = not self.__detach_status
         attach() if self.__detach_status else detach()
