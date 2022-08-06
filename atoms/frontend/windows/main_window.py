@@ -38,12 +38,9 @@ class AtomsWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.application = kwargs['application']
         self.__build_ui()
     
     def __build_ui(self):
-        self.application.create_action('preferences', self.on_preferences_action)
-        
         self.atoms_list = AtomsList(self)
         self.stack_main.add_named(self.atoms_list, 'list-atoms')
         self.stack_main.add_named(AtomsStatusEmpty(self), 'no-atoms')
@@ -78,8 +75,3 @@ class AtomsWindow(Adw.ApplicationWindow):
     
     def reload_atoms(self):
         self.atoms_list.reload()
-
-    def on_preferences_action(self, widget, _):
-        """Callback for the app.preferences action."""
-        preferences_window = AtomsPreferences(self)
-        preferences_window.present()

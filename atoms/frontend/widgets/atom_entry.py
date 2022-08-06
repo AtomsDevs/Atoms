@@ -57,5 +57,4 @@ class AtomEntry(Adw.ActionRow):
         self.get_parent().remove(self)
     
     def reload_ui(self):
-        print("reload_ui")
         self.__build_ui()

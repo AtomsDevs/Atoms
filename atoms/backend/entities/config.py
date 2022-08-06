@@ -18,7 +18,7 @@ import os
 import orjson
 
 from atoms.backend.params.paths import AtomsPaths
-from atoms.backend.exceptions.config import AtomsCantMakeAtomsPath
+from atoms.backend.exceptions.config import AtomsCantMakeAtomsPath, AtomsConfigKeyNotFound
 
 
 class AtomsConfig:
@@ -66,3 +66,14 @@ class AtomsConfig:
         if self.atoms_images != AtomsPaths.images:
             conf["images.path"] = self.atoms_images
         return conf
+    
+    def restore_default(self, config_key: str):
+        if config_key not in self.to_dict():
+            raise AtomsConfigKeyNotFound(config_key)
+
+        if config_key == "atoms.path":
+            self.atoms_path = AtomsPaths.atoms
+        elif config_key == "images.path":
+            self.atoms_images = AtomsPaths.images
+            
+        self.__save()

@@ -25,3 +25,13 @@ class AtomsCantMakeAtomsPath(AtomsException):
 
     def __init__(self, path: str):
         super().__init__("Atoms can't make the atoms path due to missing permissions: {}".format(path))
+
+
+class AtomsConfigKeyNotFound(AtomsException):
+    """
+    Exception raised when a config key is not found.
+    """
+
+    def __init__(self, key: str):
+        super().__init__("Requested Atoms config key not found: {}.\n\t\
+You can't create new config keys in a managed Atoms configuration.".format(key))
