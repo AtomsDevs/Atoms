@@ -8,10 +8,12 @@
     <file>gtk/list-atoms.ui</file>
     <file>gtk/entry-atom.ui</file>
     <file>gtk/entry-creation-step.ui</file>
+    <file>gtk/entry-image.ui</file>
     <file>gtk/dashboard.ui</file>
     <file>gtk/detached-window.ui</file>
     <file>gtk/new-atom-window.ui</file>
     <file>gtk/about-window.ui</file>
+    <file>gtk/preferences-window.ui</file>
   </gresource>
   <gresource prefix="/pm/mirko/Atoms/icons/scalable/actions">
     <file alias="alpine-linux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/alpine-linux-symbolic.svg</file>

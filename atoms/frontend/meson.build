@@ -6,9 +6,10 @@ subdir('widgets')
 subdir('windows')
 subdir('utils')
 
-bottles_sources = [
+atoms_sources = [
   '__init__.py',
   'main.py',
+  'const.py',
 ]
 
-install_data(bottles_sources, install_dir: frontenddir)
+install_data(atoms_sources, install_dir: frontenddir)

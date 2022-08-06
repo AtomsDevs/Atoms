@@ -1,7 +1,7 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 utilsdir = join_paths(pkgdatadir, 'atoms/backend/utils')
 
-bottles_sources = [
+atoms_sources = [
   '__init__.py',
   'paths.py',
   'distribution.py',
@@ -11,4 +11,4 @@ bottles_sources = [
   'hash.py'
 ]
 
-install_data(bottles_sources, install_dir: utilsdir)
+install_data(atoms_sources, install_dir: utilsdir)

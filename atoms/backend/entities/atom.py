@@ -178,6 +178,12 @@ class Atom:
     @property
     def enter_command(self) -> list:
         return self.generate_command([])
+    
+    @property
+    def formatted_update_date(self) -> str:
+        return datetime.datetime.strptime(
+                self.update_date, "%Y-%m-%dT%H:%M:%S.%f"
+            ).strftime("%d %B, %Y %H:%M:%S")
             
     def __str__(self):
         return f"Atom: {self.name}"

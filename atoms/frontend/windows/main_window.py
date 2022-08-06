@@ -14,11 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Adw
+from gi.repository import Gtk, Gio, Adw
 
 from atoms.frontend.views.status.no_atoms import AtomsStatusEmpty
 from atoms.frontend.views.lists.atoms import AtomsList
 from atoms.frontend.windows.new_atom_window import AtomsNewAtomWindow
+from atoms.frontend.const import *
 
 from atoms.backend.atoms import AtomsBackend
 
@@ -33,12 +34,16 @@ class AtomsWindow(Adw.ApplicationWindow):
     box_main = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
     manager = AtomsBackend()
+    settings = Gio.Settings.new(APP_ID)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.application = kwargs['application']
         self.__build_ui()
     
     def __build_ui(self):
+        self.application.create_action('preferences', self.on_preferences_action)
+        
         self.atoms_list = AtomsList(self)
         self.stack_main.add_named(self.atoms_list, 'list-atoms')
         self.stack_main.add_named(AtomsStatusEmpty(self), 'no-atoms')
@@ -70,3 +75,11 @@ class AtomsWindow(Adw.ApplicationWindow):
         toast = Adw.Toast.new(message)
         toast.props.timeout = timeout
         self.toasts.add_toast(toast)
+    
+    def reload_atoms(self):
+        self.atoms_list.reload()
+
+    def on_preferences_action(self, widget, _):
+        """Callback for the app.preferences action."""
+        preferences_window = AtomsPreferences(self)
+        preferences_window.present()

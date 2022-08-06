@@ -4,10 +4,10 @@ viewsdir = join_paths(pkgdatadir, 'atoms/frontend/views')
 subdir('status')
 subdir('lists')
 
-bottles_sources = [
+atoms_sources = [
   '__init__.py',
   'dashboard.py',
   'console.py',
 ]
 
-install_data(bottles_sources, install_dir: viewsdir)
+install_data(atoms_sources, install_dir: viewsdir)

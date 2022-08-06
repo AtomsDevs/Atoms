@@ -137,6 +137,7 @@ class AtomDashboard(Adw.Bin):
         self.atom.rename(self.entry_name.get_text())
         self.label_name.set_text(self.atom.name)
         self.window.show_toast("Atom renamed successfully.")
+        self.window.reload_atoms()
     
     def restore_color_scheme(self, *args):
         Adw.StyleManager.get_default().set_color_scheme(self.__current_color_scheme)

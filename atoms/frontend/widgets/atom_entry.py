@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk, Gio, Adw
+from gi.repository import Gtk, Adw
 
 from atoms.frontend.views.dashboard import AtomDashboard
 
@@ -29,14 +29,24 @@ class AtomEntry(Adw.ActionRow):
         super().__init__()
         self.window = window
         self.atom = atom
+        self.__loaded = False
         self.dashboard = AtomDashboard(window, atom)
         self.__build_ui()
 
     def __build_ui(self):
         self.set_title(self.atom.name)
+
+        if self.window.settings.get_boolean("update-date"):
+            self.set_subtitle(self.atom.formatted_update_date)
+        else:
+            self.set_subtitle("")
+
+        if self.__loaded:
+            return
+
         self.img_distribution.set_from_icon_name(self.atom.distribution.logo)
         self.window.main_leaflet.append(self.dashboard)
-        
+        self.__loaded = True
         self.connect('activated', self.__on_activated)
 
     def __on_activated(self, widget):
@@ -45,3 +55,7 @@ class AtomEntry(Adw.ActionRow):
     
     def destroy(self):
         self.get_parent().remove(self)
+    
+    def reload_ui(self):
+        print("reload_ui")
+        self.__build_ui()

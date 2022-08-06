@@ -17,15 +17,18 @@
 import os
 import tarfile
 
+from atoms.backend.utils.file import FileUtils
+
 
 class AtomImage:
     name: str
     path: str
+    size: int
 
     def __init__(
         self,
         name: str,
-        path: str
+        path: str,
     ):
         self.name = name
         self.path = path
@@ -36,3 +39,11 @@ class AtomImage:
 
         with tarfile.open(self.path) as tar:
             tar.extractall(destination)
+        
+    @property
+    def size(self):
+        return os.path.getsize(self.path)
+    
+    @property
+    def human_size(self):
+        return FileUtils.get_human_size(self.size)

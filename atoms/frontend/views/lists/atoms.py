@@ -44,6 +44,10 @@ class AtomsList(Gtk.ScrolledWindow):
         _entry = self.__registry[atom.relative_path]
         self.list_atoms.remove(_entry)
         del self.__registry[atom.relative_path]
+    
+    def reload(self):
+        for atom in self.__registry.values():
+            atom.reload_ui()
 
     @property
     def has_atoms(self) -> bool:

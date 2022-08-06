@@ -22,18 +22,22 @@ gi.require_version('Adw', '1')
 gi.require_version('Vte', '3.91')
 
 from gi.repository import Gtk, Gio, Adw
+
 from atoms.frontend.windows.main_window import AtomsWindow
+from atoms.frontend.windows.preferences_window import AtomsPreferences
+from atoms.frontend.const import *
 
 
 class AtomsApplication(Adw.Application):
     """The main application singleton class."""
 
     def __init__(self):
-        super().__init__(application_id='pm.mirko.Atoms',
+        super().__init__(application_id=APP_ID,
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
         self.create_action('quit', self.close, ['<primary>q'])
         self.create_action('about', self.on_about_action)
-        self.create_action('preferences', self.on_preferences_action)
+        # preferences action is created in the main window as a workaround
+        # for Gio.Settings not being updated
 
     def do_activate(self):
         """Called when the application is activated.
@@ -69,7 +73,8 @@ class AtomsApplication(Adw.Application):
 
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
-        print('app.preferences action activated')
+        preferences_window = AtomsPreferences(self.props.active_window)
+        preferences_window.present()
 
     def create_action(self, name, callback, shortcuts=None):
         """Add an application action.

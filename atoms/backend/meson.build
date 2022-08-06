@@ -7,9 +7,9 @@ subdir('exceptions')
 subdir('entities')
 subdir('utils')
 
-bottles_sources = [
+atoms_sources = [
   '__init__.py',
   'atoms.py',
 ]
 
-install_data(bottles_sources, install_dir: backenddir)
+install_data(atoms_sources, install_dir: backenddir)

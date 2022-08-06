@@ -18,6 +18,7 @@ import os
 
 from atoms.backend.entities.config import AtomsConfig
 from atoms.backend.entities.atom import Atom
+from atoms.backend.utils.image import AtomsImageUtils
 
 
 class AtomsBackend:
@@ -42,3 +43,7 @@ class AtomsBackend:
     @property
     def has_atoms(self) -> bool:
         return len(self.__atoms) > 0
+    
+    @property
+    def local_images(self) -> list:
+        return AtomsImageUtils.get_image_list(self.config)

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <requires lib="gtk" version="4.0"/>
+    <requires lib="libadwaita" version="1.0"/>
+    <template class="AtomsPreferences" parent="AdwPreferencesWindow">
+        <property name="title">Preferences</property>
+        <property name="modal">True</property>
+        <child>
+            <object class="AdwPreferencesPage">
+                <property name="icon-name">applications-system-symbolic</property>
+                <property name="title">General</property>
+                <child>
+                    <object class="AdwPreferencesGroup">
+                        <property name="title">Appearance</property>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title">Show Update Date</property>
+                                <property name="subtitle">Whether to show the update date in the atoms list.</property>
+                                <property name="activatable-widget">switch_update_date</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_update_date">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwPreferencesGroup">
+                        <property name="title">Paths</property>
+                        <child>
+                            <object class="AdwActionRow" id="row_atoms_path">
+                                <property name="title">Custom Atoms Path</property>
+                                <property name="subtitle">Choose where to store the new atoms (this will not move the existing ones).</property>
+                                <property name="activatable-widget">btn_atoms_path</property>
+                                <child>
+                                    <object class="GtkButton" id="btn_atoms_path_reset">
+                                        <property name="tooltip-text">Reset to default</property>
+                                        <property name="valign">center</property>
+                                        <property name="visible">False</property>
+                                        <property name="icon-name">edit-undo-symbolic</property>
+                                        <style>
+                                            <class name="flat"/>
+                                        </style>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkButton" id="btn_atoms_path">
+                                        <property name="tooltip-text">Choose a directory</property>
+                                        <property name="halign">center</property>
+                                        <property name="valign">center</property>
+                                        <property name="icon-name">document-open-symbolic</property>
+                                        <style>
+                                            <class name="flat"/>
+                                        </style>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            </object>
+        </child>
+        <child>
+            <object class="AdwPreferencesPage">
+                <property name="icon-name">drive-multidisk-symbolic</property>
+                <property name="title">Images</property>
+                <child>
+                    <object class="AdwPreferencesGroup" id="group_images">
+                        <property name="title">Local Images</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
+</interface>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="atoms">
 	<schema id="pm.mirko.Atoms" path="/pm/mirko/Atoms/">
+		<key type="b" name="update-date">
+		<default>false</default>
+		<summary>Toggle update date in list</summary>
+		<description>Toggle the update date in list of atoms.</description>
+		</key>
 	</schema>
 </schemalist>

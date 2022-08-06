@@ -3,7 +3,7 @@ entitiesdir = join_paths(pkgdatadir, 'atoms/backend/entities')
 
 subdir('distributions')
 
-bottles_sources = [
+atoms_sources = [
   '__init__.py',
   'config.py',
   'atom.py',
@@ -12,4 +12,4 @@ bottles_sources = [
   'distribution.py',
 ]
 
-install_data(bottles_sources, install_dir: entitiesdir)
+install_data(atoms_sources, install_dir: entitiesdir)
