@@ -7,7 +7,7 @@
 
 <br/>
 
-> ⚠️ Under early development. The icon is temporary.
+> ⚠️ Current state: Beta
 
 
 ### Flatpak build dependencies
