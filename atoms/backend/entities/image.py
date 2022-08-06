@@ -39,6 +39,9 @@ class AtomImage:
 
         with tarfile.open(self.path) as tar:
             tar.extractall(destination)
+
+    def destroy(self):
+        os.remove(self.path)
         
     @property
     def size(self):

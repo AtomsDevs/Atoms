@@ -41,7 +41,7 @@ class AtomsPreferences(Adw.PreferencesWindow):
         self.set_transient_for(self.window)
 
         for image in self.window.manager.local_images:
-            self.group_images.add(ImageEntry(image))
+            self.group_images.add(ImageEntry(self.window, image))
 
         self.switch_update_date.set_active(self.window.settings.get_boolean("update-date"))
 
