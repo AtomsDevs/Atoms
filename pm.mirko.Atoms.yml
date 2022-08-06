@@ -182,7 +182,7 @@ modules:
   builddir: true
   buildsystem: meson
   config-opts:
-    - -Ddevel=false
+    - -Ddevel=true
   build-commands:
     - mkdir -p /app/lib/i386-linux-gnu
     - mkdir -p /app/lib/debug/lib/i386-linux-gnu
