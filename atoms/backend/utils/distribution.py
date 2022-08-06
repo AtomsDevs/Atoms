@@ -49,6 +49,6 @@ class AtomsDistributionsUtils:
             AlpineLinux(),
             Ubuntu(),
         ]
-        if "SHOW_EXPERIMENTAL_IMAGES":
+        if "SHOW_EXPERIMENTAL_IMAGES" in os.environ:
             distributions.append(ArchLinux())
         return distributions
