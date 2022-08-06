@@ -18,6 +18,7 @@ import os
 import tarfile
 
 from atoms.backend.utils.file import FileUtils
+from atoms.backend.exceptions.image import AtomsImageMissingRoot
 
 
 class AtomImage:
@@ -30,13 +31,16 @@ class AtomImage:
         self,
         name: str,
         path: str,
-        root: str,
+        root: str = None,
     ):
         self.name = name
         self.path = path
         self.root = root
 
     def unpack(self, destination: str):
+        if self.root is None:
+            raise AtomsImageMissingRoot(self.name)
+
         if not os.path.exists(destination):
             os.makedirs(destination)
 
