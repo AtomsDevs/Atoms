@@ -181,6 +181,8 @@ modules:
 - name: atoms
   builddir: true
   buildsystem: meson
+  config-opts:
+    - -Ddevel=false
   build-commands:
     - mkdir -p /app/lib/i386-linux-gnu
     - mkdir -p /app/lib/debug/lib/i386-linux-gnu

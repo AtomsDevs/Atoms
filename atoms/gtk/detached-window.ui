@@ -5,9 +5,6 @@
    <template class="AtomsDetachedWindow" parent="AdwWindow">
       <property name="default-width">700</property>
       <property name="default-height">500</property>
-      <style>
-         <class name="devel" />
-      </style>
       <child>
          <object class="GtkBox">
             <property name="hexpand">True</property>

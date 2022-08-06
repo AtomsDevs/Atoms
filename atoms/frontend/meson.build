@@ -12,4 +12,10 @@ atoms_sources = [
   'const.py',
 ]
 
+if get_option('devel')
+  atoms_sources += [
+    'devel/const.py',
+  ]
+endif
+
 install_data(atoms_sources, install_dir: frontenddir)

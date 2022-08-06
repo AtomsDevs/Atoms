@@ -6,9 +6,6 @@
       <property name="title">Atoms</property>
       <property name="default-width">880</property>
       <property name="default-height">640</property>
-      <style>
-         <class name="devel" />
-      </style>
       <child>
          <object class="AdwToastOverlay" id="toasts">
             <child>

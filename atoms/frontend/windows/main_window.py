@@ -56,6 +56,9 @@ class AtomsWindow(Adw.ApplicationWindow):
         if self.__loaded:
             return
             
+        if BUILD_TYPE == "devel":
+            self.add_css_class('devel')
+            
         self.btn_new.connect('clicked', self.on_btn_new_clicked)
         self.__loaded = True
     
