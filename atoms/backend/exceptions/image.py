@@ -24,3 +24,12 @@ class AtomsFailToDownloadImage(AtomsException):
 
     def __init__(self, remote: str):
         super().__init__("Failed to download image from remote: {}".format(remote))
+
+
+class AtomsImageMissingRoot(AtomsException):
+    """
+    Exception raised when an image has no root.
+    """
+
+    def __init__(self, image: str):
+        super().__init__("Image {} has no root".format(image))
