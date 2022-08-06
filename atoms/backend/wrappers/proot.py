@@ -44,7 +44,6 @@ class ProotWrapper:
             working_directory = "/"
         
         env_bin = shutil.which("env")
-
         return [
             env_bin,
             "-i",
@@ -52,10 +51,9 @@ class ProotWrapper:
             "HOSTNAME=atom",
             "TERM=xterm",
             self.__binary_path,
-            "-0",
             "-w",
             working_directory,
-            "-r",
+            "-S",
             chroot_path
         ] + command
     
