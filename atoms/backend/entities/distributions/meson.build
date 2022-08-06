@@ -6,6 +6,7 @@ atoms_sources = [
   'alpinelinux.py',
   'ubuntu.py',
   'archlinux.py',
+  'debian.py',
 ]
 
 install_data(atoms_sources, install_dir: distributionsdir)
