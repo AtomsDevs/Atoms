@@ -112,17 +112,26 @@ class Atom:
         relative_path = str(uuid.uuid4()) + ".atom"
         atom_path = AtomsPathsUtils.get_atom_path(config, relative_path)
         chroot_path = os.path.join(atom_path, "chroot")
-        root_path = os.path.join(atom_path, "root")
+        root_path = os.path.join(chroot_path, "root")
         atom = cls(config, name, distribution.distribution_id, relative_path, date)
         os.makedirs(chroot_path)
         GLib.idle_add(config_fn, 1)
 
         GLib.idle_add(unpack_fn, 0)
         image.unpack(chroot_path)
-        os.makedirs(root_path)
+        os.makedirs(root_path, exist_ok=True)
         GLib.idle_add(unpack_fn, 1)
 
         GLib.idle_add(finalizing_fn, 0)
+        # workaround for unsigned repo in ubuntu (need to investigate the cause)
+        if distribution.distribution_id == "ubuntu":
+            with open(os.path.join(chroot_path, "etc/apt/sources.list"), "r") as f:
+                sources = f.read()
+            sources = sources.replace("deb ", "deb [trusted=yes] ")
+            sources = sources.replace("deb-src ", "deb-src [trusted=yes] ")
+            with open(os.path.join(chroot_path, "etc/apt/sources.list"), "w") as f:
+                f.write(sources)
+        shutil.copy2("/etc/resolv.conf", os.path.join(chroot_path, "etc/resolv.conf"))
         atom.save()
         GLib.idle_add(finalizing_fn, 1)
 
