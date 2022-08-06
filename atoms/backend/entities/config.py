@@ -68,12 +68,28 @@ class AtomsConfig:
         return conf
     
     def restore_default(self, config_key: str):
-        if config_key not in self.to_dict():
-            raise AtomsConfigKeyNotFound(config_key)
-
         if config_key == "atoms.path":
             self.atoms_path = AtomsPaths.atoms
         elif config_key == "images.path":
             self.atoms_images = AtomsPaths.images
+        else:
+            raise AtomsConfigKeyNotFound(config_key)
+            
+        self.__save()
+
+    def is_default(self, config_key: str) -> bool:
+        if config_key == "atoms.path":
+            return self.atoms_path == AtomsPaths.atoms
+        elif config_key == "images.path":
+            return self.atoms_images == AtomsPaths.images
+        return False
+    
+    def set_value(self, config_key: str, config_value: str):
+        if config_key == "atoms.path":
+            self.atoms_path = config_value
+        elif config_key == "images.path":
+            self.atoms_images = config_value
+        else:
+            raise AtomsConfigKeyNotFound(config_key)
             
         self.__save()

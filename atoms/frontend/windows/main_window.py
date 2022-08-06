@@ -38,19 +38,26 @@ class AtomsWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.__loaded = False
         self.__build_ui()
     
     def __build_ui(self):
         self.atoms_list = AtomsList(self)
+        self.atoms_empty = AtomsStatusEmpty(self)
+
         self.stack_main.add_named(self.atoms_list, 'list-atoms')
-        self.stack_main.add_named(AtomsStatusEmpty(self), 'no-atoms')
+        self.stack_main.add_named(self.atoms_empty, 'no-atoms')
 
         if self.manager.has_atoms:
             self.stack_main.set_visible_child_name('list-atoms')
         else:
             self.stack_main.set_visible_child_name('no-atoms')
 
+        if self.__loaded:
+            return
+            
         self.btn_new.connect('clicked', self.on_btn_new_clicked)
+        self.__loaded = True
     
     def show_atoms_list(self):
         self.main_leaflet.set_visible_child(self.box_main)
@@ -75,3 +82,11 @@ class AtomsWindow(Adw.ApplicationWindow):
     
     def reload_atoms(self):
         self.atoms_list.reload()
+
+    def re_init_manager(self):
+        self.manager = AtomsBackend()
+        self.atoms_list.clear()
+        self.stack_main.remove(self.atoms_list)
+        self.stack_main.remove(self.atoms_empty)
+        self.__build_ui()
+        

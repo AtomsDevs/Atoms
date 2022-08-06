@@ -34,6 +34,7 @@
                             <object class="AdwActionRow" id="row_atoms_path">
                                 <property name="title">Custom Atoms Path</property>
                                 <property name="subtitle">Choose where to store the new atoms (this will not move the existing ones).</property>
+                                <property name="activatable">True</property>
                                 <child type="suffix">
                                     <object class="GtkButton" id="btn_atoms_path_reset">
                                         <property name="tooltip-text">Reset to default</property>
@@ -56,6 +57,7 @@
                             <object class="AdwActionRow" id="row_images_path">
                                 <property name="title">Custom Images Path</property>
                                 <property name="subtitle">Choose where to store the new images (this will not move the existing ones).</property>
+                                <property name="activatable">True</property>
                                 <child type="suffix">
                                     <object class="GtkButton" id="btn_images_path_reset">
                                         <property name="tooltip-text">Reset to default</property>

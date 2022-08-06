@@ -32,6 +32,7 @@ class AtomsList(Gtk.ScrolledWindow):
         self.__build_ui()
 
     def __build_ui(self):
+        print(self.window.manager.atoms)
         for atom in self.window.manager.atoms.values():
             self.insert_atom(atom)
     
@@ -41,13 +42,20 @@ class AtomsList(Gtk.ScrolledWindow):
         self.list_atoms.append(_entry)
 
     def remove_atom(self, atom: 'Atom'):
-        _entry = self.__registry[atom.relative_path]
+        _entry = self.__registry[atom.atom.relative_path]
         self.list_atoms.remove(_entry)
-        del self.__registry[atom.relative_path]
+        del self.__registry[atom.atom.relative_path]
     
     def reload(self):
         for atom in self.__registry.values():
             atom.reload_ui()
+        
+    def clear(self):
+        temp_registry = self.__registry.copy()
+        for atom in temp_registry.values():
+            self.remove_atom(atom)
+
+        self.__registry.clear()
 
     @property
     def has_atoms(self) -> bool:

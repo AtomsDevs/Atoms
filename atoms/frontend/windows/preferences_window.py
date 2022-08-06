@@ -17,6 +17,7 @@
 from gi.repository import Gtk, Gio, Adw
 
 from atoms.frontend.widgets.image_entry import ImageEntry
+from atoms.frontend.utils.file_chooser import FileChooser
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/preferences-window.ui')
@@ -33,9 +34,9 @@ class AtomsPreferences(Adw.PreferencesWindow):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.window = window
+        self.config = window.manager.config
+        self.__paths_changed = False
         self.__build_ui()
-        import random
-        self.test = random.randint(0, 100)
     
     def __build_ui(self):
         self.set_transient_for(self.window)
@@ -44,12 +45,14 @@ class AtomsPreferences(Adw.PreferencesWindow):
             self.group_images.add(ImageEntry(self.window, image))
 
         self.switch_update_date.set_active(self.window.settings.get_boolean("update-date"))
+        self.btn_atoms_path_reset.set_visible(not self.config.is_default("atoms.path"))
+        self.btn_images_path_reset.set_visible(not self.config.is_default("images.path"))
 
         self.switch_update_date.connect('state-set', self.__on_switch_update_date_state_set)
         self.btn_atoms_path_reset.connect('clicked', self.__on_btn_atoms_path_reset_clicked)
         self.btn_images_path_reset.connect('clicked', self.__on_btn_images_path_reset_clicked)
-        self.row_atoms_path.connect('activate', self.__on_row_atoms_path_activate)
-        self.row_images_path.connect('activate', self.__on_row_images_path_activate)
+        self.row_atoms_path.connect('activated', self.__on_row_atoms_path_activate)
+        self.row_images_path.connect('activated', self.__on_row_images_path_activate)
 
     def __on_switch_update_date_state_set(self, switch, state):
         # NOTE: not using bind() because it doesn't work as expected
@@ -61,15 +64,53 @@ class AtomsPreferences(Adw.PreferencesWindow):
         self.window.reload_atoms()
 
     def __on_btn_atoms_path_reset_clicked(self, button):
-        self.window.manager.config.restore_default("atoms.path")
+        self.config.restore_default("atoms.path")
         self.window.show_toast("Atoms path reset to default.")
+        self.__update_manager()
+        self.btn_atoms_path_reset.set_visible(False)
 
     def __on_btn_images_path_reset_clicked(self, button):
-        self.window.manager.config.restore_default("images.path")
+        self.config.restore_default("images.path")
         self.window.show_toast("Images path reset to default.")
+        self.__update_manager()
+        self.btn_images_path_reset.set_visible(False)
+    
+    def __set_path(self, dialog, response, file_dialog, path_key):
+        _file = file_dialog.get_file()
+        if _file is None or response != Gtk.ResponseType.OK:
+            _dialog.destroy()
+            return
+        path = _file.get_path()
+        self.config.set_value(path_key, path)
+        self.btn_atoms_path_reset.set_visible(True)
+        dialog.destroy()
 
     def __on_row_atoms_path_activate(self, row):
-        pass
+        def set_path(dialog, response, file_dialog):
+            self.__set_path(dialog, response, file_dialog, "atoms.path")
+            self.__update_manager()
+
+        FileChooser(
+            parent=self.window,
+            title=_("Choose New Atoms Location"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(_("Cancel"), _("Select")),
+            callback=set_path,
+            native=False
+        )
 
     def __on_row_images_path_activate(self, row):
-        pass
+        def set_path(dialog, response, file_dialog):
+            self.__set_path(dialog, response, file_dialog, "images.path")
+            
+        FileChooser(
+            parent=self.window,
+            title=_("Choose New Images Location"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(_("Cancel"), _("Select")),
+            callback=set_path,
+            native=False
+        )
+
+    def __update_manager(self):
+        self.window.re_init_manager()
