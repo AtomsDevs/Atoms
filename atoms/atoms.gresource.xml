@@ -17,6 +17,7 @@
   </gresource>
   <gresource prefix="/pm/mirko/Atoms/icons/scalable/actions">
     <file alias="alpine-linux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/alpine-linux-symbolic.svg</file>
+    <file alias="arch-linux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/arch-linux-symbolic.svg</file>
     <file alias="ubuntu-symbolic.svg">../data/icons/hicolor/symbolic/distributions/ubuntu-symbolic.svg</file>
     <file alias="fedora-symbolic.svg">../data/icons/hicolor/symbolic/distributions/fedora-symbolic.svg</file>
     <file alias="debian-symbolic.svg">../data/icons/hicolor/symbolic/distributions/debian-symbolic.svg</file>

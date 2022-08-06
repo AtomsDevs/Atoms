@@ -27,6 +27,8 @@ class AtomsDistributionsUtils:
             return AlpineLinux()
         if distribution_id == "ubuntu":
             return Ubuntu()
+        if distribution_id == "archlinux":
+            return ArchLinux()
         # TODO: the following distributions are not yet implemented 
         # if distribution_id == "fedora":
         #     return Fedora()
@@ -39,5 +41,6 @@ class AtomsDistributionsUtils:
     def get_distributions() -> dict:
         return [
             AlpineLinux(),
-            Ubuntu()
+            Ubuntu(),
+            ArchLinux(),
         ]
