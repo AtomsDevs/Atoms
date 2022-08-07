@@ -70,7 +70,7 @@ class AtomDashboard(Adw.Bin):
         Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
 
     def __on_detach_clicked(self, widget):
-        def detach(*args):
+        def attach(*args):
             if self.__detached_window:
                 self.__detached_window.release_widget()
                 self.__detached_window.close()
@@ -80,8 +80,9 @@ class AtomDashboard(Adw.Bin):
             self.stack_console.set_visible_child_name('vte')
             self.box_console.append(self.console)
             self.window.show_toast("Atom console re-attached.")
+            self.__detach_status = False
             
-        def attach():
+        def detach():
             self.btn_detach.set_tooltip_text('Attach Console')
             self.btn_detach.set_icon_name('pip-out-symbolic')
             self.stack_console.set_visible_child_name('status')
@@ -89,10 +90,10 @@ class AtomDashboard(Adw.Bin):
             if not self.__detached_window:
                 self.__detached_window = AtomsDetachedWindow(self.console, "#000000", title=self.atom.name)
                 self.__detached_window.present()
-                self.__detached_window.connect("close-request", detach)
+                self.__detached_window.connect("close-request", attach)
             self.window.show_toast("Atom console detached.")
+            self.__detach_status = True
             
-        self.__detach_status = not self.__detach_status
         attach() if self.__detach_status else detach()
 
     def __on_visible_child_changed(self, *args):
