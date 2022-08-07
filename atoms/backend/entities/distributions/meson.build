@@ -7,6 +7,7 @@ atoms_sources = [
   'ubuntu.py',
   'archlinux.py',
   'debian.py',
+  'fedora.py',
 ]
 
 install_data(atoms_sources, install_dir: distributionsdir)
