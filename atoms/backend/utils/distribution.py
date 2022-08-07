@@ -32,13 +32,13 @@ class AtomsDistributionsUtils:
             return Ubuntu()
         
         # Experimental images
-        if distribution_id == "archlinux":
+        if distribution_id == "archlinux":  # pacman broken
             return ArchLinux()
 
         # Unimplemented images
         # if distribution_id == "fedora":
         #     return Fedora()
-        # if distribution_id == "debian":
+        # if distribution_id == "debian": # missing compatible tarball (no raw image)
         #     return Debian()
             
         raise AtomsUnknownDistribution(distribution_id)

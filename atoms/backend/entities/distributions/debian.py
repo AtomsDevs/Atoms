@@ -5,7 +5,7 @@ class Debian(AtomDistribution):
     def __init__(self):
         super().__init__(
             distribution_id="debian", 
-            name="Debian Linux (stable)",
+            name="Debian",
             logo="debian-symbolic",
             releases=["11",],
             remote_structure="https://cloud.debian.org/images/cloud/bullseye/latest/debian-{0}-genericcloud-{1}.tar.xz",
