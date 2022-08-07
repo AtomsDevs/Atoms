@@ -17,6 +17,7 @@ can be enabled using the `SHOW_EXPERIMENTAL_IMAGES=1` environment variable.
 #### Stable (know-working) images
 - Alpine Linux
 - Ubuntu
+- Fedora
 
 #### Experimental (not fully working) images
 - Arch Linux
