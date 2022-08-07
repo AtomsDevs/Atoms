@@ -15,5 +15,5 @@ class Ubuntu(AtomDistribution):
             root=""
         )
     
-    def get_remote_hash(self, architecture: str, release: str) -> str:
+    def get_remote_hash(self, _, release: str) -> str:
         return self.remote_hash_structure.format(release)
