@@ -184,10 +184,10 @@ class Atom:
     
     def generate_command(self, command: list, environment: list=None, track_exit: bool=True) -> tuple:
         if self.is_podman_container:
-            command, environment, working_directory  = self.__generate_podman_command(
+            command, environment, working_directory = self.__generate_podman_command(
                 command, environment)
         else:
-            command, environment, working_directory  = self.__generate_proot_command(
+            command, environment, working_directory = self.__generate_proot_command(
                 command, environment)
 
         if track_exit:
