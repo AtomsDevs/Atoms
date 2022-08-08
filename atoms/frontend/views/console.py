@@ -25,7 +25,10 @@ class AtomsConsole(Vte.Terminal):
         super(AtomsConsole, self).__init__(*args, **kwds)  
         self.atom = atom
         self.__build_ui()
-        self.run_command(*atom.enter_command)
+        if atom.is_podman_container:
+            self.set_stop_status()
+        else:
+            self.run_command(*atom.enter_command)
 
     def __build_ui(self):
         gesture_controller = Gtk.GestureClick(button=Gdk.BUTTON_SECONDARY)
@@ -58,3 +61,7 @@ class AtomsConsole(Vte.Terminal):
             None,
             None
         )
+    
+    def set_stop_status(self):
+        self.reset(True, True)
+        self.run_command(["echo", "Press the Play button to start the container"])

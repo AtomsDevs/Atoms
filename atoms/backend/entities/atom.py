@@ -228,6 +228,9 @@ class Atom:
             raise AtomsCannotRenamePodmanContainers()
         self.name = new_name
         self.save()
+    
+    def stop_podman_container(self):
+        PodmanWrapper().stop_container(self.podman_container_id)
         
     @property
     def path(self) -> str:

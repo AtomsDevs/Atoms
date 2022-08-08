@@ -20,6 +20,13 @@
                      </object>
                   </child>
                   <child type="end">
+                     <object class="GtkButton" id="btn_start">
+                        <property name="visible">false</property>
+                        <property name="icon-name">media-playback-start-symbolic</property>
+                        <property name="tooltip-text">Start Container</property>
+                     </object>
+                  </child>
+                  <child type="end">
                      <object class="GtkButton" id="btn_detach">
                         <property name="visible">false</property>
                         <property name="icon-name">pip-in-symbolic</property>

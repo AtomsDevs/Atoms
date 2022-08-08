@@ -29,6 +29,7 @@ class AtomDashboard(Adw.Bin):
 
     btn_back = Gtk.Template.Child()
     btn_detach = Gtk.Template.Child()
+    btn_start = Gtk.Template.Child()
     row_browse = Gtk.Template.Child()
     stack_atom = Gtk.Template.Child()
     stack_console = Gtk.Template.Child()
@@ -48,6 +49,7 @@ class AtomDashboard(Adw.Bin):
         self.__detach_status = False
         self.__detached_window = None
         self.__current_color_scheme = Adw.ColorScheme.DEFAULT
+        self.__is_container_running = False
         self.__build_ui()
     
     def __build_ui(self):
@@ -63,6 +65,7 @@ class AtomDashboard(Adw.Bin):
         self.row_browse.connect('activated', self.__on_browse_activated)
         self.btn_back.connect('clicked', self.__on_back_clicked)
         self.btn_detach.connect('clicked', self.__on_detach_clicked)
+        self.btn_start.connect('clicked', self.__on_start_clicked)
         self.entry_name.connect('changed', self.__on_entry_changed)
         self.entry_name.connect('apply', self.__on_entry_apply)
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
@@ -74,6 +77,16 @@ class AtomDashboard(Adw.Bin):
     def __on_back_clicked(self, widget):
         self.window.show_atoms_list()
         Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)
+    
+    def __on_start_clicked(self, widget):
+        if self.__is_container_running:
+            self.console.set_stop_status()
+            self.atom.stop_podman_container()
+            self.btn_start.set_icon_name('media-playback-start-symbolic')
+        else:
+            self.console.run_command(*self.atom.enter_command)
+            self.btn_start.set_icon_name('media-playback-stop-symbolic')
+        self.__is_container_running = not self.__is_container_running
 
     def __on_detach_clicked(self, widget):
         def attach(*args):
@@ -103,10 +116,13 @@ class AtomDashboard(Adw.Bin):
         attach() if self.__detach_status else detach()
 
     def __on_visible_child_changed(self, *args):
-        visible_child_name = self.stack_atom.get_visible_child_name()
-        self.btn_detach.set_visible(visible_child_name == 'console')
+        is_console = self.stack_atom.get_visible_child_name() == 'console'
 
-        if visible_child_name == "console":
+        self.btn_detach.set_visible(is_console)
+        if self.atom.is_podman_container:
+            self.btn_start.set_visible(is_console)
+
+        if is_console:
             self.__current_color_scheme = Adw.ColorScheme.FORCE_DARK
         else:
             self.__current_color_scheme = Adw.ColorScheme.DEFAULT

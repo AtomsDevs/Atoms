@@ -97,6 +97,17 @@ class PodmanWrapper:
 
         subprocess.check_call(command)
     
+    def stop_container(self, container_id: str):
+        command = [self.__binary_path, "kill", container_id]
+
+        if self.__is_flatpak:
+            command = self.__get_flatpak_command(command)
+
+        try:
+            subprocess.check_call(command)
+        except subprocess.CalledProcessError:
+            pass
+    
     def __get_flatpak_command(self, command: list) -> list:
         return ["flatpak-spawn", "--host"] + command
         
