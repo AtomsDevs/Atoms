@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import shutil
 import subprocess
 
@@ -53,6 +54,8 @@ class ProotWrapper:
             self.__binary_path,
             "-w",
             working_directory,
+            # "-b",  # xorg experiments
+            # f"/run/user/{os.getuid()}",  # xorg experiments
             "-S",
             chroot_path
         ] + command
