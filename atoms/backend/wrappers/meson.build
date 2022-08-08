@@ -4,6 +4,7 @@ wrappersdir = join_paths(pkgdatadir, 'atoms/backend/wrappers')
 atoms_sources = [
   '__init__.py',
   'proot.py',
+  'launcher.sh',
 ]
 
 install_data(atoms_sources, install_dir: wrappersdir)

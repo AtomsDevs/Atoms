@@ -32,7 +32,6 @@ class AtomsList(Gtk.ScrolledWindow):
         self.__build_ui()
 
     def __build_ui(self):
-        print(self.window.manager.atoms)
         for atom in self.window.manager.atoms.values():
             self.insert_atom(atom)
     

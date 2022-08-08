@@ -19,6 +19,7 @@ import uuid
 import shutil
 import orjson
 import datetime
+import importlib
 from gi.repository import GLib
 
 from atoms.backend.exceptions.atom import AtomsWrongAtomData
@@ -151,13 +152,25 @@ class Atom:
         with open(path, "wb") as f:
             f.write(orjson.dumps(self.to_dict(), f, option=orjson.OPT_NON_STR_KEYS))
     
-    def generate_command(self, command: list, environment: list=None) -> tuple:
+    def generate_command(self, command: list, environment: list=None, track_exit: bool=True) -> tuple:
         if environment is None:
             environment = []
 
         _command = self.__proot_wrapper.get_proot_command_for_chroot(self.fs_path, command)
+
+        if track_exit:
+            _command = ["sh", self.__get_launcher_path()] + _command
+
         return _command, environment, self.root_path
     
+    def __get_launcher_path(self) -> str:
+        return os.path.join(
+            os.path.dirname(
+                importlib.util.find_spec("atoms.backend.wrappers").origin
+            ),
+            "launcher.sh"
+        )
+
     def destroy(self):
         shutil.rmtree(self.path)
     
