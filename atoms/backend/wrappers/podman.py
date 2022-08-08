@@ -109,7 +109,8 @@ class PodmanWrapper:
             pass
     
     def __get_flatpak_command(self, command: list) -> list:
-        return ["flatpak-spawn", "--host"] + command
+        binary_path = shutil.which("flatpak-spawn")
+        return [binary_path, "--host"] + command
         
     @property
     def is_supported(self) -> bool:
