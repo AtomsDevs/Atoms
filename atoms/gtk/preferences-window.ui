@@ -91,5 +91,28 @@
                 </child>
             </object>
         </child>
+        <child>
+            <object class="AdwPreferencesPage">
+                <property name="icon-name">application-x-addon-symbolic</property>
+                <property name="title">Integrations</property>
+                <child>
+                    <object class="AdwPreferencesGroup">
+                        <property name="title">Available Integrations</property>
+                        <child>
+                            <object class="AdwActionRow">
+                                <property name="title">Podman</property>
+                                <property name="subtitle">List and handle Podman containers as Atoms (require podman installed in host).</property>
+                                <property name="activatable-widget">switch_podman_integration</property>
+                                <child>
+                                    <object class="GtkSwitch" id="switch_podman_integration">
+                                        <property name="valign">center</property>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            </object>
+        </child>
     </template>
 </interface>

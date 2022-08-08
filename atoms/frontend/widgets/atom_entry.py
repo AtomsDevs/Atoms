@@ -34,12 +34,15 @@ class AtomEntry(Adw.ActionRow):
         self.__build_ui()
 
     def __build_ui(self):
-        self.set_title(self.atom.name)
-
-        if self.window.settings.get_boolean("update-date"):
-            self.set_subtitle(self.atom.formatted_update_date)
+        if self.atom.is_podman_container:
+            self.set_title(f"{self.atom.name} (podman)")
+            self.set_subtitle(self.atom.podman_container_image)
         else:
-            self.set_subtitle("")
+            self.set_title(self.atom.name)
+            if self.window.settings.get_boolean("update-date"):
+                self.set_subtitle(self.atom.formatted_update_date)
+            else:
+                self.set_subtitle("")
 
         if self.__loaded:
             return

@@ -3,6 +3,7 @@ distributionsdir = join_paths(pkgdatadir, 'atoms/backend/entities/distributions'
 
 atoms_sources = [
   '__init__.py',
+  'unknown.py',
   'alpinelinux.py',
   'ubuntu.py',
   'archlinux.py',

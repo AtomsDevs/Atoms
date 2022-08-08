@@ -43,7 +43,14 @@ class AtomsDistributionsUtils:
         # if distribution_id == "debian": # missing compatible tarball (no raw image)
         #     return Debian()
             
-        raise AtomsUnknownDistribution(distribution_id)
+        return Unknown()
+    
+    @staticmethod
+    def get_distribution_by_container_image(image: str) -> AtomDistribution:
+        for distribution in AtomsDistributionsUtils.get_distributions():
+            if distribution.is_container_image(image):
+                return distribution
+        return Unknown()
     
     @staticmethod
     def get_distributions() -> list:

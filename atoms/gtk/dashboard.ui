@@ -67,7 +67,7 @@
                               <child>
                                  <object class="AdwPreferencesPage">
                                     <child>
-                                       <object class="AdwPreferencesGroup">
+                                       <object class="AdwPreferencesGroup" id="group_utilities">
                                           <property name="title">Utilities</property>
                                           <child>
                                              <object class="AdwActionRow" id="row_browse">
@@ -87,7 +87,7 @@
                                        <object class="AdwPreferencesGroup">
                                           <property name="title">Settings</property>
                                           <child>
-                                             <object class="AdwExpanderRow">
+                                             <object class="AdwExpanderRow" id="row_configuration">
                                                 <property name="title">Configuration</property>
                                                 <child>
                                                    <object class="AdwEntryRow" id="entry_name">

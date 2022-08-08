@@ -25,6 +25,7 @@ class AtomsPreferences(Adw.PreferencesWindow):
     __gtype_name__ = 'AtomsPreferences'
 
     switch_update_date = Gtk.Template.Child()
+    switch_podman_integration = Gtk.Template.Child()
     row_atoms_path = Gtk.Template.Child()
     row_images_path = Gtk.Template.Child()
     btn_atoms_path_reset = Gtk.Template.Child()
@@ -45,10 +46,12 @@ class AtomsPreferences(Adw.PreferencesWindow):
             self.group_images.add(ImageEntry(self.window, image))
 
         self.switch_update_date.set_active(self.window.settings.get_boolean("update-date"))
+        self.switch_podman_integration.set_active(self.window.settings.get_boolean("podman-integration"))
         self.btn_atoms_path_reset.set_visible(not self.config.is_default("atoms.path"))
         self.btn_images_path_reset.set_visible(not self.config.is_default("images.path"))
 
         self.switch_update_date.connect('state-set', self.__on_switch_update_date_state_set)
+        self.switch_podman_integration.connect('state-set', self.__on_switch_podman_integration)
         self.btn_atoms_path_reset.connect('clicked', self.__on_btn_atoms_path_reset_clicked)
         self.btn_images_path_reset.connect('clicked', self.__on_btn_images_path_reset_clicked)
         self.row_atoms_path.connect('activated', self.__on_row_atoms_path_activate)
@@ -62,6 +65,10 @@ class AtomsPreferences(Adw.PreferencesWindow):
         #       the old binding, but it didn't work.
         self.window.settings.set_boolean("update-date", state)
         self.window.reload_atoms()
+    
+    def __on_switch_podman_integration(self, switch, state):
+        self.window.settings.set_boolean("podman-integration", state)
+        self.__update_manager()
 
     def __on_btn_atoms_path_reset_clicked(self, button):
         self.config.restore_default("atoms.path")

@@ -12,7 +12,8 @@ class Fedora(AtomDistribution):
             remote_hash_structure="https://github.com/mirkobrombin/linux-rootfs-images/releases/download/fedora-{0}/SHA1SUMS",
             remote_hash_type="sha1",
             architectures={"x86_64": "x86_64"},
-            root=""
+            root="",
+            container_image_name="fedora"
         )
     
     def get_remote_hash(self, _, release: str) -> str:

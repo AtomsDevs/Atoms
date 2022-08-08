@@ -12,5 +12,6 @@ class Debian(AtomDistribution):
             remote_hash_structure="https://cloud.debian.org/images/cloud/bullseye/latest/SHA512SUMS",
             remote_hash_type="sha512",
             architectures={"x86_64": "amd64"},
-            root=""
+            root="",
+            container_image_name="debian"
         )

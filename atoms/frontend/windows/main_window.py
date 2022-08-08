@@ -33,12 +33,14 @@ class AtomsWindow(Adw.ApplicationWindow):
     btn_new = Gtk.Template.Child()
     box_main = Gtk.Template.Child()
     toasts = Gtk.Template.Child()
-    manager = AtomsBackend()
     settings = Gio.Settings.new(APP_ID)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.__loaded = False
+        self.manager = AtomsBackend(
+            podman_support=self.settings.get_boolean('podman-integration')
+        )
         self.__build_ui()
     
     def __build_ui(self):
@@ -87,7 +89,9 @@ class AtomsWindow(Adw.ApplicationWindow):
         self.atoms_list.reload()
 
     def re_init_manager(self):
-        self.manager = AtomsBackend()
+        self.manager = AtomsBackend(
+            podman_support=self.settings.get_boolean('podman-integration')
+        )
         self.atoms_list.clear()
         self.stack_main.remove(self.atoms_list)
         self.stack_main.remove(self.atoms_empty)

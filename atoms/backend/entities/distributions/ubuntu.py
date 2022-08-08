@@ -12,7 +12,8 @@ class Ubuntu(AtomDistribution):
             remote_hash_structure="http://cdimage.ubuntu.com/ubuntu-base/releases/{0}/release/SHA256SUMS",
             remote_hash_type="sha256",
             architectures={"x86_64": "amd64"},
-            root=""
+            root="",
+            container_image_name="ubuntu"
         )
     
     def get_remote_hash(self, _, release: str) -> str:

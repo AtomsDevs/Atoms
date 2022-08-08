@@ -30,6 +30,7 @@ from atoms.backend.utils.paths import AtomsPathsUtils
 from atoms.backend.utils.image import AtomsImageUtils
 from atoms.backend.utils.distribution import AtomsDistributionsUtils
 from atoms.backend.wrappers.proot import ProotWrapper
+from atoms.backend.wrappers.podman import PodmanWrapper
 
 
 class Atom:
@@ -43,12 +44,16 @@ class Atom:
         self, 
         config: "AtomsConfig", 
         name: str, 
-        distribution_id: str, 
-        relative_path: str,
-        creation_date: str, 
-        update_date: str=None
+        distribution_id: str = None, 
+        relative_path: str = None,
+        creation_date: str= None, 
+        update_date: str=None,
+        podman_container_id: str=None,
+        podman_container_image: str=None
     ):
-        if update_date is None:
+        if update_date is None and podman_container_id:
+            update_date = datetime.datetime.now().isoformat()
+        elif update_date is None:
             update_date = creation_date
 
         self._config = config
@@ -57,7 +62,12 @@ class Atom:
         self.relative_path = relative_path
         self.creation_date = creation_date
         self.update_date = update_date
+        self.podman_container_id = podman_container_id
+        self.podman_container_image = podman_container_image
         self.__proot_wrapper = ProotWrapper()
+
+        if podman_container_id:
+            self.__podman_wrapper = PodmanWrapper()
 
     @classmethod
     def from_dict(cls, config: "AtomsConfig", data: dict) -> "Atom":
@@ -84,6 +94,23 @@ class Atom:
         with open(path, "r") as f:
             data = orjson.loads(f.read())
         return cls.from_dict(config, data)
+
+    @classmethod
+    def load_from_container(
+        cls, 
+        config: "AtomsConfig", 
+        creation_date: str, 
+        podman_container_names: str, 
+        podman_container_image: str, 
+        podman_container_id: str
+    ) -> "Atom":
+        return cls(
+            config,
+            podman_container_names,
+            creation_date=creation_date,
+            podman_container_id=podman_container_id,
+            podman_container_image=podman_container_image
+        )
 
     @classmethod
     def new(
@@ -148,19 +175,38 @@ class Atom:
         }
     
     def save(self):
+        if self.is_podman_container:
+            raise AtomsCannotSavePodmanContainers()
+
         path = os.path.join(self.path, "atom.json")
         with open(path, "wb") as f:
             f.write(orjson.dumps(self.to_dict(), f, option=orjson.OPT_NON_STR_KEYS))
     
     def generate_command(self, command: list, environment: list=None, track_exit: bool=True) -> tuple:
+        if self.is_podman_container:
+            command, environment, working_directory  = self.__generate_podman_command(
+                command, environment)
+        else:
+            command, environment, working_directory  = self.__generate_proot_command(
+                command, environment)
+
+        if track_exit:
+            command = ["sh", self.__get_launcher_path()] + command
+
+        return command, environment, working_directory 
+    
+    def __generate_proot_command(self, command: list, environment: list=None) -> tuple:
         if environment is None:
             environment = []
 
         _command = self.__proot_wrapper.get_proot_command_for_chroot(self.fs_path, command)
+        return _command, environment, self.root_path
 
-        if track_exit:
-            _command = ["sh", self.__get_launcher_path()] + _command
+    def __generate_podman_command(self, command: list, environment: list=None) -> tuple:
+        if environment is None:
+            environment = []
 
+        _command = self.__podman_wrapper.get_podman_command_for_container(self.podman_container_id, command)
         return _command, environment, self.root_path
     
     def __get_launcher_path(self) -> str:
@@ -172,18 +218,27 @@ class Atom:
         )
 
     def destroy(self):
+        if self.is_podman_container:
+            self.__podman_wrapper.destroy_container(self.podman_container_id)
+            return
         shutil.rmtree(self.path)
     
     def rename(self, new_name: str):
+        if self.is_podman_container:
+            raise AtomsCannotRenamePodmanContainers()
         self.name = new_name
         self.save()
         
     @property
     def path(self) -> str:
+        if self.is_podman_container:
+            return ""
         return AtomsPathsUtils.get_atom_path(self._config, self.relative_path)
     
     @property
     def fs_path(self) -> str:
+        if self.is_podman_container:
+            return ""
         return os.path.join(
             AtomsPathsUtils.get_atom_path(self._config, self.relative_path),
             "chroot"
@@ -191,10 +246,14 @@ class Atom:
     
     @property
     def root_path(self) -> str:
+        if self.is_podman_container:
+            return ""
         return os.path.join(self.fs_path, "root")
 
     @property
     def distribution(self) -> 'AtomDistribution':
+        if self.is_podman_container:
+            return AtomsDistributionsUtils.get_distribution_by_container_image(self.podman_container_image)
         return AtomsDistributionsUtils.get_distribution(self.distribution_id)
     
     @property
@@ -206,6 +265,12 @@ class Atom:
         return datetime.datetime.strptime(
                 self.update_date, "%Y-%m-%dT%H:%M:%S.%f"
             ).strftime("%d %B, %Y %H:%M:%S")
-            
+    
+    @property
+    def is_podman_container(self) -> bool:
+        return self.podman_container_id is not None
+    
     def __str__(self):
+        if self.is_podman_container:
+            return f"Atom {self.name} (podman container)"
         return f"Atom: {self.name}"

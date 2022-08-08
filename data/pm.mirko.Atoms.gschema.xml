@@ -2,9 +2,14 @@
 <schemalist gettext-domain="atoms">
 	<schema id="pm.mirko.Atoms" path="/pm/mirko/Atoms/">
 		<key type="b" name="update-date">
-		<default>false</default>
-		<summary>Toggle update date in list</summary>
-		<description>Toggle the update date in list of atoms.</description>
+			<default>false</default>
+			<summary>Toggle update date in list</summary>
+			<description>Toggle the update date in list of atoms.</description>
+		</key>
+		<key type="b" name="podman-integration">
+			<default>false</default>
+			<summary>Toggle Podman integration</summary>
+			<description>List and handle Podman containers as Atoms.</description>
 		</key>
 	</schema>
 </schemalist>

@@ -38,6 +38,8 @@ class AtomDashboard(Adw.Bin):
     label_distribution = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     row_destroy = Gtk.Template.Child()
+    row_configuration = Gtk.Template.Child()
+    group_utilities = Gtk.Template.Child()
 
     def __init__(self, window, atom: 'Atom', **kwargs):
         super().__init__(**kwargs)
@@ -64,6 +66,10 @@ class AtomDashboard(Adw.Bin):
         self.entry_name.connect('changed', self.__on_entry_changed)
         self.entry_name.connect('apply', self.__on_entry_apply)
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
+
+        if self.atom.is_podman_container:
+            self.group_utilities.set_visible(False)
+            self.row_configuration.set_visible(False)
 
     def __on_back_clicked(self, widget):
         self.window.show_atoms_list()

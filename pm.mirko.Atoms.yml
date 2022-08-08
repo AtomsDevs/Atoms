@@ -12,6 +12,7 @@ finish-args:
 - "--device=dri"
 - "--socket=wayland"
 - "--allow=devel"
+- "--talk-name=org.freedesktop.Flatpak"
 
 add-extensions:
   org.gnome.Platform.Compat.i386:

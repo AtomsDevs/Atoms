@@ -19,14 +19,16 @@ import os
 from atoms.backend.entities.config import AtomsConfig
 from atoms.backend.entities.atom import Atom
 from atoms.backend.utils.image import AtomsImageUtils
+from atoms.backend.wrappers.podman import PodmanWrapper
 
 
 class AtomsBackend:
     __atoms: dict
     config: AtomsConfig
 
-    def __init__(self):
+    def __init__(self, podman_support: bool = False):
         self.config = AtomsConfig()
+        self.__podman_support = podman_support
         self.__atoms = self.__list_atoms()
         
     def __list_atoms(self) -> dict:
@@ -34,6 +36,19 @@ class AtomsBackend:
         for atom in os.listdir(self.config.atoms_path):
             if atom.endswith(".atom"):
                 atoms[atom] = Atom.load(self.config, atom)
+
+        if self.__podman_support and self.has_podman_support:
+            atoms.update(self.__list_podman_atoms())
+
+        return atoms
+
+    def __list_podman_atoms(self) -> dict:
+        atoms = {}
+        containers = PodmanWrapper().get_containers()
+        for container_id, info in containers.items():
+            atoms[container_id] = Atom.load_from_container(
+                self.config, info["creation_date"], info["names"], info["image"], container_id
+            )
         return atoms
 
     @property
@@ -47,3 +62,7 @@ class AtomsBackend:
     @property
     def local_images(self) -> list:
         return AtomsImageUtils.get_image_list(self.config)
+    
+    @property
+    def has_podman_support(self) -> bool:
+        return PodmanWrapper().is_supported

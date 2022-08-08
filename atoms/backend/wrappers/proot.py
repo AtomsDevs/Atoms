@@ -47,16 +47,10 @@ class ProotWrapper:
         env_bin = shutil.which("env")
         return [
             env_bin,
-            "-i",
-            "HOME=/root",
-            "HOSTNAME=atom",
-            "TERM=xterm",
+            "-i", "HOME=/root", "HOSTNAME=atom", "TERM=xterm",
             self.__binary_path,
-            "-w",
-            working_directory,
-            # "-b",  # xorg experiments
-            # f"/run/user/{os.getuid()}",  # xorg experiments
-            "-S",
-            chroot_path
+            "-w", working_directory,
+            # "-b", f"/run/user/{os.getuid()}",  # xorg experiments
+            "-S", chroot_path
         ] + command
     

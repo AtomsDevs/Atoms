@@ -24,3 +24,21 @@ class AtomsWrongAtomData(AtomsException):
 
     def __init__(self, data: dict):
         super().__init__("Wrong atom data: {}".format(str(data)))
+
+
+class AtomsCannotSavePodmanContainers(AtomsException):
+    """
+    Exception raised when the save method is asked for a podman container
+    """
+
+    def __init__(self, data: dict):
+        super().__init__("Atoms cannot save podman containers configurations: {}".format(str(data)))
+
+
+class AtomsCannotRenamePodmanContainers(AtomsException):
+    """
+    Exception raised when the rename method is asked for a podman container
+    """
+
+    def __init__(self, data: dict):
+        super().__init__("Atoms cannot rename podman containers: {}".format(str(data)))

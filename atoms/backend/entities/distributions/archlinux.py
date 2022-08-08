@@ -12,5 +12,6 @@ class ArchLinux(AtomDistribution):
             remote_hash_structure="https://archive.archlinux.org/iso/{0}/sha256sums.txt",
             remote_hash_type="sha256",
             architectures={"x86_64": "x86_64"},
-            root="root.x86_64"
+            root="root.x86_64",
+            container_image_name="archlinux"
         )

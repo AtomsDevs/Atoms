@@ -41,7 +41,8 @@ class AtomDistribution:
         remote_hash_structure: str,
         remote_hash_type: str,
         architectures: dict,
-        root: str
+        root: str,
+        container_image_name: str
     ):
         self.distribution_id = distribution_id
         self.name = name
@@ -52,6 +53,7 @@ class AtomDistribution:
         self.remote_hash_type = remote_hash_type
         self.architectures = architectures
         self.root = root
+        self.container_image_name = container_image_name
 
     def __str__(self):
         return f"Distribution {self.name}"
@@ -80,3 +82,6 @@ class AtomDistribution:
                 return _hash.strip()
 
         raise ValueError(f"Unknown check_type method: {check_type}")
+    
+    def is_container_image(self, image: str) -> bool:
+        return self.container_image_name in image
