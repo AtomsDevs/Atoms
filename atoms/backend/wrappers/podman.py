@@ -29,7 +29,7 @@ class PodmanWrapper:
     def __find_binary_path(self) -> str:
         if self.__is_flatpak:
             try:
-                proc = subprocess.check_output(["flatpak-spawn", "--host", "which", "podman"])
+                proc = subprocess.check_output(self.__get_flatpak_command(["which", "podman"]))
                 return proc.decode("utf-8").strip()
             except FileNotFoundError:
                 return
