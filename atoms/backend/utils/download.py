@@ -18,7 +18,6 @@ import os
 import time
 import logging
 import requests
-from gi.repository import GLib
 
 from atoms.backend.utils.file import FileUtils
 from atoms.backend.utils.hash import HashUtils
@@ -37,12 +36,14 @@ class DownloadUtils:
 
     def __init__(
         self, 
+        instance: "AtomsBackend",
         url: str, 
         file: str, 
         func: callable = None, 
         hash_value: str = None, 
         hash_type: str = None
     ):
+        self.__instance = instance
         self.start_time = None
         self.url = url
         self.file = file
@@ -65,8 +66,8 @@ class DownloadUtils:
                     for data in response.iter_content(block_size):
                         file.write(data)
                         count += 1
-                        if self.func is not None:
-                            GLib.idle_add(
+                        if self.func:
+                            self.__instance.client_bridge.exec_on_main(
                                 self.func,
                                 count,
                                 block_size,
@@ -76,7 +77,7 @@ class DownloadUtils:
                 else:
                     file.write(response.content)
                     if self.func is not None:
-                        GLib.idle_add(self.func, 1, 1, 1)
+                        self.__instance.client_bridge.exec_on_main(self.func, 1, 1, 1)
                         self.__progress(1, 1, 1)
         except requests.exceptions.SSLError:
             logger.error("Download failed due to a SSL error. Your system may have a wrong date/time or wrong certificates.")

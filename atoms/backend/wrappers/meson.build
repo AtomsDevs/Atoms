@@ -5,6 +5,7 @@ atoms_sources = [
   '__init__.py',
   'proot.py',
   'podman.py',
+  'client_bridge.py',
   'launcher.sh',
 ]
 

@@ -6,6 +6,7 @@ atoms_sources = [
   'threading.py',
   'gtk.py',
   'file_chooser.py',
+  'client_bridge.py'
 ]
 
 install_data(atoms_sources, install_dir: utilsdir)

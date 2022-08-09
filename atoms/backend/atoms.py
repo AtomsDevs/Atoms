@@ -19,6 +19,7 @@ import os
 from atoms.backend.entities.config import AtomsConfig
 from atoms.backend.entities.atom import Atom
 from atoms.backend.utils.image import AtomsImageUtils
+from atoms.backend.wrappers.client_bridge import ClientBridge
 from atoms.backend.wrappers.podman import PodmanWrapper
 
 
@@ -26,8 +27,12 @@ class AtomsBackend:
     __atoms: dict
     config: AtomsConfig
 
-    def __init__(self, podman_support: bool = False):
+    def __init__(self, podman_support: bool = False, client_bridge: 'ClientBridge' = None):
+        if client_bridge is None:
+            client_bridge = ClientBridge()
+
         self.config = AtomsConfig()
+        self.__client_bridge = client_bridge
         self.__podman_support = podman_support
         self.__atoms = self.__list_atoms()
         
@@ -35,7 +40,7 @@ class AtomsBackend:
         atoms = {}
         for atom in os.listdir(self.config.atoms_path):
             if atom.endswith(".atom"):
-                atoms[atom] = Atom.load(self.config, atom)
+                atoms[atom] = Atom.load(self, atom)
 
         if self.__podman_support and self.has_podman_support:
             atoms.update(self.__list_podman_atoms())
@@ -47,9 +52,26 @@ class AtomsBackend:
         containers = PodmanWrapper().get_containers()
         for container_id, info in containers.items():
             atoms[container_id] = Atom.load_from_container(
-                self.config, info["creation_date"], info["names"], info["image"], container_id
+                self, info["creation_date"], info["names"], info["image"], container_id
             )
         return atoms
+    
+    def request_new_atom(
+        self,
+        name: str, 
+        distribution: 'AtomDistribution', 
+        architecture: str, 
+        release: str, 
+        download_fn: callable=None,
+        config_fn: callable = None,
+        unpack_fn: callable = None,
+        finalizing_fn: callable = None,
+        error_fn: callable = None
+    ):
+        return Atom.new(
+            self, name, distribution, architecture, release, 
+            download_fn, config_fn, unpack_fn, finalizing_fn, error_fn
+        )
 
     @property
     def atoms(self) -> dict:
@@ -66,3 +88,7 @@ class AtomsBackend:
     @property
     def has_podman_support(self) -> bool:
         return PodmanWrapper().is_supported
+
+    @property
+    def client_bridge(self) -> 'ClientBridge':
+        return self.__client_bridge

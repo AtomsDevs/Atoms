@@ -20,7 +20,6 @@ import shutil
 import orjson
 import datetime
 import importlib
-from gi.repository import GLib
 
 from atoms.backend.exceptions.atom import AtomsWrongAtomData
 from atoms.backend.exceptions.download import AtomsHashMissmatchError
@@ -42,11 +41,11 @@ class Atom:
 
     def __init__(
         self, 
-        config: "AtomsConfig", 
+        instance: "AtomsBackend", 
         name: str, 
-        distribution_id: str = None, 
-        relative_path: str = None,
-        creation_date: str= None, 
+        distribution_id: str=None, 
+        relative_path: str=None,
+        creation_date: str=None, 
         update_date: str=None,
         podman_container_id: str=None,
         podman_container_image: str=None
@@ -56,7 +55,7 @@ class Atom:
         elif update_date is None:
             update_date = creation_date
 
-        self._config = config
+        self._instance = instance
         self.name = name
         self.distribution_id = distribution_id
         self.relative_path = relative_path
@@ -70,7 +69,7 @@ class Atom:
             self.__podman_wrapper = PodmanWrapper()
 
     @classmethod
-    def from_dict(cls, config: "AtomsConfig", data: dict) -> "Atom":
+    def from_dict(cls, instance: "AtomsBackend", data: dict) -> "Atom":
         if None in [
             data.get("name"),
             data.get("distributionId"),
@@ -80,7 +79,7 @@ class Atom:
         ]:
             raise AtomsWrongAtomData(data)
         return cls(
-            config,
+            instance,
             data['name'],
             data['distributionId'],
             data['relativePath'],
@@ -89,23 +88,23 @@ class Atom:
         )
     
     @classmethod
-    def load(cls, config: "AtomsConfig", relative_path: str) -> "Atom":
-        path = os.path.join(AtomsPathsUtils.get_atom_path(config, relative_path), "atom.json")
+    def load(cls, instance: "AtomsBackend", relative_path: str) -> "Atom":
+        path = os.path.join(AtomsPathsUtils.get_atom_path(instance.config, relative_path), "atom.json")
         with open(path, "r") as f:
             data = orjson.loads(f.read())
-        return cls.from_dict(config, data)
+        return cls.from_dict(instance, data)
 
     @classmethod
     def load_from_container(
         cls, 
-        config: "AtomsConfig", 
+        instance: "AtomsBackend", 
         creation_date: str, 
         podman_container_names: str, 
         podman_container_image: str, 
         podman_container_id: str
     ) -> "Atom":
         return cls(
-            config,
+            instance,
             podman_container_names,
             creation_date=creation_date,
             podman_container_id=podman_container_id,
@@ -115,42 +114,59 @@ class Atom:
     @classmethod
     def new(
         cls, 
-        config: 'AtomConfig', 
+        instance: 'AtomsBackend', 
         name: str, 
         distribution: 'AtomDistribution', 
         architecture: str, 
         release: str, 
-        download_fn: callable,
-        config_fn: callable,
-        unpack_fn: callable,
-        finalizing_fn: callable,
-        error_fn: callable
+        download_fn: callable=None,
+        config_fn: callable=None,
+        unpack_fn: callable=None,
+        finalizing_fn: callable=None,
+        error_fn: callable=None
     ) -> 'Atom':
-        date = datetime.datetime.now().isoformat()
+        # Get image
         try:
-            image = AtomsImageUtils.get_image(config, distribution, architecture, release, download_fn)
+            image = AtomsImageUtils.get_image(instance, distribution, architecture, release, download_fn)
         except AtomsHashMissmatchError:
-            GLib.idle_add(error_fn, "Hash missmatch")
+            if error_fn:
+                instance.client_bridge.exec_on_main(error_fn, "Hash missmatch")
         except AtomsFailToDownloadImage:
-            GLib.idle_add(error_fn, "Fail to download image, it might be a temporary problem")
+            if error_fn:
+                instance.client_bridge.exec_on_main(error_fn, "Fail to download image, it might be a temporary problem")
         except AtomsUnreachableRemote:
-            GLib.idle_add(error_fn, "Unreachable remote, it might be a temporary problem")
+            if error_fn:
+                instance.client_bridge.exec_on_main(error_fn, "Unreachable remote, it might be a temporary problem")
 
-        GLib.idle_add(config_fn, 0)
+        # Create configuration
+        if config_fn:
+            instance.client_bridge.exec_on_main(config_fn, 0)
+
+        date = datetime.datetime.now().isoformat()
         relative_path = str(uuid.uuid4()) + ".atom"
-        atom_path = AtomsPathsUtils.get_atom_path(config, relative_path)
+        atom_path = AtomsPathsUtils.get_atom_path(instance.config, relative_path)
         chroot_path = os.path.join(atom_path, "chroot")
         root_path = os.path.join(chroot_path, "root")
-        atom = cls(config, name, distribution.distribution_id, relative_path, date)
+        atom = cls(instance, name, distribution.distribution_id, relative_path, date)
         os.makedirs(chroot_path)
-        GLib.idle_add(config_fn, 1)
 
-        GLib.idle_add(unpack_fn, 0)
+        if config_fn:
+            instance.client_bridge.exec_on_main(config_fn, 1)
+
+        # Unpack image
+        if unpack_fn:
+            instance.client_bridge.exec_on_main(unpack_fn, 0)
+
         image.unpack(chroot_path)
         os.makedirs(root_path, exist_ok=True)
-        GLib.idle_add(unpack_fn, 1)
 
-        GLib.idle_add(finalizing_fn, 0)
+        if unpack_fn:
+            instance.client_bridge.exec_on_main(unpack_fn, 1)
+
+        # Finalize and distro specific workarounds
+        if finalizing_fn:
+            instance.client_bridge.exec_on_main(finalizing_fn, 0)
+
         # workaround for unsigned repo in ubuntu (need to investigate the cause)
         if distribution.distribution_id == "ubuntu":
             with open(os.path.join(chroot_path, "etc/apt/sources.list"), "r") as f:
@@ -161,7 +177,8 @@ class Atom:
                 f.write(sources)
         shutil.copy2("/etc/resolv.conf", os.path.join(chroot_path, "etc/resolv.conf"))
         atom.save()
-        GLib.idle_add(finalizing_fn, 1)
+        if finalizing_fn:
+            instance.client_bridge.exec_on_main(finalizing_fn, 1)
 
         return atom
 
@@ -236,14 +253,14 @@ class Atom:
     def path(self) -> str:
         if self.is_podman_container:
             return ""
-        return AtomsPathsUtils.get_atom_path(self._config, self.relative_path)
+        return AtomsPathsUtils.get_atom_path(self._instance.config, self.relative_path)
     
     @property
     def fs_path(self) -> str:
         if self.is_podman_container:
             return ""
         return os.path.join(
-            AtomsPathsUtils.get_atom_path(self._config, self.relative_path),
+            AtomsPathsUtils.get_atom_path(self._instance.config, self.relative_path),
             "chroot"
         )
     

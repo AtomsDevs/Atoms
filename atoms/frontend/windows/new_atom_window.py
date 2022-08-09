@@ -81,9 +81,9 @@ class AtomsNewAtomWindow(Adw.Window):
     
     def __on_btn_create_clicked(self, widget):
         def create_atom() -> 'Atom':
+            nonlocal self
             distro = self.__distributions_registry[self.combo_distribution.get_selected()]
-            return Atom.new(
-                self.window.manager.config,
+            return self.window.manager.request_new_atom(
                 self.entry_name.get_text(),
                 distro,
                 distro.architectures["x86_64"],

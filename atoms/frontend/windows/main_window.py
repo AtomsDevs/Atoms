@@ -19,6 +19,7 @@ from gi.repository import Gtk, Gio, Adw
 from atoms.frontend.views.status.no_atoms import AtomsStatusEmpty
 from atoms.frontend.views.lists.atoms import AtomsList
 from atoms.frontend.windows.new_atom_window import AtomsNewAtomWindow
+from atoms.frontend.utils.client_bridge import GTKClientBridge
 from atoms.frontend.const import *
 
 from atoms.backend.atoms import AtomsBackend
@@ -39,7 +40,8 @@ class AtomsWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
         self.__loaded = False
         self.manager = AtomsBackend(
-            podman_support=self.settings.get_boolean('podman-integration')
+            podman_support=self.settings.get_boolean('podman-integration'),
+            client_bridge=GTKClientBridge()
         )
         self.__build_ui()
     
@@ -90,7 +92,8 @@ class AtomsWindow(Adw.ApplicationWindow):
 
     def re_init_manager(self):
         self.manager = AtomsBackend(
-            podman_support=self.settings.get_boolean('podman-integration')
+            podman_support=self.settings.get_boolean('podman-integration'),
+            client_bridge=GTKClientBridge()
         )
         self.atoms_list.clear()
         self.stack_main.remove(self.atoms_list)
