@@ -36,7 +36,7 @@ class DownloadUtils:
 
     def __init__(
         self, 
-        instance: "AtomsBackend",
+        instance: "AtomsInstance",
         url: str, 
         file: str, 
         func: callable = None, 

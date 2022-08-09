@@ -10,6 +10,7 @@ atoms_sources = [
   'image.py',
   'result.py',
   'distribution.py',
+  'instance.py',
 ]
 
 install_data(atoms_sources, install_dir: entitiesdir)

@@ -28,7 +28,7 @@ class AtomsImageUtils:
 
     @staticmethod
     def get_image(
-        instance: "AtomsBackend", 
+        instance: "AtomsInstance", 
         distribution: "AtomDistribution", 
         architecture: str, 
         release: str,

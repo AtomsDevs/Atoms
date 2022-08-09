@@ -41,7 +41,7 @@ class Atom:
 
     def __init__(
         self, 
-        instance: "AtomsBackend", 
+        instance: "AtomsInstance", 
         name: str, 
         distribution_id: str=None, 
         relative_path: str=None,
@@ -69,7 +69,7 @@ class Atom:
             self.__podman_wrapper = PodmanWrapper()
 
     @classmethod
-    def from_dict(cls, instance: "AtomsBackend", data: dict) -> "Atom":
+    def from_dict(cls, instance: "AtomsInstance", data: dict) -> "Atom":
         if None in [
             data.get("name"),
             data.get("distributionId"),
@@ -88,7 +88,7 @@ class Atom:
         )
     
     @classmethod
-    def load(cls, instance: "AtomsBackend", relative_path: str) -> "Atom":
+    def load(cls, instance: "AtomsInstance", relative_path: str) -> "Atom":
         path = os.path.join(AtomsPathsUtils.get_atom_path(instance.config, relative_path), "atom.json")
         with open(path, "r") as f:
             data = orjson.loads(f.read())
@@ -97,7 +97,7 @@ class Atom:
     @classmethod
     def load_from_container(
         cls, 
-        instance: "AtomsBackend", 
+        instance: "AtomsInstance", 
         creation_date: str, 
         podman_container_names: str, 
         podman_container_image: str, 
@@ -114,7 +114,7 @@ class Atom:
     @classmethod
     def new(
         cls, 
-        instance: 'AtomsBackend', 
+        instance: 'AtomsInstance', 
         name: str, 
         distribution: 'AtomDistribution', 
         architecture: str, 

@@ -18,6 +18,7 @@ import os
 
 from atoms.backend.entities.config import AtomsConfig
 from atoms.backend.entities.atom import Atom
+from atoms.backend.entities.instance import AtomsInstance
 from atoms.backend.utils.image import AtomsImageUtils
 from atoms.backend.wrappers.client_bridge import ClientBridge
 from atoms.backend.wrappers.podman import PodmanWrapper
@@ -31,16 +32,16 @@ class AtomsBackend:
         if client_bridge is None:
             client_bridge = ClientBridge()
 
-        self.config = AtomsConfig()
-        self.__client_bridge = client_bridge
+        self.__config = AtomsConfig()
+        self.__instance = AtomsInstance(self.__config, client_bridge)
         self.__podman_support = podman_support
         self.__atoms = self.__list_atoms()
         
     def __list_atoms(self) -> dict:
         atoms = {}
-        for atom in os.listdir(self.config.atoms_path):
+        for atom in os.listdir(self.__config.atoms_path):
             if atom.endswith(".atom"):
-                atoms[atom] = Atom.load(self, atom)
+                atoms[atom] = Atom.load(self.__instance, atom)
 
         if self.__podman_support and self.has_podman_support:
             atoms.update(self.__list_podman_atoms())
@@ -52,7 +53,7 @@ class AtomsBackend:
         containers = PodmanWrapper().get_containers()
         for container_id, info in containers.items():
             atoms[container_id] = Atom.load_from_container(
-                self, info["creation_date"], info["names"], info["image"], container_id
+                self.__instance, info["creation_date"], info["names"], info["image"], container_id
             )
         return atoms
     
@@ -69,7 +70,7 @@ class AtomsBackend:
         error_fn: callable = None
     ):
         return Atom.new(
-            self, name, distribution, architecture, release, 
+            self.__instance, name, distribution, architecture, release, 
             download_fn, config_fn, unpack_fn, finalizing_fn, error_fn
         )
 
@@ -83,7 +84,7 @@ class AtomsBackend:
     
     @property
     def local_images(self) -> list:
-        return AtomsImageUtils.get_image_list(self.config)
+        return AtomsImageUtils.get_image_list(self.__config)
     
     @property
     def has_podman_support(self) -> bool:
