@@ -41,9 +41,9 @@ class AtomsList(Gtk.ScrolledWindow):
         self.list_atoms.append(_entry)
 
     def remove_atom(self, atom: 'Atom'):
-        _entry = self.__registry[atom.atom.relative_path]
+        _entry = self.__registry[atom.relative_path]
         self.list_atoms.remove(_entry)
-        del self.__registry[atom.atom.relative_path]
+        del self.__registry[atom.relative_path]
     
     def reload(self):
         for atom in self.__registry.values():

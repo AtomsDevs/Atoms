@@ -182,7 +182,6 @@ modules:
 - name: atoms-core
   buildsystem: simple
   build-commands:
-    - ls
     - python3 setup.py install --prefix=/app --root=/
   sources:
     - type: dir
