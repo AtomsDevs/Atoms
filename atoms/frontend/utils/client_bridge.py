@@ -1,6 +1,6 @@
 from gi.repository import GLib
 
-from atoms.backend.wrappers.client_bridge import ClientBridge
+from atoms_core.wrappers.client_bridge import ClientBridge
 
 
 class GTKClientBridge(ClientBridge):

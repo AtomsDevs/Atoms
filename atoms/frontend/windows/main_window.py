@@ -22,7 +22,7 @@ from atoms.frontend.windows.new_atom_window import AtomsNewAtomWindow
 from atoms.frontend.utils.client_bridge import GTKClientBridge
 from atoms.frontend.const import *
 
-from atoms.backend.atoms import AtomsBackend
+from atoms_core.atoms import AtomsBackend
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/window.ui')

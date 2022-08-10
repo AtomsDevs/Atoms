@@ -16,8 +16,8 @@
 
 from gi.repository import Gtk, GObject, Adw
 
-from atoms.backend.utils.distribution import AtomsDistributionsUtils
-from atoms.backend.entities.atom import Atom
+from atoms_core.utils.distribution import AtomsDistributionsUtils
+from atoms_core.entities.atom import Atom
 
 from atoms.frontend.widgets.creation_step_entry import CreationStepEntry
 from atoms.frontend.utils.threading import RunAsync

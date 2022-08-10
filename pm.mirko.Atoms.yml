@@ -179,6 +179,24 @@ modules:
         url: https://github.com/kjd/idna/archive/refs/tags/v3.3.tar.gz
         sha256: 34b145ffe35b7872e9a3e0abc3a3a8330db90a0fd58db978725fd05c5c7d9f88
 
+- name: atoms-core
+  buildsystem: simple
+  build-commands:
+    - ls
+    - python3 setup.py install --prefix=/app --root=/
+  sources:
+    - type: dir
+      path: ./atoms-core
+  modules:
+  - name: orjson
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix /app --no-deps orjson-*.whl
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+        sha256: 7ef66e7c47e9531dfa3b3ffb791b548c84903570b0914b01acc5eeb56ff5bc33
+
 - name: atoms
   builddir: true
   buildsystem: meson

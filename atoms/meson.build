@@ -26,7 +26,6 @@ configure_file(
 )
 
 subdir('frontend')
-subdir('backend')
 
 atoms_sources = [
   '__init__.py',
