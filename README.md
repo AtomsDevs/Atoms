@@ -9,6 +9,14 @@
 
 > ⚠️ Current state: Beta
 
+### Why a new application?
+Atoms was created to solve the lack of a GUI to create, manage and use chroot 
+environments. Although there is support for Podman, Atoms does not aim to offer 
+a fine integration with this as its purpose is only to allow the user to open a 
+shell in a new environment, be it chroot or container.
+
+If you are looking for a Podman container manager that does a finer job offering 
+more accurate management and more features, check out [pods](https://github.com/marhkb/pods).
 
 ### Supported Images
 We are testing many images and more will be added in the future. Experimental images
