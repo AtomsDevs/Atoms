@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/mirkobrombin/Atoms/main/data/icons/hicolor/scalable/apps/pm.mirko.Atoms.svg" width="64">
+  <img src="https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/icons/hicolor/scalable/apps/pm.mirko.Atoms.svg" width="64">
   <h1 align="center">Atoms</h1>
   <p align="center">Easily manage Linux chroot(s) with Atoms</p>
-  <a href="https://www.codefactor.io/repository/github/mirkobrombin/atoms"><img src="https://www.codefactor.io/repository/github/mirkobrombin/atoms/badge" alt="CodeFactor" /></a>
+  <a href="https://www.codefactor.io/repository/github/AtomsDevs/Atoms"><img src="https://www.codefactor.io/repository/github/AtomsDevs/Atoms/badge" alt="CodeFactor" /></a>
 </div>
 
 <br/>
