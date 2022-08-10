@@ -1,0 +1,3 @@
+[submodule "atoms-core"]
+	path = atoms-core
+	url = git@github.com:AtomsDevs/atoms-core.git
