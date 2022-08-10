@@ -31,7 +31,6 @@ can be enabled using the `SHOW_EXPERIMENTAL_IMAGES=1` environment variable.
 
 
 ### Build & Run Flatpak
-
 ```bash
 flatpak run org.flatpak.Builder build pm.mirko.Atoms.yml --user --install --force-clean
 flatpak run pm.mirko.Atoms
