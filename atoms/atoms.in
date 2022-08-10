@@ -39,5 +39,5 @@ if __name__ == '__main__':
     resource = Gio.Resource.load(os.path.join(pkgdatadir, 'atoms.gresource'))
     resource._register()
 
-    from atoms.frontend import main
+    from atoms import main
     sys.exit(main.main(VERSION))

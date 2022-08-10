@@ -1,5 +1,5 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-viewsdir = join_paths(pkgdatadir, 'atoms/frontend/views')
+viewsdir = join_paths(pkgdatadir, 'atoms/views')
 
 subdir('status')
 subdir('lists')

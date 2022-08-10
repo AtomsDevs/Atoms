@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from gi.repository import Gtk, Adw
-from atoms.frontend.utils.threading import RunAsync
+from atoms.utils.threading import RunAsync
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/entry-image.ui')

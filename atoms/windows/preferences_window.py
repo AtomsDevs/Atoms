@@ -16,8 +16,8 @@
 
 from gi.repository import Gtk, Gio, Adw
 
-from atoms.frontend.widgets.image_entry import ImageEntry
-from atoms.frontend.utils.file_chooser import FileChooser
+from atoms.widgets.image_entry import ImageEntry
+from atoms.utils.file_chooser import FileChooser
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/preferences-window.ui')
@@ -35,7 +35,7 @@ class AtomsPreferences(Adw.PreferencesWindow):
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
         self.window = window
-        self.config = window.manager.config
+        self.config = window.manager.instance.config
         self.__paths_changed = False
         self.__build_ui()
     

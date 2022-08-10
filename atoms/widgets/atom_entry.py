@@ -16,7 +16,7 @@
 
 from gi.repository import Gtk, Adw
 
-from atoms.frontend.views.dashboard import AtomDashboard
+from atoms.views.dashboard import AtomDashboard
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/entry-atom.ui')

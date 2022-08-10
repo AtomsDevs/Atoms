@@ -1,5 +1,5 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-windowsdir = join_paths(pkgdatadir, 'atoms/frontend/windows')
+windowsdir = join_paths(pkgdatadir, 'atoms/windows')
 
 atoms_sources = [
   '__init__.py',

@@ -19,9 +19,9 @@ from gi.repository import Gtk, GObject, Adw
 from atoms_core.utils.distribution import AtomsDistributionsUtils
 from atoms_core.entities.atom import Atom
 
-from atoms.frontend.widgets.creation_step_entry import CreationStepEntry
-from atoms.frontend.utils.threading import RunAsync
-from atoms.frontend.utils.gtk import GtkUtils
+from atoms.widgets.creation_step_entry import CreationStepEntry
+from atoms.utils.threading import RunAsync
+from atoms.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/new-atom-window.ui')

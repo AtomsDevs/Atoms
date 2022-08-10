@@ -16,11 +16,11 @@
 
 from gi.repository import Gtk, Gio, Adw
 
-from atoms.frontend.views.status.no_atoms import AtomsStatusEmpty
-from atoms.frontend.views.lists.atoms import AtomsList
-from atoms.frontend.windows.new_atom_window import AtomsNewAtomWindow
-from atoms.frontend.utils.client_bridge import GTKClientBridge
-from atoms.frontend.const import *
+from atoms.views.status.no_atoms import AtomsStatusEmpty
+from atoms.views.lists.atoms import AtomsList
+from atoms.windows.new_atom_window import AtomsNewAtomWindow
+from atoms.utils.client_bridge import GTKClientBridge
+from atoms.const import *
 
 from atoms_core.atoms import AtomsBackend
 

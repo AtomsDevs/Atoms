@@ -23,9 +23,9 @@ gi.require_version('Vte', '3.91')
 
 from gi.repository import Gtk, Gio, Adw
 
-from atoms.frontend.windows.main_window import AtomsWindow
-from atoms.frontend.windows.preferences_window import AtomsPreferences
-from atoms.frontend.const import *
+from atoms.windows.main_window import AtomsWindow
+from atoms.windows.preferences_window import AtomsPreferences
+from atoms.const import *
 
 
 class AtomsApplication(Adw.Application):

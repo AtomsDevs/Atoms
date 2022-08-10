@@ -25,10 +25,21 @@ configure_file(
   install_dir: get_option('bindir')
 )
 
-subdir('frontend')
+subdir('views')
+subdir('widgets')
+subdir('windows')
+subdir('utils')
 
 atoms_sources = [
   '__init__.py',
+  'main.py',
+  'const.py',
 ]
+
+if get_option('devel')
+  atoms_sources += [
+    'devel/const.py',
+  ]
+endif
 
 install_data(atoms_sources, install_dir: moduledir)

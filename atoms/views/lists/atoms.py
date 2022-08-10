@@ -16,7 +16,7 @@
 
 from gi.repository import Gtk, Adw
 
-from atoms.frontend.widgets.atom_entry import AtomEntry
+from atoms.widgets.atom_entry import AtomEntry
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/list-atoms.ui')

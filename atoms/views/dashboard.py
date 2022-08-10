@@ -16,11 +16,11 @@
 
 from gi.repository import Gtk, Gdk, Gio, Adw
 
-from atoms.frontend.views.status.detached_console import AtomsStatusDetachedConsole
-from atoms.frontend.windows.detached_window import AtomsDetachedWindow
-from atoms.frontend.views.console import AtomsConsole
-from atoms.frontend.utils.threading import RunAsync
-from atoms.frontend.utils.gtk import GtkUtils
+from atoms.views.status.detached_console import AtomsStatusDetachedConsole
+from atoms.windows.detached_window import AtomsDetachedWindow
+from atoms.views.console import AtomsConsole
+from atoms.utils.threading import RunAsync
+from atoms.utils.gtk import GtkUtils
 
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/dashboard.ui')

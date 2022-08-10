@@ -1,5 +1,5 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-widgetsdir = join_paths(pkgdatadir, 'atoms/frontend/widgets')
+widgetsdir = join_paths(pkgdatadir, 'atoms/widgets')
 
 atoms_sources = [
   '__init__.py',
