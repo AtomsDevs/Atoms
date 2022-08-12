@@ -7,7 +7,7 @@
     <property name="title">New Atom</property>
     <property name="deletable">false</property>
     <property name="width-request">450</property>
-    <property name="default-height">370</property>
+    <property name="default-height">420</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
@@ -45,11 +45,24 @@
                             <property name="title">Name</property>
                           </object>
                         </child>
+                        <child>
+                          <object class="AdwComboRow" id="combo_atom_type">
+                            <property name="title">Atom Type</property>
+                            <property name="model">
+                              <object class="GtkStringList">
+                                <items>
+                                    <item translatable="yes">Atom Chroot</item>
+                                    <item translatable="yes">Podman Container</item>
+                                </items>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="AdwPreferencesGroup">
-                        <property name="title">Atom Distribution</property>
+                      <object class="AdwPreferencesGroup" id="group_atom_chroot">
+                        <property name="title">Atom Chroot Distribution</property>
                         <child>
                           <object class="AdwComboRow" id="combo_distribution">
                             <property name="title">Distribution</property>
@@ -64,6 +77,17 @@
                             <property name="model">
                               <object class="GtkStringList" id="str_list_releases"></object>
                             </property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup" id="group_podman_container">
+                        <property name="title">Podman Container Image</property>
+                        <property name="visible">False</property>
+                        <child>
+                          <object class="AdwEntryRow" id="entry_podman_image">
+                            <property name="title">Image Name</property>
                           </object>
                         </child>
                       </object>
