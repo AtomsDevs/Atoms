@@ -11,8 +11,8 @@ finish-args:
 - "--socket=fallback-x11"
 - "--device=dri"
 - "--socket=wayland"
-- "--allow=devel"
-- "--talk-name=org.freedesktop.Flatpak"
+- "--allow=devel"  # this make proot works
+- "--talk-name=org.freedesktop.Flatpak"  # required for distrobox/podman integration
 
 add-extensions:
   org.gnome.Platform.Compat.i386:
