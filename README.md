@@ -9,6 +9,12 @@
 
 > ⚠️ Current state: Beta
 
+<br/>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/AtomsDevs/Atoms/main/screenshot.png">
+</div>
+
 ### Why a new application?
 Atoms was created to solve the lack of a GUI to create, manage and use chroot 
 environments. Although there is support for Podman, Atoms does not aim to offer 
