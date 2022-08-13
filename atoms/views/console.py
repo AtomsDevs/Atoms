@@ -25,7 +25,7 @@ class AtomsConsole(Vte.Terminal):
         super(AtomsConsole, self).__init__(*args, **kwds)  
         self.atom = atom
         self.__build_ui()
-        if atom.is_podman_container:
+        if atom.is_distrobox_container:
             self.set_stop_status()
         else:
             self.run_command(*atom.enter_command)

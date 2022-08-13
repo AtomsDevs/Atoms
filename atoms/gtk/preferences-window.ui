@@ -100,11 +100,11 @@
                         <property name="title">Available Integrations</property>
                         <child>
                             <object class="AdwActionRow">
-                                <property name="title">Podman</property>
-                                <property name="subtitle">List and handle Podman containers as Atoms (require podman installed in host).</property>
-                                <property name="activatable-widget">switch_podman_integration</property>
+                                <property name="title">Distrobox</property>
+                                <property name="subtitle">List and handle Distrobox containers as Atoms.</property>
+                                <property name="activatable-widget">switch_distrobox_integration</property>
                                 <child>
-                                    <object class="GtkSwitch" id="switch_podman_integration">
+                                    <object class="GtkSwitch" id="switch_distrobox_integration">
                                         <property name="valign">center</property>
                                     </object>
                                 </child>

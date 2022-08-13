@@ -70,7 +70,7 @@ class AtomDashboard(Adw.Bin):
         self.entry_name.connect('apply', self.__on_entry_apply)
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
 
-        if self.atom.is_podman_container:
+        if self.atom.is_distrobox_container:
             self.group_utilities.set_visible(False)
             self.row_configuration.set_visible(False)
 
@@ -81,7 +81,7 @@ class AtomDashboard(Adw.Bin):
     def __on_start_clicked(self, widget):
         if self.__is_container_running:
             self.console.set_stop_status()
-            self.atom.stop_podman_container()
+            self.atom.stop_distrobox_container()
             self.btn_start.set_icon_name('media-playback-start-symbolic')
         else:
             self.console.run_command(*self.atom.enter_command)
@@ -119,7 +119,7 @@ class AtomDashboard(Adw.Bin):
         is_console = self.stack_atom.get_visible_child_name() == 'console'
 
         self.btn_detach.set_visible(is_console)
-        if self.atom.is_podman_container:
+        if self.atom.is_distrobox_container:
             self.btn_start.set_visible(is_console)
 
         if is_console:

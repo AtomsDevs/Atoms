@@ -33,7 +33,7 @@ class AtomsNewAtomWindow(Adw.Window):
     """
     Atom types:
         - 0: Atom Chroot
-        - 1: Podman Container
+        - 1: Distrobox Container
     """
 
     btn_cancel_creation = Gtk.Template.Child()
@@ -41,7 +41,7 @@ class AtomsNewAtomWindow(Adw.Window):
     btn_create = Gtk.Template.Child()
     btn_finish = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
-    entry_podman_image = Gtk.Template.Child()
+    entry_distrobox_image = Gtk.Template.Child()
     combo_distribution = Gtk.Template.Child()
     combo_releases = Gtk.Template.Child()
     combo_atom_type = Gtk.Template.Child()
@@ -51,7 +51,7 @@ class AtomsNewAtomWindow(Adw.Window):
     header_bar = Gtk.Template.Child()
     status_error = Gtk.Template.Child()
     group_atom_chroot = Gtk.Template.Child()
-    group_podman_container = Gtk.Template.Child()
+    group_distrobox_container = Gtk.Template.Child()
     group_steps = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
@@ -71,19 +71,19 @@ class AtomsNewAtomWindow(Adw.Window):
         self.step_download = CreationStepEntry("Downloading Choosen Image…")
         self.step_configuration = CreationStepEntry("Creating new Atom Configuration…")
         self.step_unpack = CreationStepEntry("Unpacking Choosen Image…")
-        self.step_podman = CreationStepEntry("Creating new Podman Container…")
+        self.step_distrobox = CreationStepEntry("Creating new distrobox Container…")
         self.step_finalizing = CreationStepEntry("Finalizing…")
 
         self.group_steps.add(self.step_download)
         self.group_steps.add(self.step_configuration)
         self.group_steps.add(self.step_unpack)
-        self.group_steps.add(self.step_podman)
+        self.group_steps.add(self.step_distrobox)
         self.group_steps.add(self.step_finalizing)
 
         self.__toggle_steps()
 
         self.entry_name.connect('changed', self.__check_entry_value)
-        self.entry_podman_image.connect('changed', self.__check_entry_value)
+        self.entry_distrobox_image.connect('changed', self.__check_entry_value)
         self.btn_cancel.connect('clicked', self.__on_btn_cancel_clicked)
         self.btn_create.connect('clicked', self.__on_btn_create_clicked)
         self.btn_cancel_creation.connect('clicked', self.__on_btn_cancel_creation_clicked)
@@ -93,12 +93,12 @@ class AtomsNewAtomWindow(Adw.Window):
     
     def __toggle_steps(self):
         is_chroot = self.atom_type == AtomType.ATOM_CHROOT
-        is_container = self.atom_type == AtomType.PODMAN_CONTAINER
+        is_container = self.atom_type == AtomType.DISTROBOX_CONTAINER
 
         self.step_download.set_visible(is_chroot)
         self.step_configuration.set_visible(is_chroot)
         self.step_unpack.set_visible(is_chroot)
-        self.step_podman.set_visible(is_container)
+        self.step_distrobox.set_visible(is_container)
         self.step_finalizing.set_visible(is_chroot)
     
     def __show_error(self, error):
@@ -123,12 +123,12 @@ class AtomsNewAtomWindow(Adw.Window):
                     finalizing_fn=self.step_finalizing.update_status,
                     error_fn=self.__show_error
                 )
-            elif self.atom_type == AtomType.PODMAN_CONTAINER:
+            elif self.atom_type == AtomType.DISTROBOX_CONTAINER:
                 return self.window.manager.request_new_atom(
                     name=self.entry_name.get_text(),
                     atom_type=self.atom_type,
-                    podman_container_image=self.entry_podman_image.get_text(),
-                    podman_fn=self.step_podman.update_status,
+                    container_image=self.entry_distrobox_image.get_text(),
+                    distrobox_fn=self.step_distrobox.update_status,
                     finalizing_fn=self.step_finalizing.update_status,
                     error_fn=self.__show_error
                 )
@@ -160,7 +160,7 @@ class AtomsNewAtomWindow(Adw.Window):
 
     def __on_combo_atom_type_changed(self, widget, _param):
         self.group_atom_chroot.set_visible(self.atom_type == AtomType.ATOM_CHROOT)
-        self.group_podman_container.set_visible(self.atom_type == AtomType.PODMAN_CONTAINER)
+        self.group_distrobox_container.set_visible(self.atom_type == AtomType.DISTROBOX_CONTAINER)
         self.__toggle_steps()
     
     def __on_combo_distribution_changed(self, *args):

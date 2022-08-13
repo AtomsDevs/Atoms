@@ -52,7 +52,7 @@
                               <object class="GtkStringList">
                                 <items>
                                     <item translatable="yes">Atom Chroot</item>
-                                    <item translatable="yes">Podman Container</item>
+                                    <item translatable="yes">Distrobox Container</item>
                                 </items>
                               </object>
                             </property>
@@ -82,11 +82,11 @@
                       </object>
                     </child>
                     <child>
-                      <object class="AdwPreferencesGroup" id="group_podman_container">
-                        <property name="title">Podman Container Image</property>
+                      <object class="AdwPreferencesGroup" id="group_distrobox_container">
+                        <property name="title">Distrobox Container Image</property>
                         <property name="visible">False</property>
                         <child>
-                          <object class="AdwEntryRow" id="entry_podman_image">
+                          <object class="AdwEntryRow" id="entry_distrobox_image">
                             <property name="title">Image Name</property>
                           </object>
                         </child>

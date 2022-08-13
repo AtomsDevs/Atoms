@@ -6,10 +6,17 @@
 			<summary>Toggle update date in list</summary>
 			<description>Toggle the update date in list of atoms.</description>
 		</key>
+		<!--
 		<key type="b" name="podman-integration">
 			<default>false</default>
 			<summary>Toggle Podman integration</summary>
 			<description>List and handle Podman containers as Atoms.</description>
+		</key>
+		-->
+		<key type="b" name="distrobox-integration">
+			<default>false</default>
+			<summary>Toggle Distrobox integration</summary>
+			<description>List and handle Distrobox containers as Atoms.</description>
 		</key>
 	</schema>
 </schemalist>

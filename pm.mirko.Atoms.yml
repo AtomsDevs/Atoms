@@ -179,6 +179,17 @@ modules:
         url: https://github.com/kjd/idna/archive/refs/tags/v3.3.tar.gz
         sha256: 34b145ffe35b7872e9a3e0abc3a3a8330db90a0fd58db978725fd05c5c7d9f88
 
+  - name: distrobox
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/89luca89/distrobox.git
+        branch: experiment/flatpak
+    build-commands:
+      - chmod +x install
+      - ./install --prefix /app
+      - echo "container_manager=podman" > /app/distrobox.conf
+
 - name: atoms-core
   buildsystem: simple
   build-commands:

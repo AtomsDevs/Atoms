@@ -40,7 +40,7 @@ class AtomsWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
         self.__loaded = False
         self.manager = AtomsBackend(
-            podman_support=self.settings.get_boolean('podman-integration'),
+            distrobox_support=self.settings.get_boolean('distrobox-integration'),
             client_bridge=GTKClientBridge()
         )
         self.__build_ui()
@@ -92,7 +92,7 @@ class AtomsWindow(Adw.ApplicationWindow):
 
     def re_init_manager(self):
         self.manager = AtomsBackend(
-            podman_support=self.settings.get_boolean('podman-integration'),
+            distrobox_support=self.settings.get_boolean('distrobox-integration'),
             client_bridge=GTKClientBridge()
         )
         self.atoms_list.clear()
