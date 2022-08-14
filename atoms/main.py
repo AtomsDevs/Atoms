@@ -65,7 +65,8 @@ class AtomsApplication(Adw.Application):
             "Third-Party Libraries and Special Thanks",
             [
                 "PRoot https://github.com/proot-me/PRoot",
-                "orjson https://github.com/ijl/orjson"
+                "orjson https://github.com/ijl/orjson",
+                "distrobox https://github.com/89luca89/distrobox"
             ]
         )
         about_window.present()
