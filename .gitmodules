@@ -1,3 +1,7 @@
 [submodule "atoms-core"]
 	path = atoms-core
 	url = git@github.com:AtomsDevs/atoms-core.git
+
+[submodule "atoms-cli"]
+	path = atoms-cli
+	url = git@github.com:AtomsDevs/atoms-cli.git
