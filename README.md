@@ -49,3 +49,7 @@ can be enabled using the `SHOW_EXPERIMENTAL_IMAGES=1` environment variable.
 flatpak run org.flatpak.Builder build pm.mirko.Atoms.yml --user --install --force-clean
 flatpak run pm.mirko.Atoms
 ```
+
+### Enable distrobox integration
+To enable the distrobox integration, you need to give Atoms the Flatpak permission
+to talk to `org.freedesktop.Flatpak`.
