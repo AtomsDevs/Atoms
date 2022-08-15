@@ -19,6 +19,8 @@ from gi.repository import Gtk, Gio, Adw
 from atoms.widgets.image_entry import ImageEntry
 from atoms.utils.file_chooser import FileChooser
 
+from atoms_core.wrappers.distrobox import DistroboxWrapper
+
 
 @Gtk.Template(resource_path='/pm/mirko/Atoms/gtk/preferences-window.ui')
 class AtomsPreferences(Adw.PreferencesWindow):
@@ -41,6 +43,12 @@ class AtomsPreferences(Adw.PreferencesWindow):
     
     def __build_ui(self):
         self.set_transient_for(self.window)
+
+        if not DistroboxWrapper().is_supported:
+            self.switch_distrobox_integration.set_sensitive(False)
+            self.switch_distrobox_integration.set_tooltip_text(
+                "Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed in your system."
+            )
 
         for image in self.window.manager.local_images:
             self.group_images.add(ImageEntry(self.window, image))
