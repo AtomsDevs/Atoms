@@ -67,7 +67,8 @@ class AtomsNewAtomWindow(Adw.Window):
             self.str_list_distributions.append(distribution.name)
         
         self.str_atom_type.append("Atom Chroot")
-        if self.window.manager.has_distrobox_support:
+        if self.window.manager.has_distrobox_support and \
+            self.window.settings.get_boolean("distrobox-integration"):
             self.str_atom_type.append("Distrobox Container")
         
         self.combo_distribution.set_selected(0)
