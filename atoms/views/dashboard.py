@@ -39,10 +39,8 @@ class AtomDashboard(Adw.Bin):
     label_distribution = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
     row_destroy = Gtk.Template.Child()
-    row_configuration = Gtk.Template.Child()
-    row_bind_themes = Gtk.Template.Child()
-    row_bind_icons = Gtk.Template.Child()
-    row_bind_fonts = Gtk.Template.Child()
+    row_details = Gtk.Template.Child()
+    row_bindings = Gtk.Template.Child()
     switch_bind_themes = Gtk.Template.Child()
     switch_bind_icons = Gtk.Template.Child()
     switch_bind_fonts = Gtk.Template.Child()
@@ -84,10 +82,8 @@ class AtomDashboard(Adw.Bin):
 
         if self.atom.is_distrobox_container:
             self.group_utilities.set_visible(False)
-            self.row_configuration.set_visible(False)
-            self.row_bind_themes.set_visible(False)
-            self.row_bind_icons.set_visible(False)
-            self.row_bind_fonts.set_visible(False)
+            self.row_details.set_visible(False)
+            self.row_bindings.set_visible(False)
 
     def __on_back_clicked(self, widget):
         self.window.show_atoms_list()
