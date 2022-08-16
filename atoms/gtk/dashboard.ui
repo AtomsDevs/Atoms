@@ -95,7 +95,7 @@
                                           <property name="title">Settings</property>
                                           <child>
                                              <object class="AdwExpanderRow" id="row_details">
-                                                <property name="title">Configuration</property>
+                                                <property name="title">Details</property>
                                                 <child>
                                                    <object class="AdwEntryRow" id="entry_name">
                                                       <property name="title">Name</property>
