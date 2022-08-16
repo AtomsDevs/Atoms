@@ -30,7 +30,6 @@ class AtomDashboard(Adw.Bin):
     btn_back = Gtk.Template.Child()
     btn_detach = Gtk.Template.Child()
     btn_start = Gtk.Template.Child()
-    row_browse = Gtk.Template.Child()
     stack_atom = Gtk.Template.Child()
     stack_console = Gtk.Template.Child()
     box_console = Gtk.Template.Child()
@@ -38,6 +37,7 @@ class AtomDashboard(Adw.Bin):
     label_name = Gtk.Template.Child()
     label_distribution = Gtk.Template.Child()
     entry_name = Gtk.Template.Child()
+    row_browse = Gtk.Template.Child()
     row_destroy = Gtk.Template.Child()
     row_details = Gtk.Template.Child()
     row_bindings = Gtk.Template.Child()
@@ -45,6 +45,7 @@ class AtomDashboard(Adw.Bin):
     switch_bind_icons = Gtk.Template.Child()
     switch_bind_fonts = Gtk.Template.Child()
     group_utilities = Gtk.Template.Child()
+    pref_page = Gtk.Template.Child()
 
     def __init__(self, window, atom: 'Atom', **kwargs):
         super().__init__(**kwargs)
@@ -84,6 +85,8 @@ class AtomDashboard(Adw.Bin):
             self.group_utilities.set_visible(False)
             self.row_details.set_visible(False)
             self.row_bindings.set_visible(False)
+        if self.atom.is_system_shell:
+            self.pref_page.set_visible(False)
 
     def __on_back_clicked(self, widget):
         self.window.show_atoms_list()

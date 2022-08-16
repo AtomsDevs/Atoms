@@ -72,7 +72,7 @@
                                  </object>
                               </child>
                               <child>
-                                 <object class="AdwPreferencesPage">
+                                 <object class="AdwPreferencesPage" id="pref_page">
                                     <child>
                                        <object class="AdwPreferencesGroup" id="group_utilities">
                                           <property name="title">Utilities</property>
