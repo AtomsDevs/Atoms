@@ -47,6 +47,7 @@ class AtomsNewAtomWindow(Adw.Window):
     combo_atom_type = Gtk.Template.Child()
     str_list_distributions = Gtk.Template.Child()
     str_list_releases = Gtk.Template.Child()
+    str_atom_type = Gtk.Template.Child()
     stack_main = Gtk.Template.Child()
     header_bar = Gtk.Template.Child()
     status_error = Gtk.Template.Child()
@@ -64,6 +65,10 @@ class AtomsNewAtomWindow(Adw.Window):
         for distribution in AtomsDistributionsUtils.get_distributions():
             self.__distributions_registry.append(distribution)
             self.str_list_distributions.append(distribution.name)
+        
+        self.str_atom_type.append("Atom Chroot")
+        if self.window.manager.has_distrobox_support:
+            self.str_atom_type.append("Distrobox Container")
         
         self.combo_distribution.set_selected(0)
         self.__on_combo_distribution_changed()

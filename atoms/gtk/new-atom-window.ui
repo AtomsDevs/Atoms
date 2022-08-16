@@ -49,12 +49,7 @@
                           <object class="AdwComboRow" id="combo_atom_type">
                             <property name="title">Atom Type</property>
                             <property name="model">
-                              <object class="GtkStringList">
-                                <items>
-                                    <item translatable="yes">Atom Chroot</item>
-                                    <item translatable="yes">Distrobox Container</item>
-                                </items>
-                              </object>
+                              <object class="GtkStringList" id="str_atom_type"></object>
                             </property>
                           </object>
                         </child>
