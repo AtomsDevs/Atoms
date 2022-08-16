@@ -40,6 +40,12 @@ class AtomDashboard(Adw.Bin):
     entry_name = Gtk.Template.Child()
     row_destroy = Gtk.Template.Child()
     row_configuration = Gtk.Template.Child()
+    row_bind_themes = Gtk.Template.Child()
+    row_bind_icons = Gtk.Template.Child()
+    row_bind_fonts = Gtk.Template.Child()
+    switch_bind_themes = Gtk.Template.Child()
+    switch_bind_icons = Gtk.Template.Child()
+    switch_bind_fonts = Gtk.Template.Child()
     group_utilities = Gtk.Template.Child()
 
     def __init__(self, window, atom: 'Atom', **kwargs):
@@ -60,6 +66,9 @@ class AtomDashboard(Adw.Bin):
         self.img_distribution.set_from_icon_name(self.atom.distribution.logo)
         self.stack_console.add_named(AtomsStatusDetachedConsole(), 'status')
         self.box_console.append(self.console)
+        self.switch_bind_themes.set_state(self.atom.bind_themes)
+        self.switch_bind_icons.set_state(self.atom.bind_icons)
+        self.switch_bind_fonts.set_state(self.atom.bind_fonts)
 
         self.row_destroy.connect('activated', self.__on_destroy_activated)
         self.row_browse.connect('activated', self.__on_browse_activated)
@@ -69,10 +78,16 @@ class AtomDashboard(Adw.Bin):
         self.entry_name.connect('changed', self.__on_entry_changed)
         self.entry_name.connect('apply', self.__on_entry_apply)
         self.stack_atom.connect('notify::visible-child', self.__on_visible_child_changed)
+        self.switch_bind_themes.connect('state-set', self.__on_switch_bind_themes)
+        self.switch_bind_icons.connect('state-set', self.__on_switch_bind_icons)
+        self.switch_bind_fonts.connect('state-set', self.__on_switch_bind_fonts)
 
         if self.atom.is_distrobox_container:
             self.group_utilities.set_visible(False)
             self.row_configuration.set_visible(False)
+            self.row_bind_themes.set_visible(False)
+            self.row_bind_icons.set_visible(False)
+            self.row_bind_fonts.set_visible(False)
 
     def __on_back_clicked(self, widget):
         self.window.show_atoms_list()
@@ -161,6 +176,24 @@ class AtomDashboard(Adw.Bin):
         self.label_name.set_text(self.atom.name)
         self.window.show_toast("Atom renamed successfully.")
         self.window.reload_atoms()
+
+    def __notify_bind_switch(self, bind_name: str, state: bool):
+        if state:
+            self.window.show_toast(f"{bind_name} bound to Atom.")
+        else:
+            self.window.show_toast(f"{bind_name} unbound from Atom.")
+
+    def __on_switch_bind_themes(self, _, state):
+        self.atom.set_bind_themes(state)
+        self.__notify_bind_switch("themes", state)
+
+    def __on_switch_bind_icons(self, _, state):
+        self.atom.set_bind_icons(state)
+        self.__notify_bind_switch("icons", state)
+
+    def __on_switch_bind_fonts(self, _, state):
+        self.atom.set_bind_fonts(state)
+        self.__notify_bind_switch("fonts", state)
     
     def restore_color_scheme(self, *args):
         Adw.StyleManager.get_default().set_color_scheme(self.__current_color_scheme)

@@ -102,6 +102,36 @@
                                                       <property name="show_apply_button">True</property>
                                                    </object>
                                                 </child>
+                                                <child>
+                                                   <object class="AdwActionRow" id="row_bind_themes">
+                                                      <property name="title">Bind Host Themes</property>
+                                                      <child>
+                                                            <object class="GtkSwitch" id="switch_bind_themes">
+                                                               <property name="valign">center</property>
+                                                            </object>
+                                                      </child>
+                                                   </object>
+                                                </child>
+                                                <child>
+                                                   <object class="AdwActionRow" id="row_bind_icons">
+                                                      <property name="title">Bind Host Icons</property>
+                                                      <child>
+                                                            <object class="GtkSwitch" id="switch_bind_icons">
+                                                               <property name="valign">center</property>
+                                                            </object>
+                                                      </child>
+                                                   </object>
+                                                </child>
+                                                <child>
+                                                   <object class="AdwActionRow" id="row_bind_fonts">
+                                                      <property name="title">Bind Host Fonts</property>
+                                                      <child>
+                                                            <object class="GtkSwitch" id="switch_bind_fonts">
+                                                               <property name="valign">center</property>
+                                                            </object>
+                                                      </child>
+                                                   </object>
+                                                </child>
                                              </object>
                                           </child>
                                           <child>
