@@ -9,6 +9,7 @@ finish-args:
 - "--share=network"
 - "--share=ipc"
 - "--socket=fallback-x11"
+- "--socket=session-bus"  # needed for gui apps to work inside the chroot
 - "--device=dri"
 - "--socket=wayland"
 - "--allow=devel"  # this make proot works
@@ -125,6 +126,16 @@ modules:
       - type: git
         url: https://gitlab.gnome.org/GNOME/vte.git
         commit: 3ed53bfaa7344ce5b7727a60a2d33315b15201e5
+
+- name: servicectl
+  buildsystem: simple
+  build-commands:
+    - install -m755 serviced /app/bin
+    - install -m755 servicectl /app/bin
+  sources:
+    - type: archive
+      url: https://github.com/smaknsk/servicectl/archive/refs/tags/1.0.tar.gz
+      sha256: 019a322ab91a40122be58eed4bcb1e1e36a7fb5a5fcad0ebdd8eadaaf1032b89
 
 - name: atoms-core
   buildsystem: simple
