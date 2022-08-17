@@ -133,9 +133,8 @@ modules:
     - install -m755 serviced /app/bin
     - install -m755 servicectl /app/bin
   sources:
-    - type: archive
-      url: https://github.com/AtomsDevs/servicectl/archive/refs/tags/0.1.1.tar.gz
-      sha256: ba849cca6b4fd967d1f0eaebc356dcd610ffb10682eb011f000cbeebb89338ba
+    - type: dir
+      path: ./servicectl
 
 - name: atoms-core
   buildsystem: simple

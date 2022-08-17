@@ -5,3 +5,7 @@
 [submodule "atoms-cli"]
 	path = atoms-cli
 	url = git@github.com:AtomsDevs/atoms-cli.git
+	
+[submodule "servicectl"]
+	path = servicectl
+	url = https://github.com/AtomsDevs/servicectl
