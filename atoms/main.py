@@ -66,7 +66,8 @@ class AtomsApplication(Adw.Application):
             [
                 "PRoot https://github.com/proot-me/PRoot",
                 "orjson https://github.com/ijl/orjson",
-                "distrobox https://github.com/89luca89/distrobox"
+                "distrobox https://github.com/89luca89/distrobox",
+                "servicectl https://github.com/smaknsk/servicectl"
             ]
         )
         about_window.present()
