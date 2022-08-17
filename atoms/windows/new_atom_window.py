@@ -70,7 +70,7 @@ class AtomsNewAtomWindow(Adw.Window):
         if self.window.manager.has_distrobox_support and \
             self.window.settings.get_boolean("distrobox-integration"):
             self.str_atom_type.append("Distrobox Container")
-        
+
         self.combo_distribution.set_selected(0)
         self.__on_combo_distribution_changed()
 

@@ -112,9 +112,12 @@
                                     <child>
                                        <object class="AdwExpanderRow" id="row_bindings">
                                           <property name="title">Bindings</property>
+                                          <property name="subtitle">Choose which mount points to expose.</property>
                                           <child>
                                              <object class="AdwActionRow">
                                                 <property name="title">Host Themes</property>
+                                                <property name="subtitle">/usr/share/themes</property>
+                                                <property name="activatable-widget">switch_bind_themes</property>
                                                 <child>
                                                       <object class="GtkSwitch" id="switch_bind_themes">
                                                          <property name="valign">center</property>
@@ -125,6 +128,8 @@
                                           <child>
                                              <object class="AdwActionRow">
                                                 <property name="title">Host Icons</property>
+                                                <property name="subtitle">/usr/share/icons</property>
+                                                <property name="activatable-widget">switch_bind_icons</property>
                                                 <child>
                                                       <object class="GtkSwitch" id="switch_bind_icons">
                                                          <property name="valign">center</property>
@@ -135,6 +140,8 @@
                                           <child>
                                              <object class="AdwActionRow">
                                                 <property name="title">Host Fonts</property>
+                                                <property name="subtitle">/usr/share/fonts</property>
+                                                <property name="activatable-widget">switch_bind_fonts</property>
                                                 <child>
                                                       <object class="GtkSwitch" id="switch_bind_fonts">
                                                          <property name="valign">center</property>
