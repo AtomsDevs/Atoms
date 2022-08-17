@@ -44,114 +44,117 @@
                         <property name="title">Dashboard</property>
                         <property name="icon-name">view-grid-symbolic</property>
                         <property name="child">
-                           <object class="GtkBox">
-                              <property name="orientation">vertical</property>
-                              <property name="margin-top">30</property>
-                              <property name="spacing">6</property>
+                           <object class="AdwPreferencesPage">
                               <child>
-                                 <object class="GtkImage" id="img_distribution">
-                                    <property name="pixel-size">64</property>
-                                 </object>
-                              </child>
-                              <child>
-                                 <object class="GtkLabel" id="label_name">
-                                    <property name="halign">center</property>
-                                    <property name="label">Atom Name</property>
-                                    <style>
-                                       <class name="title-2" />
-                                    </style>
-                                 </object>
-                              </child>
-                              <child>
-                                 <object class="GtkLabel" id="label_distribution">
-                                    <property name="halign">center</property>
-                                    <property name="label">Distribution Name</property>
-                                    <style>
-                                       <class name="heading" />
-                                    </style>
-                                 </object>
-                              </child>
-                              <child>
-                                 <object class="AdwPreferencesPage" id="pref_page">
+                                 <object class="AdwPreferencesGroup">
                                     <child>
-                                       <object class="AdwPreferencesGroup" id="group_utilities">
-                                          <property name="title">Utilities</property>
+                                       <object class="GtkBox">
+                                          <property name="orientation">vertical</property>
+                                          <property name="margin-top">30</property>
+                                          <property name="spacing">6</property>
                                           <child>
-                                             <object class="AdwActionRow" id="row_browse">
-                                                <property name="title">Browse Files</property>
-                                                <property name="activatable">True</property>
-                                                <child type="suffix">
-                                                   <object class="GtkImage">
-                                                      <property name="icon-name">external-link-symbolic</property>
-                                                   </object>
+                                             <object class="GtkImage" id="img_distribution">
+                                                <property name="pixel-size">64</property>
+                                             </object>
+                                          </child>
+                                          <child>
+                                             <object class="GtkLabel" id="label_name">
+                                                <property name="halign">center</property>
+                                                <property name="label">Atom Name</property>
+                                                <style>
+                                                   <class name="title-2" />
+                                                </style>
+                                             </object>
+                                          </child>
+                                          <child>
+                                             <object class="GtkLabel" id="label_distribution">
+                                                <property name="halign">center</property>
+                                                <property name="label">Distribution Name</property>
+                                                <style>
+                                                   <class name="heading" />
+                                                </style>
+                                             </object>
+                                          </child>
+                                       </object>
+                                    </child>
+                                 </object>
+                              </child>
+                              <child>
+                                 <object class="AdwPreferencesGroup" id="group_utilities">
+                                    <property name="title">Utilities</property>
+                                    <child>
+                                       <object class="AdwActionRow" id="row_browse">
+                                          <property name="title">Browse Files</property>
+                                          <property name="activatable">True</property>
+                                          <child type="suffix">
+                                             <object class="GtkImage">
+                                                <property name="icon-name">external-link-symbolic</property>
+                                             </object>
+                                          </child>
+                                       </object>
+                                    </child>
+                                 </object>
+                              </child>
+                              <child>
+                                 <object class="AdwPreferencesGroup" id="group_settings">
+                                    <property name="title">Settings</property>
+                                    <child>
+                                       <object class="AdwExpanderRow" id="row_details">
+                                          <property name="title">Details</property>
+                                          <child>
+                                             <object class="AdwEntryRow" id="entry_name">
+                                                <property name="title">Name</property>
+                                                <property name="show_apply_button">True</property>
+                                             </object>
+                                          </child>
+                                       </object>
+                                    </child>
+                                    <child>
+                                       <object class="AdwExpanderRow" id="row_bindings">
+                                          <property name="title">Bindings</property>
+                                          <child>
+                                             <object class="AdwActionRow">
+                                                <property name="title">Host Themes</property>
+                                                <child>
+                                                      <object class="GtkSwitch" id="switch_bind_themes">
+                                                         <property name="valign">center</property>
+                                                      </object>
+                                                </child>
+                                             </object>
+                                          </child>
+                                          <child>
+                                             <object class="AdwActionRow">
+                                                <property name="title">Host Icons</property>
+                                                <child>
+                                                      <object class="GtkSwitch" id="switch_bind_icons">
+                                                         <property name="valign">center</property>
+                                                      </object>
+                                                </child>
+                                             </object>
+                                          </child>
+                                          <child>
+                                             <object class="AdwActionRow">
+                                                <property name="title">Host Fonts</property>
+                                                <child>
+                                                      <object class="GtkSwitch" id="switch_bind_fonts">
+                                                         <property name="valign">center</property>
+                                                      </object>
                                                 </child>
                                              </object>
                                           </child>
                                        </object>
                                     </child>
-                                    
                                     <child>
-                                       <object class="AdwPreferencesGroup">
-                                          <property name="title">Settings</property>
+                                       <object class="AdwExpanderRow">
+                                          <property name="title">Destructive Actions</property>
                                           <child>
-                                             <object class="AdwExpanderRow" id="row_details">
-                                                <property name="title">Details</property>
-                                                <child>
-                                                   <object class="AdwEntryRow" id="entry_name">
-                                                      <property name="title">Name</property>
-                                                      <property name="show_apply_button">True</property>
-                                                   </object>
-                                                </child>
-                                             </object>
-                                          </child>
-                                          <child>
-                                             <object class="AdwExpanderRow" id="row_bindings">
-                                                <property name="title">Bindings</property>
-                                                <child>
-                                                   <object class="AdwActionRow">
-                                                      <property name="title">Host Themes</property>
-                                                      <child>
-                                                            <object class="GtkSwitch" id="switch_bind_themes">
-                                                               <property name="valign">center</property>
-                                                            </object>
-                                                      </child>
-                                                   </object>
-                                                </child>
-                                                <child>
-                                                   <object class="AdwActionRow">
-                                                      <property name="title">Host Icons</property>
-                                                      <child>
-                                                            <object class="GtkSwitch" id="switch_bind_icons">
-                                                               <property name="valign">center</property>
-                                                            </object>
-                                                      </child>
-                                                   </object>
-                                                </child>
-                                                <child>
-                                                   <object class="AdwActionRow">
-                                                      <property name="title">Host Fonts</property>
-                                                      <child>
-                                                            <object class="GtkSwitch" id="switch_bind_fonts">
-                                                               <property name="valign">center</property>
-                                                            </object>
-                                                      </child>
-                                                   </object>
-                                                </child>
-                                             </object>
-                                          </child>
-                                          <child>
-                                             <object class="AdwExpanderRow">
-                                                <property name="title">Destructive Actions</property>
-                                                <child>
-                                                   <object class="AdwActionRow" id="row_destroy">
-                                                      <property name="title">Destroy Atom</property>
-                                                      <property name="subtitle">Delete the configuration and all files</property>
-                                                      <property name="activatable">True</property>
-                                                      <child type="suffix">
-                                                         <object class="GtkImage">
-                                                            <property name="icon-name">user-trash-symbolic</property>
-                                                         </object>
-                                                      </child>
+                                             <object class="AdwActionRow" id="row_destroy">
+                                                <property name="title">Destroy Atom</property>
+                                                <property name="subtitle">Delete the configuration and all files</property>
+                                                <property name="activatable">True</property>
+                                                <child type="suffix">
+                                                   <object class="GtkImage">
+                                                      <property name="icon-name">user-trash-symbolic</property>
                                                    </object>
                                                 </child>
                                              </object>
