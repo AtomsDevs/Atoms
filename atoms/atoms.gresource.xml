@@ -24,6 +24,7 @@
     <file alias="almalinux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/almalinux-symbolic.svg</file>
     <file alias="rockylinux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/rockylinux-symbolic.svg</file>
     <file alias="centos-symbolic.svg">../data/icons/hicolor/symbolic/distributions/centos-symbolic.svg</file>
+    <file alias="void-linux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/void-linux-symbolic.svg</file>
     <file alias="external-link-symbolic.svg">../data/icons/hicolor/symbolic/actions/external-link-symbolic.svg</file>
     <file alias="pip-in-symbolic.svg">../data/icons/hicolor/symbolic/actions/pip-in-symbolic.svg</file>
     <file alias="pip-out-symbolic.svg">../data/icons/hicolor/symbolic/actions/pip-out-symbolic.svg</file>
