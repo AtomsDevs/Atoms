@@ -130,8 +130,9 @@ modules:
 # - name: fakeroot
 #   buildsystem: simple
 #   build-commands:
-#     - ./configure --prefix=/app --sbindir=/app/bin --libdir=/app/usr/lib/libfakeroot --sysconfdir=/app/etc
+#     - ./configure --prefix=/app
 #     - make
+#     - make install
 #   sources:
 #     - type: archive
 #       url: https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.29.orig.tar.gz
