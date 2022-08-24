@@ -77,9 +77,8 @@ modules:
 - name: proot
   buildsystem: simple
   build-commands:
-    - ls
-    - make -C src loader.elf loader-m32.elf build.h
-    - make -C src proot care
+    - mv uthash/src/* src
+    - make -C src proot
     - install -m755 -d /app/bin
     - install -m755 -d /app/lib
     - install -m755 src/proot /app/bin
@@ -87,9 +86,10 @@ modules:
     - type: archive
       url: https://github.com/troydhanson/uthash/archive/refs/tags/v2.3.0.tar.gz
       sha256: e10382ab75518bad8319eb922ad04f907cb20cccb451a3aa980c9d005e661acc
-    - type: archive
-      url: https://github.com/proot-me/proot/archive/refs/tags/v5.3.1.tar.gz
-      sha256: 966afe32bf9a9d0e80836a8874d4dd829c51750060d9e0f30d330b1ed7eec8c2
+      dest: uthash
+    - type: git
+      url: https://github.com/termux/proot
+      commit: 5c462a6ecfddd629b1439f38fbb61216d6fcb359
 
 - name: libadwaita
   buildsystem: meson
