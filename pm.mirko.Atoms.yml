@@ -9,11 +9,10 @@ finish-args:
 - "--share=network"
 - "--share=ipc"
 - "--socket=fallback-x11"
-- "--socket=session-bus"  # needed for gui apps to work inside the chroot
 - "--device=dri"
 - "--socket=wayland"
 - "--allow=devel"  # this make proot works
-# - "--talk-name=org.freedesktop.Flatpak"  # required for distrobox/podman integration
+# - "--talk-name=org.freedesktop.Flatpak"  # set this for distrobox support
 
 add-extensions:
   org.gnome.Platform.Compat.i386:
