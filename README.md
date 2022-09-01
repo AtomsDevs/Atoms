@@ -32,9 +32,16 @@ can be enabled using the `SHOW_EXPERIMENTAL_IMAGES=1` environment variable.
 - Alpine Linux
 - Ubuntu
 - Fedora
+- Alma Linux
+- Centos
+- Debian
+- Gentoo
+- OpenSUSE
+- RockyLinux
 
 #### Experimental (not fully working) images
 - Arch Linux
+- Void Linux
 
 ### Flatpak build dependencies
 - `org.gnome.Platform`
@@ -53,3 +60,6 @@ flatpak run pm.mirko.Atoms
 ### Enable distrobox integration
 To enable the distrobox integration, you need to give Atoms the Flatpak permission
 to talk to `org.freedesktop.Flatpak`.
+
+### PROOT_NO_SECCOMP
+To enable the `PROOT_NO_SECCOMP` option for old kernels, set the `ATOMS_NO_SECCOMP` env var to `1`.
