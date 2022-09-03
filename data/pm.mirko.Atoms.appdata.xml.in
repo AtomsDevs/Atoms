@@ -2,8 +2,51 @@
 <component type="desktop">
 	<id>pm.mirko.Atoms.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
-	<project_license>GPL-3.0-or-later</project_license>
+    <project_license>GPL-3.0-only</project_license>
+    <name>Atoms</name>
+    <summary>Easily manage Linux Chroot and Containers.</summary>
+    <developer_name translatable="no">Mirko Brombin</developer_name>
 	<description>
 	  <p>No description</p>
 	</description>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/0.png</image>
+        </screenshot>
+		<screenshot>
+			<image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/1.png</image>
+		</screenshot>
+		<screenshot>
+			<image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/2.png</image>
+		</screenshot>
+		<screenshot>
+			<image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/3.png</image>
+		</screenshot>
+	</screenshots>
+    <translation type="gettext">pm.mirko.Atoms</translation>
+    <content_rating type="oars-1.1"/>
+    <url type="homepage">https://github.com/AtomsDevs/Atoms</url>
+    <url type="bugtracker">https://github.com/AtomsDevs/Atoms/issues</url>
+    <url type="help">https://github.com/AtomsDevs/Atoms/issues</url>
+    <url type="translate">https://github.com/AtomsDevs/Atoms</url>
+    <url type="vcs-browser">https://github.com/AtomsDevs/Atoms</url>
+    <url type="contribute">https://github.com/AtomsDevs/Atoms/blob/master/CONTRIBUTING.md</url>
+    <recommends>
+      <control>pointing</control>
+      <control>keyboard</control>
+      <control>touch</control>
+    </recommends>
+    <requires>
+      <display_length compare="ge">768</display_length>
+    </requires>
+    <releases>
+        <release version="1.0.1" date="2022-09-03">
+          <description>
+            <ul>
+                <li>Set download percentage as numeric</li>
+                <li>Updated to atoms-core 1.0.1</li>
+            </ul>
+          </description>
+        </release>
+    </releases>
 </component>
