@@ -5,7 +5,7 @@
   <object class="AdwAboutWindow" id="about_window">
     <property name="application-name">Atoms</property>
     <property name="modal">True</property>
-    <property name="version">1.0.0-beta</property>
+    <property name="version">1.0.1-beta</property>
     <property name="copyright">© 2022 mirkobrombin</property>
     <property name="comments">Easily manage Linux chroot(s) with Atoms</property>
     <property name="website">https://github.com/mirkobrombin/Atoms</property>
