@@ -29,8 +29,11 @@ class ImageEntry(Adw.ActionRow):
         self.__build_ui()
 
     def __build_ui(self):
-        self.set_title(self.image.name)
-        self.set_subtitle(self.image.human_size)
+        name = self.image.name
+        if len(name) > 30:
+            name = name[:30] + '…'
+        self.set_title(name)
+        self.set_subtitle(f"{self.image.human_size} - {self.image.formatted_date}")
 
         self.connect('activated', self.__on_activated)
 
