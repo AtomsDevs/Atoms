@@ -121,11 +121,6 @@ msgstr "Sei sicuro di voler eliminare questa immagine?"
 msgid "Downloading Choosen Image…"
 msgstr "Scaricamento dell'Immagine Scelta…"
 
-#: atoms/windows/new_atom_window.py:78
-#, fuzzy
-msgid "Creating new Atom Configuration…"
-msgstr "Creazione di un Atom…"
-
 #: atoms/windows/new_atom_window.py:79
 msgid "Unpacking Choosen Image…"
 msgstr "Decompressione dell'Immagine Scelta…"
@@ -307,7 +302,7 @@ msgstr "Nome dell'Immagine"
 
 #: atoms/gtk/new-atom-window.ui:103
 msgid "Creating an Atom…"
-msgstr "Creazione di un Atom…"
+msgstr "Creazione di un Atomo…"
 
 #: atoms/gtk/new-atom-window.ui:104
 msgid "Take a break, it may take a while."
