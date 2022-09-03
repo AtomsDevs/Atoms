@@ -1,0 +1,71 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+        
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Describe the bug
+      description: Also tell us, what did you expect to happen?
+      placeholder: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: to-reproduce
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## System information
+
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      description: How did you install Bottles?
+      options:
+        - Flatpak from Flathub
+        - From source
+        - Other, unofficial package
+    validations:
+      required: true
+
+  - type: input
+    id: distro
+    attributes:
+      label: Distribution
+      description: In which Linux distribution did you encounter the bug?
+      placeholder: Fedora 35, Arch linux, Ubuntu 21.10..
+    validations:
+      required: true
+
+  - type: dropdown
+    id: display-protocol
+    attributes:
+      label: Display Protocol
+      description: What display protocol is your system using? You can determine the display protocol used by the system by running `echo $XDG_SESSION_TYPE` in the terminal.
+      multiple: true
+      options:
+        - X11
+        - Wayland
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
+    validations:
+      required: false
