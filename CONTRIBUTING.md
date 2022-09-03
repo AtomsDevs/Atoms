@@ -16,7 +16,7 @@ Find out if someone has already has [already asked](https://github.com/atomsdevs
 - Open a issue [here](https://github.com/atomsdevs/Atoms/issues/new?assignees=mirkobrombin%2C+francescomasala&labels=&template=feature_request.md&title=%5BRequest%5D+), if possible,  attach an image that helps understand what you are talking about.
 
 ### Do you want to translate?
-Check [translate](https://github.com/atomsdevs/Atoms/tree/master/po) page to help us translate Atoms in your language.
+Check [translate](https://github.com/atomsdevs/Atoms/tree/main/po) page to help us translate Atoms in your language.
 
 #### Add language
 - Fork the repository
