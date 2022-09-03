@@ -22,7 +22,7 @@
                            <object class="AdwHeaderBar">
                               <child type="start">
                                  <object class="GtkButton" id="btn_new">
-                                    <property name="tooltip-text">New Atom</property>
+                                    <property name="tooltip-text" translatable="yes">New Atom</property>
                                     <property name="icon-name">list-add-symbolic</property>
                                  </object>
                               </child>
@@ -49,15 +49,15 @@
    <menu id="primary_menu">
       <section>
          <item>
-            <attribute name="label">_Preferences</attribute>
+            <attribute name="label" translatable="yes">_Preferences</attribute>
             <attribute name="action">app.preferences</attribute>
          </item>
          <item>
-            <attribute name="label">_Keyboard Shortcuts</attribute>
+            <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
             <attribute name="action">win.show-help-overlay</attribute>
          </item>
          <item>
-            <attribute name="label">_About Atoms</attribute>
+            <attribute name="label" translatable="yes">_About Atoms</attribute>
             <attribute name="action">app.about</attribute>
          </item>
       </section>

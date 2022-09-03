@@ -6,8 +6,8 @@
       <child>
          <object class="AdwStatusPage">
             <property name="icon-name">pip-in-symbolic</property>
-            <property name="title">Console is Detached</property>
-            <property name="description">Use the dedicate button in the header bar to attach it again.</property>
+            <property name="title" translatable="yes">Console is Detached</property>
+            <property name="description" translatable="yes">Use the dedicate button in the header bar to attach it again.</property>
          </object>
       </child>
    </template>

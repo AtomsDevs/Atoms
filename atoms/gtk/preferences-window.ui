@@ -3,20 +3,20 @@
     <requires lib="gtk" version="4.0"/>
     <requires lib="libadwaita" version="1.0"/>
     <template class="AtomsPreferences" parent="AdwPreferencesWindow">
-        <property name="title">Preferences</property>
+        <property name="title" translatable="yes">Preferences</property>
         <property name="modal">True</property>
         <property name="hide-on-close">True</property>
         <child>
             <object class="AdwPreferencesPage">
                 <property name="icon-name">applications-system-symbolic</property>
-                <property name="title">General</property>
+                <property name="title" translatable="yes">General</property>
                 <child>
                     <object class="AdwPreferencesGroup">
-                        <property name="title">Appearance</property>
+                        <property name="title" translatable="yes">Appearance</property>
                         <child>
                             <object class="AdwActionRow">
-                                <property name="title">Show Update Date</property>
-                                <property name="subtitle">Whether to show the update date in the atoms list.</property>
+                                <property name="title" translatable="yes">Show Update Date</property>
+                                <property name="subtitle" translatable="yes">Whether to show the update date in the atoms list.</property>
                                 <property name="activatable-widget">switch_update_date</property>
                                 <child>
                                     <object class="GtkSwitch" id="switch_update_date">
@@ -32,12 +32,12 @@
                         <property name="title">Paths</property>
                         <child>
                             <object class="AdwActionRow" id="row_atoms_path">
-                                <property name="title">Custom Atoms Path</property>
-                                <property name="subtitle">Choose where to store the new atoms (this will not move the existing ones).</property>
+                                <property name="title" translatable="yes">Custom Atoms Path</property>
+                                <property name="subtitle" translatable="yes">Choose where to store the new atoms (this will not move the existing ones).</property>
                                 <property name="activatable">True</property>
                                 <child type="suffix">
                                     <object class="GtkButton" id="btn_atoms_path_reset">
-                                        <property name="tooltip-text">Reset to default</property>
+                                        <property name="tooltip-text" translatable="yes">Reset to default</property>
                                         <property name="valign">center</property>
                                         <property name="visible">False</property>
                                         <property name="icon-name">edit-undo-symbolic</property>
@@ -55,12 +55,12 @@
                         </child>
                         <child>
                             <object class="AdwActionRow" id="row_images_path">
-                                <property name="title">Custom Images Path</property>
-                                <property name="subtitle">Choose where to store the new images (this will not move the existing ones).</property>
+                                <property name="title" translatable="yes">Custom Images Path</property>
+                                <property name="subtitle" translatable="yes">Choose where to store the new images (this will not move the existing ones).</property>
                                 <property name="activatable">True</property>
                                 <child type="suffix">
                                     <object class="GtkButton" id="btn_images_path_reset">
-                                        <property name="tooltip-text">Reset to default</property>
+                                        <property name="tooltip-text" translatable="yes">Reset to default</property>
                                         <property name="valign">center</property>
                                         <property name="visible">False</property>
                                         <property name="icon-name">edit-undo-symbolic</property>
@@ -83,10 +83,10 @@
         <child>
             <object class="AdwPreferencesPage">
                 <property name="icon-name">drive-multidisk-symbolic</property>
-                <property name="title">Images</property>
+                <property name="title" translatable="yes">Images</property>
                 <child>
                     <object class="AdwPreferencesGroup" id="group_images">
-                        <property name="title">Local Images</property>
+                        <property name="title" translatable="yes">Local Images</property>
                     </object>
                 </child>
             </object>
@@ -94,14 +94,14 @@
         <child>
             <object class="AdwPreferencesPage">
                 <property name="icon-name">application-x-addon-symbolic</property>
-                <property name="title">Integrations</property>
+                <property name="title" translatable="yes">Integrations</property>
                 <child>
                     <object class="AdwPreferencesGroup">
-                        <property name="title">Available Integrations</property>
+                        <property name="title" translatable="yes">Available Integrations</property>
                         <child>
                             <object class="AdwActionRow">
-                                <property name="title">Distrobox</property>
-                                <property name="subtitle">List and handle Distrobox containers as Atoms.</property>
+                                <property name="title" translatable="yes">Distrobox</property>
+                                <property name="subtitle" translatable="yes">List and handle Distrobox containers as atoms.</property>
                                 <property name="activatable-widget">switch_distrobox_integration</property>
                                 <child>
                                     <object class="GtkSwitch" id="switch_distrobox_integration">

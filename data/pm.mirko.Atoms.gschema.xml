@@ -16,7 +16,7 @@
 		<key type="b" name="distrobox-integration">
 			<default>false</default>
 			<summary>Toggle Distrobox integration</summary>
-			<description>List and handle Distrobox containers as Atoms.</description>
+			<description>List and handle Distrobox containers as atoms.</description>
 		</key>
 	</schema>
 </schemalist>

@@ -5,6 +5,7 @@ atoms_sources = [
   '__init__.py',
   'threading.py',
   'gtk.py',
+  'translations.py',
   'file_chooser.py',
   'client_bridge.py'
 ]

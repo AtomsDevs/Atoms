@@ -16,6 +16,7 @@
 
 import sys
 import gi
+import gettext
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -25,8 +26,11 @@ from gi.repository import Gtk, Gio, Adw
 
 from atoms.windows.main_window import AtomsWindow
 from atoms.windows.preferences_window import AtomsPreferences
+from atoms.utils.translations import get_translations
 from atoms.const import *
 
+
+_ = get_translations()
 
 class AtomsApplication(Adw.Application):
     """The main application singleton class."""
@@ -49,20 +53,20 @@ class AtomsApplication(Adw.Application):
             win = AtomsWindow(application=self)
         win.present()
 
-    def on_about_action(self, widget, _):
+    def on_about_action(self, widget, *args):
         """Callback for the app.about action."""
         builder = Gtk.Builder.new_from_resource("/pm/mirko/Atoms/gtk/about-window.ui")
         about_window = builder.get_object("about_window")
         about_window.set_transient_for(self.props.active_window)
         about_window.add_credit_section(
-            "Contributors",
+            _("Contributors"),
             [
                 "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io/",
                 "axtlos https://axtloss.github.io/"
             ]
         )
         about_window.add_credit_section(
-            "Third-Party Libraries and Special Thanks",
+            _("Third-Party Libraries and Special Thanks"),
             [
                 "PRoot https://github.com/proot-me/PRoot",
                 "orjson https://github.com/ijl/orjson",

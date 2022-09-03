@@ -7,7 +7,7 @@
     <property name="modal">True</property>
     <property name="version">1.0.1-beta</property>
     <property name="copyright">© 2022 mirkobrombin</property>
-    <property name="comments">Easily manage Linux chroot(s) with Atoms</property>
+    <property name="comments" translatable="yes">Easily manage Linux chroot(s) with Atoms</property>
     <property name="website">https://github.com/mirkobrombin/Atoms</property>
     <property name="issue-url">https://github.com/mirkobrombin/Atoms/issues</property>
     <property name="application-icon">pm.mirko.Atoms</property>

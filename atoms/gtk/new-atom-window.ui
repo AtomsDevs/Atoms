@@ -4,7 +4,7 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="AtomsNewAtomWindow" parent="AdwWindow">
     <property name="modal">True</property>
-    <property name="title">New Atom</property>
+    <property name="title" translatable="yes">New Atom</property>
     <property name="deletable">false</property>
     <property name="width-request">450</property>
     <property name="default-height">420</property>
@@ -15,12 +15,12 @@
           <object class="AdwHeaderBar" id="header_bar">
             <child type="start">
               <object class="GtkButton" id="btn_cancel">
-                <property name="label">Cancel</property>
+                <property name="label" translatable="yes">Cancel</property>
               </object>
             </child>
             <child type="end">
               <object class="GtkButton" id="btn_create">
-                <property name="label">Create</property>
+                <property name="label" translatable="yes">Create</property>
                 <property name="sensitive">false</property>
                 <style>
                   <class name="suggested-action" />
@@ -39,15 +39,15 @@
                   <object class="AdwPreferencesPage">
                     <child>
                       <object class="AdwPreferencesGroup">
-                        <property name="title">Atom Information</property>
+                        <property name="title" translatable="yes">Atom Information</property>
                         <child>
                           <object class="AdwEntryRow" id="entry_name">
-                            <property name="title">Name</property>
+                            <property name="title" translatable="yes">Name</property>
                           </object>
                         </child>
                         <child>
                           <object class="AdwComboRow" id="combo_atom_type">
-                            <property name="title">Atom Type</property>
+                            <property name="title" translatable="yes">Atom Type</property>
                             <property name="model">
                               <object class="GtkStringList" id="str_atom_type"></object>
                             </property>
@@ -57,10 +57,10 @@
                     </child>
                     <child>
                       <object class="AdwPreferencesGroup" id="group_atom_chroot">
-                        <property name="title">Atom Chroot Distribution</property>
+                        <property name="title" translatable="yes">Atom Chroot Distribution</property>
                         <child>
                           <object class="AdwComboRow" id="combo_distribution">
-                            <property name="title">Distribution</property>
+                            <property name="title" translatable="yes">Distribution</property>
                             <property name="model">
                               <object class="GtkStringList" id="str_list_distributions"></object>
                             </property>
@@ -68,7 +68,7 @@
                         </child>
                         <child>
                           <object class="AdwComboRow" id="combo_releases">
-                            <property name="title">Release</property>
+                            <property name="title" translatable="yes">Release</property>
                             <property name="model">
                               <object class="GtkStringList" id="str_list_releases"></object>
                             </property>
@@ -78,11 +78,11 @@
                     </child>
                     <child>
                       <object class="AdwPreferencesGroup" id="group_distrobox_container">
-                        <property name="title">Distrobox Container Image</property>
+                        <property name="title" translatable="yes">Distrobox Container Image</property>
                         <property name="visible">False</property>
                         <child>
                           <object class="AdwEntryRow" id="entry_distrobox_image">
-                            <property name="title">Image Name</property>
+                            <property name="title" translatable="yes">Image Name</property>
                           </object>
                         </child>
                       </object>
@@ -100,8 +100,8 @@
                     <child>
                       <object class="AdwStatusPage">
                         <property name="valign">center</property>
-                        <property name="title">Creating an Atom…</property>
-                        <property name="description">Take a break, it may take a while.</property>
+                        <property name="title" translatable="yes">Creating an Atom…</property>
+                        <property name="description" translatable="yes">Take a break, it may take a while.</property>
                         <child>
                           <object class="AdwPreferencesGroup" id="group_steps"></object>
                         </child>
@@ -109,7 +109,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="btn_cancel_creation">
-                        <property name="label">Cancel</property>
+                        <property name="label" translatable="yes">Cancel</property>
                         <property name="visible">False</property>
                         <property name="halign">center</property>
                         <style>
@@ -128,11 +128,11 @@
                 <property name="child">
                   <object class="AdwStatusPage">
                     <property name="valign">center</property>
-                    <property name="title">Atom Created</property>
+                    <property name="title" translatable="yes">Atom Created</property>
                     <property name="icon-name">selection-mode-symbolic</property>
                     <child>
                       <object class="GtkButton" id="btn_finish">
-                        <property name="label">Close</property>
+                        <property name="label" translatable="yes">Close</property>
                         <property name="halign">center</property>
                         <style>
                           <class name="pill" />
@@ -150,7 +150,7 @@
                 <property name="child">
                   <object class="AdwStatusPage" id="status_error">
                     <property name="valign">center</property>
-                    <property name="title">An Error Occurred</property>
+                    <property name="title" translatable="yes">An Error Occurred</property>
                     <property name="icon-name">dialog-warning-symbolic</property>
                   </object>
                 </property>

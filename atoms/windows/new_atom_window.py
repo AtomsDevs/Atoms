@@ -74,11 +74,11 @@ class AtomsNewAtomWindow(Adw.Window):
         self.combo_distribution.set_selected(0)
         self.__on_combo_distribution_changed()
 
-        self.step_download = CreationStepEntry("Downloading Choosen Image…")
-        self.step_configuration = CreationStepEntry("Creating new Atom Configuration…")
-        self.step_unpack = CreationStepEntry("Unpacking Choosen Image…")
-        self.step_distrobox = CreationStepEntry("Creating new distrobox Container…")
-        self.step_finalizing = CreationStepEntry("Finalizing…")
+        self.step_download = CreationStepEntry(_("Downloading Choosen Image…"))
+        self.step_configuration = CreationStepEntry(_("Creating new Atom Configuration…"))
+        self.step_unpack = CreationStepEntry(_("Unpacking Choosen Image…"))
+        self.step_distrobox = CreationStepEntry(_("Creating new distrobox Container…"))
+        self.step_finalizing = CreationStepEntry(_("Finalizing…"))
 
         self.group_steps.add(self.step_download)
         self.group_steps.add(self.step_configuration)

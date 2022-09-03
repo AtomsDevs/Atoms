@@ -47,7 +47,7 @@ class AtomsPreferences(Adw.PreferencesWindow):
         if not DistroboxWrapper().is_supported:
             self.switch_distrobox_integration.set_sensitive(False)
             self.switch_distrobox_integration.set_tooltip_text(
-                "Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed in your system."
+                _("Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed in your system.")
             )
 
         for image in self.window.manager.local_images:
@@ -80,13 +80,13 @@ class AtomsPreferences(Adw.PreferencesWindow):
 
     def __on_btn_atoms_path_reset_clicked(self, button):
         self.config.restore_default("atoms.path")
-        self.window.show_toast("Atoms path reset to default.")
+        self.window.show_toast(_("Atoms path reset to default."))
         self.__update_manager()
         self.btn_atoms_path_reset.set_visible(False)
 
     def __on_btn_images_path_reset_clicked(self, button):
         self.config.restore_default("images.path")
-        self.window.show_toast("Images path reset to default.")
+        self.window.show_toast(_("Images path reset to default."))
         self.__update_manager()
         self.btn_images_path_reset.set_visible(False)
     

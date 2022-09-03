@@ -7,10 +7,10 @@
          <object class="AdwStatusPage">
             <property name="icon-name">pm.mirko.Atoms-symbolic</property>
             <property name="title">Atoms</property>
-            <property name="description">Start by creating your first atom.</property>
+            <property name="description" translatable="yes">Start by creating your first atom.</property>
             <child>
                <object class="GtkButton" id="btn_new">
-                  <property name="label">Create new atom</property>
+                  <property name="label" translatable="yes">Create new atom</property>
                   <property name="halign">center</property>
                   <style>
                      <class name="suggested-action" />

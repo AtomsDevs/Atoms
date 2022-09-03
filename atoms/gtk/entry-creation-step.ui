@@ -3,7 +3,7 @@
 	<requires lib="gtk" version="4.0"/>
 	<requires lib="libadwaita" version="1.0"/>
 	<template class="CreationStepEntry" parent="AdwActionRow">
-		<property name="title">Atom Configuration Generated.</property>
+		<property name="title" translatable="yes">Atom Configuration Generated.</property>
 		<child>
 			<object class="GtkImage" id="img_completed">
 				<property name="icon-name">selection-mode-symbolic</property>

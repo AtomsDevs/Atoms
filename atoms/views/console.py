@@ -64,4 +64,4 @@ class AtomsConsole(Vte.Terminal):
     
     def set_stop_status(self):
         self.reset(True, True)
-        self.run_command(["echo", "Press the Play button to start the container"])
+        self.run_command(["echo", _("Press the Play button to start the container")])

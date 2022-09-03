@@ -113,7 +113,7 @@ class AtomDashboard(Adw.Bin):
             self.btn_detach.set_icon_name('pip-in-symbolic')
             self.stack_console.set_visible_child_name('vte')
             self.box_console.append(self.console)
-            self.window.show_toast("Atom console re-attached.")
+            self.window.show_toast(_("Atom console re-attached."))
             self.__detach_status = False
             
         def detach():
@@ -125,7 +125,7 @@ class AtomDashboard(Adw.Bin):
                 self.__detached_window = AtomsDetachedWindow(self.console, "#000000", title=self.atom.name)
                 self.__detached_window.present()
                 self.__detached_window.connect("close-request", attach)
-            self.window.show_toast("Atom console detached.")
+            self.window.show_toast(_("Atom console detached."))
             self.__detach_status = True
             
         attach() if self.__detach_status else detach()
@@ -146,7 +146,7 @@ class AtomDashboard(Adw.Bin):
 
     def __on_browse_activated(self, widget):
         Gtk.show_uri(self.window, f"file://{self.atom.fs_path}", Gdk.CURRENT_TIME)
-        self.window.show_toast("File manager opened.")
+        self.window.show_toast(_("File manager opened."))
 
     def __on_destroy_activated(self, widget):
         def on_destroy_done(*args):
@@ -174,14 +174,14 @@ class AtomDashboard(Adw.Bin):
     def __on_entry_apply(self, widget):
         self.atom.rename(self.entry_name.get_text())
         self.label_name.set_text(self.atom.name)
-        self.window.show_toast("Atom renamed successfully.")
+        self.window.show_toast(_("Atom renamed successfully."))
         self.window.reload_atoms()
 
     def __notify_bind_switch(self, bind_name: str, state: bool):
         if state:
-            self.window.show_toast(f"{bind_name} bound to Atom.")
+            self.window.show_toast(_("{0} bound to Atom.".format(bind_name)))
         else:
-            self.window.show_toast(f"{bind_name} unbound from Atom.")
+            self.window.show_toast(_("{0} unbound from Atom.".format(bind_name)))
 
     def __on_switch_bind_themes(self, _, state):
         self.atom.set_bind_themes(state)
