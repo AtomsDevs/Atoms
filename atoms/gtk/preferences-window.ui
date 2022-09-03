@@ -81,14 +81,9 @@
             </object>
         </child>
         <child>
-            <object class="AdwPreferencesPage">
+            <object class="AdwPreferencesPage" id="pref_images">
                 <property name="icon-name">drive-multidisk-symbolic</property>
                 <property name="title" translatable="yes">Images</property>
-                <child>
-                    <object class="AdwPreferencesGroup" id="group_images">
-                        <property name="title" translatable="yes">Local Images</property>
-                    </object>
-                </child>
             </object>
         </child>
         <child>

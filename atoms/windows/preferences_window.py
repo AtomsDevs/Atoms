@@ -32,7 +32,7 @@ class AtomsPreferences(Adw.PreferencesWindow):
     row_images_path = Gtk.Template.Child()
     btn_atoms_path_reset = Gtk.Template.Child()
     btn_images_path_reset = Gtk.Template.Child()
-    group_images = Gtk.Template.Child()
+    pref_images = Gtk.Template.Child()
 
     def __init__(self, window, **kwargs):
         super().__init__(**kwargs)
@@ -50,8 +50,13 @@ class AtomsPreferences(Adw.PreferencesWindow):
                 _("Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed in your system.")
             )
 
-        for image in self.window.manager.local_images:
-            self.group_images.add(ImageEntry(self.window, image))
+        for group, images in self.window.manager.local_images_grouped.items():
+            _pref_group = Adw.PreferencesGroup.new()
+            _pref_group.set_title(group)
+            self.pref_images.add(_pref_group)
+
+            for _image in images:
+                _pref_group.add(ImageEntry(self.window, _image))
 
         self.switch_update_date.set_active(self.window.settings.get_boolean("update-date"))
         self.switch_distrobox_integration.set_active(self.window.settings.get_boolean("distrobox-integration"))
