@@ -36,24 +36,14 @@ class AtomsList(Gtk.ScrolledWindow):
             self.insert_atom(atom)
     
     def insert_atom(self, atom: 'Atom'):
-        key = self.__get_registry_key(atom)
         entry = AtomEntry(self.window, atom)
-        self.__registry[key] = entry
+        self.__registry[atom.aid] = entry
         self.list_atoms.append(entry)
 
     def remove_atom(self, atom: 'Atom'):
-        key = self.__get_registry_key(atom)
-        entry = self.__registry[key]
+        entry = self.__registry[atom.atom.aid]
         self.list_atoms.remove(entry)
-        del self.__registry[key]
-    
-    def __get_registry_key(self, atom: 'Atom') -> str:
-        if atom.is_distrobox_container:
-            key = atom.container_id
-        else:
-            key = atom.relative_path
-
-        return key
+        del self.__registry[atom.atom.aid]
     
     def reload(self):
         for atom in self.__registry.values():
