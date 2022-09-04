@@ -12,13 +12,8 @@ finish-args:
 - "--device=dri"
 - "--socket=wayland"
 - "--allow=devel"  # this make proot works
-# - "--talk-name=org.freedesktop.Flatpak"  # set this for distrobox support
 
 add-extensions:
-  org.gnome.Platform.Compat.i386:
-    directory: lib/i386-linux-gnu
-    version: "42"
-    
   org.freedesktop.Platform.GL32:
     directory: lib/i386-linux-gnu/GL
     version: '1.4'
@@ -30,10 +25,6 @@ add-extensions:
     merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d
     download-if: active-gl-driver
     enable-if: active-gl-driver
-
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.toolchain-i386
-  - org.freedesktop.Sdk.Extension.golang
 
 cleanup:
 - "/include"
@@ -59,9 +50,8 @@ modules:
   build-commands:
     - mv uthash/src/* src
     - make -C src proot
-    - install -m755 -d /app/bin
-    - install -m755 -d /app/lib
-    - install -m755 src/proot /app/bin
+    - install -d /app/lib
+    - install -Dm755 src/proot -t /app/bin
   sources:
     - type: archive
       url: https://github.com/troydhanson/uthash/archive/refs/tags/v2.3.0.tar.gz
@@ -87,14 +77,12 @@ modules:
     sources:
     - type: git
       url: https://github.com/lazka/libsass.git
-      branch: meson
       commit: 302397c0c8ae2d7ab02f45ea461c2c3d768f248e
   - name: sassc
     buildsystem: meson
     sources:
     - type: git
       url: https://github.com/lazka/sassc.git
-      branch: meson
       commit: 82803377c33247265d779af034eceb5949e78354
 
   - name: vte  # needed by gtk4
@@ -109,22 +97,12 @@ modules:
         url: https://gitlab.gnome.org/GNOME/vte.git
         commit: 3ed53bfaa7344ce5b7727a60a2d33315b15201e5
 
-# - name: fakeroot
-#   buildsystem: simple
-#   build-commands:
-#     - ./configure --prefix=/app
-#     - make
-#     - make install
-#   sources:
-#     - type: archive
-#       url: https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.29.orig.tar.gz
-#       sha256: 8fbbafb780c9173e3ace4a04afbc1d900f337f3216883939f5c7db3431be7c20
 
 - name: servicectl
   buildsystem: simple
   build-commands:
-    - install -m755 serviced /app/bin
-    - install -m755 servicectl /app/bin
+    - install -Dm755 serviced -t /app/bin
+    - install -Dm755 servicectl -t /app/bin
   sources:
     - type: git
       url: https://github.com/AtomsDevs/servicectl.git
@@ -209,9 +187,7 @@ modules:
 - name: atoms
   builddir: true
   buildsystem: meson
-  build-commands:
-    - mkdir -p /app/lib/i386-linux-gnu
-    - mkdir -p /app/lib/debug/lib/i386-linux-gnu
+  post-install:
     - mkdir -p /app/lib/i386-linux-gnu/GL
   sources:
     - type: git
