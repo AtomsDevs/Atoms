@@ -40,11 +40,15 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="1.0.1" date="2022-09-03">
+        <release version="1.0.2" date="2022-09-05">
           <description>
             <ul>
-                <li>Set download percentage as numeric</li>
-                <li>Updated to atoms-core 1.0.1</li>
+                <li>Wayland support</li>
+                <li>Group images by distribution</li>
+                <li>Show image date</li>
+                <li>Use the short AID when listing atoms trough the CLI</li>
+                <li>Updated to atoms-cli 1.0.1</li>
+                <li>Updated to atoms-core 1.0.2</li>
             </ul>
           </description>
         </release>
