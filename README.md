@@ -7,10 +7,6 @@
 
 <br/>
 
-> ⚠️ Current state: Beta
-
-<br/>
-
 <div align="center">
   <img src="https://raw.githubusercontent.com/AtomsDevs/Atoms/main/screenshot.png">
 </div>
@@ -23,6 +19,12 @@ shell in a new environment, be it chroot or container.
 
 If you are looking for a Podman container manager that does a finer job offering 
 more accurate management and more features, check out [pods](https://github.com/marhkb/pods).
+
+### Install trough Flathub
+
+<a href='https://flathub.org/apps/details/pm.mirko.Atoms'>
+  <img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
+</a>
 
 ### Supported Images
 We are testing many images and more will be added in the future. Experimental images
