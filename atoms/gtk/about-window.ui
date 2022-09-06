@@ -14,5 +14,6 @@
     <property name="license">gpl-3.0-only</property>
     <property name="developer-name">Mirko Brombin</property>
     <property name="developers">Mirko Brombin https://github.com/mirkobrombin/</property>
+    <property name="artists">Allaeddine Boulefaat https://github.com/allaeddineomc</property>
   </object>
 </interface>
