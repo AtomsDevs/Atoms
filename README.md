@@ -20,7 +20,7 @@ shell in a new environment, be it chroot or container.
 If you are looking for a Podman container manager that does a finer job offering 
 more accurate management and more features, check out [pods](https://github.com/marhkb/pods).
 
-### Install trough Flathub
+### Install through Flathub
 
 <a href='https://flathub.org/apps/details/pm.mirko.Atoms'>
   <img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
