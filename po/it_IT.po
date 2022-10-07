@@ -118,11 +118,11 @@ msgid "Are you sure you want to delete this image?"
 msgstr "Sei sicuro di voler eliminare questa immagine?"
 
 #: atoms/windows/new_atom_window.py:77
-msgid "Downloading Choosen Image…"
+msgid "Downloading Chosen Image…"
 msgstr "Scaricamento dell'Immagine Scelta…"
 
 #: atoms/windows/new_atom_window.py:79
-msgid "Unpacking Choosen Image…"
+msgid "Unpacking Chosen Image…"
 msgstr "Decompressione dell'Immagine Scelta…"
 
 #: atoms/windows/new_atom_window.py:80
