@@ -62,7 +62,7 @@ class AtomsApplication(Adw.Application):
                                 license='gpl-3.0-only',
                                 website='https://github.com/mirkobrombin/Atoms',
                                 issue_url='https://github.com/mirkobrombin/Atoms/issues',
-                                version='0.0.5',
+                                version='1.0.3',
                                 developers=['Mirko Brombin https://github.com/mirkobrombin/'],
                                 artists=['Allaeddine Boulefaat https://github.com/allaeddineomc'],
                                 copyright='© 2022 Mirko Brombin')
