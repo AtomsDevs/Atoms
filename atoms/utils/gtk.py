@@ -23,9 +23,15 @@ import re
 class GtkUtils:
 
     @staticmethod
-    def validate_entry(entry) -> bool:
+    def validate_entry(entry, allow:list = None) -> bool:
         text = entry.get_text()
-        if re.search("[@!#$%^&*()<>?/|}{~:.;,'\"]", text) or len(text) == 0 or text.isspace():
+        esc_chars = "[@!#$%^&*()<>?/|}{~:.;,'\"]"
+
+        if allow is not None:
+            for char in allow:
+                esc_chars = esc_chars.replace(char, "")
+
+        if re.search(esc_chars, text) or len(text) == 0 or text.isspace():
             entry.add_css_class("error")
             return False
         else:

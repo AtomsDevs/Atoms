@@ -149,7 +149,7 @@ class AtomsNewAtomWindow(Adw.Window):
         RunAsync(create_atom, self.__finish_creation)
 
     def __check_entry_value(self, widget, *_args):
-        result = GtkUtils.validate_entry(widget)
+        result = GtkUtils.validate_entry(widget, allow=[":"])
         self.btn_create.set_sensitive(result)
     
     def __on_btn_finish_clicked(self, widget):
