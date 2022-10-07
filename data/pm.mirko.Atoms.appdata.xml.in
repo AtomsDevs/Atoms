@@ -40,15 +40,17 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
-        <release version="1.0.2" date="2022-09-05">
+        <release version="1.0.3" date="2022-10-07">
           <description>
             <ul>
-                <li>Wayland support</li>
-                <li>Group images by distribution</li>
-                <li>Show image date</li>
-                <li>Use the short AID when listing atoms trough the CLI</li>
-                <li>Updated to atoms-cli 1.0.1</li>
-                <li>Updated to atoms-core 1.0.2</li>
+                <li>Fix crash closing the About dialog</li>
+                <li>Fix colon being escaped when typing the container image name</li>
+                <li>Updated to atoms-core 1.0.3</li>
+                <li>Fix some typos thanks to @JD-The-65th</li>
+                <li>New icon thanks to @allaeddineomc</li>
+                <li>French translation thanks to @rene-coty</li>
+                <li>Chinese translation thanks to @wsxy162</li>
+                <li>Dutch translation thanks to @flipflop97</li>
             </ul>
           </description>
         </release>
