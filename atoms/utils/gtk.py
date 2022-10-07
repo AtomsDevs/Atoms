@@ -37,3 +37,4 @@ class GtkUtils:
         else:
             entry.remove_css_class("error")
             return True
+            

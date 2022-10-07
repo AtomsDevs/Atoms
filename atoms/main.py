@@ -53,19 +53,27 @@ class AtomsApplication(Adw.Application):
             win = AtomsWindow(application=self)
         win.present()
 
-    def on_about_action(self, widget, *args):
+    def on_about_action(self, *args):
         """Callback for the app.about action."""
-        builder = Gtk.Builder.new_from_resource("/pm/mirko/Atoms/gtk/about-window.ui")
-        about_window = builder.get_object("about_window")
-        about_window.set_transient_for(self.props.active_window)
-        about_window.add_credit_section(
+        about = Adw.AboutWindow(transient_for=self.props.active_window,
+                                application_name='Atoms',
+                                application_icon='pm.mirko.Atoms',
+                                developer_name='Mirko Brombin',
+                                license='gpl-3.0-only',
+                                website='https://github.com/mirkobrombin/Atoms',
+                                issue_url='https://github.com/mirkobrombin/Atoms/issues',
+                                version='0.0.5',
+                                developers=['Mirko Brombin https://github.com/mirkobrombin/'],
+                                artists=['Allaeddine Boulefaat https://github.com/allaeddineomc'],
+                                copyright='© 2022 Mirko Brombin')
+        about.add_credit_section(
             _("Contributors"),
             [
                 "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io/",
                 "axtlos https://axtloss.github.io/"
             ]
         )
-        about_window.add_credit_section(
+        about.add_credit_section(
             _("Third-Party Libraries and Special Thanks"),
             [
                 "PRoot https://github.com/proot-me/PRoot",
@@ -74,7 +82,7 @@ class AtomsApplication(Adw.Application):
                 "servicectl https://github.com/smaknsk/servicectl"
             ]
         )
-        about_window.present()
+        about.present()
 
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""

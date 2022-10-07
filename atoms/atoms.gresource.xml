@@ -12,7 +12,6 @@
     <file>gtk/dashboard.ui</file>
     <file>gtk/detached-window.ui</file>
     <file>gtk/new-atom-window.ui</file>
-    <file>gtk/about-window.ui</file>
     <file>gtk/preferences-window.ui</file>
   </gresource>
   <gresource prefix="/pm/mirko/Atoms/icons/scalable/actions">
