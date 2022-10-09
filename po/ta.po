@@ -1,0 +1,415 @@
+# Tamil Translation for atoms package.
+# Copyright (C) 2022 atoms contributors
+# This file is distributed under the same license as the atoms package.
+# K.B.Dharun Krishna <kbdharunkrishna@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: atoms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-03 17:33+0200\n"
+"PO-Revision-Date: 2022-10-09 19:28+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: data/pm.mirko.Atoms.desktop.in:3 data/pm.mirko.Atoms.appdata.xml.in:6
+msgid "Atoms"
+msgstr "அணுக்கள்"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:7
+msgid "Easily manage Linux Chroot and Containers."
+msgstr "லினக்ஸ் ச்ரூட் மற்றும் கொள்கலன்களை எளிதாக நிர்வகிக்கலாம்."
+
+#: data/pm.mirko.Atoms.appdata.xml.in:8
+msgid "Mirko Brombin"
+msgstr "மிர்கோ ப்ரோம்பின்"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:10
+msgid "No description"
+msgstr "விளக்கம் இல்லை"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:46
+msgid "Set download percentage as numeric"
+msgstr "பதிவிறக்க சதவீதத்தை எண்ணாக அமைக்கவும்"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:47
+msgid "Updated to atoms-core 1.0.1"
+msgstr "atoms-core 1.0.1 க்கு புதுப்பிக்கப்பட்டது"
+
+#: data/pm.mirko.Atoms.gschema.xml:6
+msgid "Toggle update date in list"
+msgstr "பட்டியலில் புதுப்பிப்பு தேதியை நிலைமாற்று"
+
+#: data/pm.mirko.Atoms.gschema.xml:7
+msgid "Toggle the update date in list of atoms."
+msgstr "அணுக்களின் பட்டியலில் புதுப்பித்த தேதியை நிலைமாற்று."
+
+#: data/pm.mirko.Atoms.gschema.xml:18
+msgid "Toggle Distrobox integration"
+msgstr "டிஸ்ட்ரோபாக்ஸ் ஒருங்கிணைப்பை நிலைமாற்று"
+
+#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:104
+msgid "List and handle Distrobox containers as atoms."
+msgstr "டிஸ்ட்ரோபாக்ஸ் கொள்கலன்களை பட்டியலிட்டு அணுக்களாக கையாளவும்."
+
+#: atoms/main.py:62
+msgid "Contributors"
+msgstr "பங்களிப்பாளர்கள்"
+
+#: atoms/main.py:69
+msgid "Third-Party Libraries and Special Thanks"
+msgstr "மூன்றாம் தரப்பு நூலகங்கள் மற்றும் சிறப்பு நன்றிகள்"
+
+#: atoms/views/console.py:67
+msgid "Press the Play button to start the container"
+msgstr "கொள்கலன் தொடங்க விளையாடு பொத்தானை அழுத்தவும்"
+
+#: atoms/views/dashboard.py:116
+msgid "Atom console re-attached."
+msgstr "ஆட்டம் கன்சோல் மீண்டும் இணைக்கப்பட்டது."
+
+#: atoms/views/dashboard.py:128
+msgid "Atom console detached."
+msgstr "ஆட்டம் கன்சோல் பிரிக்கப்பட்டது."
+
+#: atoms/views/dashboard.py:149
+msgid "File manager opened."
+msgstr "கோப்பு மேலாளர் திறக்கப்பட்டது."
+
+#: atoms/views/dashboard.py:163 atoms/views/dashboard.py:167
+#: atoms/widgets/image_entry.py:47 atoms/widgets/image_entry.py:51
+msgid "Confirm"
+msgstr "உறுதிப்படுத்தவும்"
+
+#: atoms/views/dashboard.py:164
+msgid "Are you sure you want to delete this Atom and all files?"
+msgstr "இந்த அணுவையும் எல்லா கோப்புகளையும் நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
+
+#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:50
+#: atoms/windows/preferences_window.py:112
+#: atoms/windows/preferences_window.py:125 atoms/gtk/new-atom-window.ui:18
+#: atoms/gtk/new-atom-window.ui:112
+msgid "Cancel"
+msgstr "ரத்துசெய்"
+
+#: atoms/views/dashboard.py:177
+msgid "Atom renamed successfully."
+msgstr "ஆட்டம் வெற்றிகரமாக மறுபெயரிடப்பட்டது."
+
+#: atoms/views/dashboard.py:182
+#, python-brace-format
+msgid "{0} bound to Atom."
+msgstr "{0} அணுவுடன் பிணைக்கப்பட்டுள்ளது."
+
+#: atoms/views/dashboard.py:184
+#, python-brace-format
+msgid "{0} unbound from Atom."
+msgstr "{0} அணுவிலிருந்து கட்டுப்படாதது."
+
+#: atoms/widgets/image_entry.py:48
+msgid "Are you sure you want to delete this image?"
+msgstr "இந்தப் படத்தை நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
+
+#: atoms/windows/new_atom_window.py:77
+msgid "Downloading Chosen Image…"
+msgstr "தேர்ந்தெடுக்கப்பட்ட படத்தைப் பதிவிறக்குகிறது…"
+
+#: atoms/windows/new_atom_window.py:78
+msgid "Creating new Atom Configuration…"
+msgstr "புதிய அணுக் கட்டமைப்பை உருவாக்குகிறது…"
+
+#: atoms/windows/new_atom_window.py:79
+msgid "Unpacking Chosen Image…"
+msgstr "தேர்ந்தெடுக்கப்பட்ட படத்தைத் திறக்கிறது…"
+
+#: atoms/windows/new_atom_window.py:80
+msgid "Creating new distrobox Container…"
+msgstr "புதிய டிஸ்ட்ரோபாக்ஸ் கொள்கலனை உருவாக்குகிறது…"
+
+#: atoms/windows/new_atom_window.py:81
+msgid "Finalizing…"
+msgstr "இறுதி செய்கிறது…"
+
+#: atoms/windows/preferences_window.py:50
+msgid ""
+"Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed "
+"in your system."
+msgstr ""
+"அணுக்களுக்கு org.freedesktopக்கான அணுகல் இல்லை.Flatpak அல்லது distrobox உங்கள் "
+"கணினியில் நிறுவப்படவில்லை."
+
+#: atoms/windows/preferences_window.py:83
+msgid "Atoms path reset to default."
+msgstr "அணுக்களின் பாதை இயல்புநிலைக்கு மீட்டமைக்கப்பட்டது."
+
+#: atoms/windows/preferences_window.py:89
+msgid "Images path reset to default."
+msgstr "படங்களின் பாதை இயல்புநிலைக்கு மீட்டமைக்கப்பட்டது."
+
+#: atoms/windows/preferences_window.py:110
+msgid "Choose New Atoms Location"
+msgstr "புதிய அணுக்களின் இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
+
+#: atoms/windows/preferences_window.py:112
+#: atoms/windows/preferences_window.py:125
+msgid "Select"
+msgstr "தேர்ந்தெடு"
+
+#: atoms/windows/preferences_window.py:123
+msgid "Choose New Images Location"
+msgstr "புதிய படங்களின் இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
+
+#: atoms/gtk/about-window.ui:10
+msgid "Easily manage Linux chroot(s) with Atoms"
+msgstr "அணுக்கள் மூலம் லினக்ஸ் ச்ரூட்(களை) எளிதாக நிர்வகிக்கலாம்"
+
+#: atoms/gtk/dashboard.ui:26
+msgid "Start Container"
+msgstr "கொள்கலனைத் தொடங்கவும்"
+
+#: atoms/gtk/dashboard.ui:33
+msgid "Detach Console"
+msgstr "கன்சோலைப் பிரிக்கவும்"
+
+#: atoms/gtk/dashboard.ui:44
+msgid "Dashboard"
+msgstr "டாஷ்போர்டு"
+
+#: atoms/gtk/dashboard.ui:63
+msgid "Atom Name"
+msgstr "அணுவின் பெயர்"
+
+#: atoms/gtk/dashboard.ui:72
+msgid "Distribution Name"
+msgstr "விநியோகத்தின் பெயர்"
+
+#: atoms/gtk/dashboard.ui:84
+msgid "Utilities"
+msgstr "பயன்பாடுகள்"
+
+#: atoms/gtk/dashboard.ui:87
+msgid "Browse Files"
+msgstr "கோப்புகளை உலாவவும்"
+
+#: atoms/gtk/dashboard.ui:100
+msgid "Settings"
+msgstr "அமைப்புகள்"
+
+#: atoms/gtk/dashboard.ui:103
+msgid "Details"
+msgstr "விவரங்கள்"
+
+#: atoms/gtk/dashboard.ui:106 atoms/gtk/new-atom-window.ui:45
+msgid "Name"
+msgstr "பெயர்"
+
+#: atoms/gtk/dashboard.ui:114
+msgid "Bindings"
+msgstr "பிணைப்புகள்"
+
+#: atoms/gtk/dashboard.ui:115
+msgid "Choose which mount points to expose."
+msgstr "எந்த மவுண்ட் பாயிண்ட்களை வெளிப்படுத்த வேண்டும் என்பதை தேர்வு செய்யவும்."
+
+#: atoms/gtk/dashboard.ui:118
+msgid "Host Themes"
+msgstr "ஹோஸ்ட் தீம்கள்"
+
+#: atoms/gtk/dashboard.ui:130
+msgid "Host Icons"
+msgstr "ஹோஸ்ட் சின்னங்கள்"
+
+#: atoms/gtk/dashboard.ui:142
+msgid "Host Fonts"
+msgstr "ஹோஸ்ட் எழுத்துருக்கள்"
+
+#: atoms/gtk/dashboard.ui:156
+msgid "Destructive Actions"
+msgstr "அழிவுச் செயல்கள்"
+
+#: atoms/gtk/dashboard.ui:159
+msgid "Destroy Atom"
+msgstr "அணுவை அழிக்கவும்"
+
+#: atoms/gtk/dashboard.ui:160
+msgid "Delete the configuration and all files"
+msgstr "உள்ளமைவு மற்றும் அனைத்து கோப்புகளையும் நீக்கவும்"
+
+#: atoms/gtk/dashboard.ui:180
+msgid "Console"
+msgstr "கன்சோல்"
+
+#: atoms/gtk/entry-creation-step.ui:6
+msgid "Atom Configuration Generated."
+msgstr "அணு கட்டமைப்பு உருவாக்கப்பட்டது."
+
+#: atoms/gtk/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "பொது"
+
+#: atoms/gtk/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "குறுக்குவழிகளைக் காட்டு"
+
+#: atoms/gtk/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "வெளியேறு"
+
+#: atoms/gtk/new-atom-window.ui:7 atoms/gtk/window.ui:25
+msgid "New Atom"
+msgstr "புதிய அணு"
+
+#: atoms/gtk/new-atom-window.ui:23
+msgid "Create"
+msgstr "உருவாக்கு"
+
+#: atoms/gtk/new-atom-window.ui:42
+msgid "Atom Information"
+msgstr "அணு தகவல்"
+
+#: atoms/gtk/new-atom-window.ui:50
+msgid "Atom Type"
+msgstr "அணு வகை"
+
+#: atoms/gtk/new-atom-window.ui:60
+msgid "Atom Chroot Distribution"
+msgstr "அணு ச்ரூட் விநியோகம்"
+
+#: atoms/gtk/new-atom-window.ui:63
+msgid "Distribution"
+msgstr "விநியோகம்"
+
+#: atoms/gtk/new-atom-window.ui:71
+msgid "Release"
+msgstr "விடுதலை"
+
+#: atoms/gtk/new-atom-window.ui:81
+msgid "Distrobox Container Image"
+msgstr "டிஸ்ட்ரோபாக்ஸ் கொள்கலன் படம்"
+
+#: atoms/gtk/new-atom-window.ui:85
+msgid "Image Name"
+msgstr "படத்தின் பெயர்"
+
+#: atoms/gtk/new-atom-window.ui:103
+msgid "Creating an Atom…"
+msgstr "ஒரு அணுவை உருவாக்குகிறது…"
+
+#: atoms/gtk/new-atom-window.ui:104
+msgid "Take a break, it may take a while."
+msgstr "ஓய்வு எடுத்துக் கொள்ளுங்கள், சிறிது நேரம் ஆகலாம்."
+
+#: atoms/gtk/new-atom-window.ui:131
+msgid "Atom Created"
+msgstr "அணு உருவாக்கப்பட்டது"
+
+#: atoms/gtk/new-atom-window.ui:135
+msgid "Close"
+msgstr "மூடுங்கள்"
+
+#: atoms/gtk/new-atom-window.ui:153
+msgid "An Error Occurred"
+msgstr "ஒரு பிழை ஏற்பட்டது"
+
+#: atoms/gtk/preferences-window.ui:6
+msgid "Preferences"
+msgstr "விருப்பங்கள்"
+
+#: atoms/gtk/preferences-window.ui:12
+msgid "General"
+msgstr "பொது"
+
+#: atoms/gtk/preferences-window.ui:15
+msgid "Appearance"
+msgstr "தோற்றம்"
+
+#: atoms/gtk/preferences-window.ui:18
+msgid "Show Update Date"
+msgstr "புதுப்பிப்பு தேதியைக் காட்டு"
+
+#: atoms/gtk/preferences-window.ui:19
+msgid "Whether to show the update date in the atoms list."
+msgstr "அணுக்கள் பட்டியலில் புதுப்பித்த தேதியைக் காட்ட வேண்டுமா."
+
+#: atoms/gtk/preferences-window.ui:35
+msgid "Custom Atoms Path"
+msgstr "தனிப்பயன் அணுக்கள் பாதை"
+
+#: atoms/gtk/preferences-window.ui:36
+msgid ""
+"Choose where to store the new atoms (this will not move the existing ones)."
+msgstr ""
+"புதிய அணுக்களை எங்கு சேமிப்பது என்பதைத் தேர்வுசெய்யவும் (இது ஏற்கனவே உள்ள அணுக்களை "
+"நகர்த்தாது)."
+
+#: atoms/gtk/preferences-window.ui:40 atoms/gtk/preferences-window.ui:63
+msgid "Reset to default"
+msgstr "இயல்புநிலைக்கு மீட்டமைக்கவும்"
+
+#: atoms/gtk/preferences-window.ui:58
+msgid "Custom Images Path"
+msgstr "தனிப்பயன் படங்கள் பாதை"
+
+#: atoms/gtk/preferences-window.ui:59
+msgid ""
+"Choose where to store the new images (this will not move the existing ones)."
+msgstr ""
+"புதிய படங்களை எங்கு சேமிப்பது என்பதைத் தேர்வுசெய்யவும் (இது ஏற்கனவே உள்ள படங்களை "
+"நகர்த்தாது)."
+
+#: atoms/gtk/preferences-window.ui:86
+msgid "Images"
+msgstr "படங்கள்"
+
+#: atoms/gtk/preferences-window.ui:89
+msgid "Local Images"
+msgstr "உள்ளூர் படங்கள்"
+
+#: atoms/gtk/preferences-window.ui:97
+msgid "Integrations"
+msgstr "ஒருங்கிணைப்புகள்"
+
+#: atoms/gtk/preferences-window.ui:100
+msgid "Available Integrations"
+msgstr "கிடைக்கக்கூடிய ஒருங்கிணைப்புகள்"
+
+#: atoms/gtk/preferences-window.ui:103
+msgid "Distrobox"
+msgstr "டிஸ்ட்ரோபாக்ஸ்"
+
+#: atoms/gtk/status-detached-console.ui:9
+msgid "Console is Detached"
+msgstr "கன்சோல் பிரிக்கப்பட்டது"
+
+#: atoms/gtk/status-detached-console.ui:10
+msgid "Use the dedicate button in the header bar to attach it again."
+msgstr "அதை மீண்டும் இணைக்க, தலைப்புப் பட்டியில் உள்ள அர்ப்பணிப்பு பொத்தானைப் பயன்படுத்தவும்."
+
+#: atoms/gtk/status-no-atoms.ui:10
+msgid "Start by creating your first atom."
+msgstr "உங்கள் முதல் அணுவை உருவாக்குவதன் மூலம் தொடங்கவும்."
+
+#: atoms/gtk/status-no-atoms.ui:13
+msgid "Create new atom"
+msgstr "புதிய அணுவை உருவாக்குங்கள்"
+
+#: atoms/gtk/window.ui:52
+msgid "_Preferences"
+msgstr "_விருப்பங்கள்"
+
+#: atoms/gtk/window.ui:56
+msgid "_Keyboard Shortcuts"
+msgstr "_விசைப்பலகை குறுக்குவழிகள்"
+
+#: atoms/gtk/window.ui:60
+msgid "_About Atoms"
+msgstr "_அணுக்கள் பற்றி"
