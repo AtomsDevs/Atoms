@@ -53,4 +53,5 @@ class ImageEntry(Adw.ActionRow):
         dialog.add_response("cancel", _("Cancel"))
         dialog.add_response("ok", _("Confirm"))
         dialog.connect("response", handle_response)
+        dialog.set_response_appearance('ok', Adw.ResponseAppearance.DESTRUCTIVE)
         dialog.present()
