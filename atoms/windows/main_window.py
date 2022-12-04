@@ -44,6 +44,10 @@ class AtomsWindow(Adw.ApplicationWindow):
             client_bridge=GTKClientBridge()
         )
         self.__build_ui()
+
+        new_action = Gio.SimpleAction(name="new_atom")
+        new_action.connect("activate", self.on_btn_new_clicked)
+        self.add_action(new_action)
     
     def __build_ui(self):
         self.atoms_list = AtomsList(self)
@@ -69,7 +73,7 @@ class AtomsWindow(Adw.ApplicationWindow):
     def show_atoms_list(self):
         self.main_leaflet.set_visible_child(self.box_main)
 
-    def on_btn_new_clicked(self, widget):
+    def on_btn_new_clicked(self, widget, action, _):
         new_atom_window = AtomsNewAtomWindow(self)
         new_atom_window.present()
     
