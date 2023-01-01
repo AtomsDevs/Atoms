@@ -137,7 +137,6 @@ modules:
       - pip3 install --prefix /app --no-deps orjson-*.whl
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/d6/79/174c198de7beb2f5ce06c41ecafb1aafc0714bb61a051ad9dfbc2fed76e8/orjson-3.7.8-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
         url: https://files.pythonhosted.org/packages/02/1c/8234d74a415bcc22f43dcbc636b6ba31df295c449e3bdc294f7616c43c49/orjson-3.8.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
         sha256: 65ea3336c2bda31bc938785b84283118dec52eb90a2946b140054873946f60a4
   - name: python-requests
