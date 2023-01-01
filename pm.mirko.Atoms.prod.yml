@@ -192,4 +192,4 @@ modules:
   sources:
     - type: git
       url: https://github.com/AtomsDevs/Atoms.git
-      commit: e2d575e923f9f6b0c16998d35d6afe6880c8de10
+      commit: decbb33cfa504ab77c15d79a535809ef57782b03
