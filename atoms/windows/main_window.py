@@ -73,7 +73,7 @@ class AtomsWindow(Adw.ApplicationWindow):
     def show_atoms_list(self):
         self.main_leaflet.set_visible_child(self.box_main)
 
-    def on_btn_new_clicked(self, widget, action, _):
+    def on_btn_new_clicked(self, widget, action, *args):
         new_atom_window = AtomsNewAtomWindow(self)
         new_atom_window.present()
     
