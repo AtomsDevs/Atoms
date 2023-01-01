@@ -115,7 +115,7 @@ modules:
   sources:
     - type: git
       url: https://github.com/AtomsDevs/atoms-core.git
-      commit: 8d1c5ffbb5dbc8f771b5370501846de5fd167828
+      commit: c3c3d13fabd5438bf3a0198a9810231a5cd0da28
   modules:
   - name: orjson
     buildsystem: simple
