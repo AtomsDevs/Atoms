@@ -1,0 +1,416 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the atoms package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Antonio Hauren <antoniohauren@protonmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: atoms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-03 17:33+0200\n"
+"PO-Revision-Date: 2022-10-22 17:14-0300\n"
+"Last-Translator: Antonio Hauren <antoniohauren@protonmail.com>\n"
+"Language-Team: Brazilian Portuguese <antoniohauren@protonmail.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 42.0\n"
+
+#: data/pm.mirko.Atoms.desktop.in:3 data/pm.mirko.Atoms.appdata.xml.in:6
+msgid "Atoms"
+msgstr "Átomos"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:7
+msgid "Easily manage Linux Chroot and Containers."
+msgstr "Gerencie facilmente containers linux"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:8
+msgid "Mirko Brombin"
+msgstr "Mirko Brombin"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:10
+msgid "No description"
+msgstr "Sem descrição"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:46
+msgid "Set download percentage as numeric"
+msgstr "Defina a porcentagem de download como numérica"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:47
+msgid "Updated to atoms-core 1.0.1"
+msgstr "Atualizado para atoms-core 1.0.1"
+
+#: data/pm.mirko.Atoms.gschema.xml:6
+msgid "Toggle update date in list"
+msgstr "Alternar data de atualização na lista"
+
+#: data/pm.mirko.Atoms.gschema.xml:7
+msgid "Toggle the update date in list of atoms."
+msgstr "Alternar a data de atualização na lista de átomos"
+
+#: data/pm.mirko.Atoms.gschema.xml:18
+msgid "Toggle Distrobox integration"
+msgstr "Alternar integração com Distrobox"
+
+#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:104
+msgid "List and handle Distrobox containers as atoms."
+msgstr "Listar e gerenciar containers do Distrobox como átomos"
+
+#: atoms/main.py:62
+msgid "Contributors"
+msgstr "Contribuidores"
+
+#: atoms/main.py:69
+msgid "Third-Party Libraries and Special Thanks"
+msgstr "Bibliotecas de terceiros e agradecimentos especiais"
+
+#: atoms/views/console.py:67
+msgid "Press the Play button to start the container"
+msgstr "Precione o botão de Play para iniciar o container"
+
+#: atoms/views/dashboard.py:116
+msgid "Atom console re-attached."
+msgstr "Console do átomo reconectado."
+
+#: atoms/views/dashboard.py:128
+msgid "Atom console detached."
+msgstr "Console do átomo desconectado."
+
+#: atoms/views/dashboard.py:149
+msgid "File manager opened."
+msgstr "Gerenciador de arquivos aberto."
+
+#: atoms/views/dashboard.py:163 atoms/views/dashboard.py:167
+#: atoms/widgets/image_entry.py:47 atoms/widgets/image_entry.py:51
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: atoms/views/dashboard.py:164
+msgid "Are you sure you want to delete this Atom and all files?"
+msgstr ""
+"Você tem certeza que deseja apagar esse Átomo e todos os seus arquivos?"
+
+#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:50
+#: atoms/windows/preferences_window.py:112
+#: atoms/windows/preferences_window.py:125 atoms/gtk/new-atom-window.ui:18
+#: atoms/gtk/new-atom-window.ui:112
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: atoms/views/dashboard.py:177
+msgid "Atom renamed successfully."
+msgstr "Átomo renomeado com sucesso."
+
+#: atoms/views/dashboard.py:182
+#, python-brace-format
+msgid "{0} bound to Atom."
+msgstr "{0} ligado ao Átomo"
+
+#: atoms/views/dashboard.py:184
+#, python-brace-format
+msgid "{0} unbound from Atom."
+msgstr "{0} desligado ao Átomo"
+
+#: atoms/widgets/image_entry.py:48
+msgid "Are you sure you want to delete this image?"
+msgstr "Você tem certeza que deseja apagar essa imagem?"
+
+#: atoms/windows/new_atom_window.py:77
+msgid "Downloading Chosen Image…"
+msgstr "Baixando a imagem escolhida…"
+
+#: atoms/windows/new_atom_window.py:78
+msgid "Creating new Atom Configuration…"
+msgstr "Criando nova configuração para o Átomo…"
+
+#: atoms/windows/new_atom_window.py:79
+msgid "Unpacking Chosen Image…"
+msgstr "Descompactando imagem escolhida…"
+
+#: atoms/windows/new_atom_window.py:80
+msgid "Creating new distrobox Container…"
+msgstr "Criando novo container distrobox…"
+
+#: atoms/windows/new_atom_window.py:81
+msgid "Finalizing…"
+msgstr "Finalizando…"
+
+#: atoms/windows/preferences_window.py:50
+msgid ""
+"Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed "
+"in your system."
+msgstr ""
+"Átomos não tem acesso ao org.freedesktop.Flatpak ou distrobox não está "
+"instalado em seu sistema."
+
+#: atoms/windows/preferences_window.py:83
+msgid "Atoms path reset to default."
+msgstr "Caminho dos Átomos redefinido para o padrão."
+
+#: atoms/windows/preferences_window.py:89
+msgid "Images path reset to default."
+msgstr "Caminho das imagens redefinido para o padrão."
+
+#: atoms/windows/preferences_window.py:110
+msgid "Choose New Atoms Location"
+msgstr "Escolha a localização do novo Átomo"
+
+#: atoms/windows/preferences_window.py:112
+#: atoms/windows/preferences_window.py:125
+msgid "Select"
+msgstr "Selecionar"
+
+#: atoms/windows/preferences_window.py:123
+msgid "Choose New Images Location"
+msgstr "Escolha a localização das novas imagens"
+
+#: atoms/gtk/about-window.ui:10
+msgid "Easily manage Linux chroot(s) with Atoms"
+msgstr "Gerencie facilmente chroot(s) linux com Átomos"
+
+#: atoms/gtk/dashboard.ui:26
+msgid "Start Container"
+msgstr "Iniciar container"
+
+#: atoms/gtk/dashboard.ui:33
+msgid "Detach Console"
+msgstr "Desconectar console"
+
+#: atoms/gtk/dashboard.ui:44
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: atoms/gtk/dashboard.ui:63
+msgid "Atom Name"
+msgstr "Novo do Átomo"
+
+#: atoms/gtk/dashboard.ui:72
+msgid "Distribution Name"
+msgstr "Nova da destribuição"
+
+#: atoms/gtk/dashboard.ui:84
+msgid "Utilities"
+msgstr "Utilitários"
+
+#: atoms/gtk/dashboard.ui:87
+msgid "Browse Files"
+msgstr "Procurar arquivos"
+
+#: atoms/gtk/dashboard.ui:100
+msgid "Settings"
+msgstr "Configurações"
+
+#: atoms/gtk/dashboard.ui:103
+msgid "Details"
+msgstr "Detalhes"
+
+#: atoms/gtk/dashboard.ui:106 atoms/gtk/new-atom-window.ui:45
+msgid "Name"
+msgstr "Nome"
+
+#: atoms/gtk/dashboard.ui:114
+msgid "Bindings"
+msgstr "Atalhos"
+
+#: atoms/gtk/dashboard.ui:115
+msgid "Choose which mount points to expose."
+msgstr "Escolha quais pontos de montagem devem ser expostos."
+
+#: atoms/gtk/dashboard.ui:118
+msgid "Host Themes"
+msgstr "Temas do Host"
+
+#: atoms/gtk/dashboard.ui:130
+msgid "Host Icons"
+msgstr "Icones do Host"
+
+#: atoms/gtk/dashboard.ui:142
+msgid "Host Fonts"
+msgstr "Fontes do Host"
+
+#: atoms/gtk/dashboard.ui:156
+msgid "Destructive Actions"
+msgstr "Ações destrutivas"
+
+#: atoms/gtk/dashboard.ui:159
+msgid "Destroy Atom"
+msgstr "Apagar Átomo"
+
+#: atoms/gtk/dashboard.ui:160
+msgid "Delete the configuration and all files"
+msgstr "Apagar configuração e todos os arquivos"
+
+#: atoms/gtk/dashboard.ui:180
+msgid "Console"
+msgstr "Console"
+
+#: atoms/gtk/entry-creation-step.ui:6
+msgid "Atom Configuration Generated."
+msgstr "Configuração do Átomo gerada."
+
+#: atoms/gtk/help-overlay.ui:11
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Geral"
+
+#: atoms/gtk/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostrar atalhos"
+
+#: atoms/gtk/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Sair"
+
+#: atoms/gtk/new-atom-window.ui:7 atoms/gtk/window.ui:25
+msgid "New Atom"
+msgstr "Novo Átomo"
+
+#: atoms/gtk/new-atom-window.ui:23
+msgid "Create"
+msgstr "Criar"
+
+#: atoms/gtk/new-atom-window.ui:42
+msgid "Atom Information"
+msgstr "Informações do Átomo"
+
+#: atoms/gtk/new-atom-window.ui:50
+msgid "Atom Type"
+msgstr "Tipo do Átomo"
+
+# No idea how can i translate this
+#: atoms/gtk/new-atom-window.ui:60
+msgid "Atom Chroot Distribution"
+msgstr ""
+
+#: atoms/gtk/new-atom-window.ui:63
+msgid "Distribution"
+msgstr "Distribuição"
+
+#: atoms/gtk/new-atom-window.ui:71
+msgid "Release"
+msgstr "Lançamento"
+
+#: atoms/gtk/new-atom-window.ui:81
+msgid "Distrobox Container Image"
+msgstr "Imagem do container Distrobox"
+
+#: atoms/gtk/new-atom-window.ui:85
+msgid "Image Name"
+msgstr "Nome da imagem"
+
+#: atoms/gtk/new-atom-window.ui:103
+msgid "Creating an Atom…"
+msgstr "Criando um Átomo…"
+
+#: atoms/gtk/new-atom-window.ui:104
+msgid "Take a break, it may take a while."
+msgstr "Faça um café, isso pode demorar um pouco."
+
+#: atoms/gtk/new-atom-window.ui:131
+msgid "Atom Created"
+msgstr "Átomo criado"
+
+#: atoms/gtk/new-atom-window.ui:135
+msgid "Close"
+msgstr "Fechar"
+
+#: atoms/gtk/new-atom-window.ui:153
+msgid "An Error Occurred"
+msgstr "Um erro ocorreu"
+
+#: atoms/gtk/preferences-window.ui:6
+msgid "Preferences"
+msgstr "Preferências"
+
+#: atoms/gtk/preferences-window.ui:12
+msgid "General"
+msgstr "Geral"
+
+#: atoms/gtk/preferences-window.ui:15
+msgid "Appearance"
+msgstr "Aparência"
+
+#: atoms/gtk/preferences-window.ui:18
+msgid "Show Update Date"
+msgstr "Mostrar data de atualização"
+
+#: atoms/gtk/preferences-window.ui:19
+msgid "Whether to show the update date in the atoms list."
+msgstr "Deve mostrar a data de atualização na lista de átomos."
+
+#: atoms/gtk/preferences-window.ui:35
+msgid "Custom Atoms Path"
+msgstr "Caminho personalizado para os átomos"
+
+#: atoms/gtk/preferences-window.ui:36
+msgid ""
+"Choose where to store the new atoms (this will not move the existing ones)."
+msgstr ""
+"Escolher onde armazenar os novos átomos. (isso não moverá os existentes)."
+
+#: atoms/gtk/preferences-window.ui:40 atoms/gtk/preferences-window.ui:63
+msgid "Reset to default"
+msgstr "Restaurar para o padrão"
+
+#: atoms/gtk/preferences-window.ui:58
+msgid "Custom Images Path"
+msgstr "Caminho personalizado para as imagens"
+
+#: atoms/gtk/preferences-window.ui:59
+msgid ""
+"Choose where to store the new images (this will not move the existing ones)."
+msgstr ""
+"Escolher onde armazenar as novas imagens. (isso não moverá as existentes)."
+
+#: atoms/gtk/preferences-window.ui:86
+msgid "Images"
+msgstr "Imagens"
+
+#: atoms/gtk/preferences-window.ui:89
+msgid "Local Images"
+msgstr "Imagens locais"
+
+#: atoms/gtk/preferences-window.ui:97
+msgid "Integrations"
+msgstr "Integrações"
+
+#: atoms/gtk/preferences-window.ui:100
+msgid "Available Integrations"
+msgstr "Integrações disponíveis"
+
+#: atoms/gtk/preferences-window.ui:103
+msgid "Distrobox"
+msgstr "Distrobox"
+
+#: atoms/gtk/status-detached-console.ui:9
+msgid "Console is Detached"
+msgstr "Console desconectado"
+
+#: atoms/gtk/status-detached-console.ui:10
+msgid "Use the dedicate button in the header bar to attach it again."
+msgstr "Use o botão dedicado na barra superior para reconectá-lo"
+
+#: atoms/gtk/status-no-atoms.ui:10
+msgid "Start by creating your first atom."
+msgstr "Comece criando seu primeiro átomo"
+
+#: atoms/gtk/status-no-atoms.ui:13
+msgid "Create new atom"
+msgstr "Criar novo átomo"
+
+#: atoms/gtk/window.ui:52
+msgid "_Preferences"
+msgstr "_Preferências"
+
+#: atoms/gtk/window.ui:56
+msgid "_Keyboard Shortcuts"
+msgstr "_Atalhos de teclado"
+
+#: atoms/gtk/window.ui:60
+msgid "_About Atoms"
+msgstr "_Sobre Átomos"
