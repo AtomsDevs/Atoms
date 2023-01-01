@@ -15,6 +15,12 @@
                         <property name="action-name">win.show-help-overlay</property>
                      </object>
                   </child>
+                 <child>
+                     <object class="GtkShortcutsShortcut">
+                        <property name="title" context="shortcut window" translatable="yes">New Atom</property>
+                        <property name="action-name">win.new_atom</property>
+                     </object>
+                  </child>
                   <child>
                      <object class="GtkShortcutsShortcut">
                         <property name="title" context="shortcut window" translatable="yes">Quit</property>
