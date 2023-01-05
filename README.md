@@ -49,7 +49,7 @@ can be enabled using the `SHOW_EXPERIMENTAL_IMAGES=1` environment variable.
 - `org.gnome.Platform`
 - `org.gnome.Sdk`
 - `org.gnome.Platform.Compat.i386`
-- `org.freedesktop.Platform.GL32`
+- `org.freedesktop.Platform.GL32.default`
 - `org.flatpak.Builder`
 
 
