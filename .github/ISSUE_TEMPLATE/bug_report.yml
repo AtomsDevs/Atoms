@@ -35,7 +35,7 @@ body:
     id: package
     attributes:
       label: Package
-      description: How did you install Bottles?
+      description: How did you install Atoms?
       options:
         - Flatpak from Flathub
         - From source
