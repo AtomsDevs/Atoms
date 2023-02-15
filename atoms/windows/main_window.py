@@ -67,13 +67,12 @@ class AtomsWindow(Adw.ApplicationWindow):
         if BUILD_TYPE == "devel":
             self.add_css_class('devel')
             
-        self.btn_new.connect('clicked', self.on_btn_new_clicked)
         self.__loaded = True
     
     def show_atoms_list(self):
         self.main_leaflet.set_visible_child(self.box_main)
 
-    def on_btn_new_clicked(self, widget, action, *args):
+    def on_btn_new_clicked(self, widget, *args):
         new_atom_window = AtomsNewAtomWindow(self)
         new_atom_window.present()
     
