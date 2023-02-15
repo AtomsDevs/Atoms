@@ -45,6 +45,8 @@
             <ul>
                 <li>Updated translations</li>
                 <li>Fix Create new atom button</li>
+                <li>Apx distrobox support</li>
+                <li>Updated to atoms-core 1.1.1</li>
             </ul>
           </description>
         </release>
