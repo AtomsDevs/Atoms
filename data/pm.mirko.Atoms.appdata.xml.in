@@ -4,7 +4,7 @@
 	<metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0-only</project_license>
     <name translatable="no">Atoms</name>
-    <summary>Easily manage Linux Chroot and Containers.</summary>
+    <summary>Manage Chroot and Containers.</summary>
     <developer_name translatable="no">Mirko Brombin</developer_name>
 	<description>
 	  <p>No description</p>
