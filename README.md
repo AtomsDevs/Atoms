@@ -63,5 +63,9 @@ flatpak run pm.mirko.Atoms
 To enable the distrobox integration, you need to give Atoms the Flatpak permission
 to talk to `org.freedesktop.Flatpak`.
 
+### Install Source Code Pro font
+Depending on your host distro, you may need to install the [Google Source Code Pro font](https://fonts.google.com/specimen/Source+Code+Pro).
+Consult your distro documentation for more details.
+
 ### PROOT_NO_SECCOMP
 To enable the `PROOT_NO_SECCOMP` option for old kernels, set the `ATOMS_NO_SECCOMP` env var to `1`.
