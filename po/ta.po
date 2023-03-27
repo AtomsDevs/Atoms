@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: atoms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-27 14:46+0530\n"
-"PO-Revision-Date: 2023-03-27 14:57+0530\n"
+"PO-Revision-Date: 2023-03-27 19:11+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ta\n"
@@ -64,7 +64,7 @@ msgstr "டிஸ்ட்ரோபாக்ஸ் கொள்கலன்க�
 
 #: atoms/main.py:70
 msgid "translator_credits"
-msgstr "\"K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\""
+msgstr "K.B.Dharun Krishna <kbdharunkrishna@gmail.com>"
 
 #: atoms/main.py:73
 msgid "Contributors"
@@ -99,9 +99,9 @@ msgstr "உறுதிப்படுத்தவும்"
 msgid "Are you sure you want to delete this Atom and all files?"
 msgstr "இந்த அணுவையும் எல்லா கோப்புகளையும் நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
 
-#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:53
-#: atoms/windows/preferences_window.py:117 atoms/windows/preferences_window.py:130
-#: atoms/gtk/new-atom-window.ui:18 atoms/gtk/new-atom-window.ui:112
+#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:53 atoms/windows/preferences_window.py:117
+#: atoms/windows/preferences_window.py:130 atoms/gtk/new-atom-window.ui:18
+#: atoms/gtk/new-atom-window.ui:112
 msgid "Cancel"
 msgstr "ரத்துசெய்"
 
@@ -144,11 +144,8 @@ msgid "Finalizing…"
 msgstr "இறுதி செய்கிறது…"
 
 #: atoms/windows/preferences_window.py:50
-msgid ""
-"Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed in your system."
-msgstr ""
-"அணுக்களுக்கு org.freedesktopக்கான அணுகல் இல்லை.Flatpak அல்லது distrobox உங்கள் கணினியில் "
-"நிறுவப்படவில்லை."
+msgid "Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed in your system."
+msgstr "அணுக்களுக்கு org.freedesktopக்கான அணுகல் இல்லை.Flatpak அல்லது distrobox உங்கள் கணினியில் நிறுவப்படவில்லை."
 
 #: atoms/windows/preferences_window.py:88
 msgid "Atoms path reset to default."
