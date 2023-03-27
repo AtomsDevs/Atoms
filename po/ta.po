@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atoms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-03 17:33+0200\n"
-"PO-Revision-Date: 2022-10-09 19:28+0530\n"
+"POT-Creation-Date: 2023-03-27 14:46+0530\n"
+"PO-Revision-Date: 2023-03-27 14:57+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ta\n"
@@ -16,31 +16,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
-#: data/pm.mirko.Atoms.desktop.in:3 data/pm.mirko.Atoms.appdata.xml.in:6
+#: data/pm.mirko.Atoms.desktop.in:3
 msgid "Atoms"
 msgstr "அணுக்கள்"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:7
-msgid "Easily manage Linux Chroot and Containers."
-msgstr "லினக்ஸ் ச்ரூட் மற்றும் கொள்கலன்களை எளிதாக நிர்வகிக்கலாம்."
-
-#: data/pm.mirko.Atoms.appdata.xml.in:8
-msgid "Mirko Brombin"
-msgstr "மிர்கோ ப்ரோம்பின்"
+msgid "Manage Chroot and Containers."
+msgstr "ச்ரூட் மற்றும் கொள்கலன்களை எளிதாக நிர்வகிக்கலாம்."
 
 #: data/pm.mirko.Atoms.appdata.xml.in:10
 msgid "No description"
 msgstr "விளக்கம் இல்லை"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:46
-msgid "Set download percentage as numeric"
-msgstr "பதிவிறக்க சதவீதத்தை எண்ணாக அமைக்கவும்"
+msgid "Updated translations"
+msgstr "புதுப்பிக்கப்பட்ட மொழிபெயர்ப்புகள்"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:47
-msgid "Updated to atoms-core 1.0.1"
-msgstr "atoms-core 1.0.1 க்கு புதுப்பிக்கப்பட்டது"
+msgid "Fix Create new atom button"
+msgstr "புதிய அணுவை உருவாக்கும் பொத்தான் சரி செய்யப்பட்டது"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:48
+msgid "Apx distrobox support"
+msgstr "Apx distrobox ஆதரவு"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:49
+msgid "Updated to atoms-core 1.1.1"
+msgstr "atoms-core 1.1.1 க்கு புதுப்பிக்கப்பட்டது"
 
 #: data/pm.mirko.Atoms.gschema.xml:6
 msgid "Toggle update date in list"
@@ -54,15 +58,19 @@ msgstr "அணுக்களின் பட்டியலில் புத�
 msgid "Toggle Distrobox integration"
 msgstr "டிஸ்ட்ரோபாக்ஸ் ஒருங்கிணைப்பை நிலைமாற்று"
 
-#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:104
+#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:99
 msgid "List and handle Distrobox containers as atoms."
 msgstr "டிஸ்ட்ரோபாக்ஸ் கொள்கலன்களை பட்டியலிட்டு அணுக்களாக கையாளவும்."
 
-#: atoms/main.py:62
+#: atoms/main.py:70
+msgid "translator_credits"
+msgstr "\"K.B.Dharun Krishna <kbdharunkrishna@gmail.com>\""
+
+#: atoms/main.py:73
 msgid "Contributors"
 msgstr "பங்களிப்பாளர்கள்"
 
-#: atoms/main.py:69
+#: atoms/main.py:80
 msgid "Third-Party Libraries and Special Thanks"
 msgstr "மூன்றாம் தரப்பு நூலகங்கள் மற்றும் சிறப்பு நன்றிகள்"
 
@@ -82,8 +90,8 @@ msgstr "ஆட்டம் கன்சோல் பிரிக்கப்ப�
 msgid "File manager opened."
 msgstr "கோப்பு மேலாளர் திறக்கப்பட்டது."
 
-#: atoms/views/dashboard.py:163 atoms/views/dashboard.py:167
-#: atoms/widgets/image_entry.py:47 atoms/widgets/image_entry.py:51
+#: atoms/views/dashboard.py:163 atoms/views/dashboard.py:167 atoms/widgets/image_entry.py:50
+#: atoms/widgets/image_entry.py:54
 msgid "Confirm"
 msgstr "உறுதிப்படுத்தவும்"
 
@@ -91,28 +99,27 @@ msgstr "உறுதிப்படுத்தவும்"
 msgid "Are you sure you want to delete this Atom and all files?"
 msgstr "இந்த அணுவையும் எல்லா கோப்புகளையும் நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
 
-#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:50
-#: atoms/windows/preferences_window.py:112
-#: atoms/windows/preferences_window.py:125 atoms/gtk/new-atom-window.ui:18
-#: atoms/gtk/new-atom-window.ui:112
+#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:53
+#: atoms/windows/preferences_window.py:117 atoms/windows/preferences_window.py:130
+#: atoms/gtk/new-atom-window.ui:18 atoms/gtk/new-atom-window.ui:112
 msgid "Cancel"
 msgstr "ரத்துசெய்"
 
-#: atoms/views/dashboard.py:177
+#: atoms/views/dashboard.py:178
 msgid "Atom renamed successfully."
 msgstr "ஆட்டம் வெற்றிகரமாக மறுபெயரிடப்பட்டது."
 
-#: atoms/views/dashboard.py:182
+#: atoms/views/dashboard.py:183
 #, python-brace-format
 msgid "{0} bound to Atom."
 msgstr "{0} அணுவுடன் பிணைக்கப்பட்டுள்ளது."
 
-#: atoms/views/dashboard.py:184
+#: atoms/views/dashboard.py:185
 #, python-brace-format
 msgid "{0} unbound from Atom."
 msgstr "{0} அணுவிலிருந்து கட்டுப்படாதது."
 
-#: atoms/widgets/image_entry.py:48
+#: atoms/widgets/image_entry.py:51
 msgid "Are you sure you want to delete this image?"
 msgstr "இந்தப் படத்தை நிச்சயமாக நீக்க விரும்புகிறீர்களா?"
 
@@ -138,36 +145,30 @@ msgstr "இறுதி செய்கிறது…"
 
 #: atoms/windows/preferences_window.py:50
 msgid ""
-"Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed "
-"in your system."
+"Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed in your system."
 msgstr ""
-"அணுக்களுக்கு org.freedesktopக்கான அணுகல் இல்லை.Flatpak அல்லது distrobox உங்கள் "
-"கணினியில் நிறுவப்படவில்லை."
+"அணுக்களுக்கு org.freedesktopக்கான அணுகல் இல்லை.Flatpak அல்லது distrobox உங்கள் கணினியில் "
+"நிறுவப்படவில்லை."
 
-#: atoms/windows/preferences_window.py:83
+#: atoms/windows/preferences_window.py:88
 msgid "Atoms path reset to default."
 msgstr "அணுக்களின் பாதை இயல்புநிலைக்கு மீட்டமைக்கப்பட்டது."
 
-#: atoms/windows/preferences_window.py:89
+#: atoms/windows/preferences_window.py:94
 msgid "Images path reset to default."
 msgstr "படங்களின் பாதை இயல்புநிலைக்கு மீட்டமைக்கப்பட்டது."
 
-#: atoms/windows/preferences_window.py:110
+#: atoms/windows/preferences_window.py:115
 msgid "Choose New Atoms Location"
 msgstr "புதிய அணுக்களின் இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: atoms/windows/preferences_window.py:112
-#: atoms/windows/preferences_window.py:125
+#: atoms/windows/preferences_window.py:117 atoms/windows/preferences_window.py:130
 msgid "Select"
 msgstr "தேர்ந்தெடு"
 
-#: atoms/windows/preferences_window.py:123
+#: atoms/windows/preferences_window.py:128
 msgid "Choose New Images Location"
 msgstr "புதிய படங்களின் இருப்பிடத்தைத் தேர்ந்தெடுக்கவும்"
-
-#: atoms/gtk/about-window.ui:10
-msgid "Easily manage Linux chroot(s) with Atoms"
-msgstr "அணுக்கள் மூலம் லினக்ஸ் ச்ரூட்(களை) எளிதாக நிர்வகிக்கலாம்"
 
 #: atoms/gtk/dashboard.ui:26
 msgid "Start Container"
@@ -261,6 +262,11 @@ msgstr "குறுக்குவழிகளைக் காட்டு"
 
 #: atoms/gtk/help-overlay.ui:20
 msgctxt "shortcut window"
+msgid "New Atom"
+msgstr "புதிய அண"
+
+#: atoms/gtk/help-overlay.ui:26
+msgctxt "shortcut window"
 msgid "Quit"
 msgstr "வெளியேறு"
 
@@ -345,11 +351,8 @@ msgid "Custom Atoms Path"
 msgstr "தனிப்பயன் அணுக்கள் பாதை"
 
 #: atoms/gtk/preferences-window.ui:36
-msgid ""
-"Choose where to store the new atoms (this will not move the existing ones)."
-msgstr ""
-"புதிய அணுக்களை எங்கு சேமிப்பது என்பதைத் தேர்வுசெய்யவும் (இது ஏற்கனவே உள்ள அணுக்களை "
-"நகர்த்தாது)."
+msgid "Choose where to store the new atoms (this will not move the existing ones)."
+msgstr "புதிய அணுக்களை எங்கு சேமிப்பது என்பதைத் தேர்வுசெய்யவும் (இது ஏற்கனவே உள்ள அணுக்களை நகர்த்தாது)."
 
 #: atoms/gtk/preferences-window.ui:40 atoms/gtk/preferences-window.ui:63
 msgid "Reset to default"
@@ -360,29 +363,22 @@ msgid "Custom Images Path"
 msgstr "தனிப்பயன் படங்கள் பாதை"
 
 #: atoms/gtk/preferences-window.ui:59
-msgid ""
-"Choose where to store the new images (this will not move the existing ones)."
-msgstr ""
-"புதிய படங்களை எங்கு சேமிப்பது என்பதைத் தேர்வுசெய்யவும் (இது ஏற்கனவே உள்ள படங்களை "
-"நகர்த்தாது)."
+msgid "Choose where to store the new images (this will not move the existing ones)."
+msgstr "புதிய படங்களை எங்கு சேமிப்பது என்பதைத் தேர்வுசெய்யவும் (இது ஏற்கனவே உள்ள படங்களை நகர்த்தாது)."
 
 #: atoms/gtk/preferences-window.ui:86
 msgid "Images"
 msgstr "படங்கள்"
 
-#: atoms/gtk/preferences-window.ui:89
-msgid "Local Images"
-msgstr "உள்ளூர் படங்கள்"
-
-#: atoms/gtk/preferences-window.ui:97
+#: atoms/gtk/preferences-window.ui:92
 msgid "Integrations"
 msgstr "ஒருங்கிணைப்புகள்"
 
-#: atoms/gtk/preferences-window.ui:100
+#: atoms/gtk/preferences-window.ui:95
 msgid "Available Integrations"
 msgstr "கிடைக்கக்கூடிய ஒருங்கிணைப்புகள்"
 
-#: atoms/gtk/preferences-window.ui:103
+#: atoms/gtk/preferences-window.ui:98
 msgid "Distrobox"
 msgstr "டிஸ்ட்ரோபாக்ஸ்"
 
@@ -402,14 +398,26 @@ msgstr "உங்கள் முதல் அணுவை உருவாக்
 msgid "Create new atom"
 msgstr "புதிய அணுவை உருவாக்குங்கள்"
 
-#: atoms/gtk/window.ui:52
+#: atoms/gtk/window.ui:53
 msgid "_Preferences"
 msgstr "_விருப்பங்கள்"
 
-#: atoms/gtk/window.ui:56
+#: atoms/gtk/window.ui:57
 msgid "_Keyboard Shortcuts"
 msgstr "_விசைப்பலகை குறுக்குவழிகள்"
 
-#: atoms/gtk/window.ui:60
+#: atoms/gtk/window.ui:61
 msgid "_About Atoms"
 msgstr "_அணுக்கள் பற்றி"
+
+#~ msgid "Mirko Brombin"
+#~ msgstr "மிர்கோ ப்ரோம்பின்"
+
+#~ msgid "Set download percentage as numeric"
+#~ msgstr "பதிவிறக்க சதவீதத்தை எண்ணாக அமைக்கவும்"
+
+#~ msgid "Easily manage Linux chroot(s) with Atoms"
+#~ msgstr "அணுக்கள் மூலம் லினக்ஸ் ச்ரூட்(களை) எளிதாக நிர்வகிக்கலாம்"
+
+#~ msgid "Local Images"
+#~ msgstr "உள்ளூர் படங்கள்"
