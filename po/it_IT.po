@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atoms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-27 14:46+0530\n"
-"PO-Revision-Date: 2022-09-03 17:02+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2022-09-03 17:33+0200\n"
+"PO-Revision-Date: 2023-04-14 14:02+0200\n"
+"Last-Translator: albanobattistella@gmail.com\n"
+"Language-Team: italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,14 +81,12 @@ msgid "Press the Play button to start the container"
 msgstr "Premi il pulsante Play per avviare il container"
 
 #: atoms/views/dashboard.py:116
-#, fuzzy
 msgid "Atom console re-attached."
-msgstr "Terminale Staccato"
+msgstr "Console Atom ricollegata."
 
 #: atoms/views/dashboard.py:128
-#, fuzzy
 msgid "Atom console detached."
-msgstr "Terminale Staccato"
+msgstr "Console Atom staccata."
 
 #: atoms/views/dashboard.py:149
 msgid "File manager opened."
@@ -117,7 +115,7 @@ msgstr "Atomo rinominato con successo."
 #: atoms/views/dashboard.py:183
 #, fuzzy, python-brace-format
 msgid "{0} bound to Atom."
-msgstr "_Informazioni su Atoms"
+msgstr "{0} legato ad Atom."
 
 #: atoms/views/dashboard.py:185
 #, python-brace-format
@@ -142,9 +140,8 @@ msgid "Unpacking Chosen Image…"
 msgstr "Decompressione dell'Immagine Scelta…"
 
 #: atoms/windows/new_atom_window.py:80
-#, fuzzy
 msgid "Creating new distrobox Container…"
-msgstr "Immagine del Container Distrobox"
+msgstr "Creazione nuovo distrobox Container…"
 
 #: atoms/windows/new_atom_window.py:81
 msgid "Finalizing…"
@@ -159,14 +156,12 @@ msgstr ""
 "nel tuo sistema."
 
 #: atoms/windows/preferences_window.py:88
-#, fuzzy
 msgid "Atoms path reset to default."
-msgstr "Ripristina i valori predefiniti"
+msgstr "Percorso degli atom ripristinati al valore predefinito."
 
 #: atoms/windows/preferences_window.py:94
-#, fuzzy
 msgid "Images path reset to default."
-msgstr "Ripristina i valori predefiniti"
+msgstr "Il percorso delle immagini è stato ripristinato al valore predefinito."
 
 #: atoms/windows/preferences_window.py:115
 msgid "Choose New Atoms Location"

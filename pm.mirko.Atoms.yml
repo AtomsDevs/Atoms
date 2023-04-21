@@ -1,7 +1,7 @@
 ---
 app-id: pm.mirko.Atoms
 runtime: org.gnome.Platform
-runtime-version: '43'
+runtime-version: '44'
 sdk: org.gnome.Sdk
 command: atoms
 
@@ -18,7 +18,7 @@ add-extensions:
   org.freedesktop.Platform.GL32:
     directory: lib/i386-linux-gnu/GL
     version: '1.4'
-    versions: 21.08;1.4
+    versions: 22.08;1.4
     subdirectories: true
     no-autodownload: true
     autodelete: false
@@ -67,41 +67,17 @@ modules:
       url: https://github.com/termux/proot
       commit: 5c462a6ecfddd629b1439f38fbb61216d6fcb359
 
-- name: libadwaita
+- name: vte  # needed by gtk4
   buildsystem: meson
   config-opts:
-  - -Dexamples=false
-  - -Dtests=false
+    - -Ddocs=false
+    - -Dvapi=false
+    - -Dgtk4=true
+    - -Dgtk3=false
   sources:
-  - type: git
-    url: https://gitlab.gnome.org/GNOME/libadwaita.git
-    tag: 1.2.alpha
-    commit: 9150f4016a04064a00733b78391c8e6aad49bee8
-  modules:
-  - name: libsass
-    buildsystem: meson
-    sources:
-    - type: git
-      url: https://github.com/lazka/libsass.git
-      branch: meson
-  - name: sassc
-    buildsystem: meson
-    sources:
-    - type: git
-      url: https://github.com/lazka/sassc.git
-      branch: meson
-
-  - name: vte
-    buildsystem: meson
-    config-opts:
-      - -Ddocs=false
-      - -Dvapi=false
-      - -Dgtk4=true
-      - -Dgtk3=false
-    sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/vte.git
-        commit: 3ed53bfaa7344ce5b7727a60a2d33315b15201e5
+    - type: archive
+      url: https://download.gnome.org/sources/vte/0.72/vte-0.72.0.tar.xz
+      sha256: 40fe914d6c70db34176c922725b6c6ea15d5f3cb2a9b44c57e200a5f950a6736
 
 # - name: fakeroot
 #   buildsystem: simple
