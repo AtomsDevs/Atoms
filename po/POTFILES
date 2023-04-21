@@ -17,7 +17,6 @@ atoms/windows/main_window.py
 atoms/windows/new_atom_window.py
 atoms/windows/preferences_window.py
 
-atoms/gtk/about-window.ui
 atoms/gtk/dashboard.ui
 atoms/gtk/detached-window.ui
 atoms/gtk/entry-atom.ui

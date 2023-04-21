@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atoms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-03 17:33+0200\n"
+"POT-Creation-Date: 2023-03-27 14:46+0530\n"
 "PO-Revision-Date: 2022-12-04 16:40+0100\n"
 "Last-Translator: gregorni <mail.gregorni@proton.me>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -16,28 +16,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/pm.mirko.Atoms.desktop.in:3 data/pm.mirko.Atoms.appdata.xml.in:6
+#: data/pm.mirko.Atoms.desktop.in:3
 msgid "Atoms"
 msgstr "Atoms"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:7
-msgid "Easily manage Linux Chroot and Containers."
+#, fuzzy
+msgid "Manage Chroot and Containers."
 msgstr "Linux Chroots und Container einfach verwalten"
-
-#: data/pm.mirko.Atoms.appdata.xml.in:8
-msgid "Mirko Brombin"
-msgstr "Mirko Brombin"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:10
 msgid "No description"
 msgstr "Keine Beschreibung"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:46
-msgid "Set download percentage as numeric"
-msgstr "Download-Prozent als numerisch einstellen"
+msgid "Updated translations"
+msgstr ""
 
 #: data/pm.mirko.Atoms.appdata.xml.in:47
-msgid "Updated to atoms-core 1.0.1"
+#, fuzzy
+msgid "Fix Create new atom button"
+msgstr "Neues Atom erstellen"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:48
+msgid "Apx distrobox support"
+msgstr ""
+
+#: data/pm.mirko.Atoms.appdata.xml.in:49
+#, fuzzy
+msgid "Updated to atoms-core 1.1.1"
 msgstr "Zu atoms-core 1.0.1 aktualisiert"
 
 #: data/pm.mirko.Atoms.gschema.xml:6
@@ -52,15 +59,19 @@ msgstr "Update-Datum in der Atoms-Liste anzeigen/ausblenden"
 msgid "Toggle Distrobox integration"
 msgstr "Distrobox-Integration ein-/ausschalten"
 
-#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:104
+#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:99
 msgid "List and handle Distrobox containers as atoms."
 msgstr "Distrobox-Container als Atoms behandeln."
 
-#: atoms/main.py:62
+#: atoms/main.py:70
+msgid "translator_credits"
+msgstr ""
+
+#: atoms/main.py:73
 msgid "Contributors"
 msgstr "Mitwirkende"
 
-#: atoms/main.py:69
+#: atoms/main.py:80
 msgid "Third-Party Libraries and Special Thanks"
 msgstr "Bibliotheken Dritter und Danksagungen"
 
@@ -81,7 +92,7 @@ msgid "File manager opened."
 msgstr "Dateimanager gestartet"
 
 #: atoms/views/dashboard.py:163 atoms/views/dashboard.py:167
-#: atoms/widgets/image_entry.py:47 atoms/widgets/image_entry.py:51
+#: atoms/widgets/image_entry.py:50 atoms/widgets/image_entry.py:54
 msgid "Confirm"
 msgstr "Bestätigen"
 
@@ -89,28 +100,28 @@ msgstr "Bestätigen"
 msgid "Are you sure you want to delete this Atom and all files?"
 msgstr "Sollen dieses Atom und alle Dateien wirklich gelöscht werden?"
 
-#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:50
-#: atoms/windows/preferences_window.py:112
-#: atoms/windows/preferences_window.py:125 atoms/gtk/new-atom-window.ui:18
+#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:53
+#: atoms/windows/preferences_window.py:117
+#: atoms/windows/preferences_window.py:130 atoms/gtk/new-atom-window.ui:18
 #: atoms/gtk/new-atom-window.ui:112
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: atoms/views/dashboard.py:177
+#: atoms/views/dashboard.py:178
 msgid "Atom renamed successfully."
 msgstr "Atom erfolgreich umbenannt"
 
-#: atoms/views/dashboard.py:182
+#: atoms/views/dashboard.py:183
 #, python-brace-format
 msgid "{0} bound to Atom."
 msgstr "{0} ins Atom eingebunden."
 
-#: atoms/views/dashboard.py:184
+#: atoms/views/dashboard.py:185
 #, python-brace-format
 msgid "{0} unbound from Atom."
 msgstr "{0} vom Atom gelöst."
 
-#: atoms/widgets/image_entry.py:48
+#: atoms/widgets/image_entry.py:51
 msgid "Are you sure you want to delete this image?"
 msgstr "Soll dieses Abbild wirklich gelöscht werden?"
 
@@ -139,33 +150,29 @@ msgid ""
 "Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed "
 "in your system."
 msgstr ""
-"Atoms hat keinen Zugriff auf org.freedesktop.Flatpak oder Distrobox ist nicht "
-"installiert."
+"Atoms hat keinen Zugriff auf org.freedesktop.Flatpak oder Distrobox ist "
+"nicht installiert."
 
-#: atoms/windows/preferences_window.py:83
+#: atoms/windows/preferences_window.py:88
 msgid "Atoms path reset to default."
 msgstr "Atoms-Pfad zurückgesetzt."
 
-#: atoms/windows/preferences_window.py:89
+#: atoms/windows/preferences_window.py:94
 msgid "Images path reset to default."
 msgstr "Abbild-Pfad zurückgesetzt."
 
-#: atoms/windows/preferences_window.py:110
+#: atoms/windows/preferences_window.py:115
 msgid "Choose New Atoms Location"
 msgstr "Speicherort der Atoms wählen"
 
-#: atoms/windows/preferences_window.py:112
-#: atoms/windows/preferences_window.py:125
+#: atoms/windows/preferences_window.py:117
+#: atoms/windows/preferences_window.py:130
 msgid "Select"
 msgstr "Auswählen"
 
-#: atoms/windows/preferences_window.py:123
+#: atoms/windows/preferences_window.py:128
 msgid "Choose New Images Location"
 msgstr "Speicherort der Abbilder wählen"
-
-#: atoms/gtk/about-window.ui:10
-msgid "Easily manage Linux chroot(s) with Atoms"
-msgstr "Ganz einfach Linux chroot(s) verwalten mit Atoms"
 
 #: atoms/gtk/dashboard.ui:26
 msgid "Start Container"
@@ -258,6 +265,12 @@ msgid "Show Shortcuts"
 msgstr "Tastenkürzel anzeigen"
 
 #: atoms/gtk/help-overlay.ui:20
+#, fuzzy
+msgctxt "shortcut window"
+msgid "New Atom"
+msgstr "Neues Atom"
+
+#: atoms/gtk/help-overlay.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Schließen"
@@ -361,26 +374,22 @@ msgstr "Eigener Abbild-Pfad"
 msgid ""
 "Choose where to store the new images (this will not move the existing ones)."
 msgstr ""
-"Wählen Sie den Speicherort für neue Abbilder aus (Existierende Abbilder werden "
-"davon nicht betroffen sein)."
+"Wählen Sie den Speicherort für neue Abbilder aus (Existierende Abbilder "
+"werden davon nicht betroffen sein)."
 
 #: atoms/gtk/preferences-window.ui:86
 msgid "Images"
 msgstr "Abbilder"
 
-#: atoms/gtk/preferences-window.ui:89
-msgid "Local Images"
-msgstr "Lokale Abbilder"
-
-#: atoms/gtk/preferences-window.ui:97
+#: atoms/gtk/preferences-window.ui:92
 msgid "Integrations"
 msgstr "Intergrationen"
 
-#: atoms/gtk/preferences-window.ui:100
+#: atoms/gtk/preferences-window.ui:95
 msgid "Available Integrations"
 msgstr "Verfügbare Integrationen"
 
-#: atoms/gtk/preferences-window.ui:103
+#: atoms/gtk/preferences-window.ui:98
 msgid "Distrobox"
 msgstr "Distrobox"
 
@@ -400,14 +409,26 @@ msgstr "Erstellen Sie ihr erstes Atom."
 msgid "Create new atom"
 msgstr "Neues Atom erstellen"
 
-#: atoms/gtk/window.ui:52
+#: atoms/gtk/window.ui:53
 msgid "_Preferences"
 msgstr "_Einstellungen"
 
-#: atoms/gtk/window.ui:56
+#: atoms/gtk/window.ui:57
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastenkürzel"
 
-#: atoms/gtk/window.ui:60
+#: atoms/gtk/window.ui:61
 msgid "_About Atoms"
 msgstr "_Über Atoms"
+
+#~ msgid "Mirko Brombin"
+#~ msgstr "Mirko Brombin"
+
+#~ msgid "Set download percentage as numeric"
+#~ msgstr "Download-Prozent als numerisch einstellen"
+
+#~ msgid "Easily manage Linux chroot(s) with Atoms"
+#~ msgstr "Ganz einfach Linux chroot(s) verwalten mit Atoms"
+
+#~ msgid "Local Images"
+#~ msgstr "Lokale Abbilder"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atoms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-03 17:33+0200\n"
+"POT-Creation-Date: 2023-03-27 14:46+0530\n"
 "PO-Revision-Date: 2022-10-22 17:14-0300\n"
 "Last-Translator: Antonio Hauren <antoniohauren@protonmail.com>\n"
 "Language-Team: Brazilian Portuguese <antoniohauren@protonmail.com>\n"
@@ -19,28 +19,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 42.0\n"
 
-#: data/pm.mirko.Atoms.desktop.in:3 data/pm.mirko.Atoms.appdata.xml.in:6
+#: data/pm.mirko.Atoms.desktop.in:3
 msgid "Atoms"
 msgstr "Átomos"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:7
-msgid "Easily manage Linux Chroot and Containers."
+#, fuzzy
+msgid "Manage Chroot and Containers."
 msgstr "Gerencie facilmente containers linux"
-
-#: data/pm.mirko.Atoms.appdata.xml.in:8
-msgid "Mirko Brombin"
-msgstr "Mirko Brombin"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:10
 msgid "No description"
 msgstr "Sem descrição"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:46
-msgid "Set download percentage as numeric"
-msgstr "Defina a porcentagem de download como numérica"
+msgid "Updated translations"
+msgstr ""
 
 #: data/pm.mirko.Atoms.appdata.xml.in:47
-msgid "Updated to atoms-core 1.0.1"
+#, fuzzy
+msgid "Fix Create new atom button"
+msgstr "Criar novo átomo"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:48
+msgid "Apx distrobox support"
+msgstr ""
+
+#: data/pm.mirko.Atoms.appdata.xml.in:49
+#, fuzzy
+msgid "Updated to atoms-core 1.1.1"
 msgstr "Atualizado para atoms-core 1.0.1"
 
 #: data/pm.mirko.Atoms.gschema.xml:6
@@ -55,15 +62,19 @@ msgstr "Alternar a data de atualização na lista de átomos"
 msgid "Toggle Distrobox integration"
 msgstr "Alternar integração com Distrobox"
 
-#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:104
+#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:99
 msgid "List and handle Distrobox containers as atoms."
 msgstr "Listar e gerenciar containers do Distrobox como átomos"
 
-#: atoms/main.py:62
+#: atoms/main.py:70
+msgid "translator_credits"
+msgstr ""
+
+#: atoms/main.py:73
 msgid "Contributors"
 msgstr "Contribuidores"
 
-#: atoms/main.py:69
+#: atoms/main.py:80
 msgid "Third-Party Libraries and Special Thanks"
 msgstr "Bibliotecas de terceiros e agradecimentos especiais"
 
@@ -84,7 +95,7 @@ msgid "File manager opened."
 msgstr "Gerenciador de arquivos aberto."
 
 #: atoms/views/dashboard.py:163 atoms/views/dashboard.py:167
-#: atoms/widgets/image_entry.py:47 atoms/widgets/image_entry.py:51
+#: atoms/widgets/image_entry.py:50 atoms/widgets/image_entry.py:54
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -93,28 +104,28 @@ msgid "Are you sure you want to delete this Atom and all files?"
 msgstr ""
 "Você tem certeza que deseja apagar esse Átomo e todos os seus arquivos?"
 
-#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:50
-#: atoms/windows/preferences_window.py:112
-#: atoms/windows/preferences_window.py:125 atoms/gtk/new-atom-window.ui:18
+#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:53
+#: atoms/windows/preferences_window.py:117
+#: atoms/windows/preferences_window.py:130 atoms/gtk/new-atom-window.ui:18
 #: atoms/gtk/new-atom-window.ui:112
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: atoms/views/dashboard.py:177
+#: atoms/views/dashboard.py:178
 msgid "Atom renamed successfully."
 msgstr "Átomo renomeado com sucesso."
 
-#: atoms/views/dashboard.py:182
+#: atoms/views/dashboard.py:183
 #, python-brace-format
 msgid "{0} bound to Atom."
 msgstr "{0} ligado ao Átomo"
 
-#: atoms/views/dashboard.py:184
+#: atoms/views/dashboard.py:185
 #, python-brace-format
 msgid "{0} unbound from Atom."
 msgstr "{0} desligado ao Átomo"
 
-#: atoms/widgets/image_entry.py:48
+#: atoms/widgets/image_entry.py:51
 msgid "Are you sure you want to delete this image?"
 msgstr "Você tem certeza que deseja apagar essa imagem?"
 
@@ -146,30 +157,26 @@ msgstr ""
 "Átomos não tem acesso ao org.freedesktop.Flatpak ou distrobox não está "
 "instalado em seu sistema."
 
-#: atoms/windows/preferences_window.py:83
+#: atoms/windows/preferences_window.py:88
 msgid "Atoms path reset to default."
 msgstr "Caminho dos Átomos redefinido para o padrão."
 
-#: atoms/windows/preferences_window.py:89
+#: atoms/windows/preferences_window.py:94
 msgid "Images path reset to default."
 msgstr "Caminho das imagens redefinido para o padrão."
 
-#: atoms/windows/preferences_window.py:110
+#: atoms/windows/preferences_window.py:115
 msgid "Choose New Atoms Location"
 msgstr "Escolha a localização do novo Átomo"
 
-#: atoms/windows/preferences_window.py:112
-#: atoms/windows/preferences_window.py:125
+#: atoms/windows/preferences_window.py:117
+#: atoms/windows/preferences_window.py:130
 msgid "Select"
 msgstr "Selecionar"
 
-#: atoms/windows/preferences_window.py:123
+#: atoms/windows/preferences_window.py:128
 msgid "Choose New Images Location"
 msgstr "Escolha a localização das novas imagens"
-
-#: atoms/gtk/about-window.ui:10
-msgid "Easily manage Linux chroot(s) with Atoms"
-msgstr "Gerencie facilmente chroot(s) linux com Átomos"
 
 #: atoms/gtk/dashboard.ui:26
 msgid "Start Container"
@@ -262,6 +269,12 @@ msgid "Show Shortcuts"
 msgstr "Mostrar atalhos"
 
 #: atoms/gtk/help-overlay.ui:20
+#, fuzzy
+msgctxt "shortcut window"
+msgid "New Atom"
+msgstr "Novo Átomo"
+
+#: atoms/gtk/help-overlay.ui:26
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Sair"
@@ -371,19 +384,15 @@ msgstr ""
 msgid "Images"
 msgstr "Imagens"
 
-#: atoms/gtk/preferences-window.ui:89
-msgid "Local Images"
-msgstr "Imagens locais"
-
-#: atoms/gtk/preferences-window.ui:97
+#: atoms/gtk/preferences-window.ui:92
 msgid "Integrations"
 msgstr "Integrações"
 
-#: atoms/gtk/preferences-window.ui:100
+#: atoms/gtk/preferences-window.ui:95
 msgid "Available Integrations"
 msgstr "Integrações disponíveis"
 
-#: atoms/gtk/preferences-window.ui:103
+#: atoms/gtk/preferences-window.ui:98
 msgid "Distrobox"
 msgstr "Distrobox"
 
@@ -403,14 +412,26 @@ msgstr "Comece criando seu primeiro átomo"
 msgid "Create new atom"
 msgstr "Criar novo átomo"
 
-#: atoms/gtk/window.ui:52
+#: atoms/gtk/window.ui:53
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: atoms/gtk/window.ui:56
+#: atoms/gtk/window.ui:57
 msgid "_Keyboard Shortcuts"
 msgstr "_Atalhos de teclado"
 
-#: atoms/gtk/window.ui:60
+#: atoms/gtk/window.ui:61
 msgid "_About Atoms"
 msgstr "_Sobre Átomos"
+
+#~ msgid "Mirko Brombin"
+#~ msgstr "Mirko Brombin"
+
+#~ msgid "Set download percentage as numeric"
+#~ msgstr "Defina a porcentagem de download como numérica"
+
+#~ msgid "Easily manage Linux chroot(s) with Atoms"
+#~ msgstr "Gerencie facilmente chroot(s) linux com Átomos"
+
+#~ msgid "Local Images"
+#~ msgstr "Imagens locais"

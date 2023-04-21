@@ -66,8 +66,9 @@ class AtomsApplication(Adw.Application):
                                 issue_url='https://github.com/mirkobrombin/Atoms/issues',
                                 version='1.1.1',
                                 developers=['Mirko Brombin https://github.com/mirkobrombin/'],
-                                artists=['Allaeddine Boulefaat https://github.com/allaeddineomc'],
-                                copyright='© 2022 Mirko Brombin')
+                                artists=['Allaeddine Boulefaat https://github.com/allaeddineomc'],                                
+                                translator_credits= _("translator_credits"),
+                                copyright='© 2023 Mirko Brombin')
         about.add_credit_section(
             _("Contributors"),
             [
