@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: atoms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-03 17:33+0200\n"
-"PO-Revision-Date: 2023-04-14 14:02+0200\n"
+"PO-Revision-Date: 2023-04-25 14:02+0200\n"
 "Last-Translator: albanobattistella@gmail.com\n"
 "Language-Team: italian\n"
 "Language: it\n"
@@ -22,9 +22,8 @@ msgid "Atoms"
 msgstr "Atoms"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:7
-#, fuzzy
 msgid "Manage Chroot and Containers."
-msgstr "Gestisci facilmente Linux Chroot e Container."
+msgstr "Gestisci Chroot e Container."
 
 #: data/pm.mirko.Atoms.appdata.xml.in:10
 msgid "No description"
@@ -32,21 +31,19 @@ msgstr "Nessuna descrizione"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:46
 msgid "Updated translations"
-msgstr ""
+msgstr "Traduzioni aggiornate"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:47
-#, fuzzy
 msgid "Fix Create new atom button"
-msgstr "Crea nuovo atomo"
+msgstr "Sistemato Crea nuovo pulsante atom"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:48
 msgid "Apx distrobox support"
-msgstr ""
+msgstr "Supporto distrobox Apx"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:49
-#, fuzzy
 msgid "Updated to atoms-core 1.1.1"
-msgstr "Aggiornato a atoms-core 1.0.1"
+msgstr "Aggiornato a atoms-core 1.1.1"
 
 #: data/pm.mirko.Atoms.gschema.xml:6
 msgid "Toggle update date in list"
@@ -62,11 +59,11 @@ msgstr "Attiva/disattiva l'integrazione con Distrobox"
 
 #: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:99
 msgid "List and handle Distrobox containers as atoms."
-msgstr "Elenca e gestisci i container Distrobox come atomi."
+msgstr "Elenca e gestisci i container Distrobox come atom."
 
 #: atoms/main.py:70
 msgid "translator_credits"
-msgstr ""
+msgstr "Albano Battistella"
 
 #: atoms/main.py:73
 msgid "Contributors"
@@ -131,9 +128,8 @@ msgid "Downloading Chosen Image…"
 msgstr "Scaricamento dell'Immagine Scelta…"
 
 #: atoms/windows/new_atom_window.py:78
-#, fuzzy
 msgid "Creating new Atom Configuration…"
-msgstr "Immagine del Container Distrobox"
+msgstr "Creazione nuova configurazione Atom…"
 
 #: atoms/windows/new_atom_window.py:79
 msgid "Unpacking Chosen Image…"
@@ -267,7 +263,6 @@ msgid "Show Shortcuts"
 msgstr "Mostra i tasti di scelta rapida"
 
 #: atoms/gtk/help-overlay.ui:20
-#, fuzzy
 msgctxt "shortcut window"
 msgid "New Atom"
 msgstr "Nuovo Atom"
