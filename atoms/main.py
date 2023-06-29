@@ -64,7 +64,7 @@ class AtomsApplication(Adw.Application):
                                 license='gpl-3.0-only',
                                 website='https://github.com/mirkobrombin/Atoms',
                                 issue_url='https://github.com/mirkobrombin/Atoms/issues',
-                                version='1.1.1',
+                                version='1.1.2',
                                 developers=['Mirko Brombin https://github.com/mirkobrombin/'],
                                 artists=['Allaeddine Boulefaat https://github.com/allaeddineomc'],                                
                                 translator_credits= _("translator_credits"),
