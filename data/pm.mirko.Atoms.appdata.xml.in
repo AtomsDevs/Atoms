@@ -40,6 +40,15 @@
       <display_length compare="ge">768</display_length>
     </requires>
     <releases>
+        <release version="1.1.2" date="2023-06-29">
+          <description>
+            <ul>
+                <li>Updated translations</li>
+                <li>Add note about potentially missing fonts</li>
+                <li>Updated to atoms-core 1.1.2</li>
+            </ul>
+          </description>
+        </release>
         <release version="1.1.1" date="2023-02-15">
           <description>
             <ul>
