@@ -61,19 +61,20 @@ class AtomsApplication(Adw.Application):
                                 application_name='Atoms',
                                 application_icon='pm.mirko.Atoms',
                                 developer_name='Mirko Brombin',
-                                license='gpl-3.0-only',
                                 website='https://github.com/mirkobrombin/Atoms',
                                 issue_url='https://github.com/mirkobrombin/Atoms/issues',
                                 version='1.1.2',
                                 developers=['Mirko Brombin https://github.com/mirkobrombin/'],
                                 artists=['Allaeddine Boulefaat https://github.com/allaeddineomc'],                                
                                 translator_credits= _("translator_credits"),
-                                copyright='© 2023 Mirko Brombin')
+                                copyright='© 2023 Mirko Brombin',
+                                license_type=('gpl-3-0-only'))
         about.add_credit_section(
             _("Contributors"),
             [
                 "Hari Rana (TheEvilSkeleton) https://theevilskeleton.gitlab.io/",
-                "axtlos https://axtloss.github.io/"
+                "axtlos https://axtloss.github.io/",
+                "K.B.Dharun Krishna https://github.com/kbdharun"
             ]
         )
         about.add_credit_section(
