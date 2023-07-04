@@ -67,7 +67,7 @@ class AtomsApplication(Adw.Application):
                                 developers=['Mirko Brombin https://github.com/mirkobrombin/'],
                                 artists=['Allaeddine Boulefaat https://github.com/allaeddineomc'],                                
                                 translator_credits= _("translator_credits"),
-                                copyright='© 2023 Mirko Brombin',
+                                copyright='© 2023 Mirko Brombin and Contributors',
                                 license_type=('gpl-3-0-only'))
         about.add_credit_section(
             _("Contributors"),
