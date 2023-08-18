@@ -20,6 +20,7 @@
     <file alias="ubuntu-symbolic.svg">../data/icons/hicolor/symbolic/distributions/ubuntu-symbolic.svg</file>
     <file alias="fedora-symbolic.svg">../data/icons/hicolor/symbolic/distributions/fedora-symbolic.svg</file>
     <file alias="debian-symbolic.svg">../data/icons/hicolor/symbolic/distributions/debian-symbolic.svg</file>
+    <file alias="vanilla-symbolic.svg">../data/icons/hicolor/symbolic/distributions/vanilla-symbolic.svg</file>
     <file alias="almalinux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/almalinux-symbolic.svg</file>
     <file alias="rockylinux-symbolic.svg">../data/icons/hicolor/symbolic/distributions/rockylinux-symbolic.svg</file>
     <file alias="centos-symbolic.svg">../data/icons/hicolor/symbolic/distributions/centos-symbolic.svg</file>
