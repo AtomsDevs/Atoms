@@ -1,0 +1,30 @@
+FROM ghcr.io/containerpak/gtk-sdk:main AS builder
+
+WORKDIR /src/atoms
+
+RUN apt update && apt install -y --no-install-recommends \
+    build-essential desktop-file-utils gettext git libgee-0.8-dev \
+    libgtk-4-dev libgtk4-layer-shell-dev libjson-glib-dev libpeas-2-dev \
+    libsoup-3.0-dev libvte-2.91-gtk4-dev meson ninja-build sassc valac && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY . .
+
+RUN meson setup --prefix=/usr --buildtype=release /tmp/atoms-build && \
+    meson test -C /tmp/atoms-build --print-errorlogs && \
+    DESTDIR=/staging meson install -C /tmp/atoms-build
+
+FROM ghcr.io/containerpak/gtk-sdk:main
+
+RUN apt update && apt install -y --no-install-recommends \
+    libgee-0.8-2 libgtk-4-1 libgtk4-layer-shell0 libjson-glib-1.0-0 \
+    libpeas-2-0 libsoup-3.0-0 libvte-2.91-gtk4-0 && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /staging/usr/ /usr/
+
+RUN glib-compile-schemas /usr/share/glib-2.0/schemas && \
+    gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor && \
+    update-desktop-database -q /usr/share/applications
+
+ENTRYPOINT ["/usr/bin/atoms"]

@@ -30,6 +30,8 @@ namespace Atoms {
         protected override void startup () {
             base.startup ();
 
+            Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("/pm/mirko/Atoms/style.css");
             Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path (

@@ -1,0 +1,8 @@
+.flatpak-builder
+.git
+build
+build-native
+build-provider-gui
+flatpak-build
+native/build
+atoms-provider-cpak/build

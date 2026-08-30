@@ -117,5 +117,6 @@ modules:
   - name: atoms
     buildsystem: meson
     sources:
-      - type: dir
-        path: .
+      - type: git
+        url: https://github.com/AtomsDevs/Atoms.git
+        tag: v2.0.0

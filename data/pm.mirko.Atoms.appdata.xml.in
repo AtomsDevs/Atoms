@@ -37,7 +37,7 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
-    <release version="2.0.0" date="2026-08-28">
+    <release version="2.0.0" date="2026-08-30">
       <description>
         <ul>
           <li>Add a Vala provider API with a separate cpak provider</li>

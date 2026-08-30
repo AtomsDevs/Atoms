@@ -34,6 +34,18 @@ build-native/native/atoms
 The source tree builds atoms-core, atoms-cli, the cpak provider, and the GTK
 frontend together. Each component remains available as a separate repository.
 
+## cpak
+
+cpak is the primary package format for Atoms:
+
+```sh
+cpak install github.com/atomsdevs/atoms
+cpak run github.com/atomsdevs/atoms
+```
+
+The package requests typed access to cpak discovery and persistent environment
+operations. It cannot invoke arbitrary host commands.
+
 ## Flatpak
 
 ```sh

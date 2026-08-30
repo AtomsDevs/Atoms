@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+  packages: write
+  attestations: write
+  id-token: write
+
+jobs:
+  cpak:
+    uses: ./.github/workflows/build_cpak.yml
+
+  flatpak:
+    uses: ./.github/workflows/build_flatpak.yml
+
+  publish:
+    needs: [cpak, flatpak]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
+        with:
+          name: atoms-flatpak
+          path: release-assets
+
+      - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65
+        with:
+          body: |
+            ## Install Atoms
+
+            ### cpak (recommended)
+
+            ```sh
+            cpak install github.com/atomsdevs/atoms
+            cpak run github.com/atomsdevs/atoms
+            ```
+
+            [Get Atoms with cpak](https://cpak.it/store/Utilities/github.com/atomsdevs/atoms)
+
+            ### Flatpak
+
+            Install `atoms.flatpak` from this release, or use [Flathub](https://flathub.org/apps/pm.mirko.Atoms) when the matching build is published there.
+          generate_release_notes: true
+          files: release-assets/atoms.flatpak
