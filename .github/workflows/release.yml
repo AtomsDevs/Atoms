@@ -29,7 +29,12 @@ jobs:
       - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65
         with:
           body: |
-            ## Install Atoms
+            <!-- install-badges -->
+
+            ## Get Atoms
+
+            [![Get it with cpak](https://cpak.it/badges/get-it-with-cpak.svg)](https://cpak.it/store/Utilities/github.com/atomsdevs/atoms)
+            [![Download on Flathub](https://flathub.org/api/badge?svg&locale=en)](https://flathub.org/apps/pm.mirko.Atoms)
 
             ### cpak (recommended)
 
