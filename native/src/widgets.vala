@@ -34,4 +34,23 @@ namespace Atoms {
             set_child (content);
         }
     }
+
+    public class PendingEnvironmentSidebarRow : Singularity.Widgets.SidebarRow {
+        public PendingEnvironmentSidebarRow (Distribution distribution) {
+            base ("atoms-package-symbolic", "Creating...");
+            sensitive = false;
+
+            var content = new Gtk.Box (Orientation.HORIZONTAL, 12);
+            content.append (environment_icon (
+                distribution.icon_path,
+                16,
+                "atoms-package-symbolic"
+            ));
+            var label = new Gtk.Label ("Creating...");
+            label.xalign = 0;
+            label.hexpand = true;
+            content.append (label);
+            set_child (content);
+        }
+    }
 }

@@ -9,6 +9,8 @@ namespace Atoms {
         public Environment environment { get; set; }
         public int shell_pid { get; set; default = 0; }
         public int background_processes { get; set; default = 0; }
+        public bool closing { get; set; default = false; }
+        public Cancellable spawn_cancellable { get; private set; }
         public ArrayList<string> history { get; private set; }
 
         public TerminalTab (string id,
@@ -21,6 +23,7 @@ namespace Atoms {
                 terminal: terminal,
                 environment: environment
             );
+            spawn_cancellable = new Cancellable ();
             history = new ArrayList<string> ();
         }
     }

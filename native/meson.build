@@ -45,7 +45,8 @@ atoms = executable(
     gee_dep,
     atoms_core_dep,
     libpeas_dep,
-    libsingularity_dep
+    libsingularity_dep,
+    posix_dep
   ],
   vala_args: libsingularity_vapi_args,
   install: true,

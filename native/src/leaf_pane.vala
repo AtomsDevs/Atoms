@@ -46,7 +46,6 @@ namespace Atoms {
 
         public signal void focused (LeafPane terminal);
         public signal void new_terminal_requested (LeafPane terminal);
-        public signal void new_environment_requested (LeafPane terminal);
         public signal void new_tab_requested (LeafPane terminal);
         public signal void search_requested (LeafPane terminal);
         public signal void process_manager_requested (LeafPane terminal);
@@ -287,12 +286,6 @@ namespace Atoms {
                 "atoms-tab-new-symbolic",
                 () => new_tab_requested (this)
             );
-            add_menu.add_separator ();
-            add_menu.add_item (
-                "New Environment",
-                "list-add-symbolic",
-                () => new_environment_requested (this)
-            );
             add_menu.closed.connect (() => {
                 add_menu.unparent ();
                 add_menu = null;
@@ -326,6 +319,10 @@ namespace Atoms {
             var terminal = configure_terminal ();
             var tab = new TerminalTab (id, label, terminal, tab_environment);
             install_history_capture (tab);
+            terminal.child_exited.connect ((status) => {
+                tab.shell_pid = 0;
+                status_changed (this);
+            });
             tabs.add (tab);
             terminal_stack.add_named (terminal, id);
             chip_bar.add_chip (id, label);
@@ -418,6 +415,12 @@ namespace Atoms {
                 "[atoms:%s] \\w $ ".printf (tab.environment.name.down ()),
                 true
             );
+            envv = GLib.Environ.set_variable (
+                (owned) envv,
+                "TERM",
+                "xterm-256color",
+                true
+            );
 
             string[] argv;
             try {
@@ -443,14 +446,20 @@ namespace Atoms {
                 (GLib.SpawnFlags) 0,
                 null,
                 -1,
-                null,
+                tab.spawn_cancellable,
                 (source, pid, error) => {
                     if (error != null) {
-                        warning ("Terminal spawn failed: %s", error.message);
+                        if (!tab.closing)
+                            warning ("Terminal spawn failed: %s", error.message);
                         return;
                     }
 
                     tab.shell_pid = (int) pid;
+                    if (tab.closing) {
+                        Posix.kill ((Posix.pid_t) pid, Posix.Signal.TERM);
+                        tab.shell_pid = 0;
+                        return;
+                    }
                     status_changed (this);
                 }
             );
@@ -523,6 +532,7 @@ namespace Atoms {
             if (closing == null)
                 return;
 
+            stop_tab (closing);
             terminal_stack.remove (closing.terminal);
             chip_bar.remove_chip (id);
             tabs.remove (closing);
@@ -534,6 +544,7 @@ namespace Atoms {
 
         private void reset_tabs () {
             foreach (var tab in tabs) {
+                stop_tab (tab);
                 terminal_stack.remove (tab.terminal);
                 chip_bar.remove_chip (tab.id);
             }
@@ -541,6 +552,23 @@ namespace Atoms {
             tabs.clear ();
             tab_sequence = 0;
             add_tab (environment);
+        }
+
+        public void terminate_sessions () {
+            foreach (var tab in tabs)
+                stop_tab (tab);
+        }
+
+        private void stop_tab (TerminalTab tab) {
+            if (tab.closing)
+                return;
+
+            tab.closing = true;
+            tab.spawn_cancellable.cancel ();
+            if (tab.shell_pid > 0) {
+                Posix.kill ((Posix.pid_t) tab.shell_pid, Posix.Signal.TERM);
+                tab.shell_pid = 0;
+            }
         }
 
         public void update_environment_profile (Environment profile) {

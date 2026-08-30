@@ -3,6 +3,67 @@ using Gee;
 
 namespace Atoms {
 
+    public class EnvironmentCreationDialog : Singularity.Widgets.AppDialog {
+        private Singularity.Widgets.ActionRow progress_row;
+        private Gtk.Spinner spinner;
+
+        public EnvironmentCreationDialog (Gtk.Application app,
+                                          Gtk.Window parent,
+                                          Distribution distribution) {
+            base (app, true, false);
+            transient_for = parent;
+            set_title ("Creating %s".printf (distribution.name));
+            set_default_size (560, 320);
+
+            var page = new Singularity.Widgets.PreferencesPage ();
+            page.margin_start = 16;
+            page.margin_end = 16;
+            page.margin_bottom = 16;
+
+            var group = new Singularity.Widgets.PreferencesGroup (
+                "Environment creation",
+                "Atoms will keep this environment and its files between sessions."
+            );
+            var identity = new Singularity.Widgets.ActionRow (
+                distribution.display_name (),
+                distribution.origin
+            );
+            add_environment_icon (
+                identity,
+                distribution.icon_path,
+                "atoms-package-symbolic"
+            );
+            identity.activatable = false;
+            group.add_row (identity);
+
+            progress_row = new Singularity.Widgets.ActionRow (
+                "Preparing environment",
+                "Waiting for the provider to start",
+                "atoms-system-run-symbolic"
+            );
+            progress_row.activatable = false;
+            spinner = new Gtk.Spinner ();
+            spinner.spinning = true;
+            progress_row.add_suffix (spinner);
+            group.add_row (progress_row);
+            page.append_group (group);
+            content_box.append (page);
+        }
+
+        public void set_phase (string message) {
+            progress_row.title = "Creating environment";
+            progress_row.subtitle = message;
+        }
+
+        public void fail (string message) {
+            spinner.spinning = false;
+            progress_row.title = "Environment creation failed";
+            progress_row.subtitle = message;
+            progress_row.icon_name = "dialog-error-symbolic";
+            closable = true;
+        }
+    }
+
     public class EnvironmentSettingsDialog : Singularity.Widgets.AppDialog {
         private Environment profile;
         private Singularity.Widgets.SwitchRow network_row;
@@ -444,7 +505,12 @@ namespace Atoms {
             feedback.add_css_class ("atoms-muted");
             feedback.halign = Align.START;
             body.append (feedback);
-            content_box.append (body);
+
+            var scroll = new Gtk.ScrolledWindow ();
+            scroll.hscrollbar_policy = Gtk.PolicyType.NEVER;
+            scroll.vexpand = true;
+            scroll.set_child (body);
+            content_box.append (scroll);
             populate (initial_processes);
         }
 
@@ -518,9 +584,9 @@ namespace Atoms {
             feedback.label = "Sending %s to PID %d...".printf (signal, process.pid);
             try {
                 yield provider.signal_process (profile, process.pid, signal);
-                feedback.label = "%s sent to PID %d".printf (signal, process.pid);
                 var current = yield provider.list_processes (profile);
                 populate (current);
+                feedback.label = "%s sent to PID %d".printf (signal, process.pid);
             } catch (Error error) {
                 feedback.label = "Could not signal PID %d: %s".printf (
                     process.pid,
