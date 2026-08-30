@@ -1,8 +1,10 @@
 [Desktop Entry]
 Name=Atoms
+Comment=Open persistent Linux environments in a terminal
 Exec=atoms
 Icon=pm.mirko.Atoms
 Terminal=false
 Type=Application
-Categories=GTK;
+Categories=GTK;System;TerminalEmulator;
+Keywords=terminal;linux;environment;cpak;distribution;
 StartupNotify=true

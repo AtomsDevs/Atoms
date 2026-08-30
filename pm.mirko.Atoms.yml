@@ -1,185 +1,121 @@
 ---
 app-id: pm.mirko.Atoms
 runtime: org.gnome.Platform
-runtime-version: '44'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: atoms
 
 finish-args:
-- "--share=network"
-- "--share=ipc"
-- "--socket=fallback-x11"
-- "--device=dri"
-- "--socket=wayland"
-- "--allow=devel"  # this make proot works
-# - "--talk-name=org.freedesktop.Flatpak"  # set this for distrobox support
-
-add-extensions:
-  org.freedesktop.Platform.GL32:
-    directory: lib/i386-linux-gnu/GL
-    version: '1.4'
-    versions: 22.08;1.4
-    subdirectories: true
-    no-autodownload: true
-    autodelete: false
-    add-ld-path: lib
-    merge-dirs: vulkan/icd.d;glvnd/egl_vendor.d;OpenCL/vendors;lib/dri;lib/d3d;vulkan/explicit_layer.d
-    download-if: active-gl-driver
-    enable-if: active-gl-driver
+  - --share=ipc
+  - --share=network
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --talk-name=org.freedesktop.Flatpak
 
 cleanup:
-- "/include"
-- "/lib/pkgconfig"
-- "/man"
-- "/share/doc"
-- "/share/gtk-doc"
-- "/share/man"
-- "/share/pkgconfig"
-- "*.la"
-- "*.a"
+  - /include
+  - /lib/pkgconfig
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.a'
+  - '*.la'
 
 modules:
-- name: talloc
-  buildsystem: simple
-  build-commands:
-    - ./configure --prefix=/app
-    - make
-    - make install
-  sources:
-    - type: archive
-      url: https://www.samba.org/ftp/talloc/talloc-2.3.4.tar.gz
-      sha256: 179f9ebe265e67e4ab2c26cad2b7de4b6a77c6c212f966903382869f06be6505
-
-- name: proot
-  buildsystem: simple
-  build-commands:
-    - mv uthash/src/* src
-    - make -C src proot
-    - install -m755 -d /app/bin
-    - install -m755 -d /app/lib
-    - install -m755 src/proot /app/bin
-  sources:
-    - type: archive
-      url: https://github.com/troydhanson/uthash/archive/refs/tags/v2.3.0.tar.gz
-      sha256: e10382ab75518bad8319eb922ad04f907cb20cccb451a3aa980c9d005e661acc
-      dest: uthash
-    - type: git
-      url: https://github.com/termux/proot
-      commit: 5c462a6ecfddd629b1439f38fbb61216d6fcb359
-
-- name: vte  # needed by gtk4
-  buildsystem: meson
-  config-opts:
-    - -Ddocs=false
-    - -Dvapi=false
-    - -Dgtk4=true
-    - -Dgtk3=false
-  sources:
-    - type: archive
-      url: https://download.gnome.org/sources/vte/0.72/vte-0.72.0.tar.xz
-      sha256: 40fe914d6c70db34176c922725b6c6ea15d5f3cb2a9b44c57e200a5f950a6736
-
-# - name: fakeroot
-#   buildsystem: simple
-#   build-commands:
-#     - ./configure --prefix=/app
-#     - make
-#     - make install
-#   sources:
-#     - type: archive
-#       url: https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.29.orig.tar.gz
-#       sha256: 8fbbafb780c9173e3ace4a04afbc1d900f337f3216883939f5c7db3431be7c20
-
-- name: servicectl
-  buildsystem: simple
-  build-commands:
-    - install -m755 serviced /app/bin
-    - install -m755 servicectl /app/bin
-  sources:
-    - type: dir
-      path: ./servicectl
-
-- name: atoms-core
-  buildsystem: simple
-  build-commands:
-    - python3 setup.py install --prefix=/app --root=/
-  sources:
-    - type: dir
-      path: ./atoms-core
-  modules:
-  - name: orjson
+  - name: meson
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix /app --no-deps orjson-*.whl
+      - pip3 install --ignore-installed --no-index --no-deps --no-build-isolation --prefix=/app meson-1.10.0.tar.gz
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/02/1c/8234d74a415bcc22f43dcbc636b6ba31df295c449e3bdc294f7616c43c49/orjson-3.8.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-        sha256: 65ea3336c2bda31bc938785b84283118dec52eb90a2946b140054873946f60a4
-  - name: python-requests
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/psf/requests/archive/refs/tags/v2.28.0.tar.gz
-        sha256: 6b757ca284d8dc192794010c960b0cf405fcc7aed9ed2e04a8269dc41b1231ad
-  - name: python-urllib3
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/urllib3/urllib3/archive/refs/tags/1.26.9.tar.gz
-        sha256: 5860049db8811e7a26e5f228359522814dc8159e6ec4f352b1b596e0dee80503
-  - name: python-chardet
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/chardet/chardet/archive/4.0.0.tar.gz
-        sha256: 67bbe3eb02691d38831ddf2719c40fe09381bc17f15321946f6cd71dc274e530
-  - name: python-certifi
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/certifi/python-certifi/archive/refs/tags/2021.10.08.tar.gz
-        sha256: 51c2cf76f7f2582d9c4eb5440bb311ef523ba0b319d0a973450ecebfb6802a3a
-  - name: python-idna
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: archive
-        url: https://github.com/kjd/idna/archive/refs/tags/v3.3.tar.gz
-        sha256: 34b145ffe35b7872e9a3e0abc3a3a8330db90a0fd58db978725fd05c5c7d9f88
+        url: https://files.pythonhosted.org/packages/45/76/c2f4cff5dabcd64711bd327dd00fd22ec603bed6a928dd5d058044d568d8/meson-1.10.0.tar.gz
+        sha256: 8071860c1f46a75ea34801490fd1c445c9d75147a65508cd3a10366a7006cc1c
 
-- name: atoms-cli
-  buildsystem: simple
-  build-commands:
-    - python3 setup.py install --prefix=/app --root=/
-  sources:
-    - type: dir
-      path: ./atoms-cli
-  modules:
-    - name: python-tabulate
-      buildsystem: simple
-      build-commands:
-        - python3 setup.py install --prefix=/app --root=/
-      sources:
-        - type: archive
-          url: https://github.com/astanin/python-tabulate/archive/refs/tags/v0.8.10.tar.gz
-          sha256: 7a81a625d3cdfdd7c9db25f992410f46e7cbb20ed151126fceeac95586b90284
+  - name: gtk4-layer-shell
+    buildsystem: meson
+    config-opts:
+      - -Dexamples=false
+      - -Ddocs=false
+      - -Dtests=false
+      - -Dsmoke-tests=false
+      - -Dintrospection=true
+      - -Dvapi=true
+    sources:
+      - type: git
+        url: https://github.com/wmww/gtk4-layer-shell.git
+        commit: 1c963c51514581c41b9bdae08cdf69171265cdda
 
-- name: atoms
-  builddir: true
-  buildsystem: meson
-  config-opts:
-    - -Ddevel=true
-  build-commands:
-    - mkdir -p /app/lib/i386-linux-gnu/GL
-  sources:
-    - type: dir
-      path: .
+  - name: libpeas
+    buildsystem: meson
+    config-opts:
+      - -Dgjs=false
+      - -Dlua51=false
+      - -Dpython3=false
+      - -Dintrospection=true
+      - -Dvapi=true
+      - -Dgtk_doc=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/libpeas.git
+        commit: 39a2b9c55deaa5246b99b502b53896d3ad41846b
+
+  - name: sassc
+    buildsystem: simple
+    build-commands:
+      - make -j$(nproc) SASS_LIBSASS_PATH="$PWD/libsass"
+      - install -Dm755 bin/sassc /app/bin/sassc
+    sources:
+      - type: git
+        url: https://github.com/sass/sassc.git
+        commit: 66f0ef37e7f0ad3a65d2f481eff09d09408f42d0
+      - type: git
+        url: https://github.com/sass/libsass.git
+        commit: 7037f03fabeb2b18b5efa84403f5a6d7a990f460
+        dest: libsass
+
+  - name: libsingularity
+    buildsystem: meson
+    config-opts:
+      - -Dsystem=false
+      - -Dintrospection=false
+    sources:
+      - type: git
+        url: https://github.com/singularityos-lab/libsingularity.git
+        commit: dbf6622952337c8e5f11dba2e05592e60165e5e8
+
+  - name: vte
+    buildsystem: meson
+    config-opts:
+      - -Dapp=false
+      - -Ddocs=false
+      - -Dgir=true
+      - -Dglade=false
+      - -Dgtk3=false
+      - -Dgtk4=true
+      - -Dvapi=true
+      - -D_systemd=false
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/vte.git
+        commit: f2223e45d7f04c5383c59e76772501f0ed4215bc
+      - type: git
+        url: https://github.com/fastfloat/fast_float.git
+        commit: 88b1e5321c6918cbe091afd76728296290668403
+        dest: subprojects/fast_float
+      - type: git
+        url: https://github.com/simdutf/simdutf.git
+        commit: fd476229424b40ae71a58dd5a205795c3d76b5f1
+        dest: subprojects/simdutf
+      - type: shell
+        commands:
+          - cp subprojects/packagefiles/fast_float/meson.build subprojects/fast_float/
+          - cp subprojects/packagefiles/simdutf/meson.build subprojects/simdutf/
+          - cp subprojects/packagefiles/simdutf/meson.options subprojects/simdutf/
+
+  - name: atoms
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: .

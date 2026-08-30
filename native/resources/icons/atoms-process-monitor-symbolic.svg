@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+    <g font-weight="400" fill="#2e3436">
+        <path d="M2.188 2C.982 2 0 3.018 0 4.219v7.562C0 12.982.982 14 2.188 14h11.624C15.018 14 16 12.982 16 11.781V4.22C16 3.018 15.018 2 13.812 2zm0 2h11.624c.12 0 .188.08.188.219v7.562c0 .139-.067.219-.188.219H2.188c-.12 0-.188-.08-.188-.219V4.22C2 4.08 2.067 4 2.188 4z" style="line-height:normal;-inkscape-font-specification:'Bitstream Vera Sans';text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;marker:none" color="#bebebe" font-family="Bitstream Vera Sans" overflow="visible"/>
+        <path d="M7.486 5a.5.5 0 0 0-.447.309L5.916 8H3v1h3.25a.5.5 0 0 0 .46-.309l.62-1.488.68 3.395a.5.5 0 0 0 .89.203L10.25 9H13V8h-3a.5.5 0 0 0-.4.2L8.77 9.304l-.78-3.903A.5.5 0 0 0 7.485 5z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal" color="#000" font-family="sans-serif" white-space="normal" overflow="visible"/>
+    </g>
+</svg>

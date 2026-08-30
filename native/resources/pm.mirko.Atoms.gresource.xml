@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/pm/mirko/Atoms">
+    <file>style.css</file>
+    <file alias="icons/pm.mirko.Atoms-symbolic.svg">../../data/icons/hicolor/symbolic/apps/pm.mirko.Atoms-symbolic.svg</file>
+    <file alias="icons/atoms-terminal-drag-symbolic.svg">icons/atoms-terminal-drag-symbolic.svg</file>
+    <file alias="icons/list-drag-handle-symbolic.svg">icons/atoms-terminal-drag-symbolic.svg</file>
+    <file alias="icons/atoms-process-monitor-symbolic.svg">icons/atoms-process-monitor-symbolic.svg</file>
+    <file alias="icons/atoms-heart-symbolic.svg">icons/atoms-heart-symbolic.svg</file>
+    <file alias="icons/atoms-tab-new-symbolic.svg">icons/atoms-tab-new-symbolic.svg</file>
+    <file alias="icons/atoms-terminal-symbolic.svg">icons/atoms-terminal-symbolic.svg</file>
+    <file alias="icons/atoms-information-symbolic.svg">icons/atoms-information-symbolic.svg</file>
+    <file alias="icons/atoms-package-symbolic.svg">icons/atoms-package-symbolic.svg</file>
+    <file alias="icons/atoms-add-symbolic.svg">icons/atoms-add-symbolic.svg</file>
+    <file alias="icons/atoms-go-next-symbolic.svg">icons/atoms-go-next-symbolic.svg</file>
+    <file alias="icons/atoms-view-refresh-symbolic.svg">icons/atoms-view-refresh-symbolic.svg</file>
+    <file alias="icons/atoms-user-trash-symbolic.svg">icons/atoms-user-trash-symbolic.svg</file>
+    <file alias="icons/atoms-system-run-symbolic.svg">icons/atoms-system-run-symbolic.svg</file>
+    <file alias="icons/atoms-process-stop-symbolic.svg">icons/atoms-process-stop-symbolic.svg</file>
+  </gresource>
+</gresources>

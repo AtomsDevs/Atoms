@@ -1,63 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-	<id>pm.mirko.Atoms.desktop</id>
-	<metadata_license>CC0-1.0</metadata_license>
-    <project_license>GPL-3.0-only</project_license>
-    <name translatable="no">Atoms</name>
-    <summary>Manage Chroot and Containers.</summary>
-    <developer_name translatable="no">Mirko Brombin</developer_name>
-	<description>
-	  <p>No description</p>
-	</description>
-    <screenshots>
-        <screenshot type="default">
-            <image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/0.png</image>
-        </screenshot>
-		<screenshot>
-			<image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/1.png</image>
-		</screenshot>
-		<screenshot>
-			<image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/2.png</image>
-		</screenshot>
-		<screenshot>
-			<image>https://raw.githubusercontent.com/AtomsDevs/Atoms/main/data/screenshots/3.png</image>
-		</screenshot>
-	</screenshots>
-    <translation type="gettext">pm.mirko.Atoms</translation>
-    <content_rating type="oars-1.1"/>
-    <url type="homepage">https://github.com/AtomsDevs/Atoms</url>
-    <url type="bugtracker">https://github.com/AtomsDevs/Atoms/issues</url>
-    <url type="help">https://github.com/AtomsDevs/Atoms/issues</url>
-    <url type="translate">https://github.com/AtomsDevs/Atoms</url>
-    <url type="vcs-browser">https://github.com/AtomsDevs/Atoms</url>
-    <url type="contribute">https://github.com/AtomsDevs/Atoms/blob/master/CONTRIBUTING.md</url>
-    <recommends>
-      <control>pointing</control>
-      <control>keyboard</control>
-      <control>touch</control>
-    </recommends>
-    <requires>
-      <display_length compare="ge">768</display_length>
-    </requires>
-    <releases>
-        <release version="1.1.2" date="2023-06-29">
-          <description>
-            <ul>
-                <li>Updated translations</li>
-                <li>Add note about potentially missing fonts</li>
-                <li>Updated to atoms-core 1.1.2</li>
-            </ul>
-          </description>
-        </release>
-        <release version="1.1.1" date="2023-02-15">
-          <description>
-            <ul>
-                <li>Updated translations</li>
-                <li>Fix Create new atom button</li>
-                <li>Apx distrobox support</li>
-                <li>Updated to atoms-core 1.1.1</li>
-            </ul>
-          </description>
-        </release>
-    </releases>
+<component type="desktop-application">
+  <id>pm.mirko.Atoms</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <name translatable="no">Atoms</name>
+  <summary>Open persistent Linux environments in a terminal</summary>
+  <developer id="pm.mirko">
+    <name translatable="no">Mirko Brombin</name>
+  </developer>
+  <description>
+    <p>
+      Atoms opens persistent Linux environments supplied by installed
+      providers. Work with several environments using terminal tiles and tabs
+      while keeping permissions, processes, and lifecycle controls close to
+      the active shell.
+    </p>
+    <p>
+      Every environment has private writable system and home layers. Atoms can
+      narrow its permission policy but cannot grant access beyond the
+      provider's permission ceiling.
+    </p>
+  </description>
+  <launchable type="desktop-id">pm.mirko.Atoms.desktop</launchable>
+  <translation type="gettext">pm.mirko.Atoms</translation>
+  <content_rating type="oars-1.1"/>
+  <url type="homepage">https://github.com/AtomsDevs/Atoms</url>
+  <url type="bugtracker">https://github.com/AtomsDevs/Atoms/issues</url>
+  <url type="vcs-browser">https://github.com/AtomsDevs/Atoms</url>
+  <url type="contribute">https://github.com/AtomsDevs/Atoms/blob/main/CONTRIBUTING.md</url>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </recommends>
+  <requires>
+    <display_length compare="ge">768</display_length>
+  </requires>
+  <releases>
+    <release version="2.0.0" date="2026-08-28">
+      <description>
+        <ul>
+          <li>Add a Vala provider API with a separate cpak provider</li>
+          <li>Add tiled terminals and tabs with real terminal history search</li>
+          <li>Add environment permissions, process signals, and lifecycle controls</li>
+          <li>Discover distributions dynamically from installed providers</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
 </component>

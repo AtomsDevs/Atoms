@@ -1,4 +1,8 @@
 /build
+/build-native
 /.flatpak-builder
+/flatpak-build
 /.vscode
 /mesonbuild
+/subprojects/libsingularity/
+/subprojects/.wraplock

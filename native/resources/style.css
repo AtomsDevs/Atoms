@@ -1,0 +1,100 @@
+@define-color atoms_accent #326fd1;
+@define-color atoms_terminal #171a20;
+@define-color atoms_terminal_text #d8dee9;
+
+.atoms-sidebar-brand {
+  margin: 8px 12px 12px;
+}
+
+.atoms-wordmark {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.atoms-sidebar-copy,
+.atoms-muted {
+  color: alpha(currentColor, 0.68);
+}
+
+.atoms-sidebar-copy {
+  margin-top: 4px;
+}
+
+.atoms-support-button {
+  margin: 8px 12px 4px;
+}
+
+.atoms-version {
+  margin: 4px 16px 14px;
+  color: alpha(currentColor, 0.58);
+  font-size: 0.88em;
+}
+
+.atoms-workspace {
+  background: @atoms_terminal;
+}
+
+.atoms-terminal {
+  background: @atoms_terminal;
+  outline: 1px solid alpha(white, 0.12);
+}
+
+.atoms-terminal.active {
+  outline: 2px solid @atoms_accent;
+}
+
+.atoms-terminal-tabs {
+  background: #20242c;
+  border-top: 1px solid alpha(white, 0.10);
+}
+
+.atoms-statusbar {
+  min-height: 34px;
+  padding: 0 12px;
+}
+
+.atoms-catalogue-list {
+  padding: 8px;
+  background: alpha(currentColor, 0.04);
+}
+
+.atoms-catalogue-detail {
+  padding: 24px;
+}
+
+.atoms-distro-hero {
+  min-width: 64px;
+  min-height: 64px;
+}
+
+.atoms-dialog-body {
+  padding: 16px 20px;
+}
+
+.atoms-dialog-footer {
+  padding: 12px 16px 16px;
+}
+
+.atoms-process-metric {
+  padding: 12px;
+  border-radius: 8px;
+  background: alpha(currentColor, 0.06);
+}
+
+.atoms-process-row {
+  padding: 10px 12px;
+}
+
+.atoms-donate-heart {
+  color: #e73b5d;
+}
+
+.atoms-funding-card {
+  padding: 14px;
+  border-radius: 8px;
+  background: alpha(currentColor, 0.06);
+}
+
+.atoms-funding-button {
+  min-height: 42px;
+}

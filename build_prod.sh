@@ -1,1 +1,7 @@
-flatpak-spawn --host flatpak run org.flatpak.Builder build pm.mirko.Atoms.prod.yml --user --install --force-clean && flatpak-spawn --host flatpak run pm.mirko.Atoms
+#!/bin/sh
+set -eu
+
+flatpak run org.flatpak.Builder flatpak-build pm.mirko.Atoms.prod.yml \
+    --user \
+    --install \
+    --force-clean
