@@ -44,6 +44,8 @@
           <li>Add tiled terminals and tabs with real terminal history search</li>
           <li>Add environment permissions, process signals, and lifecycle controls</li>
           <li>Discover distributions dynamically from installed providers</li>
+          <li>Keep the interface dark when desktop theme settings are unavailable</li>
+          <li>Open interactive environment shells with current cpak releases</li>
         </ul>
       </description>
     </release>
