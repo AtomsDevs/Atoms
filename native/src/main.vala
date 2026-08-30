@@ -31,6 +31,7 @@ namespace Atoms {
             base.startup ();
 
             Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+            Singularity.Style.StyleManager.get_default ().apply_color_scheme (true);
 
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("/pm/mirko/Atoms/style.css");

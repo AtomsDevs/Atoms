@@ -804,6 +804,14 @@ namespace Atoms {
 
         public bool run_smoke_test () {
             bool passed = true;
+            Gdk.RGBA sidebar_foreground = sidebar.get_color ();
+            bool dark_sidebar = sidebar_foreground.red > 0.5f
+                && sidebar_foreground.green > 0.5f
+                && sidebar_foreground.blue > 0.5f;
+            passed = smoke_expect (
+                dark_sidebar,
+                "application dark theme"
+            ) && passed;
             passed = smoke_expect (!toolbar.visible, "window toolbar hidden") && passed;
             passed = smoke_expect (terminals.size == 2, "initial tiled terminals") && passed;
             passed = smoke_expect (active_terminal != null, "active terminal selection") && passed;
