@@ -38,16 +38,7 @@
     "notification": true,
     "openURI": true,
     "hostApplications": false,
-    "filesystem": [
-      {
-        "path": "home/.local/share/applications",
-        "access": "read-write"
-      },
-      {
-        "path": "home/.local/share/icons",
-        "access": "read-write"
-      }
-    ],
+    "filesystem": [],
     "env": [],
     "network": true,
     "process": false,
