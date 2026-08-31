@@ -29,7 +29,7 @@ if appstream_cli.found()
   )
 endif
 
-gnome.compile_schemas(
+atoms_schemas = gnome.compile_schemas(
   build_by_default: true,
   depend_files: files('pm.mirko.Atoms.gschema.xml')
 )

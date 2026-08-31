@@ -68,6 +68,7 @@ test_env.set('GSETTINGS_SCHEMA_DIR', meson.project_build_root() / 'data')
 test(
   'native-smoke',
   atoms,
+  depends: atoms_schemas,
   env: test_env,
   timeout: 30
 )
