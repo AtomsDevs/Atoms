@@ -22,7 +22,7 @@
     </p>
   </description>
   <launchable type="desktop-id">pm.mirko.Atoms.desktop</launchable>
-  <translation type="gettext">pm.mirko.Atoms</translation>
+  <translation type="gettext">atoms</translation>
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://github.com/AtomsDevs/Atoms</url>
   <url type="bugtracker">https://github.com/AtomsDevs/Atoms/issues</url>
@@ -37,6 +37,17 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="2.0.1" date="2026-08-31">
+      <description>
+        <ul>
+          <li>Add per-environment audio permissions and package updates</li>
+          <li>Export installed applications to the host application menu</li>
+          <li>Add terminal color schemes and GNOME-style copy and paste shortcuts</li>
+          <li>Complete the seven maintained translations</li>
+          <li>Explain when cpak is missing from the host system</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.0.0" date="2026-08-30">
       <description>
         <ul>

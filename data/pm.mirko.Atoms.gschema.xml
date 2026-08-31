@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="pm.mirko.Atoms" path="/pm/mirko/Atoms/">
+    <key name="color-scheme" type="s">
+      <default>'onedark'</default>
+      <summary>Terminal color scheme</summary>
+    </key>
+  </schema>
+</schemalist>

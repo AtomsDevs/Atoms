@@ -23,6 +23,14 @@ if not meson.is_subproject() and libsingularity_dep.type_name() == 'internal'
   libsingularity_vapi_args = ['--vapidir=' + libsingularity_vapi_dir]
 endif
 
+native_config = configuration_data()
+native_config.set_quoted('APP_VERSION', meson.project_version())
+native_build_config = configure_file(
+  input: 'src/build_config.vala.in',
+  output: 'build_config.vala',
+  configuration: native_config
+)
+
 resources = gnome.compile_resources(
   'atoms-resources',
   'resources/pm.mirko.Atoms.gresource.xml',
@@ -38,7 +46,7 @@ atoms = executable(
     'src/leaf_pane.vala',
     'src/dialogs.vala',
     'src/window.vala'
-  ) + [resources],
+  ) + [native_build_config, resources],
   dependencies: [
     gtk_dep,
     vte_dep,
@@ -55,6 +63,7 @@ atoms = executable(
 
 test_env = environment()
 test_env.set('ATOMS_SMOKE', '1')
+test_env.set('GSETTINGS_SCHEMA_DIR', meson.project_build_root() / 'data')
 
 test(
   'native-smoke',

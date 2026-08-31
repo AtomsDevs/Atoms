@@ -12,7 +12,7 @@ namespace Atoms {
                                           Distribution distribution) {
             base (app, true, false);
             transient_for = parent;
-            set_title ("Creating %s".printf (distribution.name));
+            set_title (_("Creating %s").printf (distribution.name));
             set_default_size (560, 320);
 
             var page = new Singularity.Widgets.PreferencesPage ();
@@ -21,8 +21,8 @@ namespace Atoms {
             page.margin_bottom = 16;
 
             var group = new Singularity.Widgets.PreferencesGroup (
-                "Environment creation",
-                "Atoms will keep this environment and its files between sessions."
+                _("Environment creation"),
+                _("Atoms will keep this environment and its files between sessions.")
             );
             var identity = new Singularity.Widgets.ActionRow (
                 distribution.display_name (),
@@ -37,8 +37,8 @@ namespace Atoms {
             group.add_row (identity);
 
             progress_row = new Singularity.Widgets.ActionRow (
-                "Preparing environment",
-                "Waiting for the provider to start",
+                _("Preparing environment"),
+                _("Waiting for the provider to start"),
                 "atoms-system-run-symbolic"
             );
             progress_row.activatable = false;
@@ -51,13 +51,13 @@ namespace Atoms {
         }
 
         public void set_phase (string message) {
-            progress_row.title = "Creating environment";
+            progress_row.title = _("Creating environment");
             progress_row.subtitle = message;
         }
 
         public void fail (string message) {
             spinner.spinning = false;
-            progress_row.title = "Environment creation failed";
+            progress_row.title = _("Environment creation failed");
             progress_row.subtitle = message;
             progress_row.icon_name = "dialog-error-symbolic";
             closable = true;
@@ -69,6 +69,7 @@ namespace Atoms {
         private Singularity.Widgets.SwitchRow network_row;
         private Singularity.Widgets.SwitchRow home_row;
         private Singularity.Widgets.SwitchRow display_row;
+        private Singularity.Widgets.SwitchRow audio_row;
         private Singularity.Widgets.SwitchRow usb_row;
         private Singularity.Widgets.SwitchRow input_row;
         private Singularity.Widgets.SwitchRow host_commands_row;
@@ -76,14 +77,17 @@ namespace Atoms {
         public signal void saved (Environment profile);
         public signal void restart_requested (Environment profile);
         public signal void delete_requested (Environment profile);
+        public signal void update_requested (Environment profile);
+        public signal void applications_requested (Environment profile);
 
         public EnvironmentSettingsDialog (Gtk.Application app,
                                           Gtk.Window parent,
-                                          Environment profile) {
+                                          Environment profile,
+                                          GLib.Settings settings) {
             base (app, true, true);
             this.profile = profile;
             transient_for = parent;
-            set_title ("%s settings".printf (profile.name));
+            set_title (_("%s settings").printf (profile.name));
             set_default_size (560, 700);
 
             var page = new Singularity.Widgets.PreferencesPage ();
@@ -92,8 +96,8 @@ namespace Atoms {
             page.margin_bottom = 8;
 
             var environment_group = new Singularity.Widgets.PreferencesGroup (
-                "Environment",
-                "Configuration for this Linux environment."
+                _("Environment"),
+                _("Configuration for this Linux environment.")
             );
             var environment_row = new Singularity.Widgets.ActionRow (
                 profile.display_name (),
@@ -102,51 +106,57 @@ namespace Atoms {
             add_environment_icon (environment_row, profile.icon_path);
             environment_group.add_row (environment_row);
             environment_group.add_row (new Singularity.Widgets.ActionRow (
-                "Terminal tabs",
-                "Open tabs in the current instance or start an isolated instance.",
+                _("Terminal tabs"),
+                _("Open tabs in the current instance or start an isolated instance."),
                 "atoms-terminal-symbolic"
             ));
             page.append_group (environment_group);
 
             var access_group = new Singularity.Widgets.PreferencesGroup (
-                "Permissions",
-                "Access is scoped to this environment and can be changed later."
+                _("Permissions"),
+                _("Access is scoped to this environment and can be changed later.")
             );
 
             network_row = new Singularity.Widgets.SwitchRow (
-                "Network",
-                "Allow outbound network access",
+                _("Network"),
+                _("Allow outbound network access"),
                 profile.policy.network
             );
             home_row = new Singularity.Widgets.SwitchRow (
-                "Home files",
-                "Share selected host home paths",
+                _("Home files"),
+                _("Share selected host home paths"),
                 profile.policy.home
             );
             display_row = new Singularity.Widgets.SwitchRow (
-                "Desktop display",
-                "Allow graphical applications",
+                _("Desktop display"),
+                _("Allow graphical applications"),
                 profile.policy.display
             );
+            audio_row = new Singularity.Widgets.SwitchRow (
+                _("Audio"),
+                _("Allow applications to play and record audio"),
+                profile.policy.audio
+            );
             usb_row = new Singularity.Widgets.SwitchRow (
-                "USB devices",
-                "Expose explicitly selected USB devices",
+                _("USB devices"),
+                _("Expose explicitly selected USB devices"),
                 profile.policy.usb
             );
             input_row = new Singularity.Widgets.SwitchRow (
-                "Input devices",
-                "Allow keyboard, pointer, and controller access",
+                _("Input devices"),
+                _("Allow keyboard, pointer, and controller access"),
                 profile.policy.input
             );
             host_commands_row = new Singularity.Widgets.SwitchRow (
-                "Host commands",
-                "Use commands allowed by the environment provider",
+                _("Host commands"),
+                _("Use commands allowed by the environment provider"),
                 profile.policy.host_commands
             );
 
             network_row.sensitive = profile.policy.can_network;
             home_row.sensitive = profile.policy.can_home;
             display_row.sensitive = profile.policy.can_display;
+            audio_row.sensitive = profile.policy.can_audio;
             usb_row.sensitive = profile.policy.can_usb;
             input_row.sensitive = profile.policy.can_input;
             host_commands_row.sensitive = profile.policy.can_host_commands;
@@ -154,19 +164,61 @@ namespace Atoms {
             access_group.add_row (network_row);
             access_group.add_row (home_row);
             access_group.add_row (display_row);
+            access_group.add_row (audio_row);
             access_group.add_row (usb_row);
             access_group.add_row (input_row);
             access_group.add_row (host_commands_row);
             page.append_group (access_group);
 
+            var appearance_group = new Singularity.Widgets.PreferencesGroup (
+                _("Appearance"),
+                _("Apply a color scheme to the terminal and the Atoms window.")
+            );
+            var schemes = new Singularity.Widgets.ColorSchemeRow (
+                _("Color scheme"),
+                Singularity.Core.TerminalThemes.get_all (),
+                settings.get_string ("color-scheme")
+            );
+            schemes.scheme_selected.connect ((scheme) => {
+                settings.set_string ("color-scheme", scheme);
+            });
+            appearance_group.add_row (schemes);
+            page.append_group (appearance_group);
+
+            var tools_group = new Singularity.Widgets.PreferencesGroup (
+                _("Environment tools"),
+                _("Update packages or expose installed applications to the desktop.")
+            );
+            var update = new Singularity.Widgets.ActionRow (
+                _("Update environment"),
+                _("Upgrade the installed packages"),
+                "atoms-view-refresh-symbolic"
+            );
+            update.activated.connect (() => {
+                update_requested (profile);
+                close_dialog ();
+            });
+            tools_group.add_row (update);
+            var applications = new Singularity.Widgets.ActionRow (
+                _("Applications"),
+                _("Choose applications shown in the host application menu"),
+                "atoms-package-symbolic"
+            );
+            applications.activated.connect (() => {
+                applications_requested (profile);
+                close_dialog ();
+            });
+            tools_group.add_row (applications);
+            page.append_group (tools_group);
+
             var lifecycle_group = new Singularity.Widgets.PreferencesGroup (
-                "Lifecycle",
-                "Restart or remove the selected environment."
+                _("Lifecycle"),
+                _("Restart or remove the selected environment.")
             );
 
             var restart = new Singularity.Widgets.ActionRow (
-                "Restart environment",
-                "Restart every open terminal for this environment",
+                _("Restart environment"),
+                _("Restart every open terminal for this environment"),
                 "atoms-view-refresh-symbolic"
             );
             restart.activated.connect (() => {
@@ -176,12 +228,12 @@ namespace Atoms {
             lifecycle_group.add_row (restart);
 
             var remove = new Singularity.Widgets.ConfirmRow (
-                "Delete environment and its data",
-                "Remove private data and saved terminal state",
+                _("Delete environment and its data"),
+                _("Remove private data and saved terminal state"),
                 "atoms-user-trash-symbolic"
             );
-            remove.confirm_label = "Delete";
-            remove.cancel_label = "Keep";
+            remove.confirm_label = _("Delete");
+            remove.cancel_label = _("Keep");
             remove.suggested_action = Singularity.Widgets.ConfirmationSuggestedAction.CANCEL;
             remove.confirmed.connect (() => {
                 delete_requested (profile);
@@ -197,11 +249,11 @@ namespace Atoms {
             content_box.append (scroll);
 
             var footer = dialog_footer ();
-            var cancel = new Gtk.Button.with_label ("Cancel");
+            var cancel = new Gtk.Button.with_label (_("Cancel"));
             cancel.clicked.connect (close_dialog);
             footer.append (cancel);
 
-            var save = new Gtk.Button.with_label ("Save changes");
+            var save = new Gtk.Button.with_label (_("Save changes"));
             save.add_css_class ("suggested-action");
             save.clicked.connect (save_settings);
             footer.append (save);
@@ -212,11 +264,117 @@ namespace Atoms {
             profile.policy.network = network_row.active;
             profile.policy.home = home_row.active;
             profile.policy.display = display_row.active;
+            profile.policy.audio = audio_row.active;
             profile.policy.usb = usb_row.active;
             profile.policy.input = input_row.active;
             profile.policy.host_commands = host_commands_row.active;
             saved (profile);
             close_dialog ();
+        }
+    }
+
+    public class ApplicationExportDialog : Singularity.Widgets.AppDialog {
+        private Environment profile;
+        private Provider provider;
+        private HashMap<string, DesktopApplication> applications;
+        private HashMap<string, Singularity.Widgets.SwitchRow> rows;
+        private HashMap<string, bool> initial;
+        private Gtk.Label feedback;
+        private Gtk.Button save;
+
+        public signal void saved ();
+
+        public ApplicationExportDialog (Gtk.Application app,
+                                        Gtk.Window parent,
+                                        Environment profile,
+                                        Provider provider,
+                                        ArrayList<DesktopApplication> available) {
+            base (app, true, true);
+            this.profile = profile;
+            this.provider = provider;
+            applications = new HashMap<string, DesktopApplication> ();
+            rows = new HashMap<string, Singularity.Widgets.SwitchRow> ();
+            initial = new HashMap<string, bool> ();
+            transient_for = parent;
+            set_title (_("%s applications").printf (profile.name));
+            set_default_size (560, 620);
+
+            var page = new Singularity.Widgets.PreferencesPage ();
+            page.margin_start = 16;
+            page.margin_end = 16;
+            page.margin_bottom = 8;
+            var group = new Singularity.Widgets.PreferencesGroup (
+                _("Applications"),
+                _("Choose which applications appear in the host application menu.")
+            );
+            if (available.size == 0) {
+                group.add_row (new Singularity.Widgets.ActionRow (
+                    _("No applications found"),
+                    _("Install a graphical application in this environment first."),
+                    "atoms-package-symbolic"
+                ));
+            } else {
+                foreach (var application in available) {
+                    var row = new Singularity.Widgets.SwitchRow (
+                        application.name,
+                        application.description,
+                        application.exported
+                    );
+                    row.icon_name = "atoms-package-symbolic";
+                    applications[application.id] = application;
+                    rows[application.id] = row;
+                    initial[application.id] = application.exported;
+                    group.add_row (row);
+                }
+            }
+            page.append_group (group);
+
+            var scroll = new Gtk.ScrolledWindow ();
+            scroll.hscrollbar_policy = PolicyType.NEVER;
+            scroll.vexpand = true;
+            scroll.set_child (page);
+            content_box.append (scroll);
+
+            feedback = new Gtk.Label ("");
+            feedback.halign = Align.START;
+            feedback.wrap = true;
+            feedback.add_css_class ("atoms-muted");
+            content_box.append (feedback);
+
+            var footer = dialog_footer ();
+            var cancel = new Gtk.Button.with_label (_("Cancel"));
+            cancel.clicked.connect (close_dialog);
+            footer.append (cancel);
+            save = new Gtk.Button.with_label (_("Save changes"));
+            save.add_css_class ("suggested-action");
+            save.sensitive = available.size > 0;
+            save.clicked.connect (() => save_changes.begin ());
+            footer.append (save);
+            content_box.append (footer);
+        }
+
+        private async void save_changes () {
+            save.sensitive = false;
+            feedback.label = _("Updating application menu...");
+            try {
+                foreach (var entry in applications.entries) {
+                    bool exported = rows[entry.key].active;
+                    if (exported == initial[entry.key])
+                        continue;
+                    yield provider.set_application_exported (
+                        profile,
+                        entry.value,
+                        exported
+                    );
+                }
+                saved ();
+                close_dialog ();
+            } catch (Error error) {
+                feedback.label = _("Could not update application menu: %s").printf (
+                    error.message
+                );
+                save.sensitive = true;
+            }
         }
     }
 
@@ -230,7 +388,7 @@ namespace Atoms {
                                   Environment profile) {
             base (app, true, true);
             transient_for = parent;
-            set_title ("New tab");
+            set_title (_("New tab"));
             set_default_size (500, 400);
 
             var body = new Gtk.Box (Orientation.VERTICAL, 16);
@@ -243,30 +401,30 @@ namespace Atoms {
             add_environment_icon (identity, profile.icon_path);
             body.append (identity);
 
-            var title = new Gtk.Label ("Choose how this tab connects");
+            var title = new Gtk.Label (_("Choose how this tab connects"));
             title.add_css_class ("title-3");
             title.halign = Align.START;
             body.append (title);
 
             same_instance = new Gtk.CheckButton.with_label (
-                "Use the current environment instance"
+                _("Use the current environment instance")
             );
             same_instance.active = true;
             body.append (same_instance);
 
             var new_instance = new Gtk.CheckButton.with_label (
-                "Start a new instance of the same environment"
+                _("Start a new instance of the same environment")
             );
             new_instance.set_group (same_instance);
             body.append (new_instance);
             content_box.append (body);
 
             var footer = dialog_footer ();
-            var cancel = new Gtk.Button.with_label ("Cancel");
+            var cancel = new Gtk.Button.with_label (_("Cancel"));
             cancel.clicked.connect (close_dialog);
             footer.append (cancel);
 
-            var create = new Gtk.Button.with_label ("Open tab");
+            var create = new Gtk.Button.with_label (_("Open tab"));
             create.add_css_class ("suggested-action");
             create.clicked.connect (() => {
                 tab_created (!same_instance.active);
@@ -290,13 +448,14 @@ namespace Atoms {
                                 Gtk.Window parent,
                                 bool create_environment,
                                 Environment[] environments,
-                                Distribution[] distributions) {
+                                Distribution[] distributions,
+                                string distribution_error = "") {
             base (app, true, true);
             this.create_environment = create_environment;
             this.environments = environments;
             this.distributions = distributions;
             transient_for = parent;
-            set_title (create_environment ? "New environment" : "New terminal");
+            set_title (create_environment ? _("New environment") : _("New terminal"));
             set_default_size (700, 600);
 
             var page = new Singularity.Widgets.PreferencesPage ();
@@ -313,8 +472,10 @@ namespace Atoms {
                 }
                 if (distributions.length == 0) {
                     var empty = new Singularity.Widgets.ActionRow (
-                        "No distributions available",
-                        "Install or enable an Atoms provider to create an environment.",
+                        _("No distributions available"),
+                        distribution_error == ""
+                            ? _("Install or enable an Atoms provider to create an environment.")
+                            : distribution_error,
                         "atoms-package-symbolic"
                     );
                     empty.activatable = false;
@@ -331,8 +492,8 @@ namespace Atoms {
                 }
                 if (environments.length == 0) {
                     var empty = new Singularity.Widgets.ActionRow (
-                        "No environments yet",
-                        "Create an environment before opening a terminal.",
+                        _("No environments yet"),
+                        _("Create an environment before opening a terminal."),
                         "atoms-terminal-symbolic"
                     );
                     empty.activatable = false;
@@ -364,19 +525,19 @@ namespace Atoms {
             add_environment_icon (row, distribution.icon_path, "atoms-package-symbolic");
             row.expanded = expanded;
             row.add_row (detail_row (
-                "About",
+                _("About"),
                 distribution.description,
                 "atoms-information-symbolic"
             ));
             row.add_row (detail_row (
-                "Package",
+                _("Package"),
                 distribution.origin,
                 "atoms-package-symbolic"
             ));
 
             var create = new Singularity.Widgets.ActionRow (
-                "Create environment",
-                "Install %s and open its terminal.".printf (distribution.display_name ()),
+                _("Create environment"),
+                _("Install %s and open its terminal.").printf (distribution.display_name ()),
                 "atoms-add-symbolic"
             );
             create.add_suffix (new Gtk.Image.from_icon_name ("atoms-go-next-symbolic"));
@@ -399,14 +560,14 @@ namespace Atoms {
             add_environment_icon (row, profile.icon_path);
             row.expanded = expanded;
             row.add_row (detail_row (
-                "Package",
+                _("Package"),
                 profile.origin,
                 "atoms-package-symbolic"
             ));
 
             var open = new Singularity.Widgets.ActionRow (
-                "Open terminal",
-                "Start a terminal in this environment.",
+                _("Open terminal"),
+                _("Start a terminal in this environment."),
                 "atoms-terminal-symbolic"
             );
             open.add_suffix (new Gtk.Image.from_icon_name ("atoms-go-next-symbolic"));
@@ -458,9 +619,9 @@ namespace Atoms {
             body.add_css_class ("atoms-dialog-body");
 
             var summary = new Gtk.Box (Orientation.HORIZONTAL, 8);
-            summary.append (metric ("-", "Processes", out process_count));
-            summary.append (metric ("-", "CPU", out cpu_total));
-            summary.append (metric ("-", "Memory", out memory_total));
+            summary.append (metric ("-", _("Processes"), out process_count));
+            summary.append (metric ("-", _("CPU"), out cpu_total));
+            summary.append (metric ("-", _("Memory"), out memory_total));
             body.append (summary);
 
             process_list = new Gtk.ListBox ();
@@ -469,39 +630,39 @@ namespace Atoms {
             body.append (process_list);
 
             var actions = new Singularity.Widgets.PreferencesGroup (
-                "Process actions",
-                "Actions apply to the selected process."
+                _("Process actions"),
+                _("Actions apply to the selected process.")
             );
 
             signal_picker = new Singularity.Widgets.SelectionRow (
-                "Signal",
+                _("Signal"),
                 signals,
                 contains_signal (signals, "TERM") ? "TERM" : signals[0]
             );
-            signal_picker.subtitle = "Choose the event sent by the action below";
+            signal_picker.subtitle = _("Choose the event sent by the action below");
             actions.add_row (signal_picker);
 
             var send = new Singularity.Widgets.ActionRow (
-                "Send selected signal",
-                "Send the selected event to the process",
+                _("Send selected signal"),
+                _("Send the selected event to the process"),
                 "atoms-system-run-symbolic"
             );
             send.activated.connect (() => send_selected_signal (false));
             actions.add_row (send);
 
             var kill = new Singularity.Widgets.ConfirmRow (
-                "Kill process",
-                "Immediately send SIGKILL to the process",
+                _("Kill process"),
+                _("Immediately send SIGKILL to the process"),
                 "atoms-process-stop-symbolic"
             );
-            kill.confirm_label = "Kill";
-            kill.cancel_label = "Cancel";
+            kill.confirm_label = _("Kill");
+            kill.cancel_label = _("Cancel");
             kill.suggested_action = Singularity.Widgets.ConfirmationSuggestedAction.CANCEL;
             kill.confirmed.connect (() => send_selected_signal (true));
             actions.add_row (kill);
             body.append (actions);
 
-            feedback = new Gtk.Label ("Select a process to manage it");
+            feedback = new Gtk.Label (_("Select a process to manage it"));
             feedback.add_css_class ("atoms-muted");
             feedback.halign = Align.START;
             body.append (feedback);
@@ -565,13 +726,13 @@ namespace Atoms {
         private void send_selected_signal (bool kill) {
             var row = process_list.get_selected_row ();
             if (row == null) {
-                feedback.label = "Select a process first";
+                feedback.label = _("Select a process first");
                 return;
             }
 
             var process = processes[row];
             if (!process.can_signal) {
-                feedback.label = "The environment init process cannot be signalled";
+                feedback.label = _("The environment init process cannot be signalled");
                 return;
             }
             string signal = kill
@@ -581,14 +742,14 @@ namespace Atoms {
         }
 
         private async void send_signal (ProcessInfo process, string signal) {
-            feedback.label = "Sending %s to PID %d...".printf (signal, process.pid);
+            feedback.label = _("Sending %s to PID %d...").printf (signal, process.pid);
             try {
                 yield provider.signal_process (profile, process.pid, signal);
                 var current = yield provider.list_processes (profile);
                 populate (current);
-                feedback.label = "%s sent to PID %d".printf (signal, process.pid);
+                feedback.label = _("%s sent to PID %d").printf (signal, process.pid);
             } catch (Error error) {
-                feedback.label = "Could not signal PID %d: %s".printf (
+                feedback.label = _("Could not signal PID %d: %s").printf (
                     process.pid,
                     error.message
                 );
@@ -612,8 +773,8 @@ namespace Atoms {
             cpu_total.label = "%.1f%%".printf (cpu);
             memory_total.label = new ProcessInfo (0, "", 0, memory).memory_label ();
             feedback.label = current.size == 0
-                ? "No processes are running"
-                : "Select a process to manage it";
+                ? _("No processes are running")
+                : _("Select a process to manage it");
         }
 
         private bool contains_signal (string[] signals, string expected) {
@@ -630,7 +791,7 @@ namespace Atoms {
         public FundingDialog (Gtk.Application app, Gtk.Window parent) {
             base (app, true, true);
             transient_for = parent;
-            set_title ("Support Atoms");
+            set_title (_("Support Atoms"));
             set_default_size (620, 560);
 
             var body = new Gtk.Box (Orientation.VERTICAL, 18);
@@ -645,12 +806,12 @@ namespace Atoms {
             var copy = new Gtk.Box (Orientation.VERTICAL, 4);
             copy.hexpand = true;
             copy.valign = Align.CENTER;
-            var title = new Gtk.Label ("Keep Atoms independent");
+            var title = new Gtk.Label (_("Keep Atoms independent"));
             title.add_css_class ("title-1");
             title.halign = Align.START;
             copy.append (title);
             var description = new Gtk.Label (
-                "Your support pays for development, infrastructure, and maintained distribution packages."
+                _("Your support pays for development, infrastructure, and maintained distribution packages.")
             );
             description.wrap = true;
             description.xalign = 0;
@@ -661,21 +822,21 @@ namespace Atoms {
             var channels = new Gtk.Box (Orientation.VERTICAL, 8);
             channels.add_css_class ("atoms-funding-card");
             channels.append (funding_button (
-                "GitHub Sponsors",
+                _("GitHub Sponsors"),
                 "https://github.com/sponsors/mirkobrombin"
             ));
             channels.append (funding_button (
-                "Liberapay",
+                _("Liberapay"),
                 "https://liberapay.com/mirkobrombin"
             ));
             channels.append (funding_button (
-                "Patreon",
+                _("Patreon"),
                 "https://www.patreon.com/MirkoBrombin"
             ));
             body.append (channels);
 
             var note = new Gtk.Label (
-                "Even sharing Atoms or contributing a distro package helps."
+                _("Even sharing Atoms or contributing a distro package helps.")
             );
             note.add_css_class ("atoms-muted");
             note.wrap = true;

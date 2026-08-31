@@ -3,10 +3,10 @@
   "manifest_version": "2.0",
   "name": "Atoms",
   "description": "Create and use persistent Linux environments from a terminal-first desktop interface.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "image": "ghcr.io/atomsdevs/atoms:main",
   "image_ref": "source",
-  "binaries": ["/usr/bin/atoms"],
+  "binaries": ["/usr/bin/atoms", "/usr/bin/atoms-cli"],
   "desktop_entries": ["/usr/share/applications/pm.mirko.Atoms.desktop"],
   "form_factors": ["desktop"],
   "idle_time": 0,
@@ -38,7 +38,16 @@
     "notification": true,
     "openURI": true,
     "hostApplications": false,
-    "filesystem": [],
+    "filesystem": [
+      {
+        "path": "home/.local/share/applications",
+        "access": "read-write"
+      },
+      {
+        "path": "home/.local/share/icons",
+        "access": "read-write"
+      }
+    ],
     "env": [],
     "network": true,
     "process": false,

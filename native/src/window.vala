@@ -15,15 +15,19 @@ namespace Atoms {
         private Singularity.Widgets.CommandPalette palette;
         private LeafPane? active_terminal;
         private ProviderRegistry registry;
+        private GLib.Settings settings;
         private bool smoke_mode;
 
         public AtomsWindow (Gtk.Application app,
                             ProviderRegistry registry,
+                            GLib.Settings settings,
                             bool smoke_mode = false) {
             base (app);
             this.registry = registry;
+            this.settings = settings;
             this.smoke_mode = smoke_mode;
-            set_title ("Atoms");
+            add_css_class ("atoms-window");
+            set_title (_("Atoms"));
             set_default_size (1280, 760);
             flat = true;
             toolbar.visible = false;
@@ -48,7 +52,7 @@ namespace Atoms {
                 add_terminal (environments[1]);
             } else {
                 show_welcome_page ();
-                update_status ("Loading environments...");
+                update_status (_("Loading environments..."));
                 load_environments.begin ();
             }
         }
@@ -83,25 +87,31 @@ namespace Atoms {
             var brand = new Gtk.Box (Orientation.VERTICAL, 0);
             brand.add_css_class ("atoms-sidebar-brand");
 
-            var title = new Gtk.Label ("Atoms");
+            var title = new Gtk.Label (_("Atoms"));
             title.add_css_class ("atoms-wordmark");
             title.halign = Align.START;
             brand.append (title);
 
-            var description = new Gtk.Label ("Linux, one shell away.");
+            var description = new Gtk.Label (_("Linux, one shell away."));
             description.add_css_class ("atoms-sidebar-copy");
             description.halign = Align.START;
             brand.append (description);
             sidebar.box.append (brand);
 
-            sidebar.box.append (new Singularity.Widgets.SidebarSectionLabel ("Environments"));
+            sidebar.box.append (new Singularity.Widgets.SidebarSectionLabel (_("Environments")));
             environment_list = new Gtk.Box (Orientation.VERTICAL, 2);
             var create_environment = new Singularity.Widgets.SidebarRow (
                 "atoms-add-symbolic",
-                "New environment"
+                _("New environment")
             );
             create_environment.clicked.connect (() => open_catalogue (true));
             environment_list.append (create_environment);
+            var update_all = new Singularity.Widgets.SidebarRow (
+                "atoms-view-refresh-symbolic",
+                _("Update all environments")
+            );
+            update_all.clicked.connect (update_all_environments);
+            environment_list.append (update_all);
             sidebar.box.append (environment_list);
 
             var spacer = new Gtk.Box (Orientation.VERTICAL, 0);
@@ -112,12 +122,12 @@ namespace Atoms {
             support.add_css_class ("atoms-support-button");
             var support_content = new Gtk.Box (Orientation.HORIZONTAL, 8);
             support_content.append (new Gtk.Image.from_icon_name ("atoms-heart-symbolic"));
-            support_content.append (new Gtk.Label ("Support Atoms"));
+            support_content.append (new Gtk.Label (_("Support Atoms")));
             support.set_child (support_content);
             support.clicked.connect (open_funding);
             sidebar.box.append (support);
 
-            var version = new Gtk.Label ("Atoms 2.0");
+            var version = new Gtk.Label ("Atoms " + APP_VERSION);
             version.add_css_class ("atoms-version");
             version.halign = Align.START;
             sidebar.box.append (version);
@@ -198,15 +208,21 @@ namespace Atoms {
 
         private void add_terminal (Environment profile) {
             if (terminals.size >= 4) {
-                status_label.label = "Four terminal areas are already open";
+                status_label.label = _("Four terminal areas are already open");
                 return;
             }
 
-            var terminal = new LeafPane (this, profile, registry, smoke_mode);
+            var terminal = new LeafPane (
+                this,
+                profile,
+                registry,
+                settings,
+                smoke_mode
+            );
             terminal.focused.connect (set_active_terminal);
             terminal.new_terminal_requested.connect ((requested) => {
                 set_active_terminal (requested);
-                add_terminal (requested.environment);
+                open_catalogue (false);
             });
             terminal.new_tab_requested.connect ((requested) => {
                 set_active_terminal (requested);
@@ -250,7 +266,7 @@ namespace Atoms {
                 active_terminal = null;
                 rebuild_layout ();
                 show_welcome_page ();
-                update_status ("Choose an environment to open a terminal");
+                update_status (_("Choose an environment to open a terminal"));
                 return;
             }
             rebuild_layout ();
@@ -400,16 +416,21 @@ namespace Atoms {
                 available_environments[i] = environments[i];
 
             var available_distributions = new ArrayList<Distribution> ();
+            var distribution_errors = new ArrayList<string> ();
             if (create_environment) {
-                update_status ("Loading available distributions...");
+                update_status (_("Loading available distributions..."));
                 foreach (var provider in registry.providers) {
-                    if (!provider.available)
+                    if (!provider.available) {
+                        if (provider.unavailable_reason != "")
+                            distribution_errors.add (provider.unavailable_reason);
                         continue;
+                    }
                     try {
                         var distributions = yield provider.list_distributions ();
                         available_distributions.add_all (distributions);
                     } catch (Error error) {
                         warning ("Could not load %s distributions: %s", provider.id, error.message);
+                        distribution_errors.add (error.message);
                     }
                 }
             }
@@ -422,7 +443,8 @@ namespace Atoms {
                 this,
                 create_environment,
                 available_environments,
-                distribution_array
+                distribution_array,
+                distribution_errors.size == 0 ? "" : distribution_errors[0]
             );
             dialog.terminal_requested.connect ((profile) => {
                 add_terminal (profile);
@@ -438,40 +460,40 @@ namespace Atoms {
             var items = new ArrayList<Singularity.Widgets.CommandPaletteItem> ();
             items.add (new Singularity.Widgets.CommandPaletteItem (
                     "atoms-terminal-symbolic",
-                    "New Terminal",
-                    "Atoms command",
+                    _("New Terminal"),
+                    _("Atoms command"),
                     "Ctrl+Shift+N",
                     "Result",
-                    () => add_terminal (terminal.environment)
+                    () => open_catalogue (false)
                 ));
             items.add (new Singularity.Widgets.CommandPaletteItem (
                     "atoms-tab-new-symbolic",
-                    "New Tab",
-                    "Atoms command",
+                    _("New Tab"),
+                    _("Atoms command"),
                     "Ctrl+Shift+T",
                     "Result",
                     () => open_tab_dialog (terminal)
                 ));
             items.add (new Singularity.Widgets.CommandPaletteItem (
                     "atoms-process-monitor-symbolic",
-                    "Environment Processes",
-                    "Atoms command",
+                    _("Environment Processes"),
+                    _("Atoms command"),
                     null,
                     "Result",
                     () => open_process_manager (terminal)
                 ));
             items.add (new Singularity.Widgets.CommandPaletteItem (
                     "emblem-system-symbolic",
-                    "Environment Settings",
-                    "Atoms command",
+                    _("Environment Settings"),
+                    _("Atoms command"),
                     "Ctrl+,",
                     "Result",
                     () => open_settings (terminal)
                 ));
             items.add (new Singularity.Widgets.CommandPaletteItem (
                     "list-add-symbolic",
-                    "New Environment",
-                    "Atoms command",
+                    _("New Environment"),
+                    _("Atoms command"),
                     null,
                     "Result",
                     () => open_catalogue (true)
@@ -493,7 +515,7 @@ namespace Atoms {
             return new Singularity.Widgets.CommandPaletteItem (
                 "atoms-terminal-symbolic",
                 command,
-                "Terminal history",
+                _("Terminal history"),
                 null,
                 "Result",
                 () => terminal.insert_history_command (command)
@@ -510,7 +532,7 @@ namespace Atoms {
         }
 
         private async void open_process_manager_async (LeafPane terminal) {
-            update_status ("Loading %s processes...".printf (terminal.environment.name));
+            update_status (_("Loading %s processes...").printf (terminal.environment.name));
             try {
                 var provider = registry.require (terminal.environment.provider_id);
                 var processes = yield provider.list_processes (terminal.environment);
@@ -528,7 +550,7 @@ namespace Atoms {
                 dialog.open_dialog ();
                 update_status ();
             } catch (Error error) {
-                update_status ("Could not open process manager: %s".printf (error.message));
+                update_status (_("Could not open process manager: %s").printf (error.message));
             }
         }
 
@@ -536,7 +558,8 @@ namespace Atoms {
             var dialog = new EnvironmentSettingsDialog (
                 (Gtk.Application) application,
                 this,
-                terminal.environment
+                terminal.environment,
+                settings
             );
             dialog.saved.connect ((profile) => {
                 save_policy.begin (profile);
@@ -547,7 +570,58 @@ namespace Atoms {
             dialog.delete_requested.connect ((profile) => {
                 delete_environment (profile);
             });
+            dialog.update_requested.connect ((profile) => {
+                terminal.add_update_tab (profile);
+                set_active_terminal (terminal);
+            });
+            dialog.applications_requested.connect ((profile) => {
+                open_applications.begin (profile);
+            });
             dialog.open_dialog ();
+        }
+
+        private async void open_applications (Environment profile) {
+            update_status (_("Loading %s applications...").printf (profile.name));
+            try {
+                var provider = registry.require (profile.provider_id);
+                var applications = yield provider.list_applications (profile);
+                var dialog = new ApplicationExportDialog (
+                    (Gtk.Application) application,
+                    this,
+                    profile,
+                    provider,
+                    applications
+                );
+                dialog.saved.connect (() => {
+                    update_status (_("Application menu updated for %s").printf (
+                        profile.name
+                    ));
+                });
+                dialog.open_dialog ();
+                update_status ();
+            } catch (Error error) {
+                update_status (_("Could not load applications: %s").printf (
+                    error.message
+                ));
+            }
+        }
+
+        private void update_all_environments () {
+            if (environments.size == 0) {
+                update_status (_("No environments to update"));
+                return;
+            }
+
+            LeafPane terminal;
+            if (active_terminal == null) {
+                add_terminal (environments[0]);
+                terminal = active_terminal;
+            } else {
+                terminal = active_terminal;
+            }
+            foreach (var environment in environments)
+                terminal.add_update_tab (environment);
+            set_active_terminal (terminal);
         }
 
         private void restart_environment (Environment profile) {
@@ -586,8 +660,8 @@ namespace Atoms {
                 show_welcome_page ();
                 update_status (
                     environments.size == 0
-                        ? "Create a distribution environment to begin"
-                        : "Choose an environment to open a terminal"
+                        ? _("Create a distribution environment to begin")
+                        : _("Choose an environment to open a terminal")
                 );
             } else {
                 rebuild_layout ();
@@ -614,8 +688,8 @@ namespace Atoms {
                 show_welcome_page ();
                 update_status (
                     registry.providers.size == 0
-                        ? "No Atoms provider is installed"
-                        : "Create a distribution environment to begin"
+                        ? _("No Atoms provider is installed")
+                        : _("Create a distribution environment to begin")
                 );
                 return;
             }
@@ -633,7 +707,7 @@ namespace Atoms {
                 distribution
             );
             dialog.open_dialog ();
-            update_status ("Installing %s...".printf (distribution.display_name ()));
+            update_status (_("Installing %s...").printf (distribution.display_name ()));
             Provider? provider = null;
             ulong progress_handler = 0;
             try {
@@ -656,13 +730,13 @@ namespace Atoms {
                     target.add_tab (profile);
                     set_active_terminal (target);
                 }
-                update_status ("%s is ready".printf (profile.display_name ()));
+                update_status (_("%s is ready").printf (profile.display_name ()));
             } catch (Error error) {
                 if (provider != null && progress_handler != 0)
                     provider.disconnect (progress_handler);
                 environment_list.remove (pending);
                 dialog.fail (error.message);
-                update_status ("Could not create %s: %s".printf (
+                update_status (_("Could not create %s: %s").printf (
                     distribution.name,
                     error.message
                 ));
@@ -684,23 +758,26 @@ namespace Atoms {
         }
 
         private async void save_policy (Environment profile) {
-            update_status ("Saving %s permissions...".printf (profile.name));
+            update_status (_("Saving %s permissions...").printf (profile.name));
             try {
                 var provider = registry.require (profile.provider_id);
                 var updated = yield provider.update_policy (profile);
                 int index = environments.index_of (profile);
                 if (index >= 0)
                     environments[index] = updated;
-                foreach (var terminal in terminals)
+                foreach (var terminal in terminals) {
                     terminal.update_environment_profile (updated);
-                update_status ("Permissions saved for %s".printf (updated.name));
+                    if (terminal.environment.id == updated.id)
+                        terminal.restart ();
+                }
+                update_status (_("Permissions saved for %s").printf (updated.name));
             } catch (Error error) {
-                update_status ("Could not save permissions: %s".printf (error.message));
+                update_status (_("Could not save permissions: %s").printf (error.message));
             }
         }
 
         private async void restart_environment_async (Environment profile) {
-            update_status ("Restarting %s...".printf (profile.name));
+            update_status (_("Restarting %s...").printf (profile.name));
             try {
                 var provider = registry.require (profile.provider_id);
                 yield provider.stop_environment (profile);
@@ -708,9 +785,9 @@ namespace Atoms {
                     if (terminal.environment.id == profile.id)
                         terminal.restart ();
                 }
-                update_status ("%s restarted".printf (profile.name));
+                update_status (_("%s restarted").printf (profile.name));
             } catch (Error error) {
-                update_status ("Could not restart %s: %s".printf (
+                update_status (_("Could not restart %s: %s").printf (
                     profile.name,
                     error.message
                 ));
@@ -718,14 +795,14 @@ namespace Atoms {
         }
 
         private async void delete_environment_async (Environment profile) {
-            update_status ("Deleting %s...".printf (profile.name));
+            update_status (_("Deleting %s...").printf (profile.name));
             try {
                 var provider = registry.require (profile.provider_id);
                 yield provider.delete_environment (profile);
                 remove_environment_from_ui (profile);
-                update_status ("%s deleted".printf (profile.name));
+                update_status (_("%s deleted").printf (profile.name));
             } catch (Error error) {
-                update_status ("Could not delete %s: %s".printf (
+                update_status (_("Could not delete %s: %s").printf (
                     profile.name,
                     error.message
                 ));
@@ -789,20 +866,20 @@ namespace Atoms {
 
             var welcome = new Singularity.Widgets.WelcomePage ();
             welcome.app_icon_name = "pm.mirko.Atoms-symbolic";
-            welcome.title = "Atoms";
-            welcome.subtitle = "Linux, one shell away.";
+            welcome.title = _("Atoms");
+            welcome.subtitle = _("Linux, one shell away.");
             if (environments.size > 0) {
                 welcome.add_action (
                     "atoms-terminal-symbolic",
-                    "New Terminal",
-                    "Open a shell in an installed environment.",
+                    _("New Terminal"),
+                    _("Open a shell in an installed environment."),
                     () => open_catalogue (false)
                 );
             }
             welcome.add_action (
                 "list-add-symbolic",
-                "New Environment",
-                "Install a Linux distribution and create its environment.",
+                _("New Environment"),
+                _("Install a Linux distribution and create its environment."),
                 () => open_catalogue (true)
             );
 
@@ -826,14 +903,14 @@ namespace Atoms {
             }
 
             if (active_terminal == null) {
-                status_label.label = "No active terminal";
+                status_label.label = _("No active terminal");
                 return;
             }
 
             int count = active_terminal.background_process_count;
             status_label.label = "%d background %s  |  %s".printf (
                 count,
-                count == 1 ? "process" : "processes",
+                count == 1 ? _("process") : _("processes"),
                 active_terminal.environment.display_name ()
             );
         }
@@ -890,6 +967,11 @@ namespace Atoms {
                 stdout.printf ("Atoms native smoke test: PASS\n");
 
             return passed;
+        }
+
+        public void apply_terminal_theme () {
+            foreach (var terminal in terminals)
+                terminal.apply_terminal_theme ();
         }
 
         private bool smoke_expect (bool condition, string operation) {

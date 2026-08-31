@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: atoms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-03 17:33+0200\n"
-"PO-Revision-Date: 2023-04-25 14:02+0200\n"
-"Last-Translator: albanobattistella@gmail.com\n"
+"POT-Creation-Date: 2026-08-31 17:50+0200\n"
+"PO-Revision-Date: 2026-08-31 12:41+0000\n"
+"Last-Translator: Atoms contributors\n"
 "Language-Team: italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,412 +17,731 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/pm.mirko.Atoms.desktop.in:3
+#: data/pm.mirko.Atoms.desktop.in:2 data/pm.mirko.Atoms.appdata.xml.in:6
+#: native/src/window.vala:30 native/src/window.vala:90
+#: native/src/window.vala:869
 msgid "Atoms"
 msgstr "Atoms"
 
-#: data/pm.mirko.Atoms.appdata.xml.in:7
-msgid "Manage Chroot and Containers."
-msgstr "Gestisci Chroot e Container."
+#: data/pm.mirko.Atoms.desktop.in:3 data/pm.mirko.Atoms.appdata.xml.in:7
+msgid "Open persistent Linux environments in a terminal"
+msgstr "Apri ambienti Linux persistenti in un terminale"
 
-#: data/pm.mirko.Atoms.appdata.xml.in:10
-msgid "No description"
-msgstr "Nessuna descrizione"
+#: data/pm.mirko.Atoms.desktop.in:9
+msgid "terminal;linux;environment;cpak;distribution;"
+msgstr "terminale;linux;ambiente;cpak;distribuzione;"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:9
+msgid "Mirko Brombin"
+msgstr "Mirko Brombin"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:12
+msgid ""
+"Atoms opens persistent Linux environments supplied by installed providers. "
+"Work with several environments using terminal tiles and tabs while keeping "
+"permissions, processes, and lifecycle controls close to the active shell."
+msgstr ""
+"Atoms apre ambienti Linux persistenti forniti dai provider installati. "
+"Lavora con più ambienti usando terminali a mosaico e schede mantenendo "
+"permessi, processi e controlli del ciclo di vita vicini alla shell attiva."
+
+#: data/pm.mirko.Atoms.appdata.xml.in:18
+msgid ""
+"Every environment has private writable system and home layers. Atoms can "
+"narrow its permission policy but cannot grant access beyond the provider's "
+"permission ceiling."
+msgstr ""
+"Ogni ambiente ha strati di sistema e home privati e scrivibili. Atoms può "
+"restringere la sua politica di permessi ma non può concedere accesso oltre "
+"il tetto di permessi del provider."
+
+#: data/pm.mirko.Atoms.appdata.xml.in:43
+msgid "Add per-environment audio permissions and package updates"
+msgstr "Aggiungi permessi audio per ambiente e aggiornamenti dei pacchetti"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:44
+msgid "Export installed applications to the host application menu"
+msgstr "Esporta le applicazioni installate nel menu applicazioni dell'host"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:45
+msgid "Add terminal color schemes and GNOME-style copy and paste shortcuts"
+msgstr ""
+"Aggiungi schemi di colore del terminale e scorciatoie copia e incolla in "
+"stile GNOME"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:46
-msgid "Updated translations"
-msgstr "Traduzioni aggiornate"
+msgid "Complete the seven maintained translations"
+msgstr "Completa le sette traduzioni mantenute"
 
 #: data/pm.mirko.Atoms.appdata.xml.in:47
-msgid "Fix Create new atom button"
-msgstr "Sistemato Crea nuovo pulsante atom"
+msgid "Explain when cpak is missing from the host system"
+msgstr "Spiega quando cpak è mancante dal sistema host"
 
-#: data/pm.mirko.Atoms.appdata.xml.in:48
-msgid "Apx distrobox support"
-msgstr "Supporto distrobox Apx"
+#: data/pm.mirko.Atoms.appdata.xml.in:54
+msgid "Add a Vala provider API with a separate cpak provider"
+msgstr "Aggiungi un'API provider Vala con un provider cpak separato"
 
-#: data/pm.mirko.Atoms.appdata.xml.in:49
-msgid "Updated to atoms-core 1.1.1"
-msgstr "Aggiornato a atoms-core 1.1.1"
+#: data/pm.mirko.Atoms.appdata.xml.in:55
+msgid "Add tiled terminals and tabs with real terminal history search"
+msgstr ""
+"Aggiungi terminali a mosaico e schede con ricerca reale della cronologia del "
+"terminale"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:56
+msgid "Add environment permissions, process signals, and lifecycle controls"
+msgstr ""
+"Aggiungi permessi dell'ambiente, segnali di processo e controlli del ciclo "
+"di vita"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:57
+msgid "Discover distributions dynamically from installed providers"
+msgstr "Scopri le distribuzioni dinamicamente dai provider installati"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:58
+msgid "Keep the interface dark when desktop theme settings are unavailable"
+msgstr ""
+"Mantieni l'interfaccia scura quando le impostazioni del tema desktop non "
+"sono disponibili"
+
+#: data/pm.mirko.Atoms.appdata.xml.in:59
+msgid "Open interactive environment shells with current cpak releases"
+msgstr "Apri shell interattive dell'ambiente con le ultime versioni di cpak"
 
 #: data/pm.mirko.Atoms.gschema.xml:6
-msgid "Toggle update date in list"
-msgstr "Attiva/disattiva la data di aggiornamento nella lista"
+msgid "Terminal color scheme"
+msgstr "Schema di colori del terminale"
 
-#: data/pm.mirko.Atoms.gschema.xml:7
-msgid "Toggle the update date in list of atoms."
-msgstr "Attiva/disattiva la data di aggiornamento nella lista di atoms."
+#: native/src/dialogs.vala:15
+#, c-format
+msgid "Creating %s"
+msgstr "Creazione di %s"
 
-#: data/pm.mirko.Atoms.gschema.xml:18
-msgid "Toggle Distrobox integration"
-msgstr "Attiva/disattiva l'integrazione con Distrobox"
+#: native/src/dialogs.vala:24
+msgid "Environment creation"
+msgstr "Creazione dell'ambiente"
 
-#: data/pm.mirko.Atoms.gschema.xml:19 atoms/gtk/preferences-window.ui:99
-msgid "List and handle Distrobox containers as atoms."
-msgstr "Elenca e gestisci i container Distrobox come atom."
+#: native/src/dialogs.vala:25
+msgid "Atoms will keep this environment and its files between sessions."
+msgstr "Atoms manterrà questo ambiente e i suoi file tra le sessioni."
 
-#: atoms/main.py:70
-msgid "translator_credits"
-msgstr "Albano Battistella"
+#: native/src/dialogs.vala:40
+msgid "Preparing environment"
+msgstr "Preparazione dell'ambiente"
 
-#: atoms/main.py:73
-msgid "Contributors"
-msgstr "Collaboratori"
+#: native/src/dialogs.vala:41
+msgid "Waiting for the provider to start"
+msgstr "In attesa che il provider si avvii"
 
-#: atoms/main.py:80
-msgid "Third-Party Libraries and Special Thanks"
-msgstr "Librerie di Terze Parti e Ringraziamenti Speciali"
+#: native/src/dialogs.vala:54
+msgid "Creating environment"
+msgstr "Creazione dell'ambiente"
 
-#: atoms/views/console.py:67
-msgid "Press the Play button to start the container"
-msgstr "Premi il pulsante Play per avviare il container"
+#: native/src/dialogs.vala:60
+msgid "Environment creation failed"
+msgstr "Creazione dell'ambiente fallita"
 
-#: atoms/views/dashboard.py:116
-msgid "Atom console re-attached."
-msgstr "Console Atom ricollegata."
+#: native/src/dialogs.vala:90
+#, c-format
+msgid "%s settings"
+msgstr "Impostazioni di %s"
 
-#: atoms/views/dashboard.py:128
-msgid "Atom console detached."
-msgstr "Console Atom staccata."
+#: native/src/dialogs.vala:99
+msgid "Environment"
+msgstr "Ambiente"
 
-#: atoms/views/dashboard.py:149
-msgid "File manager opened."
-msgstr "File manager aperto."
+#: native/src/dialogs.vala:100
+msgid "Configuration for this Linux environment."
+msgstr "Configurazione per questo ambiente Linux."
 
-#: atoms/views/dashboard.py:163 atoms/views/dashboard.py:167
-#: atoms/widgets/image_entry.py:50 atoms/widgets/image_entry.py:54
-msgid "Confirm"
-msgstr "Conferma"
+#: native/src/dialogs.vala:109
+msgid "Terminal tabs"
+msgstr "Schede del terminale"
 
-#: atoms/views/dashboard.py:164
-msgid "Are you sure you want to delete this Atom and all files?"
-msgstr "Sei sicuro di voler eliminare questo Atom e tutti i file?"
+#: native/src/dialogs.vala:110
+msgid "Open tabs in the current instance or start an isolated instance."
+msgstr "Apri schede nell'istanza corrente o avvia un'istanza isolata."
 
-#: atoms/views/dashboard.py:166 atoms/widgets/image_entry.py:53
-#: atoms/windows/preferences_window.py:117
-#: atoms/windows/preferences_window.py:130 atoms/gtk/new-atom-window.ui:18
-#: atoms/gtk/new-atom-window.ui:112
-msgid "Cancel"
-msgstr "Annulla"
+#: native/src/dialogs.vala:116
+msgid "Permissions"
+msgstr "Permessi"
 
-#: atoms/views/dashboard.py:178
-msgid "Atom renamed successfully."
-msgstr "Atomo rinominato con successo."
-
-#: atoms/views/dashboard.py:183
-#, fuzzy, python-brace-format
-msgid "{0} bound to Atom."
-msgstr "{0} legato ad Atom."
-
-#: atoms/views/dashboard.py:185
-#, python-brace-format
-msgid "{0} unbound from Atom."
-msgstr "{0} scollegato dall'Atomo."
-
-#: atoms/widgets/image_entry.py:51
-msgid "Are you sure you want to delete this image?"
-msgstr "Sei sicuro di voler eliminare questa immagine?"
-
-#: atoms/windows/new_atom_window.py:77
-msgid "Downloading Chosen Image…"
-msgstr "Scaricamento dell'Immagine Scelta…"
-
-#: atoms/windows/new_atom_window.py:78
-msgid "Creating new Atom Configuration…"
-msgstr "Creazione nuova configurazione Atom…"
-
-#: atoms/windows/new_atom_window.py:79
-msgid "Unpacking Chosen Image…"
-msgstr "Decompressione dell'Immagine Scelta…"
-
-#: atoms/windows/new_atom_window.py:80
-msgid "Creating new distrobox Container…"
-msgstr "Creazione nuovo distrobox Container…"
-
-#: atoms/windows/new_atom_window.py:81
-msgid "Finalizing…"
-msgstr "Finalizzazione…"
-
-#: atoms/windows/preferences_window.py:50
-msgid ""
-"Atoms has no access to org.freedesktop.Flatpak or distrobox is not installed "
-"in your system."
+#: native/src/dialogs.vala:117
+msgid "Access is scoped to this environment and can be changed later."
 msgstr ""
-"Atoms non ha accesso a org.freedesktop.Flatpak o distrobox non è installato "
-"nel tuo sistema."
+"L'accesso è limitato a questo ambiente e può essere modificato in seguito."
 
-#: atoms/windows/preferences_window.py:88
-msgid "Atoms path reset to default."
-msgstr "Percorso degli atom ripristinati al valore predefinito."
+#: native/src/dialogs.vala:121
+msgid "Network"
+msgstr "Rete"
 
-#: atoms/windows/preferences_window.py:94
-msgid "Images path reset to default."
-msgstr "Il percorso delle immagini è stato ripristinato al valore predefinito."
+#: native/src/dialogs.vala:122
+msgid "Allow outbound network access"
+msgstr "Consenti accesso di rete in uscita"
 
-#: atoms/windows/preferences_window.py:115
-msgid "Choose New Atoms Location"
-msgstr "Scegli la Posizione Degli Atomi"
+#: native/src/dialogs.vala:126
+msgid "Home files"
+msgstr "File della home"
 
-#: atoms/windows/preferences_window.py:117
-#: atoms/windows/preferences_window.py:130
-msgid "Select"
-msgstr "Seleziona"
+#: native/src/dialogs.vala:127
+msgid "Share selected host home paths"
+msgstr "Condividi percorsi home selezionati dell'host"
 
-#: atoms/windows/preferences_window.py:128
-msgid "Choose New Images Location"
-msgstr "Scegli la Posizione Degli Immagini"
+#: native/src/dialogs.vala:131
+msgid "Desktop display"
+msgstr "Visualizzazione desktop"
 
-#: atoms/gtk/dashboard.ui:26
-msgid "Start Container"
-msgstr "Avvia il Container"
+#: native/src/dialogs.vala:132
+msgid "Allow graphical applications"
+msgstr "Consenti applicazioni grafiche"
 
-#: atoms/gtk/dashboard.ui:33
-msgid "Detach Console"
-msgstr "Stacca il Terminale"
+#: native/src/dialogs.vala:136
+msgid "Audio"
+msgstr "Audio"
 
-#: atoms/gtk/dashboard.ui:44
-msgid "Dashboard"
-msgstr "Dashboard"
+#: native/src/dialogs.vala:137
+msgid "Allow applications to play and record audio"
+msgstr "Consenti alle applicazioni di riprodurre e registrare audio"
 
-#: atoms/gtk/dashboard.ui:63
-msgid "Atom Name"
-msgstr "Nome dell'Atom"
+#: native/src/dialogs.vala:141
+msgid "USB devices"
+msgstr "Dispositivi USB"
 
-#: atoms/gtk/dashboard.ui:72
-msgid "Distribution Name"
-msgstr "Distribuzione"
+#: native/src/dialogs.vala:142
+msgid "Expose explicitly selected USB devices"
+msgstr "Esporre i dispositivi USB selezionati esplicitamente"
 
-#: atoms/gtk/dashboard.ui:84
-msgid "Utilities"
-msgstr "Utilità"
+#: native/src/dialogs.vala:146
+msgid "Input devices"
+msgstr "Dispositivi di input"
 
-#: atoms/gtk/dashboard.ui:87
-msgid "Browse Files"
-msgstr "Esplora i File"
+#: native/src/dialogs.vala:147
+msgid "Allow keyboard, pointer, and controller access"
+msgstr "Consenti l'accesso a tastiera, puntatore e controller"
 
-#: atoms/gtk/dashboard.ui:100
-msgid "Settings"
-msgstr "Impostazioni"
+#: native/src/dialogs.vala:151
+msgid "Host commands"
+msgstr "Comandi host"
 
-#: atoms/gtk/dashboard.ui:103
-msgid "Details"
-msgstr "Dettagli"
+#: native/src/dialogs.vala:152
+msgid "Use commands allowed by the environment provider"
+msgstr "Usa i comandi consentiti dal fornitore dell'ambiente"
 
-#: atoms/gtk/dashboard.ui:106 atoms/gtk/new-atom-window.ui:45
-msgid "Name"
-msgstr "Nome"
-
-#: atoms/gtk/dashboard.ui:114
-msgid "Bindings"
-msgstr "Bindings"
-
-#: atoms/gtk/dashboard.ui:115
-msgid "Choose which mount points to expose."
-msgstr "Scegli quali punti di mount esporre."
-
-#: atoms/gtk/dashboard.ui:118
-msgid "Host Themes"
-msgstr "Temi Host"
-
-#: atoms/gtk/dashboard.ui:130
-msgid "Host Icons"
-msgstr "Icone Host"
-
-#: atoms/gtk/dashboard.ui:142
-msgid "Host Fonts"
-msgstr "Font Host"
-
-#: atoms/gtk/dashboard.ui:156
-msgid "Destructive Actions"
-msgstr "Azioni Distruttive"
-
-#: atoms/gtk/dashboard.ui:159
-msgid "Destroy Atom"
-msgstr "Distruggi l'Atom"
-
-#: atoms/gtk/dashboard.ui:160
-msgid "Delete the configuration and all files"
-msgstr "Elimina la configurazione e tutti i file"
-
-#: atoms/gtk/dashboard.ui:180
-msgid "Console"
-msgstr "Terminale"
-
-#: atoms/gtk/entry-creation-step.ui:6
-msgid "Atom Configuration Generated."
-msgstr "Configurazione dell'Atom Generata."
-
-#: atoms/gtk/help-overlay.ui:11
-msgctxt "shortcut window"
-msgid "General"
-msgstr "Generale"
-
-#: atoms/gtk/help-overlay.ui:14
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "Mostra i tasti di scelta rapida"
-
-#: atoms/gtk/help-overlay.ui:20
-msgctxt "shortcut window"
-msgid "New Atom"
-msgstr "Nuovo Atom"
-
-#: atoms/gtk/help-overlay.ui:26
-msgctxt "shortcut window"
-msgid "Quit"
-msgstr "Esci"
-
-#: atoms/gtk/new-atom-window.ui:7 atoms/gtk/window.ui:25
-msgid "New Atom"
-msgstr "Nuovo Atom"
-
-#: atoms/gtk/new-atom-window.ui:23
-msgid "Create"
-msgstr "Crea"
-
-#: atoms/gtk/new-atom-window.ui:42
-msgid "Atom Information"
-msgstr "Informazioni dell'Atom"
-
-#: atoms/gtk/new-atom-window.ui:50
-msgid "Atom Type"
-msgstr "Tipo di Atom"
-
-#: atoms/gtk/new-atom-window.ui:60
-msgid "Atom Chroot Distribution"
-msgstr "Distribuzione dell'Atom"
-
-#: atoms/gtk/new-atom-window.ui:63
-msgid "Distribution"
-msgstr "Distribuzione"
-
-#: atoms/gtk/new-atom-window.ui:71
-msgid "Release"
-msgstr "Rilascio"
-
-#: atoms/gtk/new-atom-window.ui:81
-msgid "Distrobox Container Image"
-msgstr "Immagine del Container Distrobox"
-
-#: atoms/gtk/new-atom-window.ui:85
-msgid "Image Name"
-msgstr "Nome dell'Immagine"
-
-#: atoms/gtk/new-atom-window.ui:103
-msgid "Creating an Atom…"
-msgstr "Creazione di un Atomo…"
-
-#: atoms/gtk/new-atom-window.ui:104
-msgid "Take a break, it may take a while."
-msgstr "Fai una pausa, potrebbe volerci un po'."
-
-#: atoms/gtk/new-atom-window.ui:131
-msgid "Atom Created"
-msgstr "Atom Creato"
-
-#: atoms/gtk/new-atom-window.ui:135
-msgid "Close"
-msgstr "Chiudi"
-
-#: atoms/gtk/new-atom-window.ui:153
-msgid "An Error Occurred"
-msgstr "Si è Verificato un Errore"
-
-#: atoms/gtk/preferences-window.ui:6
-msgid "Preferences"
-msgstr "Preferenze"
-
-#: atoms/gtk/preferences-window.ui:12
-msgid "General"
-msgstr "Generale"
-
-#: atoms/gtk/preferences-window.ui:15
+#: native/src/dialogs.vala:174
 msgid "Appearance"
 msgstr "Aspetto"
 
-#: atoms/gtk/preferences-window.ui:18
-msgid "Show Update Date"
-msgstr "Mostra la Data di Aggiornamento"
+#: native/src/dialogs.vala:175
+msgid "Apply a color scheme to the terminal and the Atoms window."
+msgstr "Applica un tema di colori al terminale e alla finestra Atoms."
 
-#: atoms/gtk/preferences-window.ui:19
-msgid "Whether to show the update date in the atoms list."
-msgstr "Mostra la data di aggiornamento nella lista degli atomi."
+#: native/src/dialogs.vala:178
+msgid "Color scheme"
+msgstr "Schema di colori"
 
-#: atoms/gtk/preferences-window.ui:35
-msgid "Custom Atoms Path"
-msgstr "Percorso Personalizzato degli Atomi"
+#: native/src/dialogs.vala:189
+msgid "Environment tools"
+msgstr "Strumenti di ambiente"
 
-#: atoms/gtk/preferences-window.ui:36
+#: native/src/dialogs.vala:190
+msgid "Update packages or expose installed applications to the desktop."
+msgstr "Aggiorna pacchetti o espone le applicazioni installate al desktop."
+
+#: native/src/dialogs.vala:193
+msgid "Update environment"
+msgstr "Aggiorna l'ambiente"
+
+#: native/src/dialogs.vala:194
+msgid "Upgrade the installed packages"
+msgstr "Aggiorna i pacchetti installati"
+
+#: native/src/dialogs.vala:203 native/src/dialogs.vala:307
+msgid "Applications"
+msgstr "Applicazioni"
+
+#: native/src/dialogs.vala:204
+msgid "Choose applications shown in the host application menu"
+msgstr "Scegli le applicazioni mostrate nel menu delle applicazioni host"
+
+#: native/src/dialogs.vala:215
+msgid "Lifecycle"
+msgstr "Ciclo di vita"
+
+#: native/src/dialogs.vala:216
+msgid "Restart or remove the selected environment."
+msgstr "Riavvia o rimuovi l'ambiente selezionato."
+
+#: native/src/dialogs.vala:220
+msgid "Restart environment"
+msgstr "Riavvia l'ambiente"
+
+#: native/src/dialogs.vala:221
+msgid "Restart every open terminal for this environment"
+msgstr "Riavvia ogni terminale aperto per questo ambiente"
+
+#: native/src/dialogs.vala:231
+msgid "Delete environment and its data"
+msgstr "Elimina l'ambiente e i suoi dati"
+
+#: native/src/dialogs.vala:232
+msgid "Remove private data and saved terminal state"
+msgstr "Rimuovi i dati privati e lo stato salvato del terminale"
+
+#: native/src/dialogs.vala:235
+msgid "Delete"
+msgstr "Elimina"
+
+#: native/src/dialogs.vala:236
+msgid "Keep"
+msgstr "Mantieni"
+
+#: native/src/dialogs.vala:252 native/src/dialogs.vala:345
+#: native/src/dialogs.vala:423 native/src/dialogs.vala:659
+msgid "Cancel"
+msgstr "Annulla"
+
+#: native/src/dialogs.vala:256 native/src/dialogs.vala:348
+msgid "Save changes"
+msgstr "Salva modifiche"
+
+#: native/src/dialogs.vala:299
+#, c-format
+msgid "%s applications"
+msgstr "%s applicazioni"
+
+#: native/src/dialogs.vala:308
+msgid "Choose which applications appear in the host application menu."
+msgstr "Scegli quali applicazioni appaiono nel menu dell'applicazione host."
+
+#: native/src/dialogs.vala:312
+msgid "No applications found"
+msgstr "Nessuna applicazione trovata"
+
+#: native/src/dialogs.vala:313
+msgid "Install a graphical application in this environment first."
+msgstr "Installa prima un'applicazione grafica in questo ambiente."
+
+#: native/src/dialogs.vala:358
+msgid "Updating application menu..."
+msgstr "Aggiornamento del menu delle applicazioni..."
+
+#: native/src/dialogs.vala:373
+#, c-format
+msgid "Could not update application menu: %s"
+msgstr "Impossibile aggiornare il menu delle applicazioni: %s"
+
+#: native/src/dialogs.vala:391
+msgid "New tab"
+msgstr "Nuova scheda"
+
+#: native/src/dialogs.vala:404
+msgid "Choose how this tab connects"
+msgstr "Scegli come questa scheda si connette"
+
+#: native/src/dialogs.vala:410
+msgid "Use the current environment instance"
+msgstr "Usa l'istanza corrente dell'ambiente"
+
+#: native/src/dialogs.vala:416
+msgid "Start a new instance of the same environment"
+msgstr "Avvia una nuova istanza dello stesso ambiente"
+
+#: native/src/dialogs.vala:427
+msgid "Open tab"
+msgstr "Apri scheda"
+
+#: native/src/dialogs.vala:458 native/src/window.vala:105
+msgid "New environment"
+msgstr "Nuovo ambiente"
+
+#: native/src/dialogs.vala:458
+msgid "New terminal"
+msgstr "Nuovo terminale"
+
+#: native/src/dialogs.vala:475
+msgid "No distributions available"
+msgstr "Nessuna distribuzione disponibile"
+
+#: native/src/dialogs.vala:477
+msgid "Install or enable an Atoms provider to create an environment."
+msgstr "Installa o abilita un provider Atoms per creare un ambiente."
+
+#: native/src/dialogs.vala:495
+msgid "No environments yet"
+msgstr "Nessun ambiente ancora"
+
+#: native/src/dialogs.vala:496
+msgid "Create an environment before opening a terminal."
+msgstr "Crea un ambiente prima di aprire un terminale."
+
+#: native/src/dialogs.vala:528
+msgid "About"
+msgstr "Informazioni"
+
+#: native/src/dialogs.vala:533 native/src/dialogs.vala:563
+msgid "Package"
+msgstr "Pacchetto"
+
+#: native/src/dialogs.vala:539
+msgid "Create environment"
+msgstr "Crea ambiente"
+
+#: native/src/dialogs.vala:540
+#, c-format
+msgid "Install %s and open its terminal."
+msgstr "Installa %s e apri il suo terminale."
+
+#: native/src/dialogs.vala:569
+msgid "Open terminal"
+msgstr "Apri terminale"
+
+#: native/src/dialogs.vala:570
+msgid "Start a terminal in this environment."
+msgstr "Avvia un terminale in questo ambiente."
+
+#: native/src/dialogs.vala:622
+msgid "Processes"
+msgstr "Processi"
+
+#: native/src/dialogs.vala:623
+msgid "CPU"
+msgstr "CPU"
+
+#: native/src/dialogs.vala:624
+msgid "Memory"
+msgstr "Memoria"
+
+#: native/src/dialogs.vala:633
+msgid "Process actions"
+msgstr "Azioni sul processo"
+
+#: native/src/dialogs.vala:634
+msgid "Actions apply to the selected process."
+msgstr "Le azioni si applicano al processo selezionato."
+
+#: native/src/dialogs.vala:638
+msgid "Signal"
+msgstr "Segnale"
+
+#: native/src/dialogs.vala:642
+msgid "Choose the event sent by the action below"
+msgstr "Scegli l'evento inviato dall'azione qui sotto"
+
+#: native/src/dialogs.vala:646
+msgid "Send selected signal"
+msgstr "Invia segnale selezionato"
+
+#: native/src/dialogs.vala:647
+msgid "Send the selected event to the process"
+msgstr "Invia l'evento selezionato al processo"
+
+#: native/src/dialogs.vala:654
+msgid "Kill process"
+msgstr "Termina processo"
+
+#: native/src/dialogs.vala:655
+msgid "Immediately send SIGKILL to the process"
+msgstr "Invia immediatamente SIGKILL al processo"
+
+#: native/src/dialogs.vala:658
+msgid "Kill"
+msgstr "Termina"
+
+#: native/src/dialogs.vala:665 native/src/dialogs.vala:777
+msgid "Select a process to manage it"
+msgstr "Seleziona un processo per gestirlo"
+
+#: native/src/dialogs.vala:729
+msgid "Select a process first"
+msgstr "Seleziona prima un processo"
+
+#: native/src/dialogs.vala:735
+msgid "The environment init process cannot be signalled"
+msgstr "Il processo di init dell'ambiente non può essere segnalato"
+
+#: native/src/dialogs.vala:745
+#, c-format
+msgid "Sending %s to PID %d..."
+msgstr "Invio di %s al PID %d..."
+
+#: native/src/dialogs.vala:750
+#, c-format
+msgid "%s sent to PID %d"
+msgstr "%s inviato al PID %d"
+
+#: native/src/dialogs.vala:752
+#, c-format
+msgid "Could not signal PID %d: %s"
+msgstr "Impossibile segnalare PID %d: %s"
+
+#: native/src/dialogs.vala:776
+msgid "No processes are running"
+msgstr "Nessun processo è in esecuzione"
+
+#: native/src/dialogs.vala:794 native/src/window.vala:125
+msgid "Support Atoms"
+msgstr "Supporta Atoms"
+
+#: native/src/dialogs.vala:809
+msgid "Keep Atoms independent"
+msgstr "Mantieni Atoms indipendente"
+
+#: native/src/dialogs.vala:814
 msgid ""
-"Choose where to store the new atoms (this will not move the existing ones)."
+"Your support pays for development, infrastructure, and maintained "
+"distribution packages."
 msgstr ""
-"Scegli dove memorizzare i nuovi atomi (questo non sposterà quelli esistenti)."
+"Il tuo supporto copre lo sviluppo, l'infrastruttura e i pacchetti di "
+"distribuzione mantenuti."
 
-#: atoms/gtk/preferences-window.ui:40 atoms/gtk/preferences-window.ui:63
-msgid "Reset to default"
-msgstr "Ripristina i valori predefiniti"
+#: native/src/dialogs.vala:825
+msgid "GitHub Sponsors"
+msgstr "GitHub Sponsors"
 
-#: atoms/gtk/preferences-window.ui:58
-msgid "Custom Images Path"
-msgstr "Percorso Personalizzato delle Immagini"
+#: native/src/dialogs.vala:829
+msgid "Liberapay"
+msgstr "Liberapay"
 
-#: atoms/gtk/preferences-window.ui:59
-msgid ""
-"Choose where to store the new images (this will not move the existing ones)."
-msgstr "Scegli dove memorizzare le nuove immagini (questo non sposterà quelle "
+#: native/src/dialogs.vala:833
+msgid "Patreon"
+msgstr "Patreon"
 
-#: atoms/gtk/preferences-window.ui:86
-msgid "Images"
-msgstr "Immagini"
+#: native/src/dialogs.vala:839
+msgid "Even sharing Atoms or contributing a distro package helps."
+msgstr ""
+"Anche condividere Atoms o contribuire con un pacchetto della distro aiuta."
 
-#: atoms/gtk/preferences-window.ui:92
-msgid "Integrations"
-msgstr "Integrazioni"
+#: native/src/leaf_pane.vala:129
+msgid "Move terminal"
+msgstr "Sposta terminale"
 
-#: atoms/gtk/preferences-window.ui:95
-msgid "Available Integrations"
-msgstr "Integrazioni Disponibili"
+#: native/src/leaf_pane.vala:157
+msgid "Create terminal or tab"
+msgstr "Crea terminale o scheda"
 
-#: atoms/gtk/preferences-window.ui:98
-msgid "Distrobox"
-msgstr "Distrobox"
+#: native/src/leaf_pane.vala:162
+msgid "Commands and terminal history"
+msgstr "Comandi e cronologia del terminale"
 
-#: atoms/gtk/status-detached-console.ui:9
-msgid "Console is Detached"
-msgstr "Terminale Staccato"
+#: native/src/leaf_pane.vala:169
+msgid "Environment processes"
+msgstr "Processi dell'ambiente"
 
-#: atoms/gtk/status-detached-console.ui:10
-msgid "Use the dedicate button in the header bar to attach it again."
-msgstr "Usa il pulsante dedicato nella barra in alto per riattaccarlo."
+#: native/src/leaf_pane.vala:174
+msgid "Environment settings"
+msgstr "Impostazioni dell'ambiente"
 
-#: atoms/gtk/status-no-atoms.ui:10
-msgid "Start by creating your first atom."
-msgstr "Inizia creando il tuo primo atomo."
+#: native/src/leaf_pane.vala:179
+msgid "Close Terminal"
+msgstr "Chiudi terminale"
 
-#: atoms/gtk/status-no-atoms.ui:13
-msgid "Create new atom"
-msgstr "Crea nuovo atomo"
+#: native/src/leaf_pane.vala:185
+msgid "Close All Terminals"
+msgstr "Chiudi tutti i terminali"
 
-#: atoms/gtk/window.ui:53
-msgid "_Preferences"
-msgstr "_Preferenze"
+#: native/src/leaf_pane.vala:284 native/src/window.vala:463
+#: native/src/window.vala:874
+msgid "New Terminal"
+msgstr "Nuovo terminale"
 
-#: atoms/gtk/window.ui:57
-msgid "_Keyboard Shortcuts"
-msgstr "_Tasti di Scelta Rapida"
+#: native/src/leaf_pane.vala:289 native/src/window.vala:471
+msgid "New Tab"
+msgstr "Nuova scheda"
 
-#: atoms/gtk/window.ui:61
-msgid "_About Atoms"
-msgstr "_Informazioni su Atoms"
+#: native/src/leaf_pane.vala:323
+msgid "Update"
+msgstr "Aggiorna"
 
-#~ msgid "Mirko Brombin"
-#~ msgstr "Mirko Brombin"
+#: native/src/leaf_pane.vala:342
+msgid "Terminal"
+msgstr "Terminale"
 
-#~ msgid "Set download percentage as numeric"
-#~ msgstr "Imposta il download percentuale come numerico"
+#: native/src/leaf_pane.vala:344
+#, c-format
+msgid "Terminal %d"
+msgstr "Terminale %d"
 
-#~ msgid "Easily manage Linux chroot(s) with Atoms"
-#~ msgstr "Gestisci facilmente Linux chroot con Atoms"
+#: native/src/leaf_pane.vala:421
+msgid "Copy"
+msgstr "Copia"
 
-#~ msgid "Local Images"
-#~ msgstr "Immagini Locali"
+#: native/src/leaf_pane.vala:426
+msgid "Paste"
+msgstr "Incolla"
+
+#: native/src/leaf_pane.vala:432
+msgid "Clear"
+msgstr "Pulisci"
+
+#: native/src/widgets.vala:40 native/src/widgets.vala:49
+msgid "Creating..."
+msgstr "Creazione in corso..."
+
+#: native/src/window.vala:55
+msgid "Loading environments..."
+msgstr "Caricamento degli ambienti..."
+
+#: native/src/window.vala:95 native/src/window.vala:870
+msgid "Linux, one shell away."
+msgstr "Linux, a un passo dalla shell."
+
+#: native/src/window.vala:101
+msgid "Environments"
+msgstr "Ambienti"
+
+#: native/src/window.vala:111
+msgid "Update all environments"
+msgstr "Aggiorna tutti gli ambienti"
+
+#: native/src/window.vala:211
+msgid "Four terminal areas are already open"
+msgstr "Sono già aperte quattro aree del terminale"
+
+#: native/src/window.vala:269 native/src/window.vala:664
+msgid "Choose an environment to open a terminal"
+msgstr "Scegli un ambiente per aprire un terminale"
+
+#: native/src/window.vala:421
+msgid "Loading available distributions..."
+msgstr "Caricamento delle distribuzioni disponibili..."
+
+#: native/src/window.vala:464 native/src/window.vala:472
+#: native/src/window.vala:480 native/src/window.vala:488
+#: native/src/window.vala:496
+msgid "Atoms command"
+msgstr "Comando Atoms"
+
+#: native/src/window.vala:479
+msgid "Environment Processes"
+msgstr "Processi dell'ambiente"
+
+#: native/src/window.vala:487
+msgid "Environment Settings"
+msgstr "Impostazioni dell'ambiente"
+
+#: native/src/window.vala:495 native/src/window.vala:881
+msgid "New Environment"
+msgstr "Nuovo ambiente"
+
+#: native/src/window.vala:518
+msgid "Terminal history"
+msgstr "Cronologia del terminale"
+
+#: native/src/window.vala:535
+#, c-format
+msgid "Loading %s processes..."
+msgstr "Caricamento dei processi %s..."
+
+#: native/src/window.vala:553
+#, c-format
+msgid "Could not open process manager: %s"
+msgstr "Impossibile aprire il gestore dei processi: %s"
+
+#: native/src/window.vala:584
+#, c-format
+msgid "Loading %s applications..."
+msgstr "Caricamento delle applicazioni %s..."
+
+#: native/src/window.vala:596
+#, c-format
+msgid "Application menu updated for %s"
+msgstr "Menu delle applicazioni aggiornato per %s"
+
+#: native/src/window.vala:603
+#, c-format
+msgid "Could not load applications: %s"
+msgstr "Impossibile caricare le applicazioni: %s"
+
+#: native/src/window.vala:611
+msgid "No environments to update"
+msgstr "Nessun ambiente da aggiornare"
+
+#: native/src/window.vala:663 native/src/window.vala:692
+msgid "Create a distribution environment to begin"
+msgstr "Crea un ambiente di distribuzione per iniziare"
+
+#: native/src/window.vala:691
+msgid "No Atoms provider is installed"
+msgstr "Nessun provider Atoms è installato"
+
+#: native/src/window.vala:710
+#, c-format
+msgid "Installing %s..."
+msgstr "Installazione di %s..."
+
+#: native/src/window.vala:733
+#, c-format
+msgid "%s is ready"
+msgstr "%s è pronto"
+
+#: native/src/window.vala:739
+#, c-format
+msgid "Could not create %s: %s"
+msgstr "Impossibile creare %s: %s"
+
+#: native/src/window.vala:761
+#, c-format
+msgid "Saving %s permissions..."
+msgstr "Salvataggio delle autorizzazioni di %s..."
+
+#: native/src/window.vala:773
+#, c-format
+msgid "Permissions saved for %s"
+msgstr "Autorizzazioni salvate per %s"
+
+#: native/src/window.vala:775
+#, c-format
+msgid "Could not save permissions: %s"
+msgstr "Impossibile salvare le autorizzazioni: %s"
+
+#: native/src/window.vala:780
+#, c-format
+msgid "Restarting %s..."
+msgstr "Riavvio di %s..."
+
+#: native/src/window.vala:788
+#, c-format
+msgid "%s restarted"
+msgstr "%s riavviato"
+
+#: native/src/window.vala:790
+#, c-format
+msgid "Could not restart %s: %s"
+msgstr "Impossibile riavviare %s: %s"
+
+#: native/src/window.vala:798
+#, c-format
+msgid "Deleting %s..."
+msgstr "Eliminazione di %s..."
+
+#: native/src/window.vala:803
+#, c-format
+msgid "%s deleted"
+msgstr "%s eliminato"
+
+#: native/src/window.vala:805
+#, c-format
+msgid "Could not delete %s: %s"
+msgstr "Impossibile eliminare %s: %s"
+
+#: native/src/window.vala:875
+msgid "Open a shell in an installed environment."
+msgstr "Apri una shell in un ambiente installato."
+
+#: native/src/window.vala:882
+msgid "Install a Linux distribution and create its environment."
+msgstr "Installa una distribuzione Linux e crea il suo ambiente."
+
+#: native/src/window.vala:906
+msgid "No active terminal"
+msgstr "Nessun terminale attivo"
+
+#: native/src/window.vala:913
+msgid "process"
+msgstr "processo"
+
+#: native/src/window.vala:913
+msgid "processes"
+msgstr "processi"
+
+#~ msgid "Atoms 2.0"
+#~ msgstr "Atoms 2.0"

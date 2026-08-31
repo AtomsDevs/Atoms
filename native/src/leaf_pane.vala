@@ -34,6 +34,7 @@ namespace Atoms {
 
         private Gtk.Window host_window;
         private ProviderRegistry registry;
+        private GLib.Settings settings;
         private bool smoke_mode;
         private Gtk.Stack terminal_stack;
         private Singularity.Widgets.ChipBar chip_bar;
@@ -42,6 +43,7 @@ namespace Atoms {
         private TerminalDropZone drop_zone = TerminalDropZone.CENTER;
         private ArrayList<TerminalTab> tabs;
         private Singularity.Widgets.ContextMenu? add_menu;
+        private string? copied_text;
         private int tab_sequence = 0;
 
         public signal void focused (LeafPane terminal);
@@ -60,11 +62,13 @@ namespace Atoms {
         public LeafPane (Gtk.Window host_window,
                          Environment environment,
                          ProviderRegistry registry,
+                         GLib.Settings settings,
                          bool smoke_mode = false) {
             Object (orientation: Orientation.VERTICAL, spacing: 0);
             this.host_window = host_window;
             this.environment = environment;
             this.registry = registry;
+            this.settings = settings;
             this.smoke_mode = smoke_mode;
             pane_id = GLib.Uuid.string_random ();
 
@@ -122,7 +126,7 @@ namespace Atoms {
             var drag_button = new Gtk.Button ();
             drag_button.add_css_class ("flat");
             drag_button.add_css_class ("atoms-terminal-drag");
-            drag_button.tooltip_text = "Move terminal";
+            drag_button.tooltip_text = _("Move terminal");
             drag_button.set_child (new Gtk.Image.from_icon_name (
                 "atoms-terminal-drag-symbolic"
             ));
@@ -150,35 +154,35 @@ namespace Atoms {
             hover_controls.add_control (drag_button);
 
             var add_button = new Gtk.Button.from_icon_name ("list-add-symbolic");
-            add_button.tooltip_text = "Create terminal or tab";
+            add_button.tooltip_text = _("Create terminal or tab");
             add_button.clicked.connect (() => open_add_menu (add_button));
             hover_controls.add_control (add_button);
 
             var search_button = new Gtk.Button.from_icon_name ("system-search-symbolic");
-            search_button.tooltip_text = "Commands and terminal history";
+            search_button.tooltip_text = _("Commands and terminal history");
             search_button.clicked.connect (() => search_requested (this));
             hover_controls.add_control (search_button);
 
             var processes_button = new Gtk.Button.from_icon_name (
                 "atoms-process-monitor-symbolic"
             );
-            processes_button.tooltip_text = "Environment processes";
+            processes_button.tooltip_text = _("Environment processes");
             processes_button.clicked.connect (() => process_manager_requested (this));
             hover_controls.add_control (processes_button);
 
             var settings_button = new Gtk.Button.from_icon_name ("emblem-system-symbolic");
-            settings_button.tooltip_text = "Environment settings";
+            settings_button.tooltip_text = _("Environment settings");
             settings_button.clicked.connect (() => settings_requested (this));
             hover_controls.add_control (settings_button);
 
             hover_controls.add_close_menu_item (
-                "Close Terminal",
+                _("Close Terminal"),
                 "window-close-symbolic",
                 () => close_requested (this)
             );
             hover_controls.add_close_menu_separator ();
             hover_controls.add_close_menu_item (
-                "Close All Terminals",
+                _("Close All Terminals"),
                 "application-exit-symbolic",
                 () => close_all_requested ()
             );
@@ -277,12 +281,12 @@ namespace Atoms {
             Gdk.Rectangle rect = { 0, 0, 1, 1 };
             add_menu.set_pointing_to (rect);
             add_menu.add_item (
-                "New Terminal",
+                _("New Terminal"),
                 "atoms-terminal-symbolic",
                 () => new_terminal_requested (this)
             );
             add_menu.add_item (
-                "New Tab",
+                _("New Tab"),
                 "atoms-tab-new-symbolic",
                 () => new_tab_requested (this)
             );
@@ -310,14 +314,42 @@ namespace Atoms {
         }
 
         public void add_tab (Environment? profile = null) {
-            var tab_environment = profile ?? environment;
+            add_tab_with_argv (profile ?? environment, null, "");
+        }
+
+        public void add_update_tab (Environment profile) {
+            try {
+                var provider = registry.require (profile.provider_id);
+                add_tab_with_argv (profile, provider.update_argv (profile), _("Update"));
+            } catch (Error error) {
+                var tab = active_tab ();
+                if (tab != null)
+                    tab.terminal.feed (("Unable to update environment: %s\r\n".printf (
+                        error.message
+                    )).data);
+            }
+        }
+
+        private void add_tab_with_argv (Environment tab_environment,
+                                        string[]? argv_override,
+                                        string requested_label) {
             tab_sequence++;
             string id = GLib.Uuid.string_random ();
-            string label = tab_sequence == 1
-                ? "Terminal"
-                : "Terminal %d".printf (tab_sequence);
+            string label;
+            if (requested_label != "")
+                label = requested_label;
+            else if (tab_sequence == 1)
+                label = _("Terminal");
+            else
+                label = _("Terminal %d").printf (tab_sequence);
             var terminal = configure_terminal ();
-            var tab = new TerminalTab (id, label, terminal, tab_environment);
+            var tab = new TerminalTab (
+                id,
+                label,
+                terminal,
+                tab_environment,
+                argv_override
+            );
             install_history_capture (tab);
             terminal.child_exited.connect ((status) => {
                 tab.shell_pid = 0;
@@ -337,25 +369,121 @@ namespace Atoms {
             terminal.vexpand = true;
             terminal.set_scrollback_lines (10000);
             terminal.set_audible_bell (false);
-
-            Gdk.RGBA background = {};
-            Gdk.RGBA foreground = {};
-            background.parse ("#171a20");
-            foreground.parse ("#d8dee9");
-            terminal.set_color_background (background);
-            terminal.set_color_foreground (foreground);
+            apply_theme_to (terminal);
+            install_context_menu (terminal);
 
             var click = new Gtk.GestureClick ();
-            click.pressed.connect ((n, x, y) => focused (this));
+            click.pressed.connect ((n, x, y) => {
+                terminal.grab_focus ();
+                focused (this);
+            });
             terminal.add_controller (click);
 
             return terminal;
+        }
+
+        public void apply_terminal_theme () {
+            foreach (var tab in tabs)
+                apply_theme_to (tab.terminal);
+        }
+
+        private void apply_theme_to (Vte.Terminal terminal) {
+            string scheme = settings.get_string ("color-scheme");
+            var theme = scheme == "auto"
+                ? Singularity.Core.TerminalThemes.make_auto_theme (true)
+                : Singularity.Core.TerminalThemes.get_by_id (scheme);
+            if (theme == null)
+                theme = Singularity.Core.TerminalThemes.get_by_id ("onedark");
+            if (theme == null)
+                return;
+
+            Gdk.RGBA background = {};
+            Gdk.RGBA foreground = {};
+            background.parse (theme.background);
+            foreground.parse (theme.foreground);
+            Gdk.RGBA[] palette = new Gdk.RGBA[16];
+            for (int i = 0; i < palette.length; i++) {
+                palette[i] = {};
+                palette[i].parse (theme.palette[i]);
+            }
+            terminal.set_colors (foreground, background, palette);
+        }
+
+        private void install_context_menu (Vte.Terminal terminal) {
+            var click = new Gtk.GestureClick ();
+            click.button = 3;
+            click.pressed.connect ((n, x, y) => {
+                var menu = new Singularity.Widgets.ContextMenu (terminal);
+                Gdk.Rectangle rect = { (int) x, (int) y, 1, 1 };
+                menu.set_pointing_to (rect);
+                if (terminal.get_has_selection ())
+                    menu.add_item (
+                        _("Copy"),
+                        "edit-copy-symbolic",
+                        () => copy_selection (terminal)
+                    );
+                menu.add_item (
+                    _("Paste"),
+                    "edit-paste-symbolic",
+                    () => paste_selection.begin (terminal)
+                );
+                menu.add_separator ();
+                menu.add_item (
+                    _("Clear"),
+                    "edit-clear-symbolic",
+                    () => terminal.reset (true, true)
+                );
+                menu.popup ();
+            });
+            terminal.add_controller (click);
+        }
+
+        private void copy_selection (Vte.Terminal terminal) {
+            string? text = terminal.get_text_selected (Vte.Format.TEXT);
+            if (text == null)
+                return;
+            copied_text = text;
+            var display = terminal.get_display ();
+            if (display != null)
+                display.get_clipboard ().set_text (text);
+        }
+
+        private async void paste_selection (Vte.Terminal terminal) {
+            string? text = null;
+            var display = terminal.get_display ();
+            if (copied_text != null &&
+                (display == null || display.get_clipboard ().is_local ())) {
+                terminal.paste_text (copied_text);
+                return;
+            }
+            if (display != null) {
+                try {
+                    text = yield display.get_clipboard ().read_text_async (null);
+                } catch (Error error) {
+                }
+            }
+            text = text ?? copied_text;
+            if (text != null)
+                terminal.paste_text (text);
         }
 
         private void install_history_capture (TerminalTab tab) {
             var keys = new Gtk.EventControllerKey ();
             keys.set_propagation_phase (Gtk.PropagationPhase.CAPTURE);
             keys.key_pressed.connect ((keyval, keycode, state) => {
+                bool ctrl = (state & Gdk.ModifierType.CONTROL_MASK) != 0;
+                bool shift = (state & Gdk.ModifierType.SHIFT_MASK) != 0;
+                if (ctrl && shift) {
+                    uint key = Gdk.keyval_to_lower (keyval);
+                    if (key == Gdk.Key.c) {
+                        copy_selection (tab.terminal);
+                        return true;
+                    }
+                    if (key == Gdk.Key.v) {
+                        paste_selection.begin (tab.terminal);
+                        return true;
+                    }
+                }
                 if (keyval == Gdk.Key.Return || keyval == Gdk.Key.KP_Enter)
                     capture_current_command (tab);
                 return false;
@@ -424,17 +552,28 @@ namespace Atoms {
 
             string[] argv;
             try {
-                argv = smoke_mode
-                    ? new string[] { "/bin/bash", "--noprofile", "--norc", "-i" }
-                    : registry.require (tab.environment.provider_id).shell_argv (
+                if (tab.argv_override != null && tab.argv_override.length > 0) {
+                    argv = tab.argv_override;
+                } else if (smoke_mode) {
+                    argv = { "/bin/bash", "--noprofile", "--norc", "-i" };
+                } else {
+                    var provider = registry.require (tab.environment.provider_id);
+                    argv = provider.shell_argv (
                         tab.environment,
                         "/bin/bash",
-                        { "-i" }
+                        { "-i" },
+                        true
                     );
+                }
             } catch (Error error) {
                 string message = "Unable to open environment: %s\r\n".printf (
                     error.message
                 );
+                tab.terminal.feed (message.data);
+                return;
+            }
+            if (argv.length == 0 || argv[0] == null || argv[0] == "") {
+                string message = "Unable to open environment: provider returned no command\r\n";
                 tab.terminal.feed (message.data);
                 return;
             }

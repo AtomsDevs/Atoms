@@ -37,7 +37,7 @@ namespace Atoms {
 
     public class PendingEnvironmentSidebarRow : Singularity.Widgets.SidebarRow {
         public PendingEnvironmentSidebarRow (Distribution distribution) {
-            base ("atoms-package-symbolic", "Creating...");
+            base ("atoms-package-symbolic", _("Creating..."));
             sensitive = false;
 
             var content = new Gtk.Box (Orientation.HORIZONTAL, 12);
@@ -46,7 +46,7 @@ namespace Atoms {
                 16,
                 "atoms-package-symbolic"
             ));
-            var label = new Gtk.Label ("Creating...");
+            var label = new Gtk.Label (_("Creating..."));
             label.xalign = 0;
             label.hexpand = true;
             content.append (label);

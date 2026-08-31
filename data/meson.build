@@ -29,4 +29,16 @@ if appstream_cli.found()
   )
 endif
 
+gnome.compile_schemas(
+  build_by_default: true,
+  depend_files: files('pm.mirko.Atoms.gschema.xml')
+)
+
+install_data(
+  'pm.mirko.Atoms.gschema.xml',
+  install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
+)
+
+gnome.post_install(glib_compile_schemas: true)
+
 subdir('icons')

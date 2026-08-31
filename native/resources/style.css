@@ -34,6 +34,17 @@
   background: @atoms_terminal;
 }
 
+.atoms-window,
+.atoms-window .singularity-app-frame,
+.atoms-window .window-sidebar,
+.atoms-window .navigation-sidebar,
+.atoms-window .atoms-workspace,
+.atoms-window .atoms-statusbar,
+.atoms-window .atoms-terminal-tabs {
+  background: @atoms_terminal;
+  color: @atoms_terminal_text;
+}
+
 .atoms-terminal {
   background: @atoms_terminal;
   outline: 1px solid alpha(white, 0.12);
