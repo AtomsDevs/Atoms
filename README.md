@@ -55,9 +55,9 @@ flatpak run org.flatpak.Builder flatpak-build pm.mirko.Atoms.yml --user --instal
 flatpak run pm.mirko.Atoms
 ```
 
-The bundled provider requires cpak to be installed on the host. Its
-`org.freedesktop.Flatpak` access is used only to invoke the cpak CLI outside the
-application sandbox, where cpak applies the selected environment policy.
+The Flatpak bundles cpak. Its `org.freedesktop.Flatpak` access is used only to
+invoke that bundled CLI outside the application sandbox, where cpak applies the
+selected environment policy.
 
 ## Providers
 

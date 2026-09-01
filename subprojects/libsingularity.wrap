@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/singularityos-lab/libsingularity.git
-revision = dbf6622952337c8e5f11dba2e05592e60165e5e8
+revision = 493e24c2f4f80706e3ba70d45c45b93e610f5cc2
 depth = 1
 
 [provide]

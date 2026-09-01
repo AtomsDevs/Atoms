@@ -4,7 +4,7 @@ WORKDIR /src/atoms
 
 RUN apt update && apt install -y --no-install-recommends \
     build-essential desktop-file-utils gettext git libgee-0.8-dev \
-    libgtk-4-dev libgtk4-layer-shell-dev libgtksourceview-5-dev libjson-glib-dev libpeas-2-dev \
+    libgtk-4-dev libgtksourceview-5-dev libjson-glib-dev libpeas-2-dev \
     libsoup-3.0-dev libvte-2.91-gtk4-dev meson ninja-build sassc valac xvfb && \
     rm -rf /var/lib/apt/lists/*
 
@@ -17,7 +17,7 @@ RUN meson setup --prefix=/usr --buildtype=release /tmp/atoms-build && \
 FROM ghcr.io/containerpak/gtk-sdk:main
 
 RUN apt update && apt install -y --no-install-recommends \
-    desktop-file-utils libgee-0.8-2 libgtk-4-1 libgtk4-layer-shell0 libgtksourceview-5-0 libjson-glib-1.0-0 \
+    desktop-file-utils libgee-0.8-2 libgtk-4-1 libgtksourceview-5-0 libjson-glib-1.0-0 \
     libpeas-2-0 libsoup-3.0-0 libvte-2.91-gtk4-0 && \
     rm -rf /var/lib/apt/lists/*
 

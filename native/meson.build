@@ -10,7 +10,7 @@ libpeas_dep = dependency('libpeas-2', version: '>= 2.0')
 libsingularity_dep = dependency(
   'singularity-1.0',
   fallback: ['libsingularity', 'libsingularity_dep'],
-  default_options: ['system=false', 'introspection=false']
+  default_options: ['system=false', 'introspection=false', 'layer-shell=false']
 )
 
 libsingularity_vapi_args = []

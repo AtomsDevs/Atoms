@@ -26,6 +26,24 @@ cleanup:
   - '*.la'
 
 modules:
+  - name: cpak
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 cpak /app/libexec/atoms/cpak
+    sources:
+      - type: file
+        url: https://github.com/Containerpak/cpak/releases/download/v2.10.15/cpak-linux-amd64
+        sha256: 823ae18eddbe546a9f6aa0885af5fa1912bebc3f23e7987e04872168e17fc58a
+        dest-filename: cpak
+        only-arches:
+          - x86_64
+      - type: file
+        url: https://github.com/Containerpak/cpak/releases/download/v2.10.15/cpak-linux-arm64
+        sha256: bf4f1d241a81b2534c2ca0aca4ae4d6bfef2355a447b061e47f113a816da16f3
+        dest-filename: cpak
+        only-arches:
+          - aarch64
+
   - name: meson
     buildsystem: simple
     build-commands:
@@ -34,20 +52,6 @@ modules:
       - type: file
         url: https://files.pythonhosted.org/packages/45/76/c2f4cff5dabcd64711bd327dd00fd22ec603bed6a928dd5d058044d568d8/meson-1.10.0.tar.gz
         sha256: 8071860c1f46a75ea34801490fd1c445c9d75147a65508cd3a10366a7006cc1c
-
-  - name: gtk4-layer-shell
-    buildsystem: meson
-    config-opts:
-      - -Dexamples=false
-      - -Ddocs=false
-      - -Dtests=false
-      - -Dsmoke-tests=false
-      - -Dintrospection=true
-      - -Dvapi=true
-    sources:
-      - type: git
-        url: https://github.com/wmww/gtk4-layer-shell.git
-        commit: 1c963c51514581c41b9bdae08cdf69171265cdda
 
   - name: libpeas
     buildsystem: meson
@@ -82,10 +86,11 @@ modules:
     config-opts:
       - -Dsystem=false
       - -Dintrospection=false
+      - -Dlayer-shell=false
     sources:
       - type: git
         url: https://github.com/singularityos-lab/libsingularity.git
-        commit: dbf6622952337c8e5f11dba2e05592e60165e5e8
+        commit: 493e24c2f4f80706e3ba70d45c45b93e610f5cc2
 
   - name: vte
     buildsystem: meson
