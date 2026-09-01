@@ -32,14 +32,14 @@ modules:
       - install -Dm755 cpak /app/libexec/atoms/cpak
     sources:
       - type: file
-        url: https://github.com/Containerpak/cpak/releases/download/v2.10.15/cpak-linux-amd64
-        sha256: 823ae18eddbe546a9f6aa0885af5fa1912bebc3f23e7987e04872168e17fc58a
+        url: https://github.com/Containerpak/cpak/releases/download/v2.10.16/cpak-linux-amd64
+        sha256: 714d8b270f4670264812e560e088d0711bdce1440d5ba7279766f9f27f9b3d57
         dest-filename: cpak
         only-arches:
           - x86_64
       - type: file
-        url: https://github.com/Containerpak/cpak/releases/download/v2.10.15/cpak-linux-arm64
-        sha256: bf4f1d241a81b2534c2ca0aca4ae4d6bfef2355a447b061e47f113a816da16f3
+        url: https://github.com/Containerpak/cpak/releases/download/v2.10.16/cpak-linux-arm64
+        sha256: 6df772b12e82db7a8253d60ea0711a1fde8ce820e06a2132e32012a9f9284065
         dest-filename: cpak
         only-arches:
           - aarch64
