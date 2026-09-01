@@ -37,6 +37,14 @@
     <display_length compare="ge">768</display_length>
   </requires>
   <releases>
+    <release version="2.0.2" date="2026-09-01">
+      <description>
+        <ul>
+          <li>Bundle cpak with Flatpak builds instead of requiring a host installation</li>
+          <li>Use the cpak host action in cpak packages and improve setup errors elsewhere</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.0.1" date="2026-08-31">
       <description>
         <ul>
